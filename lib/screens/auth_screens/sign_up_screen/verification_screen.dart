@@ -3,8 +3,8 @@ import 'dart:core';
 import 'package:clinic_app/consts.dart';
 import 'package:clinic_app/screens/auth_screens/forget_pasword_screens/reset_password.dart';
 import 'package:clinic_app/screens/auth_screens/sign_up_screen/sign_up_screen.dart';
-import 'package:clinic_app/widgets/MyTextButton.dart';
-import 'package:clinic_app/widgets/myButtonWidget.dart';
+import 'package:clinic_app/widgets/my_button_widget.dart';
+import 'package:clinic_app/widgets/my_text_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -64,18 +64,17 @@ class VerificationScreen extends StatelessWidget {
               ),
             ),
             SizedBox(height: 24),
-            Mybuttonwidget(
+            MyButtonWidget(
               text: "Submit",
               onPressed: () {
                 push
                     ? Navigator.pushNamed(context, SignUp.id)
                     : Navigator.pushNamed(context, ResetPassword.id);
-                print(push);
               },
               color: kPrimaryColor,
             ),
             SizedBox(height: height * 0.1),
-            Mytextbutton(
+            MyTextButton(
               textButton: "Resend OTP Code",
               color: Colors.grey,
               onPressed: () {},

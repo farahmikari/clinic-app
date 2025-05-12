@@ -1,13 +1,17 @@
 import 'package:animated_background/animated_background.dart';
+import 'package:clinic_app/app/home/controllers/most_rated_doctors_bloc/most_rated_doctors_bloc.dart';
+import 'package:clinic_app/app/home/views/screens/home_screen.dart';
 import 'package:clinic_app/consts.dart';
 import 'package:clinic_app/bloc/login_bloc/login_bloc_bloc.dart';
 import 'package:clinic_app/screens/auth_screens/forget_pasword_screens/set_email_screen.dart';
 import 'package:clinic_app/screens/auth_screens/sign_up_screen/number_screen.dart';
-import 'package:clinic_app/widgets/MyTextButton.dart';
-import 'package:clinic_app/widgets/myButtonWidget.dart';
-import 'package:clinic_app/widgets/textFormFieldWedgit.dart';
+import 'package:clinic_app/service_locator.dart';
+import 'package:clinic_app/widgets/my_button_widget.dart';
+import 'package:clinic_app/widgets/my_text_button.dart';
+import 'package:clinic_app/widgets/text_form_field_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -22,12 +26,14 @@ class _LoginScreenState extends State<LoginScreen>
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
-    bool _obscure = false;
+    bool obscure = false;
     final width = size.width;
-    final height = size.height;
 
-    return BlocProvider(
-      create: (context) => LoginBlocBloc(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => LoginBlocBloc()),
+        BlocProvider.value(value: getIt<MostRatedDoctorsBloc>()),
+      ],
       child: Scaffold(
         backgroundColor: kPrimaryColor,
         body: AnimatedBackground(
@@ -64,7 +70,6 @@ class _LoginScreenState extends State<LoginScreen>
                             topRight: Radius.circular(30),
                           ),
                         ),
-
                         child: Stack(
                           children: [
                             Column(
@@ -102,7 +107,7 @@ class _LoginScreenState extends State<LoginScreen>
                                   ),
                                 ),
                                 SizedBox(height: 10),
-                                Textformfeildwedgit(
+                                TextFormFieldWidget(
                                   label: 'Phone',
                                   iconTextField: Icons.phone,
                                   onChanged: (value) {
@@ -118,7 +123,7 @@ class _LoginScreenState extends State<LoginScreen>
                                   error: state.phone.error,
                                   keyboardType: TextInputType.phone,
                                 ),
-                                Textformfeildwedgit(
+                                TextFormFieldWidget(
                                   label: 'Password',
                                   iconTextField: Icons.key,
                                   onChanged: (value) {
@@ -131,16 +136,16 @@ class _LoginScreenState extends State<LoginScreen>
                                   },
                                   validator: (value) => state.password.error,
                                   error: state.password.error,
-                                  obscure: _obscure,
+                                  obscure: obscure,
                                   suffixIcon: IconButton(
                                     onPressed: () {
-                                      _obscure = !_obscure;
+                                      obscure = !obscure;
                                       context.read<LoginBlocBloc>().add(
-                                        ObscureEvent(obscure: _obscure),
+                                        ObscureEvent(obscure: obscure),
                                       );
                                     },
                                     icon: Icon(
-                                      _obscure
+                                      obscure
                                           ? Icons.visibility_off
                                           : Icons.visibility,
                                     ),
@@ -148,7 +153,7 @@ class _LoginScreenState extends State<LoginScreen>
                                 ),
                                 Padding(
                                   padding: EdgeInsets.only(left: width * 0.55),
-                                  child: Mytextbutton(
+                                  child: MyTextButton(
                                     textButton: 'Forget password ? ',
                                     color: Colors.grey,
                                     onPressed: () {
@@ -159,10 +164,18 @@ class _LoginScreenState extends State<LoginScreen>
                                     },
                                   ),
                                 ),
-                                Mybuttonwidget(
+                                MyButtonWidget(
                                   text: 'Login',
                                   color: kPrimaryColor,
-                                  onPressed: state.button ? () {} : null,
+                                  onPressed:
+                                      state.button
+                                          ? () {
+                                            context
+                                                .read<MostRatedDoctorsBloc>()
+                                                .add(FetchMostRatedDoctors());
+                                            Get.to(() => HomeScreen());
+                                          }
+                                          : null,
                                 ),
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
@@ -175,7 +188,7 @@ class _LoginScreenState extends State<LoginScreen>
                                         fontWeight: FontWeight.bold,
                                       ),
                                     ),
-                                    Mytextbutton(
+                                    MyTextButton(
                                       textButton: 'sign up ',
                                       color: kPrimaryColor,
                                       onPressed: () {

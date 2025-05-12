@@ -1,0 +1,42 @@
+final mostRatedDoctors = [
+  {
+    "id": 1,
+    "image": "https://pngimg.com/uploads/doctor/small/doctor_PNG16006.png",
+    "name": "Layla Hassan",
+    "specialty": "Cardiology",
+    "rate": 4.8,
+    "treatments": 230,
+  },
+  {
+    "id": 3,
+    "image": "https://pngimg.com/d/doctor_PNG15959.png",
+    "name": "Fares Al Midany",
+    "specialty": "Neurology",
+    "rate": 4.5,
+    "treatments": 150,
+  },
+  {
+    "id": 5,
+    "image": "https://pngimg.com/d/doctor_PNG15992.png",
+    "name": "Omar Khaled",
+    "specialty": "Pediatrics",
+    "rate": 4.7,
+    "treatments": 180,
+  },
+  {
+    "id": 7,
+    "image": "https://pngimg.com/d/doctor_PNG16040.png",
+    "name": "Maya Al Qassem",
+    "specialty": "Dermatology",
+    "rate": 4.9,
+    "treatments": 270,
+  },
+  {
+    "id": 9,
+    "image": "https://pngimg.com/d/doctor_PNG16007.png",
+    "name": "Hussein Mansour",
+    "specialty": "Orthopedics",
+    "rate": 4.6,
+    "treatments": 320,
+  },
+];

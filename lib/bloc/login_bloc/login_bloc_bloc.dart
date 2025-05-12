@@ -1,11 +1,10 @@
 import 'package:clinic_app/helpers/validators.dart';
-import 'package:clinic_app/models/formModel.dart';
+import 'package:clinic_app/models/form_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'login_bloc_event.dart';
 part 'login_bloc_state.dart';
-
 
 class LoginBlocBloc extends Bloc<LoginBlocEvent, LoginBlocState> {
   LoginBlocBloc()
@@ -18,14 +17,14 @@ class LoginBlocBloc extends Bloc<LoginBlocEvent, LoginBlocState> {
 
   void _phoneEvent(PhoneFieldEvent event, Emitter<LoginBlocState> emit) {
     String phone = event.phone;
-    String? error=Validators.validatePhone(phone);
-    
+    String? error = Validators.validatePhone(phone);
+
     emit(state.copyWith(phone: FormModelItem(value: phone, error: error)));
   }
 
   void _passwordEvent(PasswordFieldEvent event, Emitter<LoginBlocState> emit) {
     final String password = event.password;
-    String? error=Validators.validatePassword(password);
+    String? error = Validators.validatePassword(password);
     emit(
       state.copyWith(password: FormModelItem(value: password, error: error)),
     );

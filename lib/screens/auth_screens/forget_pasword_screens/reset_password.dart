@@ -1,12 +1,12 @@
 import 'package:clinic_app/bloc/forget_password_bloc/forget_password_bloc.dart';
 import 'package:clinic_app/consts.dart';
-import 'package:clinic_app/widgets/myButtonWidget.dart';
-import 'package:clinic_app/widgets/textFormFieldWedgit.dart';
+import 'package:clinic_app/widgets/my_button_widget.dart';
+import 'package:clinic_app/widgets/text_form_field_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ResetPassword extends StatelessWidget {
-  ResetPassword({super.key});
+  const ResetPassword({super.key});
   static String id = "Reset Password";
   @override
   Widget build(BuildContext context) {
@@ -34,7 +34,7 @@ class ResetPassword extends StatelessWidget {
                     style: Theme.of(context).textTheme.titleLarge,
                   ),
                   SizedBox(height: height * 0.05),
-                  Textformfeildwedgit(
+                  TextFormFieldWidget(
                     label: 'password',
                     iconTextField: Icons.key,
                     error: state.password.error,
@@ -46,7 +46,7 @@ class ResetPassword extends StatelessWidget {
                       context.read<ForgetPasswordBloc>().add(FButtonEvent());
                     },
                   ),
-                  Textformfeildwedgit(
+                  TextFormFieldWidget(
                     label: 'confirm password',
                     iconTextField: Icons.key,
                     error: state.conPassword.error,
@@ -58,9 +58,9 @@ class ResetPassword extends StatelessWidget {
                       context.read<ForgetPasswordBloc>().add(FButtonEvent());
                     },
                   ),
-                  Mybuttonwidget(
+                  MyButtonWidget(
                     text: 'Reset Password',
-                    onPressed:state.button? () {}:null,
+                    onPressed: state.button ? () {} : null,
                     color: kPrimaryColor,
                   ),
                 ],

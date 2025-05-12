@@ -1,7 +1,7 @@
 class Validators {
- static String? validateRequired(String value) =>
+  static String? validateRequired(String value) =>
       value.isEmpty ? "Field is required!" : null;
- static String? validateEmail(String value) {
+  static String? validateEmail(String value) {
     const pattern =
         r"(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'"
         r'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-'
@@ -17,22 +17,23 @@ class Validators {
     } else if (!regexp.hasMatch(value)) {
       return "Invalid email";
     }
+    return null;
   }
 
- static String? validatePhone(String value) =>
+  static String? validatePhone(String value) =>
       value.isEmpty
           ? "Field is required!"
           : value.length < 10
           ? "less than 10 numbers"
           : null;
 
- static String? validatePassword(String value) =>
+  static String? validatePassword(String value) =>
       value.isEmpty
           ? "Field is required!"
           : value.length < 8
           ? "Password must be 8 letters at least"
           : null;
- static String? validateConPassword(String value, String orginal) =>
+  static String? validateConPassword(String value, String orginal) =>
       value.isEmpty
           ? "Field is required!"
           : value.length < 8

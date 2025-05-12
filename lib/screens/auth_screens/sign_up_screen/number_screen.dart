@@ -2,8 +2,8 @@ import 'package:animated_background/animated_background.dart';
 import 'package:clinic_app/bloc/signup_bloc/signup_bloc.dart';
 import 'package:clinic_app/consts.dart';
 import 'package:clinic_app/screens/auth_screens/sign_up_screen/verification_screen.dart';
-import 'package:clinic_app/widgets/myButtonWidget.dart';
-import 'package:clinic_app/widgets/textFormFieldWedgit.dart';
+import 'package:clinic_app/widgets/my_button_widget.dart';
+import 'package:clinic_app/widgets/text_form_field_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -84,7 +84,7 @@ class _NumberScreenState extends State<NumberScreen>
                                     ),
                                   ),
 
-                                  Textformfeildwedgit(
+                                  TextFormFieldWidget(
                                     label: 'Phone',
                                     iconTextField: Icons.phone,
                                     onChanged: (value) {
@@ -101,7 +101,7 @@ class _NumberScreenState extends State<NumberScreen>
                                     keyboardType: TextInputType.phone,
                                   ),
 
-                                  Mybuttonwidget(
+                                  MyButtonWidget(
                                     text: 'Verify',
                                     color: kPrimaryColor,
                                     onPressed:

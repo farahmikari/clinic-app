@@ -1,8 +1,8 @@
 import 'package:clinic_app/bloc/forget_password_bloc/forget_password_bloc.dart';
 import 'package:clinic_app/consts.dart';
 import 'package:clinic_app/screens/auth_screens/sign_up_screen/verification_screen.dart';
-import 'package:clinic_app/widgets/myButtonWidget.dart';
-import 'package:clinic_app/widgets/textFormFieldWedgit.dart';
+import 'package:clinic_app/widgets/my_button_widget.dart';
+import 'package:clinic_app/widgets/text_form_field_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -38,34 +38,39 @@ class SetEmailScreen extends StatelessWidget {
                       'Set Your Email',
                       style: Theme.of(context).textTheme.titleLarge,
                     ),
-                
+
                     SizedBox(height: height * 0.1),
-                    Textformfeildwedgit(
+                    TextFormFieldWidget(
                       label: 'Email',
                       controller: emailController,
                       iconTextField: Icons.email,
                       onChanged: (value) {
-                            context.read<ForgetPasswordBloc>().add(
-                              FEmailFieldEvent(email: value),
-                            );
-                            context.read<ForgetPasswordBloc>().add(FEmailButtonEvent());
-                            // print("errorrrrrr");
-                          },
-                          error: state.email.error,
-                          validator: (value) => state.email.error,
-                    ),
-                    Mybuttonwidget(
-                      text: 'Verify',
-                      onPressed:state.buttonEmail? () {
-                        Navigator.pushNamed(
-                          context,
-                          VerificationScreen.id,
-                          arguments: <String, dynamic>{
-                            'verification': emailController.text,
-                            'sign': false,
-                          },
+                        context.read<ForgetPasswordBloc>().add(
+                          FEmailFieldEvent(email: value),
                         );
-                      }:null,
+                        context.read<ForgetPasswordBloc>().add(
+                          FEmailButtonEvent(),
+                        );
+                        // print("errorrrrrr");
+                      },
+                      error: state.email.error,
+                      validator: (value) => state.email.error,
+                    ),
+                    MyButtonWidget(
+                      text: 'Verify',
+                      onPressed:
+                          state.buttonEmail
+                              ? () {
+                                Navigator.pushNamed(
+                                  context,
+                                  VerificationScreen.id,
+                                  arguments: <String, dynamic>{
+                                    'verification': emailController.text,
+                                    'sign': false,
+                                  },
+                                );
+                              }
+                              : null,
                       color: kPrimaryColor,
                     ),
                   ],

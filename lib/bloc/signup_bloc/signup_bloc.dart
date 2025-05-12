@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:clinic_app/helpers/validators.dart';
-import 'package:clinic_app/models/formModel.dart';
+import 'package:clinic_app/models/form_model.dart';
 import 'package:flutter/material.dart';
 part 'signup_event.dart';
 part 'signup_state.dart';
@@ -34,29 +34,29 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
   }
   void _phoneEvent(SPhoneFieldEvent event, Emitter<SignupState> emit) {
     String phone = event.phone;
-    String? error=Validators.validatePhone(phone);
-    
+    String? error = Validators.validatePhone(phone);
+
     emit(state.copyWith(phone: FormModelItem(value: phone, error: error)));
   }
 
   void _emailEvent(SEmailFieldEvent event, Emitter<SignupState> emit) {
     String email = event.email;
-   
-    String? error=Validators.validateEmail(email);
-    
+
+    String? error = Validators.validateEmail(email);
+
     emit(state.copyWith(email: FormModelItem(value: email, error: error)));
   }
 
   void _buttonVerifyEvent(SButtonVerifyEvent event, Emitter<SignupState> emit) {
     bool button = state.phone.value.isNotEmpty && state.phone.error == null;
-    
+
     emit(state.copyWith(buttonVerify: button));
   }
 
   void _firstNameEvent(SFirstNameFieldEvent event, Emitter<SignupState> emit) {
     String firstName = event.name;
-    String? error=Validators.validateRequired(firstName);
-    
+    String? error = Validators.validateRequired(firstName);
+
     emit(
       state.copyWith(firstName: FormModelItem(value: firstName, error: error)),
     );
@@ -64,8 +64,8 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
 
   void _lastNameEvent(SLastNameFieldEvent event, Emitter<SignupState> emit) {
     String lastName = event.name;
-    String? error=Validators.validateRequired(lastName);
-   
+    String? error = Validators.validateRequired(lastName);
+
     emit(
       state.copyWith(lastName: FormModelItem(value: lastName, error: error)),
     );
@@ -73,19 +73,15 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
 
   void _birthEvent(SBirthFieldEvent event, Emitter<SignupState> emit) {
     String birth = event.birth;
-    String? error=Validators.validateRequired(birth);
-    
-    emit(
-      state.copyWith(
-        birthDate: FormModelItem(value: birth , error: error),
-      ),
-    );
+    String? error = Validators.validateRequired(birth);
+
+    emit(state.copyWith(birthDate: FormModelItem(value: birth, error: error)));
   }
 
   void _genderEvent(SGenderFieldEvent event, Emitter<SignupState> emit) {
     String gender = event.gender;
-    String? error=Validators.validateRequired(gender);
-    
+    String? error = Validators.validateRequired(gender);
+
     emit(state.copyWith(gender: FormModelItem(value: gender, error: error)));
   }
 
@@ -115,7 +111,10 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
     Emitter<SignupState> emit,
   ) {
     final String password = event.password;
-    String? error = Validators.validateConPassword(password,state.password.value);
+    String? error = Validators.validateConPassword(
+      password,
+      state.password.value,
+    );
 
     emit(
       state.copyWith(conPassword: FormModelItem(value: password, error: error)),
@@ -143,4 +142,3 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
     emit(state.copyWith(buttonEvent: button));
   }
 }
-

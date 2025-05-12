@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:clinic_app/helpers/validators.dart';
-import 'package:clinic_app/models/formModel.dart';
+import 'package:clinic_app/models/form_model.dart';
 import 'package:flutter/material.dart';
 
 part 'forget_password_event.dart';
@@ -24,11 +24,11 @@ class ForgetPasswordBloc
     on<FEmailButtonEvent>(_buttonEmailEvent);
     on<FButtonEvent>(_buttonEvent);
   }
-void _emailEvent(FEmailFieldEvent event, Emitter<ForgetPasswordState> emit) {
+  void _emailEvent(FEmailFieldEvent event, Emitter<ForgetPasswordState> emit) {
     String email = event.email;
-   
-    String? error=Validators.validateEmail(email);
-    
+
+    String? error = Validators.validateEmail(email);
+
     emit(state.copyWith(email: FormModelItem(value: email, error: error)));
   }
 
@@ -38,7 +38,10 @@ void _emailEvent(FEmailFieldEvent event, Emitter<ForgetPasswordState> emit) {
     emit(state.copyWith(obscure: !obscure));
   }
 
-  void _passwordEvent(FPasswordFieldEvent event, Emitter<ForgetPasswordState> emit) {
+  void _passwordEvent(
+    FPasswordFieldEvent event,
+    Emitter<ForgetPasswordState> emit,
+  ) {
     final String password = event.password;
     String? error = Validators.validatePassword(password);
 
@@ -47,7 +50,10 @@ void _emailEvent(FEmailFieldEvent event, Emitter<ForgetPasswordState> emit) {
     );
   }
 
-  void _conObscureEvent(FConObscureEvent event, Emitter<ForgetPasswordState> emit) {
+  void _conObscureEvent(
+    FConObscureEvent event,
+    Emitter<ForgetPasswordState> emit,
+  ) {
     bool obscure = event.conObscure;
 
     emit(state.copyWith(conObscure: !obscure));
@@ -58,30 +64,35 @@ void _emailEvent(FEmailFieldEvent event, Emitter<ForgetPasswordState> emit) {
     Emitter<ForgetPasswordState> emit,
   ) {
     final String password = event.password;
-    String? error = Validators.validateConPassword(password,state.password.value);
+    String? error = Validators.validateConPassword(
+      password,
+      state.password.value,
+    );
 
     emit(
       state.copyWith(conPassword: FormModelItem(value: password, error: error)),
     );
   }
 
-  void _buttonEmailEvent(FEmailButtonEvent event, Emitter<ForgetPasswordState> emit) {
+  void _buttonEmailEvent(
+    FEmailButtonEvent event,
+    Emitter<ForgetPasswordState> emit,
+  ) {
     bool button = false;
-    if (state.email.value.isNotEmpty &&
-        state.email.error == null ) {
+    if (state.email.value.isNotEmpty && state.email.error == null) {
       button = true;
     }
     emit(state.copyWith(buttonEmail: button));
   }
-void _buttonEvent(FButtonEvent event,Emitter<ForgetPasswordState> emit){
-  bool button = false;
-  if(state.password.value.isNotEmpty &&
+
+  void _buttonEvent(FButtonEvent event, Emitter<ForgetPasswordState> emit) {
+    bool button = false;
+    if (state.password.value.isNotEmpty &&
         state.password.error == null &&
         state.conPassword.value.isNotEmpty &&
-        state.conPassword.error == null){
-          button=true;
-        }
+        state.conPassword.error == null) {
+      button = true;
+    }
     emit(state.copyWith(button: button));
-}
-
+  }
 }

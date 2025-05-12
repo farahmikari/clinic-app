@@ -13,8 +13,6 @@ class OnboardingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Size size = MediaQuery.of(context).size;
-    final width = size.width;
     return BlocProvider(
       create: (context) => OnboardingBloc(),
       child: Scaffold(
@@ -50,8 +48,7 @@ class OnboardingScreen extends StatelessWidget {
                     _page(
                       pageIndex: 2,
                       imageUrl: 'assets/images/Online calendar-pana.png',
-                      title:
-                          'Book your doctor’s visit in just a few taps',
+                      title: 'Book your doctor’s visit in just a few taps',
                       context: context,
                     ),
                   ],
@@ -101,7 +98,6 @@ class OnboardingScreen extends StatelessWidget {
             title,
             textAlign: TextAlign.center,
             style: Theme.of(context).textTheme.titleLarge,
-            
           ),
         ),
         SizedBox(height: 120),

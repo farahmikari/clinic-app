@@ -1,14 +1,17 @@
 import 'package:animated_background/animated_background.dart';
-import 'package:clinic_app/bloc/login_bloc/login_bloc_bloc.dart';
+import 'package:clinic_app/app/home/controllers/most_rated_doctors_bloc/most_rated_doctors_bloc.dart';
+import 'package:clinic_app/app/home/views/screens/home_screen.dart';
 import 'package:clinic_app/bloc/signup_bloc/signup_bloc.dart';
 import 'package:clinic_app/consts.dart';
-import 'package:clinic_app/widgets/myButtonWidget.dart';
-import 'package:clinic_app/widgets/textFormFieldWedgit.dart';
+import 'package:clinic_app/service_locator.dart';
+import 'package:clinic_app/widgets/my_button_widget.dart';
+import 'package:clinic_app/widgets/text_form_field_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 
 class SignUp extends StatefulWidget {
-  SignUp({super.key});
+  const SignUp({super.key});
   static String id = "Sign Up";
 
   @override
@@ -25,8 +28,11 @@ class _SignUpState extends State<SignUp> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => SignupBloc(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => SignupBloc()),
+        BlocProvider.value(value: getIt<MostRatedDoctorsBloc>()),
+      ],
       child: Scaffold(
         backgroundColor: Colors.white,
         body: AnimatedBackground(
@@ -104,10 +110,10 @@ class _SignUpState extends State<SignUp> with SingleTickerProviderStateMixin {
                           ],
                         ),
                         SizedBox(height: 10),
-                        Textformfeildwedgit(
+                        TextFormFieldWidget(
                           label: 'First Name',
                           iconTextField: Icons.person,
-                  
+
                           onChanged: (value) {
                             context.read<SignupBloc>().add(
                               SFirstNameFieldEvent(name: value),
@@ -118,11 +124,11 @@ class _SignUpState extends State<SignUp> with SingleTickerProviderStateMixin {
                           error: state.firstName.error,
                           validator: (value) => state.firstName.error,
                         ),
-                  
-                        Textformfeildwedgit(
+
+                        TextFormFieldWidget(
                           label: 'Last Name',
                           iconTextField: Icons.person,
-                  
+
                           onChanged: (value) {
                             context.read<SignupBloc>().add(
                               SLastNameFieldEvent(name: value),
@@ -133,7 +139,7 @@ class _SignUpState extends State<SignUp> with SingleTickerProviderStateMixin {
                           error: state.lastName.error,
                           validator: (value) => state.lastName.error,
                         ),
-                        Textformfeildwedgit(
+                        TextFormFieldWidget(
                           label: 'Birthday Date',
                           iconTextField: Icons.person,
                           validator: (value) => state.birthDate.error,
@@ -152,7 +158,7 @@ class _SignUpState extends State<SignUp> with SingleTickerProviderStateMixin {
                               _selectDate(context);
                             },
                           ),
-                  
+
                           readOnly: true,
                         ),
                         // DropdownButtonFormField<String>(
@@ -174,7 +180,7 @@ class _SignUpState extends State<SignUp> with SingleTickerProviderStateMixin {
                         //     }
                         //   },
                         // )
-                        Textformfeildwedgit(
+                        TextFormFieldWidget(
                           label: 'Gender',
                           iconTextField: Icons.transgender,
                           error: state.gender.error,
@@ -214,10 +220,10 @@ class _SignUpState extends State<SignUp> with SingleTickerProviderStateMixin {
                             );
                           },
                         ),
-                        Textformfeildwedgit(
+                        TextFormFieldWidget(
                           label: 'Email Name',
                           iconTextField: Icons.email,
-                  
+
                           onChanged: (value) {
                             context.read<SignupBloc>().add(
                               SEmailFieldEvent(email: value),
@@ -228,9 +234,8 @@ class _SignUpState extends State<SignUp> with SingleTickerProviderStateMixin {
                           error: state.email.error,
                           validator: (value) => state.email.error,
                         ),
-                  
-                  
-                        Textformfeildwedgit(
+
+                        TextFormFieldWidget(
                           label: 'Password',
                           iconTextField: Icons.key,
                           error: state.password.error,
@@ -250,11 +255,13 @@ class _SignUpState extends State<SignUp> with SingleTickerProviderStateMixin {
                               );
                             },
                             icon: Icon(
-                              _obscure ? Icons.visibility_off : Icons.visibility,
+                              _obscure
+                                  ? Icons.visibility_off
+                                  : Icons.visibility,
                             ),
                           ),
                         ),
-                        Textformfeildwedgit(
+                        TextFormFieldWidget(
                           label: 'Confirm Password',
                           iconTextField: Icons.key,
                           error: state.conPassword.error,
@@ -280,9 +287,17 @@ class _SignUpState extends State<SignUp> with SingleTickerProviderStateMixin {
                             ),
                           ),
                         ),
-                        Mybuttonwidget(
+                        MyButtonWidget(
                           text: 'Sign Up',
-                          onPressed: state.buttonEvent ? () {} : null,
+                          onPressed:
+                              state.buttonEvent
+                                  ? () {
+                                    context.read<MostRatedDoctorsBloc>().add(
+                                      FetchMostRatedDoctors(),
+                                    );
+                                    Get.to(() => HomeScreen());
+                                  }
+                                  : null,
                           color: kPrimaryColor,
                         ),
                         SizedBox(height: 30),
@@ -299,7 +314,7 @@ class _SignUpState extends State<SignUp> with SingleTickerProviderStateMixin {
   }
 
   Future<void> _selectDate(BuildContext context) async {
-    DateTime? _picked = await showDatePicker(
+    DateTime? picked = await showDatePicker(
       builder: (context, child) {
         //  here you can return  a child
         return Theme(
@@ -314,11 +329,11 @@ class _SignUpState extends State<SignUp> with SingleTickerProviderStateMixin {
       lastDate: DateTime(2100),
       initialDate: DateTime.now(),
     );
-    if (_picked != null) {
-      valueBirth = _picked.toString().split(' ')[0];
+    if (picked != null) {
+      valueBirth = picked.toString().split(' ')[0];
       birthController.text = valueBirth!;
       context.read<SignupBloc>().add(SBirthFieldEvent(birth: valueBirth!));
       context.read<SignupBloc>().add(SButtonEvent());
-    } 
+    }
   }
 }
