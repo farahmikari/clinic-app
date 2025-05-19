@@ -1,11 +1,9 @@
 import 'package:animated_background/animated_background.dart';
-import 'package:clinic_app/app/home/controllers/most_rated_doctors_bloc/most_rated_doctors_bloc.dart';
-import 'package:clinic_app/app/home/views/screens/home_screen.dart';
+import 'package:clinic_app/app/bottom%20navigation%20bar/views/screens/bottom_navigation_bar_screen.dart';
 import 'package:clinic_app/consts.dart';
 import 'package:clinic_app/bloc/login_bloc/login_bloc_bloc.dart';
 import 'package:clinic_app/screens/auth_screens/forget_pasword_screens/set_email_screen.dart';
 import 'package:clinic_app/screens/auth_screens/sign_up_screen/number_screen.dart';
-import 'package:clinic_app/service_locator.dart';
 import 'package:clinic_app/widgets/my_button_widget.dart';
 import 'package:clinic_app/widgets/my_text_button.dart';
 import 'package:clinic_app/widgets/text_form_field_widget.dart';
@@ -30,10 +28,7 @@ class _LoginScreenState extends State<LoginScreen>
     final width = size.width;
 
     return MultiBlocProvider(
-      providers: [
-        BlocProvider(create: (context) => LoginBlocBloc()),
-        BlocProvider.value(value: getIt<MostRatedDoctorsBloc>()),
-      ],
+      providers: [BlocProvider(create: (context) => LoginBlocBloc())],
       child: Scaffold(
         backgroundColor: kPrimaryColor,
         body: AnimatedBackground(
@@ -170,10 +165,9 @@ class _LoginScreenState extends State<LoginScreen>
                                   onPressed:
                                       state.button
                                           ? () {
-                                            context
-                                                .read<MostRatedDoctorsBloc>()
-                                                .add(FetchMostRatedDoctors());
-                                            Get.to(() => HomeScreen());
+                                            Get.offAll(
+                                              () => BottomNavigationBarScreen(),
+                                            );
                                           }
                                           : null,
                                 ),

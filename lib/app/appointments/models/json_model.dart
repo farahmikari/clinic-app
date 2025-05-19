@@ -1,0 +1,73 @@
+final upcomingAppointments = [
+  {
+    "id": 1,
+    "status": "Upcoming",
+    "doctor_name": "Layla Hassan",
+    "doctor_image": "https://pngimg.com/d/doctor_PNG16002.png",
+    "department": "Cardiology",
+    "date": "2025-05-17",
+    "time": "09:30 AM",
+    "request_type": "Check-Up",
+    "with_medical_report": true,
+  },
+  {
+    "id": 2,
+    "status": "Upcoming",
+    "doctor_name": "Fares Al Midany",
+    "doctor_image": "https://pngimg.com/d/doctor_PNG15959.png",
+    "department": "Neurology",
+    "date": "2025-05-16",
+    "time": "12:00 PM",
+    "request_type": "Follow-Up",
+    "with_medical_report": false,
+  },
+  {
+    "id": 3,
+    "status": "Upcoming",
+    "doctor_name": "Rand Skaf",
+    "doctor_image":
+        "https://pngimg.com/uploads/doctor/small/doctor_PNG15960.png",
+    "department": "Pediatrics",
+    "date": "2025-05-15",
+    "time": "02:30 AM",
+    "request_type": "Follow-Up",
+    "with_medical_report": true,
+  },
+];
+
+final completedAppointments = [
+  {
+    "id": 1,
+    "status": "Completed",
+    "doctor_name": "Maya Al Qassem",
+    "doctor_image": "https://pngimg.com/d/doctor_PNG16014.png",
+    "department": "Dermatology",
+    "date": "2025-05-05",
+    "time": "09:00 AM",
+    "request_type": "Check-Up",
+    "with_medical_report": true,
+  },
+  {
+    "id": 2,
+    "status": "Completed",
+    "doctor_name": "Fares Al Midany",
+    "doctor_image": "https://pngimg.com/d/doctor_PNG15959.png",
+    "department": "Neurology",
+    "date": "2025-05-04",
+    "time": "11:30 PM",
+    "request_type": "Check-Up",
+    "with_medical_report": true,
+  },
+  {
+    "id": 3,
+    "status": "Completed",
+    "doctor_name": "Rand Skaf",
+    "doctor_image":
+        "https://pngimg.com/uploads/doctor/small/doctor_PNG15960.png",
+    "department": "Pediatrics",
+    "date": "2025-05-01",
+    "time": "04:30 AM",
+    "request_type": "Check-Up",
+    "with_medical_report": false,
+  },
+];

@@ -1,5 +1,5 @@
-import 'package:clinic_app/app_colors.dart';
-import 'package:clinic_app/core/extentions/extention.dart';
+import 'package:clinic_app/core/constants/app_colors.dart';
+import 'package:clinic_app/core/constants/app_dimensions.dart';
 import 'package:flutter/material.dart';
 
 class BookAppointmentButtonWidget extends StatelessWidget {
@@ -7,21 +7,27 @@ class BookAppointmentButtonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      borderRadius: BorderRadius.circular(1000),
-      onTap: () {},
-      child: Container(
-        alignment: Alignment.center,
-        decoration: BoxDecoration(
-          color: AppColors.primaryColor,
-          borderRadius: BorderRadius.circular(1000),
-        ),
-        child: Text(
-          "Book Appointment",
-          style: TextStyle(
-            color: AppColors.widgetBackgroundColor,
-            fontSize: 14.0.sp,
-            fontWeight: FontWeight.bold,
+    return Expanded(
+      flex: 2,
+      child: Padding(
+        padding: EdgeInsets.all(AppDimensions.mp),
+        child: InkWell(
+          borderRadius: BorderRadius.circular(AppDimensions.lbr),
+          onTap: () {},
+          child: Container(
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              color: AppColors.primaryColor,
+              borderRadius: BorderRadius.circular(AppDimensions.lbr),
+            ),
+            child: Text(
+              "Book Appointment",
+              style: TextStyle(
+                color: AppColors.widgetBackgroundColor,
+                fontSize: AppDimensions.lfs,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
           ),
         ),
       ),

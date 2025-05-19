@@ -1,5 +1,7 @@
-import 'package:clinic_app/app_colors.dart';
-import 'package:clinic_app/core/extentions/extention.dart';
+import 'package:clinic_app/core/constants/app_colors.dart';
+import 'package:clinic_app/core/constants/app_dimensions.dart';
+import 'package:clinic_app/core/constants/app_shadow.dart';
+import 'package:clinic_app/core/extentions/percent_sized_extention.dart';
 import 'package:flutter/material.dart';
 
 class CardWidget extends StatelessWidget {
@@ -7,26 +9,18 @@ class CardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<BoxShadow> boxShadow = [
-      const BoxShadow(
-        color: Color(0x1A000000),
-        spreadRadius: 2,
-        blurRadius: 8,
-        offset: Offset(0, 4),
-      ),
-    ];
     return Container(
       height: 12.0.hp,
-      margin: EdgeInsets.all(4.0.wp),
+      margin: EdgeInsets.all(AppDimensions.mm),
       decoration: BoxDecoration(
         gradient: const LinearGradient(
           colors: [AppColors.darkBlueColor, AppColors.lightBlueColor],
         ),
-        borderRadius: BorderRadius.circular(15.0.sp),
-        boxShadow: boxShadow,
+        borderRadius: BorderRadius.circular(AppDimensions.mbr),
+        boxShadow: AppShadow.boxShadow,
       ),
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(15.0.sp),
+        borderRadius: BorderRadius.circular(AppDimensions.mbr),
         child: Stack(
           children: [
             Positioned(
@@ -45,7 +39,7 @@ class CardWidget extends StatelessWidget {
                   "Discover Your Wellbeing",
                   style: TextStyle(
                     color: AppColors.widgetBackgroundColor,
-                    fontSize: 14.0.sp,
+                    fontSize: AppDimensions.lfs,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -53,7 +47,7 @@ class CardWidget extends StatelessWidget {
                   "Your path to better health starts here !",
                   style: TextStyle(
                     color: AppColors.widgetBackgroundColor,
-                    fontSize: 10.0.sp,
+                    fontSize: AppDimensions.sfs,
                     fontWeight: FontWeight.w500,
                   ),
                 ),

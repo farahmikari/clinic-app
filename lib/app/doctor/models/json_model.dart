@@ -1,7 +1,7 @@
 final doctors = [
   {
     "id": 1,
-    "image": "https://pngimg.com/uploads/doctor/small/doctor_PNG16006.png",
+    "image": "https://pngimg.com/d/doctor_PNG16002.png",
     "name": "Layla Hassan",
     "specialty": "Cardiology",
     "start_hour": "9:00",
@@ -121,7 +121,7 @@ final doctors = [
   },
   {
     "id": 7,
-    "image": "https://pngimg.com/d/doctor_PNG16040.png",
+    "image": "https://pngimg.com/d/doctor_PNG16014.png",
     "name": "Maya Al Qassem",
     "specialty": "Dermatology",
     "start_hour": "9:00",

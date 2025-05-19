@@ -1,9 +1,7 @@
 import 'package:animated_background/animated_background.dart';
-import 'package:clinic_app/app/home/controllers/most_rated_doctors_bloc/most_rated_doctors_bloc.dart';
-import 'package:clinic_app/app/home/views/screens/home_screen.dart';
+import 'package:clinic_app/app/bottom%20navigation%20bar/views/screens/bottom_navigation_bar_screen.dart';
 import 'package:clinic_app/bloc/signup_bloc/signup_bloc.dart';
 import 'package:clinic_app/consts.dart';
-import 'package:clinic_app/service_locator.dart';
 import 'package:clinic_app/widgets/my_button_widget.dart';
 import 'package:clinic_app/widgets/text_form_field_widget.dart';
 import 'package:flutter/material.dart';
@@ -29,10 +27,7 @@ class _SignUpState extends State<SignUp> with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-      providers: [
-        BlocProvider(create: (context) => SignupBloc()),
-        BlocProvider.value(value: getIt<MostRatedDoctorsBloc>()),
-      ],
+      providers: [BlocProvider(create: (context) => SignupBloc())],
       child: Scaffold(
         backgroundColor: Colors.white,
         body: AnimatedBackground(
@@ -292,10 +287,9 @@ class _SignUpState extends State<SignUp> with SingleTickerProviderStateMixin {
                           onPressed:
                               state.buttonEvent
                                   ? () {
-                                    context.read<MostRatedDoctorsBloc>().add(
-                                      FetchMostRatedDoctors(),
+                                    Get.offAll(
+                                      () => BottomNavigationBarScreen(),
                                     );
-                                    Get.to(() => HomeScreen());
                                   }
                                   : null,
                           color: kPrimaryColor,
