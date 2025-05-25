@@ -1,6 +1,6 @@
 import 'package:clinic_app/app/appointments/controllers/appointments%20bloc/appointments_bloc.dart';
 import 'package:clinic_app/app/home/controllers/most%20rated%20doctors%20bloc/most_rated_doctors_bloc.dart';
-import 'package:clinic_app/service_locator.dart';
+import 'package:clinic_app/core/services/service_locator.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

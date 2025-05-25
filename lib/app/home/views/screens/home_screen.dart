@@ -6,7 +6,7 @@ import 'package:clinic_app/app/home/views/widgets/services%20button%20widgets/se
 import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
 import 'package:clinic_app/core/widgets/subtitle_widget.dart';
-import 'package:clinic_app/service_locator.dart';
+import 'package:clinic_app/core/services/service_locator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

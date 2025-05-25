@@ -1,5 +1,5 @@
 import 'package:clinic_app/app/appointments/controllers/appointments%20bloc/appointments_bloc.dart';
-import 'package:clinic_app/service_locator.dart';
+import 'package:clinic_app/core/services/service_locator.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'filter_event.dart';

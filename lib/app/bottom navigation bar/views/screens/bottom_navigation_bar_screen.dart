@@ -5,7 +5,7 @@ import 'package:clinic_app/app/bottom%20navigation%20bar/views/widgets/salomon_b
 import 'package:clinic_app/app/home/views/screens/home_screen.dart';
 import 'package:clinic_app/app/home/views/widgets/app%20bar%20widgets/home_app_bar_widget.dart';
 import 'package:clinic_app/core/constants/app_colors.dart';
-import 'package:clinic_app/service_locator.dart';
+import 'package:clinic_app/core/services/service_locator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

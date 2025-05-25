@@ -17,7 +17,7 @@ import 'package:clinic_app/app/book%20appointment/views/widgets/with_medical_rep
 import 'package:clinic_app/app/doctor/controllers/doctor%20bloc/doctor_bloc.dart';
 import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
-import 'package:clinic_app/service_locator.dart';
+import 'package:clinic_app/core/services/service_locator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
