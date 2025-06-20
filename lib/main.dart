@@ -1,11 +1,11 @@
+import 'package:clinic_app/app/onboarding/views/screens/onboarding_screen.dart';
 import 'package:clinic_app/app_bloc_observer.dart';
-import 'package:clinic_app/screens/auth_screens/forget_pasword_screens/reset_password.dart';
-import 'package:clinic_app/screens/auth_screens/forget_pasword_screens/set_email_screen.dart';
-import 'package:clinic_app/screens/auth_screens/login_screen/login_screen.dart';
-import 'package:clinic_app/screens/auth_screens/onboarding_screen/onboarding_screen.dart';
-import 'package:clinic_app/screens/auth_screens/sign_up_screen/number_screen.dart';
-import 'package:clinic_app/screens/auth_screens/sign_up_screen/sign_up_screen.dart';
-import 'package:clinic_app/screens/auth_screens/sign_up_screen/verification_screen.dart';
+import 'package:clinic_app/app/forget_password/views/screens/reset_password.dart';
+import 'package:clinic_app/app/forget_password/views/screens/set_email_screen.dart';
+import 'package:clinic_app/app/login/views/screens/login_screen.dart';
+import 'package:clinic_app/app/signup/views/screens/email_screen.dart';
+import 'package:clinic_app/app/signup/views/screens/sign_up_screen.dart';
+import 'package:clinic_app/app/signup/views/screens/verification_screen.dart';
 import 'package:clinic_app/service_locator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -27,7 +27,7 @@ class ClinicApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       routes: {
         LoginScreen.id: (context) => LoginScreen(),
-        NumberScreen.id: (context) => NumberScreen(),
+        EmailScreen.id: (context) => EmailScreen(),
         VerificationScreen.id: (context) => VerificationScreen(),
         SignUp.id: (context) => SignUp(),
         SetEmailScreen.id: (context) => SetEmailScreen(),

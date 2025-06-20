@@ -7,6 +7,7 @@ import 'package:clinic_app/app/book%20feature/controllers/morning_times_bloc/mor
 import 'package:clinic_app/app/book%20feature/controllers/picked_appointment_info_bloc/picked_appointment_info_bloc.dart';
 import 'package:clinic_app/app/doctor/controllers/doctor_bloc/doctor_bloc.dart';
 import 'package:clinic_app/app/home/controllers/most_rated_doctors_bloc/most_rated_doctors_bloc.dart';
+import 'package:clinic_app/app/onboarding/controllers/onboarding_bloc/onboarding_bloc.dart';
 import 'package:get_it/get_it.dart' show GetIt;
 
 final getIt = GetIt.instance;
@@ -25,4 +26,6 @@ void setup() {
   getIt.registerFactory<ConfirmBloc>(() => ConfirmBloc());
   // Alternatively you could write it if you don't like global variables
   //GetIt.I.registerSingleton<AppModel>(AppModel());
+  getIt.registerFactory<OnboardingBloc>(() => OnboardingBloc());
+
 }
