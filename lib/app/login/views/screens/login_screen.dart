@@ -1,19 +1,21 @@
 import 'package:animated_background/animated_background.dart';
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
-import 'package:clinic_app/app/home/controllers/most_rated_doctors_bloc/most_rated_doctors_bloc.dart';
-import 'package:clinic_app/app/home/views/screens/home_screen.dart';
-import 'package:clinic_app/consts.dart';
-import 'package:clinic_app/app/login/controllers/login_bloc/login_bloc.dart';
+import 'package:clinic_app/app/bottom%20navigation%20bar/views/screens/bottom_navigation_bar_screen.dart';
 import 'package:clinic_app/app/forget_password/views/screens/set_email_screen.dart';
-import 'package:clinic_app/app/signup/views/screens/email_screen.dart';
-import 'package:clinic_app/core/utils/snack_bar_util.dart';
-import 'package:clinic_app/service_locator.dart';
+import 'package:clinic_app/app/home/controllers/most%20rated%20doctors%20bloc/most_rated_doctors_bloc.dart';
+import 'package:clinic_app/app/home/views/screens/home_screen.dart';
+import 'package:clinic_app/app/login/controllers/login_bloc/login_bloc.dart';
 import 'package:clinic_app/app/login/views/widgets/button_widget.dart';
-import 'package:clinic_app/app/signup/views/widgets/text_button_widget.dart';
 import 'package:clinic_app/app/login/views/widgets/text_form_field_widget.dart';
+import 'package:clinic_app/app/signup/views/screens/email_screen.dart';
+import 'package:clinic_app/app/signup/views/widgets/text_button_widget.dart';
+import 'package:clinic_app/consts.dart';
+import 'package:clinic_app/core/services/service_locator.dart';
+import 'package:clinic_app/core/utils/snack_bar_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
+
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -37,6 +39,8 @@ class _LoginScreenState extends State<LoginScreen>
 
         BlocProvider.value(value: getIt<MostRatedDoctorsBloc>()),
       ],
+
+    
       child: Scaffold(
         backgroundColor: kPrimaryColor,
         body: AnimatedBackground(
@@ -66,7 +70,7 @@ class _LoginScreenState extends State<LoginScreen>
                     context.read<MostRatedDoctorsBloc>().add(
                       FetchMostRatedDoctors(),
                     );
-                    Get.to(() => HomeScreen());
+                   Get.offAll(() => BottomNavigationBarScreen());
 
                     break;
                   case LoginFailed():
@@ -207,8 +211,9 @@ class _LoginScreenState extends State<LoginScreen>
                                       (loginData.button && !isLoading)
                                           ? () {
                                             context.read<LoginBlocBloc>().add(
-                                              LoginSubmitEvent(),
-                                            );
+                                              LoginSubmitEvent(),);
+
+                                            
                                           }
                                           : null,
                                 ),

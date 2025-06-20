@@ -217,6 +217,7 @@ class SignupBloc extends Bloc<SignupEvent, SignupBaseState> {
       bool isArrive = map['isArrive'] ?? false;
       if (isArrive) {
       SignupModel model = SignupModel.fromJson(map['response']);
+     // ignore: avoid_print
      print("Token signup is :${model.token}");
       
         emit(SignupSuccess(currentState));

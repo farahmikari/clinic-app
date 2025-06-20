@@ -1,31 +1,26 @@
-import 'package:clinic_app/app_colors.dart';
-import 'package:clinic_app/core/extentions/extention.dart';
+import 'package:clinic_app/core/constants/app_colors.dart';
+import 'package:clinic_app/core/constants/app_dimensions.dart';
+import 'package:clinic_app/core/constants/app_icons.dart';
+import 'package:clinic_app/core/constants/app_shadow.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 class SearchWidget extends StatelessWidget {
   const SearchWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
-    List<BoxShadow> boxShadow = [
-      const BoxShadow(
-        color: Color(0x1A000000),
-        spreadRadius: 2,
-        blurRadius: 8,
-        offset: Offset(0, 4),
-      ),
-    ];
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 4.0.wp),
-      margin: EdgeInsets.only(bottom: 4.0.wp),
+      padding: EdgeInsets.symmetric(horizontal: AppDimensions.mp),
+      margin: EdgeInsets.only(bottom: AppDimensions.mm),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(100),
-        boxShadow: boxShadow,
+        borderRadius: BorderRadius.circular(AppDimensions.lbr),
+        boxShadow: AppShadow.boxShadow,
       ),
       child: TextFormField(
         style: TextStyle(
           color: AppColors.mainTextColor,
-          fontSize: 12.0.sp,
+          fontSize: AppDimensions.mfs,
           fontWeight: FontWeight.w500,
           decoration: TextDecoration.none,
         ),
@@ -33,22 +28,27 @@ class SearchWidget extends StatelessWidget {
           filled: true,
           fillColor: AppColors.widgetBackgroundColor,
           enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(100),
+            borderRadius: BorderRadius.circular(AppDimensions.lbr),
             borderSide: BorderSide.none,
           ),
           focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(100),
+            borderRadius: BorderRadius.circular(AppDimensions.lbr),
             borderSide: BorderSide.none,
           ),
-          prefixIcon: Icon(
-            Icons.search,
-            color: AppColors.darkGreyColor,
-            size: 20.0.sp,
+          prefixIcon: Padding(
+            padding: EdgeInsets.all(AppDimensions.mp), //gtr
+            child: SvgPicture.asset(
+              AppIcons.search,
+              colorFilter: ColorFilter.mode(
+                AppColors.darkGreyColor,
+                BlendMode.srcIn,
+              ),
+            ),
           ),
           hintText: "Doctor, Symptom, Facility, Specialty...",
           hintStyle: TextStyle(
             color: AppColors.hintTextColor,
-            fontSize: 12.0.sp,
+            fontSize: AppDimensions.mfs,
             fontWeight: FontWeight.w500,
           ),
         ),

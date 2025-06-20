@@ -78,6 +78,7 @@ class LoginBlocBloc extends Bloc<LoginBlocEvent, LoginBaseState> {
       bool isArrive = map['isArrive'] ?? false;
       if (isArrive) {
         LoginModel model = LoginModel.fromJson(map['response']);
+        // ignore: avoid_print
         print("Token login is :${model.token}");
 
         emit(LoginSuccess(currentState));

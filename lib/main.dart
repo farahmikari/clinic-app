@@ -1,5 +1,5 @@
+
 import 'package:clinic_app/app/onboarding/views/screens/onboarding_screen.dart';
-import 'package:clinic_app/app_bloc_observer.dart';
 import 'package:clinic_app/app/forget_password/views/screens/reset_password.dart';
 import 'package:clinic_app/app/forget_password/views/screens/set_email_screen.dart';
 import 'package:clinic_app/app/login/views/screens/login_screen.dart';
@@ -7,12 +7,26 @@ import 'package:clinic_app/app/signup/views/screens/email_screen.dart';
 import 'package:clinic_app/app/signup/views/screens/sign_up_screen.dart';
 import 'package:clinic_app/app/signup/views/screens/verification_screen.dart';
 import 'package:clinic_app/service_locator.dart';
+
+import 'package:clinic_app/core/services/app_bloc_observer.dart';
+import 'package:clinic_app/core/services/local_notification_service.dart';
+import 'package:clinic_app/core/services/push_notifications_service.dart';
+import 'package:clinic_app/firebase_options.dart';
+
+import 'package:clinic_app/core/services/service_locator.dart';
+import 'package:firebase_core/firebase_core.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  Future.wait([
+    PushNotificationsService.init(),
+    LocalNotificationService.init(),
+  ]);
   Bloc.observer = AppBlocObserver();
   setup();
   runApp(const ClinicApp());
