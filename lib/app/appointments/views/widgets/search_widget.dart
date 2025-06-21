@@ -1,7 +1,7 @@
-import 'package:clinic_app/core/constants/app_colors.dart';
-import 'package:clinic_app/core/constants/app_dimensions.dart';
-import 'package:clinic_app/core/constants/app_icons.dart';
-import 'package:clinic_app/core/constants/app_shadow.dart';
+import 'package:clinic_app/core/errors/constants/app_dimensions.dart';
+import 'package:clinic_app/core/errors/constants/app_colors.dart';
+import 'package:clinic_app/core/errors/constants/app_icons.dart';
+import 'package:clinic_app/core/errors/constants/app_shadow.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -38,10 +38,7 @@ class SearchWidget extends StatelessWidget {
               padding: EdgeInsets.all(AppDimensions.mp),
               child: SvgPicture.asset(
                 AppIcons.search,
-                colorFilter: ColorFilter.mode(
-                  AppColors.darkGreyColor,
-                  BlendMode.srcIn,
-                ),
+                color: AppColors.darkGreyColor,
               ),
             ),
             hintText: "Doctor, Date, Department...",

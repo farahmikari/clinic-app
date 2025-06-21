@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'package:clinic_app/app/doctor/models/doctor_model.dart';
 import 'package:clinic_app/app/doctor/models/json_model.dart';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rxdart/rxdart.dart';
 

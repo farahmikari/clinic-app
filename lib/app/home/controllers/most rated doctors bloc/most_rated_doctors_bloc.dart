@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'package:clinic_app/app/home/models/json_model.dart';
 import 'package:clinic_app/app/home/models/most_rated_doctor_model.dart';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'most_rated_doctors_event.dart';

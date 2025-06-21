@@ -1,5 +1,5 @@
-import 'package:clinic_app/core/constants/app_colors.dart';
-import 'package:clinic_app/core/constants/app_dimensions.dart';
+import 'package:clinic_app/core/errors/constants/app_colors.dart';
+import 'package:clinic_app/core/errors/constants/app_dimensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -28,10 +28,7 @@ class SecondaryInfoWidget extends StatelessWidget {
               icon,
               width: AppDimensions.sis,
               height: AppDimensions.sis,
-              colorFilter: ColorFilter.mode(
-                AppColors.primaryColor,
-                BlendMode.srcIn,
-              ),
+              color: AppColors.primaryColor,
             ),
             SizedBox(width: AppDimensions.sm),
             Text(

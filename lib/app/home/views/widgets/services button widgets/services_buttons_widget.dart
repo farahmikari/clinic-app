@@ -1,8 +1,8 @@
-import 'package:clinic_app/app/book%20appointment/views/screens/book_appointment_screen.dart';
+import 'package:clinic_app/app/book_appointment/views/screens/book_appointment_screen.dart';
 import 'package:clinic_app/app/home/views/widgets/services%20button%20widgets/service_button_widget.dart';
-import 'package:clinic_app/core/constants/app_colors.dart';
-import 'package:clinic_app/core/constants/app_dimensions.dart';
-import 'package:clinic_app/core/constants/app_icons.dart';
+import 'package:clinic_app/core/errors/constants/app_colors.dart';
+import 'package:clinic_app/core/errors/constants/app_dimensions.dart';
+import 'package:clinic_app/core/errors/constants/app_icons.dart';
 import 'package:clinic_app/core/extentions/percent_sized_extention.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

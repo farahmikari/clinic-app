@@ -1,4 +1,3 @@
-
 import 'package:clinic_app/app/onboarding/views/screens/onboarding_screen.dart';
 import 'package:clinic_app/app/forget_password/views/screens/reset_password.dart';
 import 'package:clinic_app/app/forget_password/views/screens/set_email_screen.dart';
@@ -13,7 +12,6 @@ import 'package:clinic_app/core/services/local_notification_service.dart';
 import 'package:clinic_app/core/services/push_notifications_service.dart';
 import 'package:clinic_app/firebase_options.dart';
 
-import 'package:clinic_app/core/services/service_locator.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 import 'package:flutter/material.dart';

@@ -1,5 +1,5 @@
-import 'package:clinic_app/core/constants/app_colors.dart';
-import 'package:clinic_app/core/constants/app_dimensions.dart';
+import 'package:clinic_app/core/errors/constants/app_colors.dart';
+import 'package:clinic_app/core/errors/constants/app_dimensions.dart';
 import 'package:flutter/material.dart';
 
 class SubtitleWidget extends StatelessWidget {
@@ -9,9 +9,14 @@ class SubtitleWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: AppDimensions.mp),
-      child: Text(
+    return ListTile(
+      contentPadding: EdgeInsets.symmetric(
+        horizontal: AppDimensions.mp,
+        vertical: 0,
+      ),
+      dense: true,
+      minTileHeight: 0,
+      title: Text(
         subtitle,
         style: TextStyle(
           color: AppColors.mainTextColor,

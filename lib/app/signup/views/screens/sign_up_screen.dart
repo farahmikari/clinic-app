@@ -1,7 +1,6 @@
-
 import 'package:animated_background/animated_background.dart';
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
-import 'package:clinic_app/app/bottom%20navigation%20bar/views/screens/bottom_navigation_bar_screen.dart';
+import 'package:clinic_app/app/bottom_navigation_bar/views/screens/bottom_navigation_bar_screen.dart';
 import 'package:clinic_app/app/home/controllers/most%20rated%20doctors%20bloc/most_rated_doctors_bloc.dart';
 import 'package:clinic_app/app/login/views/widgets/button_widget.dart';
 import 'package:clinic_app/app/login/views/widgets/text_form_field_widget.dart';
@@ -12,12 +11,11 @@ import 'package:clinic_app/app/signup/views/widgets/image_profile_widget.dart';
 
 import 'package:clinic_app/consts.dart';
 import 'package:clinic_app/core/utils/snack_bar_util.dart';
+import 'package:clinic_app/service_locator.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-
-import '../../../../core/services/service_locator.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({super.key});
@@ -48,7 +46,6 @@ class _SignupState extends State<SignUp> with SingleTickerProviderStateMixin {
         BlocProvider.value(value: getIt<MostRatedDoctorsBloc>()),
       ],
 
-     
       child: Scaffold(
         backgroundColor: Colors.white,
         body: AnimatedBackground(
@@ -74,13 +71,7 @@ class _SignupState extends State<SignUp> with SingleTickerProviderStateMixin {
                       message: "Signup Successfully",
                       contentType: ContentType.success,
                     );
-
-                    context.read<MostRatedDoctorsBloc>().add(
-                      FetchMostRatedDoctors(),
-                    );
-                    
-                    Get.offAll(
-                                      () => BottomNavigationBarScreen(),);
+                    Get.offAll(() => BottomNavigationBarScreen());
                     break;
                   case SignupFailed():
                     showSnackBar(
@@ -292,11 +283,8 @@ class _SignupState extends State<SignUp> with SingleTickerProviderStateMixin {
                                       SEmailFieldEvent(email: email),
                                     );
                                     context.read<SignupBloc>().add(
-                                      SignupSubmitEvent(),);
-
-                                    
-
-                                    
+                                      SignupSubmitEvent(),
+                                    );
                                   }
                                   : null,
                         ),
