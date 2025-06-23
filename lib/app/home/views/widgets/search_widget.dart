@@ -39,10 +39,7 @@ class SearchWidget extends StatelessWidget {
             padding: EdgeInsets.all(AppDimensions.mp), //gtr
             child: SvgPicture.asset(
               AppIcons.search,
-              colorFilter: ColorFilter.mode(
-                AppColors.darkGreyColor,
-                BlendMode.srcIn,
-              ),
+              color: AppColors.darkGreyColor,
             ),
           ),
           hintText: "Doctor, Symptom, Facility, Specialty...",

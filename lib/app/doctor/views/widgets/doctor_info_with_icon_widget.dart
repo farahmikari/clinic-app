@@ -26,10 +26,7 @@ class DoctorInfoWithIconWidget extends StatelessWidget {
             icon,
             height: AppDimensions.sis,
             width: AppDimensions.sis,
-            colorFilter: ColorFilter.mode(
-              AppColors.primaryColor,
-              BlendMode.srcIn,
-            ),
+            color:AppColors.primaryColor,
           ),
           SizedBox(width: AppDimensions.sm),
           Text(

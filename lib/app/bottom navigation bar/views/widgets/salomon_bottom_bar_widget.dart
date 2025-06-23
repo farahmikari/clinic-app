@@ -48,12 +48,9 @@ class SalomonBottomBarWidget extends StatelessWidget {
                     currentItem.icon,
                     height: AppDimensions.mis,
                     width: AppDimensions.mis,
-                    colorFilter: ColorFilter.mode(
-                      specifyIconColor(
+                    color: specifyIconColor(
                         itemId: currentItem.id,
                         currentIndex: state,
-                      ),
-                      BlendMode.srcIn,
                     ),
                   ),
                 );

@@ -19,7 +19,7 @@ class PatientLocationWidget extends StatelessWidget
         AppIcons.location,
         height: AppDimensions.mis,
         width: AppDimensions.mis,
-        colorFilter: ColorFilter.mode(AppColors.darkGreyColor, BlendMode.srcIn),
+         color:AppColors.darkGreyColor,
       ),
       title: Text(
         'Umayyad Mosque, Damascus, Syria',

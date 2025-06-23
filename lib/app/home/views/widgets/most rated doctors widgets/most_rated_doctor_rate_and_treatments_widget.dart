@@ -28,10 +28,7 @@ class MostRatedDoctorRateAndTreatmentsWidget extends StatelessWidget {
                 AppIcons.rate,
                 height: AppDimensions.sis,
                 width: AppDimensions.sis,
-                colorFilter: ColorFilter.mode(
-                  AppColors.primaryColor,
-                  BlendMode.srcIn,
-                ),
+                color: AppColors.primaryColor,
               ),
             ),
           ),

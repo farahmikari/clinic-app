@@ -11,7 +11,7 @@ plugins {
 android {
     namespace = "com.example.clinic_app"
     compileSdk = 35
-    ndkVersion = "29.0.13599879"
+    ndkVersion = "27.0.12077973"
 
 
     compileOptions {

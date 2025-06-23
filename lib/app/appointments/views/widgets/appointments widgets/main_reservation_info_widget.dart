@@ -28,10 +28,8 @@ class MainReservationInfoWidget extends StatelessWidget {
                 icon,
                 width: AppDimensions.sis,
                 height: AppDimensions.sis,
-                colorFilter: ColorFilter.mode(
-                  AppColors.primaryColor,
-                  BlendMode.srcIn,
-                ),
+                color:
+                  AppColors.primaryColor
               ),
             ),
           ),

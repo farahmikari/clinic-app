@@ -28,10 +28,7 @@ class ActionButton extends StatelessWidget {
           icon,
           height: AppDimensions.sis,
           width: AppDimensions.sis,
-          colorFilter: ColorFilter.mode(
-            AppColors.darkGreyColor,
-            BlendMode.srcIn,
-          ),
+          color:AppColors.darkGreyColor ,
         ),
       ),
     );
