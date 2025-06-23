@@ -1,5 +1,5 @@
-import 'package:clinic_app/core/constants/app_colors.dart';
-import 'package:clinic_app/core/constants/app_dimensions.dart';
+import 'package:clinic_app/core/errors/constants/app_colors.dart';
+import 'package:clinic_app/core/errors/constants/app_dimensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -26,7 +26,7 @@ class DoctorInfoWithIconWidget extends StatelessWidget {
             icon,
             height: AppDimensions.sis,
             width: AppDimensions.sis,
-            color:AppColors.primaryColor,
+            color: AppColors.primaryColor,
           ),
           SizedBox(width: AppDimensions.sm),
           Text(

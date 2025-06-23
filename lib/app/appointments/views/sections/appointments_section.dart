@@ -1,6 +1,7 @@
 import 'package:clinic_app/app/appointments/controllers/appointments%20bloc/appointments_bloc.dart';
 import 'package:clinic_app/app/appointments/views/widgets/appointments%20widgets/appointments_widget.dart';
-import 'package:clinic_app/core/constants/app_colors.dart';
+
+import 'package:clinic_app/core/errors/constants/app_colors.dart';
 import 'package:clinic_app/core/extentions/percent_sized_extention.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

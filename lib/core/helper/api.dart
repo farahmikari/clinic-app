@@ -30,7 +30,6 @@ class Api {
         isArrive = true;
         // ignore: avoid_print
         print("✅$response");
-        
       } else {
         isArrive = false;
         // ignore: avoid_print

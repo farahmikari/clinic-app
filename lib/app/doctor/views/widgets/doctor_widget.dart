@@ -6,7 +6,7 @@ import 'package:clinic_app/app/doctor/views/widgets/doctor_image_widget.dart';
 import 'package:clinic_app/app/doctor/views/widgets/doctor_name_and_specialty_widget.dart';
 import 'package:clinic_app/app/doctor/views/widgets/doctor_qualifications_widget.dart';
 import 'package:clinic_app/app/doctor/views/widgets/doctor_shift_and_rate_widget.dart';
-import 'package:clinic_app/core/constants/app_dimensions.dart';
+import 'package:clinic_app/core/errors/constants/app_dimensions.dart';
 import 'package:clinic_app/core/widgets/subtitle_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -34,8 +34,8 @@ class DoctorWidget extends StatelessWidget {
               ),
               //-----------|Doctor Shift & Rate|----------------------------------------------------------------------------------------------------------------------------------------
               DoctorShiftAndRateWidget(
-                startHour: doctor.startHour,
-                endHour: doctor.endHour,
+                startTime: doctor.startTime,
+                endTime: doctor.endTime,
                 rate: doctor.rate,
               ),
               //-------|Doctor Eperience & Treatments|-----------------------------------------------------------------------------------------------------------------------------------

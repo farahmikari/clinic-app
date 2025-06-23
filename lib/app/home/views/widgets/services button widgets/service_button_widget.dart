@@ -1,5 +1,5 @@
-import 'package:clinic_app/core/constants/app_dimensions.dart';
-import 'package:clinic_app/core/constants/app_shadow.dart';
+import 'package:clinic_app/core/errors/constants/app_dimensions.dart';
+import 'package:clinic_app/core/errors/constants/app_shadow.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -45,7 +45,7 @@ class ServiceButtonWidget extends StatelessWidget {
                 icon,
                 height: AppDimensions.lis,
                 width: AppDimensions.lis,
-              //  colorFilter: ColorFilter.mode(iconColor, BlendMode.srcIn),
+                color: iconColor,
               ),
             ),
             Align(

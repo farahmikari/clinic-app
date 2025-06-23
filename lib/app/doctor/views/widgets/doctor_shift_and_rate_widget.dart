@@ -1,22 +1,27 @@
 import 'package:clinic_app/app/doctor/views/widgets/doctor_info_with_icon_widget.dart';
-import 'package:clinic_app/core/constants/app_dimensions.dart';
-import 'package:clinic_app/core/constants/app_icons.dart';
+import 'package:clinic_app/core/errors/constants/app_dimensions.dart';
+import 'package:clinic_app/core/errors/constants/app_icons.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class DoctorShiftAndRateWidget extends StatelessWidget {
   const DoctorShiftAndRateWidget({
     super.key,
-    required this.startHour,
-    required this.endHour,
+    required this.startTime,
+    required this.endTime,
     required this.rate,
   });
 
-  final String startHour;
-  final String endHour;
+  final DateTime startTime;
+  final DateTime endTime;
   final num rate;
 
   @override
   Widget build(BuildContext context) {
+    String formatDateToTime(DateTime time) {
+      return DateFormat('hh:mm a').format(time);
+    }
+
     return Expanded(
       flex: 1,
       child: Padding(
@@ -26,7 +31,8 @@ class DoctorShiftAndRateWidget extends StatelessWidget {
             //----------------------|Doctor Shift|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
             DoctorInfoWithIconWidget(
               icon: AppIcons.time,
-              info: "$startHour am  -  $endHour pm",
+              info:
+                  "${formatDateToTime(startTime)}  -  ${formatDateToTime(endTime)}",
               mainAxisAlignment: MainAxisAlignment.start,
             ),
             //-----------------------|Doctor Rate|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------

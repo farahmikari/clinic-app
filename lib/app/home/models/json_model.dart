@@ -1,7 +1,7 @@
 final mostRatedDoctors = [
   {
     "id": 1,
-    "image": "https://pngimg.com/d/doctor_PNG16002.png",
+    "image": "assets/images/doctor1.png",
     "name": "Layla Hassan",
     "specialty": "cardiologist",
     "rate": 4.8,
@@ -9,7 +9,7 @@ final mostRatedDoctors = [
   },
   {
     "id": 3,
-    "image": "https://pngimg.com/d/doctor_PNG15959.png",
+    "image": "assets/images/doctor2.png",
     "name": "Fares Al Midany",
     "specialty": "Neurologist",
     "rate": 4.5,
@@ -17,7 +17,7 @@ final mostRatedDoctors = [
   },
   {
     "id": 5,
-    "image": "https://pngimg.com/d/doctor_PNG15992.png",
+    "image": "assets/images/doctor3.png",
     "name": "Omar Khaled",
     "specialty": "Pediatrician",
     "rate": 4.7,
@@ -25,7 +25,7 @@ final mostRatedDoctors = [
   },
   {
     "id": 7,
-    "image": "https://pngimg.com/d/doctor_PNG16014.png",
+    "image": "assets/images/doctor4.png",
     "name": "Maya Al Qassem",
     "specialty": "Dermatologist",
     "rate": 4.9,
@@ -33,7 +33,7 @@ final mostRatedDoctors = [
   },
   {
     "id": 9,
-    "image": "https://pngimg.com/d/doctor_PNG16007.png",
+    "image": "assets/images/doctor8.png",
     "name": "Hussein Mansour",
     "specialty": "Orthopedics",
     "rate": 4.6,

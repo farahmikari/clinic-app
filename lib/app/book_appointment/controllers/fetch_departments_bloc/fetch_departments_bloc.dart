@@ -1,0 +1,39 @@
+import 'package:dio/dio.dart';
+import 'package:flutter_bloc/flutter_bloc.dart' show Bloc, EventTransformer;
+import 'package:rxdart/rxdart.dart';
+
+import 'package:clinic_app/core/api/dio_consumer.dart';
+import 'package:clinic_app/core/api/end_points.dart';
+
+import '../../models/department_model.dart' show DepartmentModel;
+
+part 'fetch_departments_event.dart';
+part 'fetch_departments_state.dart';
+
+class FetchDepartmentsBloc
+    extends Bloc<FetchDepartmentsEvent, FetchDepartmentsState> {
+  FetchDepartmentsBloc() : super(FetchDepartmentsLoading()) {
+    DioConsumer api = DioConsumer(dio: Dio());
+    EventTransformer<FetchData> switchMapTransformer<FetchData>() {
+      return (events, mapper) => events.switchMap(mapper);
+    }
+
+    on<FetchDepartments>((event, emit) async {
+      emit(FetchDepartmentsLoading());
+      try {
+        dynamic response = await api.get(EndPoints.departments);
+        List<DepartmentModel> departments =
+            (response as List<dynamic>)
+                .map((department) => DepartmentModel.fromJson(department))
+                .toList();
+        emit(FetchDepartmentsLoaded(departments));
+      } catch (e) {
+        emit(
+          FetchDepartmentsFailed(
+            'Something Went Wrong When Trying To Fetch Departments',
+          ),
+        );
+      }
+    }, transformer: switchMapTransformer());
+  }
+}

@@ -3,8 +3,8 @@ class DoctorModel {
   final String image;
   final String name;
   final String specialty;
-  final String startHour;
-  final String endHour;
+  final DateTime startTime;
+  final DateTime endTime;
   final num rate;
   final int experience;
   final int treatments;
@@ -16,8 +16,8 @@ class DoctorModel {
     required this.image,
     required this.name,
     required this.specialty,
-    required this.startHour,
-    required this.endHour,
+    required this.startTime,
+    required this.endTime,
     required this.rate,
     required this.experience,
     required this.treatments,
@@ -31,8 +31,8 @@ class DoctorModel {
       image: jsonData["image"],
       name: jsonData["name"],
       specialty: jsonData["specialty"],
-      startHour: jsonData["start_hour"],
-      endHour: jsonData["end_hour"],
+      startTime: DateTime.parse(jsonData["start_time"]),
+      endTime: DateTime.parse(jsonData["end_time"]),
       rate: jsonData["rate"],
       experience: jsonData["experience"],
       treatments: jsonData["treatments"],
