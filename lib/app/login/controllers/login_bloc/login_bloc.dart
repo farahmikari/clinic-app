@@ -15,21 +15,21 @@ class LoginBlocBloc extends Bloc<LoginBlocEvent, LoginBaseState> {
           LoginBlocState(email: FormModelItem(), password: FormModelItem()),
         ),
       ) {
-    on<EmailFieldEvent>(_phoneEvent);
+    on<EmailFieldEvent>(_emailEvent);
     on<PasswordFieldEvent>(_passwordEvent);
     on<ObscureEvent>(_obscureEvent);
     on<ButtonEvent>(_buttonEvent);
     on<LoginSubmitEvent>(_onSubmit);
   }
 
-  void _phoneEvent(EmailFieldEvent event, Emitter<LoginBaseState> emit) {
-    String phone = event.email;
-    String? error = Validators.validatePhone(phone);
+  void _emailEvent(EmailFieldEvent event, Emitter<LoginBaseState> emit) {
+    String email = event.email;
+    String? error = Validators.validateEmail(email);
     final currentState = state.data;
 
     emit(
       LoginInitial(
-        currentState.copyWith(email: FormModelItem(value: phone, error: error)),
+        currentState.copyWith(email: FormModelItem(value: email, error: error)),
       ),
     );
   }
