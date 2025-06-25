@@ -1,6 +1,7 @@
 import 'package:clinic_app/app/book_appointment/models/time_model.dart';
 import 'package:clinic_app/core/api/dio_consumer.dart';
 import 'package:clinic_app/core/api/end_points.dart';
+import 'package:clinic_app/core/errors/exceptions.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rxdart/rxdart.dart';
@@ -31,23 +32,21 @@ class FetchTimesBloc extends Bloc<FetchTimesEvent, FetchTimesState> {
         dynamic response = await api.get(
           EndPoints.availableSlotsByShift,
           data: {
-            "department_id": event.departmentId,
-            "date": event.day,
-            "shift": event.shift,
+            ApiKey.departmentId: event.departmentId,
+            ApiKey.date: event.day,
+            ApiKey.shift: event.shift,
           },
         );
         times =
-            (response["slots"] as List<dynamic>)
+            (response[ApiKey.slots] as List<dynamic>)
                 .map((time) => TimeModel.fromJson(time))
                 .toList();
-        doctorId = (response["doctor_id"]);
+        doctorId = (response[ApiKey.doctorId]);
         previousDayId = event.day;
         hasTimesFetched = true;
         emit(FetchTimesLoaded(dayTimes: times, doctorId: doctorId));
-      } catch (e) {
-        emit(
-          FetchTimesFailed("Something Went Wrong When Trying To Fetch Times"),
-        );
+      } on ServerException catch (e) {
+        emit(FetchTimesFailed(e.errorModel.errorMessage));
       }
     }, transformer: switchMapTransformer());
 
@@ -77,21 +76,9 @@ class FetchTimesBloc extends Bloc<FetchTimesEvent, FetchTimesState> {
                 .toList();
         hasDefaultTimesFetched = true;
         emit(FetchTimesLoaded(dayTimes: defaultTimes, doctorId: -1));
-      } catch (e) {
-        emit(
-          FetchTimesFailed(
-            "Something Went Wrong When Trying To Fetch Default Times",
-          ),
-        );
+      } on ServerException catch (e) {
+        emit(FetchTimesFailed(e.errorModel.errorMessage));
       }
-    });
-
-    on<ShowTimesLoading>((event, emit) async {
-      emit(FetchTimesLoading());
-    });
-
-    on<ShowTimesError>((event, emit) async {
-      emit(FetchTimesFailed("Something Went Wrong When Trying To Fetch Times"));
     });
   }
 }

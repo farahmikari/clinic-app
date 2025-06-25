@@ -5,9 +5,10 @@ import 'package:clinic_app/app/book_appointment/controllers/fetch_times_bloc/fet
 import 'package:clinic_app/app/appointment_details/controllers/upcoming_validator_bloc/upcoming_validator_bloc.dart';
 import 'package:clinic_app/app/appointment_details/views/widgets/summary_widgets/summary_widget.dart';
 import 'package:clinic_app/app/appointments/models/appointment_model.dart';
-import 'package:clinic_app/core/errors/constants/app_colors.dart';
+import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/extentions/percent_sized_extention.dart';
 import 'package:clinic_app/core/widgets/button_widget.dart';
+import 'package:clinic_app/core/widgets/custom_dialog_widget.dart';
 import 'package:clinic_app/core/widgets/days_widget/controllers/days_bloc/days_bloc.dart';
 import 'package:clinic_app/core/widgets/days_widget/views/widgets/days_widget.dart';
 import 'package:clinic_app/core/widgets/days_widget/views/widgets/shimmer_days_widget.dart';
@@ -191,11 +192,24 @@ class UpcomingAppointmentWidget extends StatelessWidget {
             SendCancelOrEditReservationBloc,
             SendCancelOrEditReservationState
           >(
-            listenWhen:
-                (previous, current) =>
-                    current is SendCancelOrEditReservationLoaded,
             listener: (context, state) {
-              Get.back();
+              if (state is SendCancelOrEditReservationLoaded) {
+                Get.back();
+              } else if (state is SendCancelOrEditReservationFailed) {
+                showDialog(
+                  context: context,
+                  builder: (dialogContext) {
+                    return CustomDialogWidget(
+                      title: "Oops!",
+                      content: state.errorMessage,
+                      buttonTitle: "Ok",
+                      onPressed: () {
+                        Get.back();
+                      },
+                    );
+                  },
+                );
+              }
             },
           ),
         ],
@@ -238,31 +252,23 @@ class UpcomingAppointmentWidget extends StatelessWidget {
             SubtitleWidget(subtitle: "Date"),
             BlocBuilder<FetchDaysBloc, FetchDaysState>(
               builder: (context, state) {
-                switch (state) {
-                  case FetchDaysLoading():
-                    return ShimmerDaysWidget();
-                  case FetchDaysLoaded():
-                    return DaysWidget(days: state.days);
-                  case FetchDaysFailed():
-                    return Text(state.errorMessage);
+                if (state is FetchDaysLoaded) {
+                  return DaysWidget(days: state.days);
                 }
+                return ShimmerDaysWidget();
               },
             ),
             SubtitleWidget(subtitle: "Time"),
             BlocBuilder<FetchTimesBloc, FetchTimesState>(
               builder: (context, state) {
-                switch (state) {
-                  case FetchTimesLoading():
-                    return ShimmerTimesWidget();
-                  case FetchTimesLoaded():
-                    return TimesWidget(
-                      times: state.dayTimes,
-                      currentDoctorId: state.doctorId,
-                      shift: appointment.shift,
-                    );
-                  case FetchTimesFailed():
-                    return Text(state.errorMessage);
+                if (state is FetchTimesLoaded) {
+                  return TimesWidget(
+                    times: state.dayTimes,
+                    currentDoctorId: state.doctorId,
+                    shift: appointment.shift,
+                  );
                 }
+                return ShimmerTimesWidget();
               },
             ),
             TitledCheckboxWidget(title: "Do you need a medical report?"),
@@ -271,64 +277,53 @@ class UpcomingAppointmentWidget extends StatelessWidget {
               SendCancelOrEditReservationState
             >(
               builder: (context, state) {
-                switch (state) {
-                  case SendCancelOrEditReservationInitial():
-                    return BlocBuilder<
-                      UpcomingValidatorBloc,
-                      UpcomingValidatorState
-                    >(
-                      builder: (context, state) {
-                        return ButtonWidget(
-                          title: specifyCancelAndEditButtonTitle(
+                if (state is SendCancelOrEditReservationLoading) {
+                  return Center(
+                    child: LoadingAnimationWidget.staggeredDotsWave(
+                      color: AppColors.primaryColor,
+                      size: 8.0.hp,
+                    ),
+                  );
+                }
+                return BlocBuilder<
+                  UpcomingValidatorBloc,
+                  UpcomingValidatorState
+                >(
+                  builder: (context, state) {
+                    return ButtonWidget(
+                      title: specifyCancelAndEditButtonTitle(
+                        isReservationEditing: state.isReservationEditing,
+                      ),
+                      backgroundColor:
+                          specifyCancelAndEditButtonBackgroundColor(
                             isReservationEditing: state.isReservationEditing,
+                            isAbleToCancel: state.isAbleToCancel,
+                            isAbleToEdit: state.isAbleToEdit,
                           ),
-                          backgroundColor:
-                              specifyCancelAndEditButtonBackgroundColor(
-                                isReservationEditing:
-                                    state.isReservationEditing,
-                                isAbleToCancel: state.isAbleToCancel,
-                                isAbleToEdit: state.isAbleToEdit,
+                      titleColor: AppColors.widgetBackgroundColor,
+                      onTap: () {
+                        if (state.isReservationEditing) {
+                          if (state.isAbleToEdit) {
+                            context.read<SendCancelOrEditReservationBloc>().add(
+                              SendEditReservation(
+                                appointmentId: appointment.id,
+                                reservation: state.currentReservation,
                               ),
-                          titleColor: AppColors.widgetBackgroundColor,
-                          onTap: () {
-                            if (state.isReservationEditing) {
-                              if (state.isAbleToEdit) {
-                                context
-                                    .read<SendCancelOrEditReservationBloc>()
-                                    .add(
-                                      SendEditReservation(
-                                        appointmentId: appointment.id,
-                                        reservation: state.currentReservation,
-                                      ),
-                                    );
-                              }
-                            } else {
-                              if (state.isAbleToCancel) {
-                                context
-                                    .read<SendCancelOrEditReservationBloc>()
-                                    .add(
-                                      SendCancelReservation(
-                                        appointmentId: appointment.id,
-                                      ),
-                                    );
-                              }
-                            }
-                          },
-                        );
+                            );
+                          }
+                        } else {
+                          if (state.isAbleToCancel) {
+                            context.read<SendCancelOrEditReservationBloc>().add(
+                              SendCancelReservation(
+                                appointmentId: appointment.id,
+                              ),
+                            );
+                          }
+                        }
                       },
                     );
-                  case SendCancelOrEditReservationLoading():
-                    return Center(
-                      child: LoadingAnimationWidget.staggeredDotsWave(
-                        color: AppColors.primaryColor,
-                        size: 8.0.hp,
-                      ),
-                    );
-                  case SendCancelOrEditReservationLoaded():
-                    return SizedBox();
-                  case SendCancelOrEditReservationFailed():
-                    return Center(child: Text(state.errorMessage));
-                }
+                  },
+                );
               },
             ),
           ],

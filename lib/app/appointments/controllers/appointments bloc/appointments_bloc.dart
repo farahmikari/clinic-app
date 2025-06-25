@@ -1,6 +1,7 @@
 import 'package:clinic_app/app/appointments/models/appointment_model.dart';
 import 'package:clinic_app/core/api/dio_consumer.dart';
 import 'package:clinic_app/core/api/end_points.dart';
+import 'package:clinic_app/core/errors/exceptions.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -18,28 +19,25 @@ class AppointmentsBloc extends Bloc<AppointmentsEvent, AppointmentsState> {
       emit(AppointmentsLoading());
       try {
         dynamic pendingAppointmentsResponse = await api.get(
-          EndPoints.getAppointments("pending"),
+          EndPoints.patientAppointments,
+          queryParameter: {ApiKey.status: ApiKey.pending},
         );
         pendingAppointments =
-            (pendingAppointmentsResponse["data"] as List<dynamic>)
+            (pendingAppointmentsResponse[ApiKey.data] as List<dynamic>)
                 .map((appointment) => AppointmentModel.fromJson(appointment))
                 .toList();
         dynamic completedAppointmentsResponse = await api.get(
-          EndPoints.getAppointments("completed"),
+          EndPoints.patientAppointments,
+          queryParameter: {ApiKey.status: ApiKey.completed},
         );
         completedAppointments =
-            (completedAppointmentsResponse["data"] as List<dynamic>)
+            (completedAppointmentsResponse[ApiKey.data] as List<dynamic>)
                 .map((appointment) => AppointmentModel.fromJson(appointment))
                 .toList();
         allAppointments = [...pendingAppointments, ...completedAppointments];
         emit(AppointmentsLoaded(appointments: allAppointments));
-      } catch (e) {
-        emit(
-          AppointmentsFailed(
-            errorMessage:
-                'Something Went Wrong When Trying To Fetch Appointments',
-          ),
-        );
+      } on ServerException catch (e) {
+        emit(AppointmentsFailed(errorMessage: e.errorModel.errorMessage));
       }
     });
 
@@ -47,7 +45,7 @@ class AppointmentsBloc extends Bloc<AppointmentsEvent, AppointmentsState> {
       emit(AppointmentsLoaded(appointments: allAppointments));
     });
 
-    on<DisplayUpcomingAppointments>((event, emit) async {
+    on<DisplayPendingAppointments>((event, emit) async {
       emit(AppointmentsLoaded(appointments: pendingAppointments));
     });
 

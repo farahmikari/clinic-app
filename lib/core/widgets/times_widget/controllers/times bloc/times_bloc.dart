@@ -66,17 +66,17 @@ class TimesBloc extends Bloc<TimesEvent, TimesState> {
       );
     });
 
-    on<TimesWidgetIsReset>((event, emit) {
+    on<CurrentTimeAndDoctorIdsAreReset>((event, emit) {
       emit(
         TimesUpdated(
           currentDoctorId: -1,
-          previousTimeId: -1,
           currentTimeId: -1,
-          previousDay: "",
-          currentDay: "",
-          areMorningTimesDroppedDown: false,
-          areAfternoonTimesDroppedDown: false,
-          isTimesWidgetActivated: state.isTimesWidgetActivated,
+          previousTimeId: state.previousTimeId,
+          currentDay: state.currentDay,
+          previousDay: state.previousDay,
+          areMorningTimesDroppedDown: state.areMorningTimesDroppedDown,
+          areAfternoonTimesDroppedDown: state.areAfternoonTimesDroppedDown,
+          isTimesWidgetActivated: true,
         ),
       );
     });

@@ -1,3 +1,5 @@
+import 'package:clinic_app/core/api/end_points.dart';
+
 class TimeModel {
   final int id;
   final String time;
@@ -7,9 +9,9 @@ class TimeModel {
 
   factory TimeModel.fromJson(Map<String, dynamic> jsonData) {
     return TimeModel(
-      id: jsonData["id"],
-      time: jsonData["time"],
-      isAvailable: jsonData["isAvailable"],
+      id: jsonData[ApiKey.id],
+      time: jsonData[ApiKey.time],
+      isAvailable: jsonData[ApiKey.isAvailable],
     );
   }
 }

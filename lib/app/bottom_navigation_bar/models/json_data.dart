@@ -1,4 +1,4 @@
-import 'package:clinic_app/core/errors/constants/app_icons.dart';
+import 'package:clinic_app/core/constants/app_icons.dart';
 
 final List<dynamic> items = [
   {"id": 0, "title": "Home", "icon": AppIcons.home},

@@ -1,3 +1,5 @@
+import 'package:clinic_app/core/api/end_points.dart';
+
 class DayModel {
   final int id;
   final String day;
@@ -7,17 +9,9 @@ class DayModel {
 
   factory DayModel.fromJson(Map<String, dynamic> jsonData) {
     return DayModel(
-      id: jsonData['id'],
-      day: jsonData['day'],
-      isAvailable: jsonData['isAvailable'],
+      id: jsonData[ApiKey.id],
+      day: jsonData[ApiKey.day],
+      isAvailable: jsonData[ApiKey.isAvailable],
     );
   }
-
-  Map<String, dynamic> toJson() => {
-    'id': id,
-    'day': day,
-    'isAvailable': isAvailable,
-  };
 }
- //DateTime.parse(jsonData['day'])
- //day.toIso8601String()

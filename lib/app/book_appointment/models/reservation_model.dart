@@ -1,3 +1,4 @@
+import 'package:clinic_app/core/api/end_points.dart';
 import 'package:equatable/equatable.dart';
 
 class ReservationModel extends Equatable {
@@ -19,12 +20,12 @@ class ReservationModel extends Equatable {
 
   factory ReservationModel.fromJson(Map<String, dynamic> jsonData) {
     return ReservationModel(
-      departmentId: jsonData["department_id"],
-      doctorId: jsonData["doctor_id"],
-      requestTypeId: jsonData["request_type_id"],
-      day: jsonData["day"],
-      timeId: jsonData["time_id"],
-      withMedicalReport: jsonData["with_medical_report"],
+      departmentId: jsonData[ApiKey.departmentId],
+      doctorId: jsonData[ApiKey.doctorId],
+      requestTypeId: jsonData[ApiKey.requestTypeId],
+      day: jsonData[ApiKey.day],
+      timeId: jsonData[ApiKey.timeId],
+      withMedicalReport: jsonData[ApiKey.withMedicalReport],
     );
   }
 
@@ -48,12 +49,12 @@ class ReservationModel extends Equatable {
 
   Map<String, dynamic> toJson() {
     return {
-      "department_id": departmentId,
-      "doctor_id": doctorId,
-      "request_type_id": requestTypeId,
-      "day": day,
-      "time_id": timeId,
-      "with_medical_report": withMedicalReport,
+      ApiKey.departmentId: departmentId,
+      ApiKey.doctorId: doctorId,
+      ApiKey.slotId: timeId,
+      ApiKey.date: day,
+      ApiKey.requestTypeId: requestTypeId,
+      ApiKey.withMedicalReport: withMedicalReport,
     };
   }
 

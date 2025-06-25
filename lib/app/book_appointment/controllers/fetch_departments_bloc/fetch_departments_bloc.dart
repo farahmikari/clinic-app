@@ -1,3 +1,4 @@
+import 'package:clinic_app/core/errors/exceptions.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart' show Bloc, EventTransformer;
 import 'package:rxdart/rxdart.dart';
@@ -27,12 +28,8 @@ class FetchDepartmentsBloc
                 .map((department) => DepartmentModel.fromJson(department))
                 .toList();
         emit(FetchDepartmentsLoaded(departments));
-      } catch (e) {
-        emit(
-          FetchDepartmentsFailed(
-            'Something Went Wrong When Trying To Fetch Departments',
-          ),
-        );
+      } on ServerException catch (e) {
+        emit(FetchDepartmentsFailed(e.errorModel.errorMessage));
       }
     }, transformer: switchMapTransformer());
   }

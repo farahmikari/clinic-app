@@ -1,4 +1,4 @@
-import 'package:clinic_app/core/errors/constants/app_dimensions.dart';
+import 'package:clinic_app/core/constants/app_dimensions.dart';
 import 'package:clinic_app/core/extentions/percent_sized_extention.dart';
 import 'package:clinic_app/core/widgets/days_widget/views/items/shimmer_day_item.dart';
 import 'package:flutter/material.dart';

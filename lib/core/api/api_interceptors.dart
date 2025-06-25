@@ -6,7 +6,8 @@ class ApiInterceptor extends Interceptor {
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
     options.headers[ApiKey.accept] = "application/json";
     options.headers[ApiKey.authorization] =
-        "Bearer 4|JLaO2ehb047cdmsnUDCrTdUEWtUIpHyggqHf6RjZ64cb29ff";
+        "Bearer 2|H3HKKiSNwrSD4rqK3JsD0bEmHdkavQWCze6ChURuabacc64a";
+    options.connectTimeout = Duration(seconds: 2);
     super.onRequest(options, handler);
   }
 }

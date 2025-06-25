@@ -18,7 +18,3 @@ class FetchTimes extends FetchTimesEvent {
     required this.shift,
   });
 }
-
-class ShowTimesLoading extends FetchTimesEvent {}
-
-class ShowTimesError extends FetchTimesEvent {}

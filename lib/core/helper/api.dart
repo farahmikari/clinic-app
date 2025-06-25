@@ -4,7 +4,7 @@ import 'package:flutter/foundation.dart';
 class Api {
   Dio dio = Dio();
   bool isArrive = false;
-  String path = 'http://192.168.143.239:8000/api';
+  String path = 'http://192.168.1.2:8000/api';
   Future<dynamic> post({
     required String url,
     @required dynamic body,

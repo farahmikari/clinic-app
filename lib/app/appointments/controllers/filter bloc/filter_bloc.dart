@@ -13,7 +13,7 @@ class FilterBloc extends Bloc<FilterEvent, FilterState> {
 
     on<FilterChanged>((event, emit) {
       if (filters[counter] == "Pending") {
-        appointments.add(DisplayUpcomingAppointments());
+        appointments.add(DisplayPendingAppointments());
       } else if (filters[counter] == "Completed") {
         appointments.add(DisplayCompletedAppointments());
       } else {

@@ -1,6 +1,6 @@
 import 'package:clinic_app/app/book_appointment/models/department_model.dart';
 import 'package:clinic_app/app/book_appointment/views/widgets/departments_widget/views/items/department_item.dart';
-import 'package:clinic_app/core/errors/constants/app_dimensions.dart';
+import 'package:clinic_app/core/constants/app_dimensions.dart';
 import 'package:flutter/material.dart';
 
 class DepartmentsListViewItem extends StatelessWidget {
