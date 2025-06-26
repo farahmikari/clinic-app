@@ -40,50 +40,49 @@ class DefaultFirebaseOptions {
     }
   }
 
-  static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCpO3XfQlUTMU7A9OZ6MTF_zz456Rls65c',
-    appId: '1:320019208259:android:b3c66eb8367180c7961cf6',
-    messagingSenderId: '320019208259',
-    projectId: 'push-notifications-62aa8',
-    storageBucket: 'push-notifications-62aa8.firebasestorage.app',
-  );
-
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyAm4F8ENxc764-VyF1dBzV1g3nZXFAj_ME',
-    appId: '1:320019208259:web:106aa9aaad85da3e961cf6',
-    messagingSenderId: '320019208259',
-    projectId: 'push-notifications-62aa8',
-    authDomain: 'push-notifications-62aa8.firebaseapp.com',
-    storageBucket: 'push-notifications-62aa8.firebasestorage.app',
-    measurementId: 'G-HJ7SJF559H',
+    apiKey: 'AIzaSyDYJi4v_hIt_plwnOMCVnz1XEUFRe6EkFA',
+    appId: '1:99133053624:web:a9b3b411c9578641c8f24d',
+    messagingSenderId: '99133053624',
+    projectId: 'healthcore-bdd68',
+    authDomain: 'healthcore-bdd68.firebaseapp.com',
+    storageBucket: 'healthcore-bdd68.firebasestorage.app',
+    measurementId: 'G-8YDBMJ33HE',
   );
 
-  static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyD31_jbqDsdMczJIGqKb4thR2l8yH1xE-E',
-    appId: '1:320019208259:ios:c72702b347479131961cf6',
-    messagingSenderId: '320019208259',
-    projectId: 'push-notifications-62aa8',
-    storageBucket: 'push-notifications-62aa8.firebasestorage.app',
-    iosBundleId: 'com.example.clinicApp',
+  static const FirebaseOptions android = FirebaseOptions(
+    apiKey: 'AIzaSyBl3mXYTBK8uMRZwOFi6ryxBge5ncPP3EM',
+    appId: '1:99133053624:android:272ee53daee6c165c8f24d',
+    messagingSenderId: '99133053624',
+    projectId: 'healthcore-bdd68',
+    storageBucket: 'healthcore-bdd68.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyD31_jbqDsdMczJIGqKb4thR2l8yH1xE-E',
-    appId: '1:320019208259:ios:c72702b347479131961cf6',
-    messagingSenderId: '320019208259',
-    projectId: 'push-notifications-62aa8',
-    storageBucket: 'push-notifications-62aa8.firebasestorage.app',
+    apiKey: 'AIzaSyDEbLztZAzSdYmchDzq7r05ePT0VArTEqg',
+    appId: '1:99133053624:ios:8fbf753e0b3331e2c8f24d',
+    messagingSenderId: '99133053624',
+    projectId: 'healthcore-bdd68',
+    storageBucket: 'healthcore-bdd68.firebasestorage.app',
+    iosBundleId: 'com.example.clinicApp',
+  );
+
+  static const FirebaseOptions macos = FirebaseOptions(
+    apiKey: 'AIzaSyDEbLztZAzSdYmchDzq7r05ePT0VArTEqg',
+    appId: '1:99133053624:ios:8fbf753e0b3331e2c8f24d',
+    messagingSenderId: '99133053624',
+    projectId: 'healthcore-bdd68',
+    storageBucket: 'healthcore-bdd68.firebasestorage.app',
     iosBundleId: 'com.example.clinicApp',
   );
 
   static const FirebaseOptions windows = FirebaseOptions(
-    apiKey: 'AIzaSyAm4F8ENxc764-VyF1dBzV1g3nZXFAj_ME',
-    appId: '1:320019208259:web:4f6b6b462ed50414961cf6',
-    messagingSenderId: '320019208259',
-    projectId: 'push-notifications-62aa8',
-    authDomain: 'push-notifications-62aa8.firebaseapp.com',
-    storageBucket: 'push-notifications-62aa8.firebasestorage.app',
-    measurementId: 'G-MQSDHSDSSR',
+    apiKey: 'AIzaSyDYJi4v_hIt_plwnOMCVnz1XEUFRe6EkFA',
+    appId: '1:99133053624:web:1bc5c7cd9c111b92c8f24d',
+    messagingSenderId: '99133053624',
+    projectId: 'healthcore-bdd68',
+    authDomain: 'healthcore-bdd68.firebaseapp.com',
+    storageBucket: 'healthcore-bdd68.firebasestorage.app',
+    measurementId: 'G-7W1CDYYQZK',
   );
-
 }

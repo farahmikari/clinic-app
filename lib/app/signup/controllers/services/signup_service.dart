@@ -1,6 +1,8 @@
 import 'dart:io';
 import 'package:clinic_app/core/helper/api.dart';
+import 'package:clinic_app/service_locator.dart';
 import 'package:dio/dio.dart';
+import 'package:get_storage/get_storage.dart';
 
 class SignupService {
   Future<Map<String, dynamic>> signupUser({
@@ -30,10 +32,11 @@ class SignupService {
         'email': email,
         'phone_number': phoneNumber,
         'image': imagePath,
+        'fcm_token': getIt<GetStorage>().read('fcm_token'),
       }),
       header: {'Accept': 'application/json'},
     );
-
+    await getIt<GetStorage>().write('token', map['response']['token']);
     return map;
   }
 }
