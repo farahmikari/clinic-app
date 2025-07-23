@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class OTPForm extends StatelessWidget {
-  const OTPForm({super.key, required this.controller, required this.onChanged});
+  const OTPForm({super.key, required this.controller, required this.onChanged,required this.first,required this.last});
   final TextEditingController controller;
   final ValueChanged<String>? onChanged;
+  final bool first;
+  final bool last;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -15,8 +17,14 @@ class OTPForm extends StatelessWidget {
         controller: controller,
         onSaved: (pin) {},
         onChanged: (pin) {
-          if (pin.isNotEmpty) {
+          if (pin.isNotEmpty&&!last) {
             FocusScope.of(context).nextFocus();
+           
+          }
+         
+           else if (pin.isEmpty&&!first) {
+            FocusScope.of(context).previousFocus();
+            
           }
           onChanged?.call(pin);
         },

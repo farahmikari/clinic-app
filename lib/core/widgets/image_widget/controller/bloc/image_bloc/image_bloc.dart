@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'package:clinic_app/app/signup/controllers/services/image_picker_service.dart';
+import 'package:clinic_app/core/widgets/image_widget/controller/service/image_picker_service.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 part 'image_event.dart';
 part 'image_state.dart';

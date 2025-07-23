@@ -37,7 +37,7 @@ class User {
     String phoneNumber;
     String email;
     int isPatient;
-    String image;
+    String? image;
 
     User({
         required this.id,

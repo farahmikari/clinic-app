@@ -20,7 +20,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-      providers: [BlocProvider.value(value: getIt<MostRatedDoctorsBloc>())],
+      providers: [BlocProvider.value(value: getIt<MostRatedDoctorsBloc>()),],
       child: Builder(
         builder: (context) {
           return RefreshIndicator(

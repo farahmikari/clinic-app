@@ -1,12 +1,19 @@
 import 'package:clinic_app/core/api/end_points.dart';
+import 'package:clinic_app/core/services/shared_preferences/shared_pereference_service.dart';
 import 'package:dio/dio.dart';
 
 class ApiInterceptor extends Interceptor {
   @override
-  void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
+  void onRequest(
+    RequestOptions options,
+    RequestInterceptorHandler handler,
+  ) async {
     options.headers[ApiKey.accept] = "application/json";
-    options.headers[ApiKey.authorization] =
-        "Bearer 4|JLaO2ehb047cdmsnUDCrTdUEWtUIpHyggqHf6RjZ64cb29ff";
+    final token = await SharedPereferenceService.getToken();
+    if (token!=null) {
+  options.headers[ApiKey.authorization] =
+      "Bearer $token";
+}
     super.onRequest(options, handler);
   }
 }

@@ -9,7 +9,7 @@ class MyTextButton extends StatelessWidget {
   });
   final String textButton;
   final Color color;
-  final void Function() onPressed;
+  final void Function()? onPressed;
   @override
   Widget build(BuildContext context) {
     return TextButton(

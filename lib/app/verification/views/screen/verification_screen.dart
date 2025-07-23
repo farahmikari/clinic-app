@@ -1,8 +1,11 @@
 import 'dart:core';
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
-import 'package:clinic_app/app/signup/controllers/bloc/verification_bloc/verification_bloc.dart';
-import 'package:clinic_app/app/signup/controllers/bloc/verification_bloc/verification_event.dart';
-import 'package:clinic_app/app/signup/views/widgets/otp_textfield.dart';
+import 'package:clinic_app/app/signup/controllers/bloc/email_bloc/email_bloc.dart';
+import 'package:clinic_app/app/signup/controllers/bloc/email_bloc/email_event.dart';
+import 'package:clinic_app/app/verification/controllers/bloc/timer_countdown_bloc/timer_countdown_bloc.dart';
+import 'package:clinic_app/app/verification/controllers/bloc/verification_bloc/verification_bloc.dart';
+import 'package:clinic_app/app/verification/controllers/bloc/verification_bloc/verification_event.dart';
+import 'package:clinic_app/app/verification/views/widget/otp_textfield.dart';
 import 'package:clinic_app/consts.dart';
 import 'package:clinic_app/app/forget_password/views/screens/reset_password.dart';
 import 'package:clinic_app/app/signup/views/screens/sign_up_screen.dart';
@@ -27,16 +30,22 @@ class VerificationScreen extends StatelessWidget {
     final String email = map['verification'];
     final bool push = map['sign'];
 
-    return BlocProvider(
-      create: (context) => VerificationBloc(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => VerificationBloc()),
+        BlocProvider(
+          create:
+              (context) => TimerCountdownBloc()..add(StartTimer(seconds: 30)),
+        ),
+        BlocProvider(create: (context) => EmailBloc()),
+      ],
+
       child: Scaffold(
         backgroundColor: Colors.white,
         body: SingleChildScrollView(
           child: BlocConsumer<VerificationBloc, VerificationState>(
             listener: (context, state) {
-              
               switch (state) {
-                
                 case VerificationSuccess():
                   showSnackBar(
                     context,
@@ -50,11 +59,14 @@ class VerificationScreen extends StatelessWidget {
                         SignUp.id,
                         arguments: email,
                       )
-                      : Navigator.pushNamed(context, ResetPassword.id,
-                      arguments:<String, String>{
-                      'email': email,
-                      'code': state.emailModel!.code,
-                    }, );
+                      : Navigator.pushNamed(
+                        context,
+                        ResetPassword.id,
+                        arguments: <String, String>{
+                          'email': email,
+                          'code': state.emailModel!.code,
+                        },
+                      );
                   break;
                 case VerificationFailed():
                   showSnackBar(
@@ -113,6 +125,8 @@ class VerificationScreen extends StatelessWidget {
                               ),
                             );
                           },
+                          first: i == 0,
+                          last: i == 5,
                         );
                       }),
                     ),
@@ -130,17 +144,36 @@ class VerificationScreen extends StatelessWidget {
                               context.read<VerificationBloc>().add(
                                 CanSubmitVerificationEvent(
                                   emailModel: state.emailModel!,
-                                  signUp: push
+                                  signUp: push,
                                 ),
                               );
                             }
                             : null,
                   ),
                   SizedBox(height: height * 0.1),
-                  MyTextButton(
-                    textButton: "Resend OTP Code",
-                    color: Colors.grey,
-                    onPressed: () {},
+                  BlocBuilder<TimerCountdownBloc, TimerCountdownState>(
+                    builder: (context, state) {
+                      final isCounting = state.isRunning;
+                      final seconds = state.second;
+                      return MyTextButton(
+                        textButton:
+                            isCounting
+                                ? "0:${seconds.toString().padLeft(2, '0')}"
+                                : "Resend OTP Code",
+                        color: isCounting ? Colors.grey : kPrimaryColor,
+                        onPressed:
+                            isCounting
+                                ? null
+                                : ()async {
+                                  context.read<EmailBloc>().add(
+                                    CanSubmitEmail(email: email, signUp: push),
+                                  );
+                                  context.read<TimerCountdownBloc>().add(
+                                    StartTimer(seconds: 30),
+                                  );
+                                },
+                      );
+                    },
                   ),
                 ],
               );

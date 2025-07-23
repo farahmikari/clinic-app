@@ -112,7 +112,7 @@ class OnboardingScreen extends StatelessWidget {
             children: [
               Visibility(
                 visible: pageIndex != 2,
-                child: GestureDetector(
+                child: InkWell(
                   onTap: () {
                     Navigator.pushNamed(context, LoginScreen.id);
                   },
@@ -127,7 +127,7 @@ class OnboardingScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              GestureDetector(
+              InkWell(
                 onTap: () {
                   pageIndex == 2
                       ? Navigator.pushNamed(context, LoginScreen.id)

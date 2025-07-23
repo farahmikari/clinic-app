@@ -1,4 +1,4 @@
-import 'package:clinic_app/app/signup/models/email_verification_model.dart';
+import 'package:clinic_app/app/verification/model/email_verification_model.dart';
 
 abstract class VerificationEvent {
   VerificationEvent();

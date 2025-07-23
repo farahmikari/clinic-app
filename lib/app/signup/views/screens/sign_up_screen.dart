@@ -1,13 +1,13 @@
 import 'package:animated_background/animated_background.dart';
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
-import 'package:clinic_app/app/bottom_navigation_bar/views/screens/bottom_navigation_bar_screen.dart';
 import 'package:clinic_app/app/home/controllers/most%20rated%20doctors%20bloc/most_rated_doctors_bloc.dart';
 import 'package:clinic_app/app/login/views/widgets/button_widget.dart';
 import 'package:clinic_app/app/login/views/widgets/text_form_field_widget.dart';
-import 'package:clinic_app/app/signup/controllers/bloc/image_bloc/image_bloc.dart';
+import 'package:clinic_app/app/user_drawer/views/screen/drawer_screen.dart';
+import 'package:clinic_app/core/widgets/image_widget/controller/bloc/image_bloc/image_bloc.dart';
 import 'package:clinic_app/app/signup/controllers/bloc/signup_bloc/signup_bloc.dart';
-import 'package:clinic_app/app/signup/controllers/services/image_picker_service.dart';
-import 'package:clinic_app/app/signup/views/widgets/image_profile_widget.dart';
+import 'package:clinic_app/core/widgets/image_widget/controller/service/image_picker_service.dart';
+import 'package:clinic_app/core/widgets/image_widget/views/widget/image_profile_widget.dart';
 
 import 'package:clinic_app/consts.dart';
 import 'package:clinic_app/core/utils/snack_bar_util.dart';
@@ -62,7 +62,7 @@ class _SignupState extends State<SignUp> with SingleTickerProviderStateMixin {
           ),
           child: SingleChildScrollView(
             child: BlocConsumer<SignupBloc, SignupBaseState>(
-              listener: (context, state) {
+              listener: (context, state)async {
                 switch (state) {
                   case SignupSuccess():
                     showSnackBar(
@@ -71,7 +71,8 @@ class _SignupState extends State<SignUp> with SingleTickerProviderStateMixin {
                       message: "Signup Successfully",
                       contentType: ContentType.success,
                     );
-                    Get.offAll(() => BottomNavigationBarScreen());
+                    await Future.delayed(Duration(seconds: 3));
+                    Get.offAll(() => DrawerScreen());
                     break;
                   case SignupFailed():
                     showSnackBar(
@@ -173,35 +174,7 @@ class _SignupState extends State<SignUp> with SingleTickerProviderStateMixin {
                           controller: genderController,
                           readOnly: true,
                           onTap: () {
-                            showModalBottomSheet(
-                              context: context,
-                              builder: (_) {
-                                return Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children:
-                                      genderOption.map((gender) {
-                                        return ListTile(
-                                          leading: Icon(
-                                            gender == 'Male'
-                                                ? Icons.male
-                                                : Icons.female,
-                                          ),
-                                          title: Text(gender),
-                                          onTap: () {
-                                            context.read<SignupBloc>().add(
-                                              SGenderFieldEvent(gender: gender),
-                                            );
-                                            context.read<SignupBloc>().add(
-                                              SButtonEvent(),
-                                            );
-                                            genderController.text = gender;
-                                            Navigator.pop(context);
-                                          },
-                                        );
-                                      }).toList(),
-                                );
-                              },
-                            );
+                            selectGender(context);
                           },
                         ),
                         TextFormFieldWidget(
@@ -298,6 +271,32 @@ class _SignupState extends State<SignUp> with SingleTickerProviderStateMixin {
           ),
         ),
       ),
+    );
+  }
+
+  void selectGender(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      builder: (_) {
+        return Column(
+          mainAxisSize: MainAxisSize.min,
+          children:
+              genderOption.map((gender) {
+                return ListTile(
+                  leading: Icon(gender == 'Male' ? Icons.male : Icons.female),
+                  title: Text(gender),
+                  onTap: () {
+                    context.read<SignupBloc>().add(
+                      SGenderFieldEvent(gender: gender),
+                    );
+                    context.read<SignupBloc>().add(SButtonEvent());
+                    genderController.text = gender;
+                    Navigator.pop(context);
+                  },
+                );
+              }).toList(),
+        );
+      },
     );
   }
 

@@ -4,12 +4,14 @@ import 'package:clinic_app/app/bottom_navigation_bar/controllers/bottom%20naviga
 import 'package:clinic_app/app/bottom_navigation_bar/views/widgets/salomon_bottom_bar_widget.dart';
 import 'package:clinic_app/app/home/views/screens/home_screen.dart';
 import 'package:clinic_app/app/home/views/widgets/app%20bar%20widgets/home_app_bar_widget.dart';
+import 'package:clinic_app/app/user_drawer/views/screen/drawer_screen.dart';
 import 'package:clinic_app/core/errors/constants/app_colors.dart';
 import 'package:clinic_app/service_locator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get_state_manager/src/simple/get_view.dart';
 
-class BottomNavigationBarScreen extends StatelessWidget {
+class BottomNavigationBarScreen extends GetView<MyDrawerController> {
   const BottomNavigationBarScreen({super.key});
 
   @override
@@ -25,10 +27,10 @@ class BottomNavigationBarScreen extends StatelessWidget {
       }
     }
 
-    return BlocProvider(
-      create:
-          (context) =>
-              getIt<BottomNavigationBarBloc>()..add(CurrentIndexChanged(0)),
+    return MultiBlocProvider(
+      providers:[BlocProvider(create: (context) =>
+              getIt<BottomNavigationBarBloc>()..add(CurrentIndexChanged(0)),),
+              ],
       child:
           BlocSelector<BottomNavigationBarBloc, BottomNavigationBarState, int>(
             selector: (state) {

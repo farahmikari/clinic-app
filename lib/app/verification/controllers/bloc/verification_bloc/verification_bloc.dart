@@ -1,7 +1,7 @@
 import 'package:clinic_app/app/forget_password/controllers/services/check_code_forget_password_service.dart';
-import 'package:clinic_app/app/signup/controllers/bloc/verification_bloc/verification_event.dart';
-import 'package:clinic_app/app/signup/controllers/services/check_code_service.dart';
-import 'package:clinic_app/app/signup/models/email_verification_model.dart';
+import 'package:clinic_app/app/verification/controllers/bloc/verification_bloc/verification_event.dart';
+import 'package:clinic_app/app/verification/controllers/services/check_code_service.dart';
+import 'package:clinic_app/app/verification/model/email_verification_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 part 'verification_state.dart';

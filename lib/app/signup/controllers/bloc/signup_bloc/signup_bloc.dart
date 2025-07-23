@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:clinic_app/app/signup/controllers/services/signup_service.dart';
-import 'package:clinic_app/app/signup/models/signup_model.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:clinic_app/core/utils/validators.dart';
 import 'package:clinic_app/app/login/models/form_model.dart';
@@ -203,7 +202,7 @@ class SignupBloc extends Bloc<SignupEvent, SignupBaseState> {
     final currentState = state.data;
     emit(SignupLoading(currentState));
     try {
-      Map<String, dynamic> map = await SignupService().signupUser(
+        await SignupService().signupUser(
         firstName: currentState.firstName.value,
         lastName: currentState.lastName.value,
         gender: currentState.gender.value,
@@ -214,16 +213,8 @@ class SignupBloc extends Bloc<SignupEvent, SignupBaseState> {
         phoneNumber: currentState.phone.value,
         image: currentState.image,
       );
-      bool isArrive = map['isArrive'] ?? false;
-      if (isArrive) {
-      SignupModel model = SignupModel.fromJson(map['response']);
-     // ignore: avoid_print
-     print("Token signup is :${model.token}");
-      
         emit(SignupSuccess(currentState));
-      } else {
-        emit(SignupFailed(currentState, message: 'error in signup'));
-      }
+      
     } on Exception catch (e) {
       emit(SignupFailed(currentState, message: e.toString()));
     }

@@ -8,6 +8,7 @@ import 'package:clinic_app/app/login/views/widgets/button_widget.dart';
 import 'package:clinic_app/app/login/views/widgets/text_form_field_widget.dart';
 import 'package:clinic_app/app/signup/views/screens/email_screen.dart';
 import 'package:clinic_app/app/signup/views/widgets/text_button_widget.dart';
+import 'package:clinic_app/app/user_drawer/views/screen/drawer_screen.dart';
 import 'package:clinic_app/consts.dart';
 import 'package:clinic_app/core/utils/snack_bar_util.dart';
 import 'package:clinic_app/service_locator.dart';
@@ -54,7 +55,7 @@ class _LoginScreenState extends State<LoginScreen>
           ),
           child: SingleChildScrollView(
             child: BlocConsumer<LoginBlocBloc, LoginBaseState>(
-              listener: (context, state) {
+              listener: (context, state) async{
                 switch (state) {
                   case LoginSuccess():
                     showSnackBar(
@@ -67,8 +68,8 @@ class _LoginScreenState extends State<LoginScreen>
                     context.read<MostRatedDoctorsBloc>().add(
                       FetchMostRatedDoctors(),
                     );
-                    Get.offAll(() => BottomNavigationBarScreen());
-
+                    await Future.delayed(Duration(seconds: 3));
+                    Get.offAll(() => DrawerScreen());
                     break;
                   case LoginFailed():
                     showSnackBar(

@@ -1,5 +1,4 @@
 import 'package:clinic_app/app/login/controllers/services/login_service.dart';
-import 'package:clinic_app/app/login/models/login_model.dart';
 import 'package:clinic_app/core/utils/validators.dart';
 import 'package:clinic_app/app/login/models/form_model.dart';
 import 'package:flutter/cupertino.dart';
@@ -70,21 +69,11 @@ class LoginBlocBloc extends Bloc<LoginBlocEvent, LoginBaseState> {
 
     emit(LoginLoading(currentState));
     try {
-      Map<String, dynamic> map = await LoginService().loginService(
+       await LoginService().loginService(
         email: currentState.email.value,
         password: currentState.password.value,
       );
-
-      bool isArrive = map['isArrive'] ?? false;
-      if (isArrive) {
-        LoginModel model = LoginModel.fromJson(map['response']);
-        // ignore: avoid_print
-        print("Token login is :${model.token}");
-
         emit(LoginSuccess(currentState));
-      } else {
-        emit(LoginFailed(currentState, message: 'error im login'));
-      }
     } on Exception catch (e) {
       emit(LoginFailed(currentState, message: e.toString()));
     }

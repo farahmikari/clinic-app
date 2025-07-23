@@ -1,9 +1,12 @@
 import 'dart:io';
-import 'package:clinic_app/core/helper/api.dart';
+import 'package:clinic_app/app/signup/models/signup_model.dart';
+import 'package:clinic_app/core/api/dio_consumer.dart';
+import 'package:clinic_app/core/api/end_points.dart';
+import 'package:clinic_app/core/services/shared_preferences/shared_pereference_service.dart';
 import 'package:dio/dio.dart';
 
 class SignupService {
-  Future<Map<String, dynamic>> signupUser({
+  Future<void> signupUser({
     required String firstName,
     required String lastName,
     required String gender,
@@ -18,9 +21,10 @@ class SignupService {
     if (image != null) {
       imagePath = await MultipartFile.fromFile(image.path, filename: 'image');
     }
-    Map<String, dynamic> map = await Api().post(
-      url: '/user_register',
-      body: FormData.fromMap({
+    DioConsumer dio = DioConsumer(dio: Dio());
+    Map<String, dynamic> response = await dio.post(
+      EndPoints.signup(),
+      data: {
         'first_name': firstName,
         'last_name': lastName,
         'gender': gender,
@@ -29,11 +33,15 @@ class SignupService {
         'password_confirmation': passwordCon,
         'email': email,
         'phone_number': phoneNumber,
-        'image': imagePath,
-      }),
-      header: {'Accept': 'application/json'},
+        if (imagePath != null) 'image': imagePath,
+      },
+      isFormData: true,
     );
+    SignupModel model = SignupModel.fromJson(response);
 
-    return map;
+    if (model.token.isNotEmpty) {
+  SharedPereferenceService.saveToken(model.token);
+}
+    
   }
 }

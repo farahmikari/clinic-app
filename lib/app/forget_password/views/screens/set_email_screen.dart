@@ -4,7 +4,7 @@ import 'package:clinic_app/app/signup/controllers/bloc/email_bloc/email_bloc.dar
 import 'package:clinic_app/app/signup/controllers/bloc/email_bloc/email_event.dart';
 import 'package:clinic_app/app/signup/controllers/bloc/email_bloc/email_state.dart';
 import 'package:clinic_app/consts.dart';
-import 'package:clinic_app/app/signup/views/screens/verification_screen.dart';
+import 'package:clinic_app/app/verification/views/screen/verification_screen.dart';
 import 'package:clinic_app/app/login/views/widgets/button_widget.dart';
 import 'package:clinic_app/app/login/views/widgets/text_form_field_widget.dart';
 import 'package:clinic_app/core/utils/snack_bar_util.dart';

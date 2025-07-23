@@ -1,10 +1,11 @@
-import 'package:clinic_app/app/onboarding/views/screens/onboarding_screen.dart';
 import 'package:clinic_app/app/forget_password/views/screens/reset_password.dart';
 import 'package:clinic_app/app/forget_password/views/screens/set_email_screen.dart';
 import 'package:clinic_app/app/login/views/screens/login_screen.dart';
+import 'package:clinic_app/app/onboarding/views/screens/splash_screen.dart';
 import 'package:clinic_app/app/signup/views/screens/email_screen.dart';
 import 'package:clinic_app/app/signup/views/screens/sign_up_screen.dart';
-import 'package:clinic_app/app/signup/views/screens/verification_screen.dart';
+import 'package:clinic_app/app/user_drawer/views/screen/drawer_screen.dart';
+import 'package:clinic_app/app/verification/views/screen/verification_screen.dart';
 import 'package:clinic_app/service_locator.dart';
 
 import 'package:clinic_app/core/services/app_bloc_observer.dart';
@@ -16,9 +17,10 @@ import 'package:firebase_core/firebase_core.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:get/get.dart';
 
 void main() async {
+  Get.put<MyDrawerController>(MyDrawerController());
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   Future.wait([
@@ -37,6 +39,7 @@ class ClinicApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
+      
       routes: {
         LoginScreen.id: (context) => LoginScreen(),
         EmailScreen.id: (context) => EmailScreen(),
@@ -45,6 +48,7 @@ class ClinicApp extends StatelessWidget {
         SetEmailScreen.id: (context) => SetEmailScreen(),
         ResetPassword.id: (context) => ResetPassword(),
       },
+      
       theme: ThemeData(
         useMaterial3: true,
         textTheme: Theme.of(context).textTheme.copyWith(
@@ -63,7 +67,7 @@ class ClinicApp extends StatelessWidget {
           ),
         ),
       ),
-      home: OnboardingScreen(),
+      home: SplashScreen(),
     );
   }
 }
