@@ -1,7 +1,7 @@
 import 'package:clinic_app/app/bottom_navigation_bar/views/screens/bottom_navigation_bar_screen.dart';
 import 'package:clinic_app/app/user_drawer/controllers/bloc/logout_bloc/logout_bloc.dart';
 import 'package:clinic_app/app/user_drawer/views/screen/menu_screen.dart';
-import 'package:clinic_app/core/errors/constants/app_colors.dart';
+import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';

@@ -42,7 +42,7 @@ class UpcomingValidatorBloc
       }
       try {
         dynamic response = await api.get(
-          EndPoints.checkCancelAbility(event.appointmentId),
+          EndPoints.canCancel(event.appointmentId),
         );
         isCancelable = response[ApiKey.canCancel];
         emit(

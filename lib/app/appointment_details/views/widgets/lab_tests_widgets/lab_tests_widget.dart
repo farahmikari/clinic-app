@@ -1,6 +1,6 @@
 import 'package:clinic_app/app/appointment_details/models/completed_appointment_models/lab_test_model.dart';
 import 'package:clinic_app/app/appointment_details/views/widgets/lab_tests_widgets/lab_test_widget.dart';
-import 'package:clinic_app/core/errors/constants/app_dimensions.dart';
+import 'package:clinic_app/core/constants/app_dimensions.dart';
 import 'package:clinic_app/core/extentions/percent_sized_extention.dart';
 import 'package:flutter/material.dart';
 

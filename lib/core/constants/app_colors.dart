@@ -11,4 +11,6 @@ class AppColors {
   static const Color darkGreyColor = Color(0xFF636366);
   static const Color darkBlueColor = Color(0xFF448AFF);
   static const Color lightBlueColor = Color(0xFFBBDEFB);
+  static const Color shimmerBaseColor = Color(0xFFE0E0E0);
+  static const Color shimmerHighlightColor = Color(0xFFF5F5F5);
 }

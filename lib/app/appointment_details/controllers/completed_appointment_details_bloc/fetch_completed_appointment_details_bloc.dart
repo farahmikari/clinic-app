@@ -19,7 +19,7 @@ class FetchCompletedAppointmentDetailsBloc
       try {
         CompletedAppointmentModel completedAppointment =
             CompletedAppointmentModel.fromJson(
-              completedAppointmentsDetails[event.appointmentId]
+              completedAppointmentsDetails[ /*event.appointmentId*/ 1]
                   as Map<String, dynamic>,
             );
         emit(

@@ -1,7 +1,7 @@
 import 'package:clinic_app/app/book_appointment/models/day_model.dart';
-import 'package:clinic_app/core/errors/constants/app_colors.dart';
-import 'package:clinic_app/core/errors/constants/app_dimensions.dart';
-import 'package:clinic_app/core/errors/constants/app_shadow.dart';
+import 'package:clinic_app/core/constants/app_colors.dart';
+import 'package:clinic_app/core/constants/app_dimensions.dart';
+import 'package:clinic_app/core/constants/app_shadow.dart';
 import 'package:clinic_app/core/widgets/days_widget/controllers/days_bloc/days_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

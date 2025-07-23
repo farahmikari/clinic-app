@@ -1,7 +1,7 @@
 import 'package:clinic_app/app/book_appointment/models/department_model.dart';
 import 'package:clinic_app/app/book_appointment/views/widgets/departments_widget/controller/departments_bloc/departments_bloc.dart';
-import 'package:clinic_app/core/errors/constants/app_colors.dart';
-import 'package:clinic_app/core/errors/constants/app_dimensions.dart';
+import 'package:clinic_app/core/constants/app_colors.dart';
+import 'package:clinic_app/core/constants/app_dimensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

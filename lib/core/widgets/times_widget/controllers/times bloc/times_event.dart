@@ -33,7 +33,7 @@ class CurrentAndPreviousDayAndCurrentAndPreviousTimeIdsAreSet
   });
 }
 
-class TimesWidgetIsReset extends TimesEvent {}
+class CurrentTimeAndDoctorIdsAreReset extends TimesEvent {}
 
 class AreMorningTimesDroppedDownIsToggled extends TimesEvent {}
 

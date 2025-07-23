@@ -8,18 +8,15 @@ class DioConsumer extends ApiConsumer {
   final Dio dio;
 
   DioConsumer({required this.dio}) {
-    dio.options.baseUrl = EndPoints.baseUrl; // here we put the base url
-    dio.interceptors.add(ApiInterceptor()); // responsable for headers
+    dio.options.baseUrl = EndPoints.baseUrl;
+    dio.interceptors.add(ApiInterceptor());
     dio.interceptors.add(
       LogInterceptor(
-        // if you need to print request info switch these to true;
         request: true,
         requestBody: true,
         requestHeader: true,
-        // if you need to print response info switch these to true;
         responseBody: true,
         responseHeader: true,
-        // if you need to print error info switch this to true;
         error: true,
       ),
     );

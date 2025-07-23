@@ -1,5 +1,5 @@
-import 'package:clinic_app/core/errors/constants/app_colors.dart';
-import 'package:clinic_app/core/errors/constants/app_dimensions.dart';
+import 'package:clinic_app/core/constants/app_colors.dart';
+import 'package:clinic_app/core/constants/app_dimensions.dart';
 import 'package:clinic_app/core/extentions/percent_sized_extention.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
@@ -20,8 +20,8 @@ class MostRatedDoctorsShimmerWidget extends StatelessWidget {
           child: Column(
             children: [
               Shimmer.fromColors(
-                baseColor: Colors.grey[300]!,
-                highlightColor: Colors.grey[100]!,
+                baseColor: AppColors.shimmerBaseColor,
+                highlightColor: AppColors.shimmerHighlightColor,
                 child: Container(
                   height: 20.0.hp,
                   padding: EdgeInsets.only(top: AppDimensions.sp),
@@ -33,8 +33,8 @@ class MostRatedDoctorsShimmerWidget extends StatelessWidget {
               ),
               Expanded(
                 child: Shimmer.fromColors(
-                  baseColor: Colors.grey[300]!,
-                  highlightColor: Colors.grey[100]!,
+                  baseColor: AppColors.shimmerBaseColor,
+                  highlightColor: AppColors.shimmerHighlightColor,
                   child: Container(
                     margin: EdgeInsets.only(
                       top: AppDimensions.mm,
@@ -49,8 +49,8 @@ class MostRatedDoctorsShimmerWidget extends StatelessWidget {
               ),
               Expanded(
                 child: Shimmer.fromColors(
-                  baseColor: Colors.grey[300]!,
-                  highlightColor: Colors.grey[100]!,
+                  baseColor: AppColors.shimmerBaseColor,
+                  highlightColor: AppColors.shimmerHighlightColor,
                   child: Container(
                     margin: EdgeInsets.only(top: AppDimensions.mm),
                     decoration: BoxDecoration(

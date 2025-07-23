@@ -1,5 +1,5 @@
 import 'package:clinic_app/app/home/views/widgets/most%20rated%20doctors%20widgets/most_rated_doctor_widget.dart';
-import 'package:clinic_app/core/errors/constants/app_dimensions.dart';
+import 'package:clinic_app/core/constants/app_dimensions.dart';
 import 'package:clinic_app/app/home/models/most_rated_doctor_model.dart';
 import 'package:flutter/material.dart';
 

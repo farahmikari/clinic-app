@@ -1,17 +1,20 @@
 import 'dart:developer';
 
 import 'package:clinic_app/core/services/local_notification_service.dart';
+import 'package:clinic_app/service_locator.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:get_storage/get_storage.dart';
 
 class PushNotificationsService {
   static FirebaseMessaging messaging = FirebaseMessaging.instance;
 
   static Future init() async {
-    log(messaging.getToken().toString());
+    //log(messaging.getToken().toString());
     await messaging.requestPermission();
-    String? token = await messaging.getToken().then((value) {
-      // here we should send the token after we get it to the back-end
+    await messaging.getToken().then((value) async {
+      log(value.toString());
+      await getIt<GetStorage>().write('fcm_token', value);
       return;
     });
     messaging.onTokenRefresh.listen((event) {
@@ -20,7 +23,6 @@ class PushNotificationsService {
     messaging.subscribeToTopic("All");
     // here we should unsubscribe the patient from the topic after the he/she log out
     messaging.unsubscribeFromTopic("All");
-    log(token ?? 'null');
     FirebaseMessaging.onBackgroundMessage(handlebackgroundMessage);
     handleForegroundMessage();
   }

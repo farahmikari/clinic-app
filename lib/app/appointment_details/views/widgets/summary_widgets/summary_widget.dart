@@ -3,12 +3,12 @@ import 'package:clinic_app/app/appointment_details/views/widgets/summary_widgets
 import 'package:clinic_app/app/appointment_details/views/widgets/summary_widgets/doctor_image_widget.dart';
 import 'package:clinic_app/app/appointment_details/views/widgets/summary_widgets/doctor_name_widget.dart';
 import 'package:clinic_app/app/appointments/models/appointment_model.dart';
-import 'package:clinic_app/core/errors/constants/app_dimensions.dart';
-import 'package:clinic_app/core/errors/constants/app_shadow.dart';
+import 'package:clinic_app/core/constants/app_dimensions.dart';
+import 'package:clinic_app/core/constants/app_shadow.dart';
 import 'package:clinic_app/core/extentions/percent_sized_extention.dart';
 import 'package:clinic_app/core/widgets/secondary_info_widget.dart';
-import 'package:clinic_app/core/errors/constants/app_colors.dart';
-import 'package:clinic_app/core/errors/constants/app_icons.dart';
+import 'package:clinic_app/core/constants/app_colors.dart';
+import 'package:clinic_app/core/constants/app_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 

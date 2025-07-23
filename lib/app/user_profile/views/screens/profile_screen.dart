@@ -1,7 +1,7 @@
 import 'package:clinic_app/app/user_profile/views/widgets/app_bar_profile_widget.dart';
 import 'package:clinic_app/app/user_profile/views/widgets/card_info_widget.dart';
 import 'package:clinic_app/app/user_profile/views/widgets/edit_info_profile_button_widget.dart';
-import 'package:clinic_app/core/errors/constants/app_colors.dart';
+import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/widgets/image_widget/controller/bloc/image_bloc/image_bloc.dart';
 import 'package:clinic_app/core/widgets/image_widget/controller/service/image_picker_service.dart';
 import 'package:flutter/material.dart';

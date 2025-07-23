@@ -3,25 +3,23 @@ import 'package:clinic_app/app/book_appointment/controllers/fetch_times_bloc/fet
 import 'package:clinic_app/app/book_appointment/controllers/fetch_times_bloc/fetch_morning_times_bloc.dart';
 import 'package:clinic_app/app/book_appointment/controllers/fetch_times_bloc/fetch_times_bloc.dart';
 import 'package:clinic_app/app/book_appointment/controllers/book_appointment_validator_bloc/book_appointment_validator_bloc.dart';
-
 import 'package:clinic_app/app/book_appointment/controllers/fetch_departments_bloc/fetch_departments_bloc.dart';
 import 'package:clinic_app/app/book_appointment/controllers/send_reservation_bloc/send_reservation_bloc.dart';
 import 'package:clinic_app/app/book_appointment/models/reservation_model.dart';
 import 'package:clinic_app/app/book_appointment/views/widgets/departments_widget/controller/departments_bloc/departments_bloc.dart';
 import 'package:clinic_app/app/book_appointment/views/widgets/departments_widget/views/widgets/departments_widget.dart';
 import 'package:clinic_app/app/book_appointment/views/widgets/departments_widget/views/widgets/shimmer_departments_widget.dart';
-
-import 'package:clinic_app/core/errors/constants/app_colors.dart';
-import 'package:clinic_app/core/errors/constants/app_dimensions.dart';
+import 'package:clinic_app/core/constants/app_colors.dart';
+import 'package:clinic_app/core/constants/app_dimensions.dart';
 import 'package:clinic_app/core/extentions/percent_sized_extention.dart';
 import 'package:clinic_app/core/widgets/button_widget.dart';
+import 'package:clinic_app/core/widgets/custom_dialog_widget.dart';
 import 'package:clinic_app/core/widgets/days_widget/controllers/days_bloc/days_bloc.dart';
 import 'package:clinic_app/core/widgets/days_widget/views/widgets/days_widget.dart';
 import 'package:clinic_app/core/widgets/days_widget/views/widgets/shimmer_days_widget.dart';
 import 'package:clinic_app/core/widgets/request%20types%20widget/controllers/request%20types%20bloc/request_types_bloc.dart';
 import 'package:clinic_app/core/widgets/request%20types%20widget/views/widgets/request_types_widget.dart';
 import 'package:clinic_app/core/widgets/subtitle_widget.dart';
-
 import 'package:clinic_app/core/widgets/subtitle_with_text_button_widget.dart';
 import 'package:clinic_app/core/widgets/times_widget/controllers/times%20bloc/times_bloc.dart';
 import 'package:clinic_app/core/widgets/times_widget/views/widgets/shimmer_times_widget.dart';
@@ -85,11 +83,7 @@ class BookAppointmentScreen extends StatelessWidget {
                       ..add(IsRequestTypesWidgetActivedIsToggled()),
           ),
           BlocProvider(create: (context) => DaysBloc()),
-          BlocProvider(
-            create:
-                (context) =>
-                    TimesBloc()..add(IsTimesWidgetActivatedIsToggled()),
-          ),
+          BlocProvider(create: (context) => TimesBloc()),
           BlocProvider(
             create:
                 (context) =>
@@ -101,6 +95,7 @@ class BookAppointmentScreen extends StatelessWidget {
         ],
         child: MultiBlocListener(
           listeners: [
+            //------------Departments Bloc----------------------
             BlocListener<DepartmentsBloc, DepartmentsState>(
               listener: (context, state) {
                 context.read<FetchDaysBloc>().add(
@@ -121,6 +116,7 @@ class BookAppointmentScreen extends StatelessWidget {
                 );
               },
             ),
+            //------------Request Types Bloc----------------------
             BlocListener<RequestTypesBloc, RequestTypesState>(
               listener: (context, state) {
                 context.read<BookAppointmentValidatorBloc>().add(
@@ -130,9 +126,9 @@ class BookAppointmentScreen extends StatelessWidget {
                 );
               },
             ),
+            //------------Days Bloc----------------------
             BlocListener<DaysBloc, DaysState>(
               listener: (context, state) {
-                context.read<TimesBloc>().add(TimesWidgetIsReset());
                 if (state.currentDay == "") {
                   context.read<FetchMorningTimesBloc>().add(
                     FetchDefaultTimes(shift: "morning"),
@@ -140,21 +136,24 @@ class BookAppointmentScreen extends StatelessWidget {
                   context.read<FetchAfternoonTimesBloc>().add(
                     FetchDefaultTimes(shift: "afternoon"),
                   );
-                  return;
+                } else {
+                  context.read<FetchMorningTimesBloc>().add(
+                    FetchTimes(
+                      departmentId: state.currentDepartmentId,
+                      day: state.currentDay,
+                      shift: "morning",
+                    ),
+                  );
+                  context.read<FetchAfternoonTimesBloc>().add(
+                    FetchTimes(
+                      departmentId: state.currentDepartmentId,
+                      day: state.currentDay,
+                      shift: "afternoon",
+                    ),
+                  );
                 }
-                context.read<FetchMorningTimesBloc>().add(
-                  FetchTimes(
-                    departmentId: state.currentDepartmentId,
-                    day: state.currentDay,
-                    shift: "morning",
-                  ),
-                );
-                context.read<FetchAfternoonTimesBloc>().add(
-                  FetchTimes(
-                    departmentId: state.currentDepartmentId,
-                    day: state.currentDay,
-                    shift: "afternoon",
-                  ),
+                context.read<TimesBloc>().add(
+                  CurrentTimeAndDoctorIdsAreReset(),
                 );
                 context.read<BookAppointmentValidatorBloc>().add(
                   CheckConfirmAbility(
@@ -165,6 +164,7 @@ class BookAppointmentScreen extends StatelessWidget {
                 );
               },
             ),
+            //------------Times Bloc----------------------
             BlocListener<TimesBloc, TimesState>(
               listener: (context, state) {
                 context.read<BookAppointmentValidatorBloc>().add(
@@ -175,6 +175,7 @@ class BookAppointmentScreen extends StatelessWidget {
                 );
               },
             ),
+            //------------Titled Checkbox Bloc----------------------
             BlocListener<TitledCheckboxBloc, TitledCheckboxState>(
               listener: (context, state) {
                 context.read<BookAppointmentValidatorBloc>().add(
@@ -184,10 +185,25 @@ class BookAppointmentScreen extends StatelessWidget {
                 );
               },
             ),
+            //------------Send Reservation Bloc----------------------
             BlocListener<SendReservationBloc, SendReservationState>(
               listener: (context, state) {
                 if (state is SendReservationLoaded) {
                   Get.back();
+                } else if (state is SendReservationFailed) {
+                  showDialog(
+                    context: context,
+                    builder: (dialogContext) {
+                      return CustomDialogWidget(
+                        title: "Oops",
+                        content: state.errorMessage,
+                        buttonTitle: "Ok",
+                        onPressed: () {
+                          Get.back();
+                        },
+                      );
+                    },
+                  );
                 }
               },
             ),
@@ -196,32 +212,20 @@ class BookAppointmentScreen extends StatelessWidget {
             children: [
               BlocBuilder<FetchDepartmentsBloc, FetchDepartmentsState>(
                 builder: (context, state) {
-                  switch (state) {
-                    case FetchDepartmentsLoading():
-                      return ShimmerDepartmentsWidget();
-                    case FetchDepartmentsLoaded():
-                      return DepartmentsWidget(departments: state.departments);
-                    case FetchDepartmentsFailed():
-                      return Center(child: Text(state.errorMessage));
+                  if (state is FetchDepartmentsLoaded) {
+                    return DepartmentsWidget(departments: state.departments);
                   }
+                  return ShimmerDepartmentsWidget();
                 },
               ),
               RequestTypesWidget(),
-              SubtitleWithTextButtonWidget(
-                subtitle: "Dates And Times",
-                buttonTitle: "Open Calendar",
-                onPressed: () {},
-              ),
+              SubtitleWidget(subtitle: "Dates And Times"),
               BlocBuilder<FetchDaysBloc, FetchDaysState>(
                 builder: (context, state) {
-                  switch (state) {
-                    case FetchDaysLoading():
-                      return ShimmerDaysWidget();
-                    case FetchDaysLoaded():
-                      return DaysWidget(days: state.days);
-                    case FetchDaysFailed():
-                      return Center(child: Text(state.errorMessage));
+                  if (state is FetchDaysLoaded) {
+                    return DaysWidget(days: state.days);
                   }
+                  return ShimmerDaysWidget();
                 },
               ),
               BlocBuilder<FetchMorningTimesBloc, FetchTimesState>(
@@ -232,25 +236,20 @@ class BookAppointmentScreen extends StatelessWidget {
                       buttonTitle: "Doctor Profile",
                       onPressed: () {},
                     );
-                  } else {
-                    return SubtitleWidget(subtitle: "Morning Times");
                   }
+                  return SubtitleWidget(subtitle: "Morning Times");
                 },
               ),
               BlocBuilder<FetchMorningTimesBloc, FetchTimesState>(
                 builder: (context, state) {
-                  switch (state) {
-                    case FetchTimesLoading():
-                      return ShimmerTimesWidget();
-                    case FetchTimesLoaded():
-                      return TimesWidget(
-                        times: state.dayTimes,
-                        currentDoctorId: state.doctorId,
-                        shift: "Morning",
-                      );
-                    case FetchTimesFailed():
-                      return Center(child: Text(state.errorMessage));
+                  if (state is FetchTimesLoaded) {
+                    return TimesWidget(
+                      times: state.dayTimes,
+                      currentDoctorId: state.doctorId,
+                      shift: "Morning",
+                    );
                   }
+                  return ShimmerTimesWidget();
                 },
               ),
               BlocBuilder<FetchAfternoonTimesBloc, FetchTimesState>(
@@ -261,25 +260,20 @@ class BookAppointmentScreen extends StatelessWidget {
                       buttonTitle: "Doctor Profile",
                       onPressed: () {},
                     );
-                  } else {
-                    return SubtitleWidget(subtitle: "Afternoon Times");
                   }
+                  return SubtitleWidget(subtitle: "Afternoon Times");
                 },
               ),
               BlocBuilder<FetchAfternoonTimesBloc, FetchTimesState>(
                 builder: (context, state) {
-                  switch (state) {
-                    case FetchTimesLoading():
-                      return ShimmerTimesWidget();
-                    case FetchTimesLoaded():
-                      return TimesWidget(
-                        times: state.dayTimes,
-                        currentDoctorId: state.doctorId,
-                        shift: "Afternoon",
-                      );
-                    case FetchTimesFailed():
-                      return Center(child: Text(state.errorMessage));
+                  if (state is FetchTimesLoaded) {
+                    return TimesWidget(
+                      times: state.dayTimes,
+                      currentDoctorId: state.doctorId,
+                      shift: "Afternoon",
+                    );
                   }
+                  return ShimmerTimesWidget();
                 },
               ),
               TitledCheckboxWidget(title: "Do you need a medical Report?"),
@@ -292,33 +286,28 @@ class BookAppointmentScreen extends StatelessWidget {
                   bool isValid = state.isValid;
                   return BlocBuilder<SendReservationBloc, SendReservationState>(
                     builder: (context, state) {
-                      switch (state) {
-                        case SendReservationInitial():
-                          return ButtonWidget(
-                            title: "Confirm",
-                            backgroundColor:
-                                specifyConfirmButtonBackgroundColor(isValid),
-                            titleColor: AppColors.widgetBackgroundColor,
-                            onTap: () {
-                              if (isValid) {
-                                context.read<SendReservationBloc>().add(
-                                  SendReservation(reservation: reservation),
-                                );
-                              }
-                            },
-                          );
-                        case SendReservationLoading():
-                          return Center(
-                            child: LoadingAnimationWidget.staggeredDotsWave(
-                              color: AppColors.primaryColor,
-                              size: 8.0.hp,
-                            ),
-                          );
-                        case SendReservationLoaded():
-                          return SizedBox();
-                        case SendReservationFailed():
-                          return Center(child: Text(state.errorMessage));
+                      if (state is SendReservationLoading) {
+                        return Center(
+                          child: LoadingAnimationWidget.staggeredDotsWave(
+                            color: AppColors.primaryColor,
+                            size: 8.0.hp,
+                          ),
+                        );
                       }
+                      return ButtonWidget(
+                        title: "Confirm",
+                        backgroundColor: specifyConfirmButtonBackgroundColor(
+                          isValid,
+                        ),
+                        titleColor: AppColors.widgetBackgroundColor,
+                        onTap: () {
+                          if (isValid) {
+                            context.read<SendReservationBloc>().add(
+                              SendReservation(reservation: reservation),
+                            );
+                          }
+                        },
+                      );
                     },
                   );
                 },

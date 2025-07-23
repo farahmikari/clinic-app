@@ -1,6 +1,6 @@
-import 'package:clinic_app/core/errors/constants/app_colors.dart';
-import 'package:clinic_app/core/errors/constants/app_dimensions.dart';
-import 'package:clinic_app/core/errors/constants/app_shadow.dart';
+import 'package:clinic_app/core/constants/app_colors.dart';
+import 'package:clinic_app/core/constants/app_dimensions.dart';
+import 'package:clinic_app/core/constants/app_shadow.dart';
 import 'package:clinic_app/core/extentions/percent_sized_extention.dart';
 import 'package:clinic_app/core/widgets/request%20types%20widget/models/json_data.dart';
 import 'package:clinic_app/core/widgets/request%20types%20widget/models/request_type_model.dart';

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:clinic_app/app/book_appointment/models/day_model.dart';
 import 'package:clinic_app/core/widgets/days_widget/controllers/days_bloc/days_bloc.dart';
 import 'package:clinic_app/core/widgets/days_widget/views/items/days_grid_view_item.dart';
@@ -11,6 +13,7 @@ class DaysWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    log("Rebuild");
     return BlocBuilder<DaysBloc, DaysState>(
       builder: (context, state) {
         return DaysGridViewItem(

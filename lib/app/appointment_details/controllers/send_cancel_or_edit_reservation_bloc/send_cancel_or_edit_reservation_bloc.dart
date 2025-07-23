@@ -1,5 +1,6 @@
 import 'package:clinic_app/core/api/dio_consumer.dart';
 import 'package:clinic_app/core/api/end_points.dart';
+import 'package:clinic_app/core/errors/exceptions.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:clinic_app/app/book_appointment/models/reservation_model.dart';
@@ -16,16 +17,16 @@ class SendCancelOrEditReservationBloc
   SendCancelOrEditReservationBloc()
     : super(SendCancelOrEditReservationInitial()) {
     DioConsumer api = DioConsumer(dio: Dio());
+
     on<SendCancelReservation>((event, emit) async {
       emit(SendCancelOrEditReservationLoading());
       try {
-        await api.delete(EndPoints.cancelAppointment(event.appointmentId));
+        await api.delete(EndPoints.appointmentId(event.appointmentId));
         emit(SendCancelOrEditReservationLoaded());
-      } catch (e) {
+      } on ServerException catch (e) {
         emit(
           SendCancelOrEditReservationFailed(
-            errorMessage:
-                "Something went wrong when trying to cancel reservation",
+            errorMessage: e.errorModel.errorMessage,
           ),
         );
       }
@@ -35,22 +36,14 @@ class SendCancelOrEditReservationBloc
       emit(SendCancelOrEditReservationLoading());
       try {
         await api.put(
-          EndPoints.editAppointment(event.appointmentId),
-          data: {
-            "department_id": event.reservation.departmentId,
-            "doctor_id": event.reservation.doctorId,
-            "slot_id": event.reservation.timeId,
-            "date": event.reservation.day,
-            "request_type_id": event.reservation.requestTypeId,
-            "with_medical_report": event.reservation.withMedicalReport,
-          },
+          EndPoints.appointmentId(event.appointmentId),
+          data: event.reservation.toJson(),
         );
         emit(SendCancelOrEditReservationLoaded());
-      } catch (e) {
+      } on ServerException catch (e) {
         emit(
           SendCancelOrEditReservationFailed(
-            errorMessage:
-                "Something went wrong when trying to edit reservation",
+            errorMessage: e.errorModel.errorMessage,
           ),
         );
       }

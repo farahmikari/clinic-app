@@ -2,7 +2,7 @@ import 'package:clinic_app/app/appointment_details/views/widgets/app_bar_widget.
 import 'package:clinic_app/app/appointment_details/views/widgets/completed_appointment_widget.dart';
 import 'package:clinic_app/app/appointment_details/views/widgets/upcoming_appointment_widget.dart';
 import 'package:clinic_app/app/appointments/models/appointment_model.dart';
-import 'package:clinic_app/core/errors/constants/app_colors.dart';
+import 'package:clinic_app/core/constants/app_colors.dart';
 
 import 'package:flutter/material.dart';
 
@@ -23,7 +23,7 @@ class AppointmentDetailsScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
-      appBar: AppBarWidget(),
+      appBar: AppBarWidget(status: appointment.status),
       body: specifyBodyWidget(),
     );
   }

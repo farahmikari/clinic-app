@@ -1,7 +1,7 @@
 import 'package:clinic_app/app/book_appointment/views/widgets/departments_widget/views/items/shimmer_department_item.dart';
-import 'package:clinic_app/core/errors/constants/app_colors.dart';
-import 'package:clinic_app/core/errors/constants/app_dimensions.dart';
-import 'package:clinic_app/core/errors/constants/app_shadow.dart';
+import 'package:clinic_app/core/constants/app_colors.dart';
+import 'package:clinic_app/core/constants/app_dimensions.dart';
+import 'package:clinic_app/core/constants/app_shadow.dart';
 import 'package:clinic_app/core/extentions/percent_sized_extention.dart';
 import 'package:flutter/widgets.dart';
 

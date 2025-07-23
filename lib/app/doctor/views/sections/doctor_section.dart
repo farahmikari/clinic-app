@@ -1,7 +1,7 @@
 import 'package:clinic_app/app/doctor/controllers/doctor%20bloc/doctor_bloc.dart';
 import 'package:clinic_app/app/doctor/models/doctor_model.dart';
 import 'package:clinic_app/app/doctor/views/widgets/doctor_widget.dart';
-import 'package:clinic_app/core/errors/constants/app_colors.dart';
+import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/extentions/percent_sized_extention.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

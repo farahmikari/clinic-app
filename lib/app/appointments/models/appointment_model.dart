@@ -1,3 +1,5 @@
+import 'package:clinic_app/core/api/end_points.dart';
+
 class AppointmentModel {
   final int id;
   final String shift;
@@ -23,15 +25,15 @@ class AppointmentModel {
 
   factory AppointmentModel.fromJson(Map<String, dynamic> jsonData) {
     return AppointmentModel(
-      id: jsonData["id"],
-      shift: jsonData["shift"],
-      status: jsonData["status"],
-      doctorName: jsonData["doctor_name"],
-      doctorImage: jsonData["doctor_image"],
-      department: jsonData["department"],
-      dateTime: DateTime.parse(jsonData["date_time"]),
-      requestTypeId: jsonData["request_type_id"],
-      withMedicalReport: jsonData["with_medical_report"],
+      id: jsonData[ApiKey.id],
+      shift: jsonData[ApiKey.shift],
+      status: jsonData[ApiKey.status],
+      doctorName: jsonData[ApiKey.doctorName],
+      doctorImage: jsonData[ApiKey.doctorImage],
+      department: jsonData[ApiKey.department],
+      dateTime: DateTime.parse(jsonData[ApiKey.dateTime]),
+      requestTypeId: jsonData[ApiKey.requestTypeId],
+      withMedicalReport: jsonData[ApiKey.withMedicalReport],
     );
   }
 }

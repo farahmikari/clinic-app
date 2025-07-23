@@ -1,27 +1,15 @@
 class EndPoints {
   static String baseUrl = "http://192.168.1.14:8000";
 
-  static String getDepartmentDays(int departmentId) {
+  static String departmentId(int departmentId) {
     return "/api/department/$departmentId";
   }
 
-  static String getAppointments(String status) {
-    return "/api/patient/appointments?status=$status";
-  }
-
-  static String checkCancelAbility(int appointmentId) {
+  static String canCancel(int appointmentId) {
     return "/api/appointments/$appointmentId/can_cancel";
   }
 
-  static String getReservation(int appointmentId) {
-    return "/api/appointments/$appointmentId";
-  }
-
-  static String cancelAppointment(int appointmentId) {
-    return "/api/appointments/$appointmentId";
-  }
-
-  static String editAppointment(int appointmentId) {
+  static String appointmentId(int appointmentId) {
     return "/api/appointments/$appointmentId";
   }
 
@@ -68,6 +56,7 @@ class EndPoints {
   static String defaultDays = "/api/default_days";
   static String defaultTimes = "/api/default_times";
   static String appointments = "/api/appointments";
+  static String patientAppointments = "/api/patient/appointments";
   static String availableSlotsByShift = "/api/availableSlotsByShift";
 }
 
@@ -78,4 +67,26 @@ class ApiKey {
   static String startId = "start_id";
   static String endId = "end_id";
   static String canCancel = "can_cancel";
+  static String departmentId = "department_id";
+  static String doctorId = "doctor_id";
+  static String slotId = "slot_id";
+  static String date = "date";
+  static String requestTypeId = "request_type_id";
+  static String withMedicalReport = "with_medical_report";
+  static String pending = "pending";
+  static String completed = "completed";
+  static String data = "data";
+  static String shift = "shift";
+  static String slots = "slots";
+  static String day = "day";
+  static String timeId = "time_id";
+  static String id = "id";
+  static String status = "status";
+  static String doctorName = "doctor_name";
+  static String doctorImage = "doctor_image";
+  static String department = "department";
+  static String dateTime = "date_time";
+  static String isAvailable = "isAvailable";
+  static String name = "name";
+  static String time = "time";
 }
