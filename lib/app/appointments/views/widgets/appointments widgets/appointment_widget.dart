@@ -1,13 +1,13 @@
 import 'package:clinic_app/app/appointment_details/views/screens/appointment_details_screen.dart';
 import 'package:clinic_app/app/appointments/models/appointment_model.dart';
-import 'package:clinic_app/app/appointments/views/widgets/appointments%20widgets/doctor_image_widget.dart';
-import 'package:clinic_app/app/appointments/views/widgets/appointments%20widgets/doctor_name_widget.dart';
-import 'package:clinic_app/app/appointments/views/widgets/appointments%20widgets/main_reservation_info_widget.dart';
-import 'package:clinic_app/app/appointments/views/widgets/appointments%20widgets/status_widget.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
 import 'package:clinic_app/core/constants/app_shadow.dart';
 import 'package:clinic_app/core/extentions/percent_sized_extention.dart';
-import 'package:clinic_app/core/widgets/secondary_info_widget.dart';
+import 'package:clinic_app/core/widgets/doctor_image_with_frame_widget.dart';
+import 'package:clinic_app/core/widgets/doctor_name_widget.dart';
+import 'package:clinic_app/core/widgets/filter_badge_widget.dart';
+import 'package:clinic_app/core/widgets/info_with_icon_widget.dart';
+import 'package:clinic_app/core/widgets/info_with_icon_and_frame_widget.dart';
 import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/constants/app_icons.dart';
 import 'package:flutter/material.dart';
@@ -37,6 +37,12 @@ class AppointmentWidget extends StatelessWidget {
       return appointment.requestTypeId == 1 ? "Check-Up" : "Follow-Up";
     }
 
+    Color specifyStatusColor() {
+      return appointment.status == "Pending"
+          ? AppColors.transparentGreen
+          : AppColors.transparentYellow;
+    }
+
     return InkWell(
       onTap: () {
         Get.to(() => AppointmentDetailsScreen(appointment: appointment));
@@ -61,45 +67,78 @@ class AppointmentWidget extends StatelessWidget {
                     child: Column(
                       children: [
                         //-----------|Appointment Status|---------------------------------------------------------------------------------------------------------------------------------------------
-                        StatusWidget(status: appointment.status),
+                        Expanded(
+                          flex: 2,
+                          child: Align(
+                            alignment: Alignment.centerLeft,
+                            child: FilterBadgeWidget(
+                              badge: appointment.status,
+                              color: specifyStatusColor(),
+                            ),
+                          ),
+                        ),
                         //----------------|Doctor Name|-----------------------------------------------------------------------------------------------------------------------------------------------
-                        DoctorNameWidget(name: appointment.doctorName),
+                        Expanded(
+                          flex: 2,
+                          child: Align(
+                            alignment: Alignment.centerLeft,
+                            child: DoctorNameWidget(
+                              name: appointment.doctorName,
+                              size: AppDimensions.lfs,
+                            ),
+                          ),
+                        ),
                         //-----------------|Department|-----------------------------------------------------------------------------------------------------------------------------------------------
-                        MainReservationInfoWidget(
-                          icon: AppIcons.department,
-                          title: appointment.department,
+                        Expanded(
+                          child: InfoWithIconWidget(
+                            icon: AppIcons.departmentOutlined,
+                            info: appointment.department,
+                            infoSize: AppDimensions.sfs,
+                          ),
                         ),
                         //--------------|Appointment Date|--------------------------------------------------------------------------------------------------------------------------------------------
-                        MainReservationInfoWidget(
-                          icon: AppIcons.calendar,
-                          title: formatAppointmentDate(),
+                        Expanded(
+                          child: InfoWithIconWidget(
+                            icon: AppIcons.calendar,
+                            info: formatAppointmentDate(),
+                            infoSize: AppDimensions.sfs,
+                          ),
                         ),
                         //--------------|Appointment Time|--------------------------------------------------------------------------------------------------------------------------------------------
-                        MainReservationInfoWidget(
-                          icon: AppIcons.time,
-                          title: formatAppointmentTime(),
+                        Expanded(
+                          child: InfoWithIconWidget(
+                            icon: AppIcons.time,
+                            info: formatAppointmentTime(),
+                            infoSize: AppDimensions.sfs,
+                          ),
                         ),
                       ],
                     ),
                   ),
+                  SizedBox(width: AppDimensions.mp),
                   //----------------------|Doctor Image|----------------------------------------------------------------------------------------------------------------------------------------------
-                  DoctorImageWidget(image: appointment.doctorImage),
+                  Expanded(
+                    flex: 2,
+                    child: DoctorImageWithFrameWidget(
+                      image: appointment.doctorImage,
+                    ),
+                  ),
                 ],
               ),
             ),
-            SizedBox(height: AppDimensions.mm),
+            SizedBox(height: AppDimensions.mp),
             Expanded(
               flex: 1,
               child: Row(
                 children: [
                   //----------------------|Request Type|----------------------------------------------------------------------------------------------------------------------------------------------
-                  SecondaryInfoWidget(
+                  InfoWithIconAndFrameWidget(
                     title: specifyWithOrWithoutReport(),
                     icon: AppIcons.medicalReport,
                   ),
-                  SizedBox(width: AppDimensions.mm),
+                  SizedBox(width: AppDimensions.mp),
                   //--------------|With or Without Medical Report|------------------------------------------------------------------------------------------------------------------------------------
-                  SecondaryInfoWidget(
+                  InfoWithIconAndFrameWidget(
                     title: specifyRequestType(),
                     icon: AppIcons.requestType,
                   ),

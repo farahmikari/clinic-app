@@ -38,7 +38,7 @@ class ShimmerAppointmentWidget extends StatelessWidget {
                           ),
                         ),
                       ),
-                      SizedBox(height: AppDimensions.mm),
+                      SizedBox(height: AppDimensions.mp),
                       Expanded(
                         child: Shimmer.fromColors(
                           baseColor: AppColors.shimmerBaseColor,
@@ -54,7 +54,7 @@ class ShimmerAppointmentWidget extends StatelessWidget {
                           ),
                         ),
                       ),
-                      SizedBox(height: AppDimensions.mm),
+                      SizedBox(height: AppDimensions.mp),
                       Expanded(
                         child: Shimmer.fromColors(
                           baseColor: AppColors.shimmerBaseColor,
@@ -81,7 +81,7 @@ class ShimmerAppointmentWidget extends StatelessWidget {
                     child: Container(
                       decoration: BoxDecoration(
                         color: AppColors.shimmerBaseColor,
-                        borderRadius: BorderRadius.circular(AppDimensions.mbr),
+                        borderRadius: BorderRadius.circular(AppDimensions.sbr),
                       ),
                     ),
                   ),
@@ -89,7 +89,7 @@ class ShimmerAppointmentWidget extends StatelessWidget {
               ],
             ),
           ),
-          SizedBox(height: AppDimensions.mm),
+          SizedBox(height: AppDimensions.mp),
           Expanded(
             flex: 1,
             child: Row(
@@ -100,20 +100,20 @@ class ShimmerAppointmentWidget extends StatelessWidget {
                     highlightColor: AppColors.shimmerHighlightColor,
                     child: Container(
                       decoration: BoxDecoration(
-                        color: AppColors.hintTextColor,
+                        color: AppColors.shimmerBaseColor,
                         borderRadius: BorderRadius.circular(AppDimensions.lbr),
                       ),
                     ),
                   ),
                 ),
-                SizedBox(width: AppDimensions.mm),
+                SizedBox(width: AppDimensions.mp),
                 Expanded(
                   child: Shimmer.fromColors(
                     baseColor: AppColors.shimmerBaseColor,
                     highlightColor: AppColors.shimmerHighlightColor,
                     child: Container(
                       decoration: BoxDecoration(
-                        color: AppColors.hintTextColor,
+                        color: AppColors.shimmerBaseColor,
                         borderRadius: BorderRadius.circular(AppDimensions.lbr),
                       ),
                     ),

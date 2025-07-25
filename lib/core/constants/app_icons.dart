@@ -8,8 +8,6 @@ class AppIcons {
   static const String heartScan = 'assets/icons/heart-scan.svg';
   static const String microscope = 'assets/icons/microscope.svg';
   static const String medicationType = 'assets/icons/medication-type.svg';
-  static const String medicationFrequency =
-      'assets/icons/medication-frequency.svg';
   static const String surgeries = 'assets/icons/surgeries.svg';
   static const String marketplace = 'assets/icons/marketplace.svg';
   static const String prescriptions = 'assets/icons/prescriptions.svg';
@@ -24,4 +22,9 @@ class AppIcons {
   static const String appointments = 'assets/icons/appointments.svg';
   static const String bills = 'assets/icons/bills.svg';
   static const String settings = 'assets/icons/settings.svg';
+  static const String qualification = 'assets/icons/qualification.svg';
+  static const String departmentOutlined =
+      'assets/icons/department-outlined.svg';
+  static const String medicationFrequency =
+      'assets/icons/medication-frequency.svg';
 }

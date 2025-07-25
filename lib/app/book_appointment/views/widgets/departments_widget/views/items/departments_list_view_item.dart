@@ -24,7 +24,7 @@ class DepartmentsListViewItem extends StatelessWidget {
         );
       },
       separatorBuilder: (context, index) {
-        return SizedBox(width: AppDimensions.sm);
+        return SizedBox(width: AppDimensions.sp);
       },
       itemCount: departments.length,
     );

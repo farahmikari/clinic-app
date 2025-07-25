@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:clinic_app/app/book_appointment/models/time_model.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
 import 'package:clinic_app/core/extentions/percent_sized_extention.dart';
@@ -35,9 +33,7 @@ class TimesGridViewItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    log("$shift Rebuild");
     return GridView.builder(
-      padding: EdgeInsets.all(AppDimensions.mp),
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(

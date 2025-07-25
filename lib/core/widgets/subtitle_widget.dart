@@ -9,20 +9,12 @@ class SubtitleWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      contentPadding: EdgeInsets.symmetric(
-        horizontal: AppDimensions.mp,
-        vertical: 0,
-      ),
-      dense: true,
-      minTileHeight: 0,
-      title: Text(
-        subtitle,
-        style: TextStyle(
-          color: AppColors.mainTextColor,
-          fontSize: AppDimensions.lfs,
-          fontWeight: FontWeight.bold,
-        ),
+    return Text(
+      subtitle,
+      style: TextStyle(
+        color: AppColors.mainTextColor,
+        fontSize: AppDimensions.lfs,
+        fontWeight: FontWeight.bold,
       ),
     );
   }

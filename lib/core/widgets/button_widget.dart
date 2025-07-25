@@ -18,26 +18,23 @@ class ButtonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.all(AppDimensions.mp),
-      child: InkWell(
-        onTap: onTap,
-        borderRadius: BorderRadius.circular(AppDimensions.lbr),
-        child: Container(
-          padding: EdgeInsets.all(AppDimensions.mp),
-          alignment: Alignment.center,
-          decoration: BoxDecoration(
-            color: backgroundColor,
-            borderRadius: BorderRadius.circular(AppDimensions.lbr),
-            boxShadow: AppShadow.boxShadow,
-          ),
-          child: Text(
-            title,
-            style: TextStyle(
-              color: titleColor,
-              fontSize: AppDimensions.lfs,
-              fontWeight: FontWeight.bold,
-            ),
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(AppDimensions.lbr),
+      child: Container(
+        padding: EdgeInsets.all(AppDimensions.mp),
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+          color: backgroundColor,
+          borderRadius: BorderRadius.circular(AppDimensions.lbr),
+          boxShadow: AppShadow.boxShadow,
+        ),
+        child: Text(
+          title,
+          style: TextStyle(
+            color: titleColor,
+            fontSize: AppDimensions.mfs,
+            fontWeight: FontWeight.bold,
           ),
         ),
       ),

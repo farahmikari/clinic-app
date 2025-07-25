@@ -14,7 +14,8 @@ class SurgeriesWidget extends StatelessWidget {
       height: 15.0.hp,
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
-        padding: EdgeInsets.all(AppDimensions.mp),
+        padding: EdgeInsets.symmetric(horizontal: AppDimensions.mp),
+        clipBehavior: Clip.none,
         itemBuilder: (context, index) {
           return SurgeryWidget(title: surgeries[index].name);
         },

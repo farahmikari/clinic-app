@@ -26,7 +26,6 @@ class DroppableItem extends StatelessWidget {
     return AnimatedContainer(
       duration: const Duration(milliseconds: 300),
       height: height,
-      margin: EdgeInsets.all(AppDimensions.mm),
       padding: EdgeInsets.only(top: 8.0.hp, bottom: AppDimensions.mp),
       decoration: BoxDecoration(
         color: AppColors.widgetBackgroundColor,

@@ -1,62 +1,124 @@
 import 'package:clinic_app/app/doctor/models/doctor_model.dart';
-import 'package:clinic_app/app/doctor/views/widgets/book_appointment_button_widget.dart';
-import 'package:clinic_app/app/doctor/views/widgets/doctor_bio_widget.dart';
-import 'package:clinic_app/app/doctor/views/widgets/doctor_experience_and_treatments_widget.dart';
-import 'package:clinic_app/app/doctor/views/widgets/doctor_image_widget.dart';
-import 'package:clinic_app/app/doctor/views/widgets/doctor_name_and_specialty_widget.dart';
-import 'package:clinic_app/app/doctor/views/widgets/doctor_qualifications_widget.dart';
-import 'package:clinic_app/app/doctor/views/widgets/doctor_shift_and_rate_widget.dart';
+import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
+import 'package:clinic_app/core/constants/app_icons.dart';
+import 'package:clinic_app/core/constants/app_shadow.dart';
+import 'package:clinic_app/core/extentions/percent_sized_extention.dart';
+import 'package:clinic_app/core/widgets/button_widget.dart';
+import 'package:clinic_app/core/widgets/doctor_name_widget.dart';
+import 'package:clinic_app/core/widgets/doctor_specialty_widget.dart';
+import 'package:clinic_app/core/widgets/horizontal_info_with_title_widget.dart';
+import 'package:clinic_app/core/widgets/info_list_widget.dart';
+import 'package:clinic_app/core/widgets/info_with_icon_widget.dart';
 import 'package:clinic_app/core/widgets/subtitle_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 class DoctorWidget extends StatelessWidget {
   const DoctorWidget({super.key, required this.doctor});
 
   final DoctorModel doctor;
 
+  String formatTime(String time) {
+    return DateFormat("h:mm a").format(DateFormat("HH:mm:ss").parse(time));
+  }
+
+  String formatShift() {
+    return "${formatTime(doctor.startTime)} - ${formatTime(doctor.endTime)}";
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        //--------------------|Doctor Image|-------------------------------------------------------------------------------------------------------------------------------------------
-        DoctorImageWidget(image: doctor.image),
-        Expanded(
-          flex: 2,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+    return SafeArea(
+      child: ListView(
+        padding: EdgeInsets.all(AppDimensions.mp),
+        children: [
+          Container(
+            height: 30.0.hp,
+            padding: EdgeInsets.only(
+              top: AppDimensions.sp,
+              left: AppDimensions.sp,
+              right: AppDimensions.sp,
+            ),
+            decoration: BoxDecoration(
+              color: AppColors.widgetBackgroundColor,
+              borderRadius: BorderRadius.circular(AppDimensions.mbr),
+              boxShadow: AppShadow.boxShadow,
+            ),
+            child: Image(image: AssetImage(doctor.image)),
+          ),
+          SizedBox(height: AppDimensions.mp),
+          Center(
+            child: DoctorNameWidget(name: doctor.name, size: AppDimensions.lfs),
+          ),
+          SizedBox(height: AppDimensions.sp),
+          Center(child: DoctorSpecialtyWidget(specialty: doctor.specialty)),
+          SizedBox(height: AppDimensions.mp),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              //---------|Doctor Name & Specialty|--------------------------------------------------------------------------------------------------------------------------------------
-              DoctorNameAndSpecialtyWidget(
-                name: doctor.name,
-                specialty: doctor.specialty,
+              InfoWithIconWidget(
+                icon: AppIcons.time,
+                info: formatShift(),
+                infoSize: AppDimensions.sfs,
               ),
-              //-----------|Doctor Shift & Rate|----------------------------------------------------------------------------------------------------------------------------------------
-              DoctorShiftAndRateWidget(
-                startTime: doctor.startTime,
-                endTime: doctor.endTime,
-                rate: doctor.rate,
+              InfoWithIconWidget(
+                icon: AppIcons.rate,
+                info: doctor.rate.toString(),
+                infoSize: AppDimensions.sfs,
               ),
-              //-------|Doctor Eperience & Treatments|-----------------------------------------------------------------------------------------------------------------------------------
-              DoctorExperienceAndTreatmentsWidget(
-                experience: doctor.experience,
-                treatments: doctor.treatments,
-              ),
-              //--------------|Doctor Bio|----------------------------------------------------------------------------------------------------------------------------------------------
-              DoctorBioWidget(bio: doctor.bio),
-              //--------|Qualifications Subtitle|----------------------------------------------------------------------------------------------------------------------------------------
-              SubtitleWidget(subtitle: "Qualifications"),
-              //---------|Doctor Qualifications|-----------------------------------------------------------------------------------------------------------------------------------------
-              DoctorQualificationsWidget(qualifications: doctor.qualifications),
-              //--------|Book Appointment Button|----------------------------------------------------------------------------------------------------------------------------------------
-              Get.previousRoute == "/BookAppointmentScreen"
-                  ? SizedBox(height: AppDimensions.mm)
-                  : BookAppointmentButtonWidget(),
             ],
           ),
-        ),
-      ],
+          SizedBox(height: AppDimensions.mp),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              HorizontalInfoWithTitleWidget(
+                title: "Experience",
+                info: "${doctor.experience} Years",
+              ),
+              HorizontalInfoWithTitleWidget(
+                title: "Treatments",
+                info: "${doctor.treatments} Patients",
+              ),
+            ],
+          ),
+          SizedBox(height: AppDimensions.mp),
+          SubtitleWidget(subtitle: "About"),
+          SizedBox(height: AppDimensions.mp),
+          Container(
+            padding: EdgeInsets.all(AppDimensions.mp),
+            decoration: BoxDecoration(
+              color: AppColors.widgetBackgroundColor,
+              borderRadius: BorderRadius.circular(AppDimensions.mbr),
+              boxShadow: AppShadow.boxShadow,
+            ),
+            child: Text(
+              doctor.bio,
+              style: TextStyle(
+                color: AppColors.darkGreyColor,
+                fontSize: AppDimensions.sfs,
+                fontWeight: FontWeight.w500,
+              ),
+              textAlign: TextAlign.justify,
+            ),
+          ),
+          SizedBox(height: AppDimensions.mp),
+          SubtitleWidget(subtitle: "Qualifications"),
+          SizedBox(height: AppDimensions.mp),
+          InfoListWidget(
+            icon: AppIcons.qualification,
+            info: doctor.qualifications,
+          ),
+          SizedBox(height: AppDimensions.mp),
+          ButtonWidget(
+            title: "Book Now",
+            backgroundColor: AppColors.primaryColor,
+            titleColor: AppColors.widgetBackgroundColor,
+            onTap: () {},
+          ),
+        ],
+      ),
     );
   }
 }

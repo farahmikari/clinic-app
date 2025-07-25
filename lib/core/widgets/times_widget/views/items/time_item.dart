@@ -79,7 +79,7 @@ class TimeItem extends StatelessWidget {
           style: TextStyle(
             color: specifyTitleColor(),
             fontSize: AppDimensions.mfs,
-            fontWeight: FontWeight.w500,
+            fontWeight: FontWeight.bold,
           ),
         ),
       ),

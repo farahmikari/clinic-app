@@ -208,111 +208,126 @@ class BookAppointmentScreen extends StatelessWidget {
               },
             ),
           ],
-          child: ListView(
-            children: [
-              BlocBuilder<FetchDepartmentsBloc, FetchDepartmentsState>(
-                builder: (context, state) {
-                  if (state is FetchDepartmentsLoaded) {
-                    return DepartmentsWidget(departments: state.departments);
-                  }
-                  return ShimmerDepartmentsWidget();
-                },
-              ),
-              RequestTypesWidget(),
-              SubtitleWidget(subtitle: "Dates And Times"),
-              BlocBuilder<FetchDaysBloc, FetchDaysState>(
-                builder: (context, state) {
-                  if (state is FetchDaysLoaded) {
-                    return DaysWidget(days: state.days);
-                  }
-                  return ShimmerDaysWidget();
-                },
-              ),
-              BlocBuilder<FetchMorningTimesBloc, FetchTimesState>(
-                builder: (context, state) {
-                  if (state is FetchTimesLoaded) {
-                    return SubtitleWithTextButtonWidget(
-                      subtitle: "Morning Times",
-                      buttonTitle: "Doctor Profile",
-                      onPressed: () {},
-                    );
-                  }
-                  return SubtitleWidget(subtitle: "Morning Times");
-                },
-              ),
-              BlocBuilder<FetchMorningTimesBloc, FetchTimesState>(
-                builder: (context, state) {
-                  if (state is FetchTimesLoaded) {
-                    return TimesWidget(
-                      times: state.dayTimes,
-                      currentDoctorId: state.doctorId,
-                      shift: "Morning",
-                    );
-                  }
-                  return ShimmerTimesWidget();
-                },
-              ),
-              BlocBuilder<FetchAfternoonTimesBloc, FetchTimesState>(
-                builder: (context, state) {
-                  if (state is FetchTimesLoaded) {
-                    return SubtitleWithTextButtonWidget(
-                      subtitle: "Afternoon Times",
-                      buttonTitle: "Doctor Profile",
-                      onPressed: () {},
-                    );
-                  }
-                  return SubtitleWidget(subtitle: "Afternoon Times");
-                },
-              ),
-              BlocBuilder<FetchAfternoonTimesBloc, FetchTimesState>(
-                builder: (context, state) {
-                  if (state is FetchTimesLoaded) {
-                    return TimesWidget(
-                      times: state.dayTimes,
-                      currentDoctorId: state.doctorId,
-                      shift: "Afternoon",
-                    );
-                  }
-                  return ShimmerTimesWidget();
-                },
-              ),
-              TitledCheckboxWidget(title: "Do you need a medical Report?"),
-              BlocBuilder<
-                BookAppointmentValidatorBloc,
-                BookAppointmentValidatorState
-              >(
-                builder: (context, state) {
-                  ReservationModel reservation = state.currentReservation;
-                  bool isValid = state.isValid;
-                  return BlocBuilder<SendReservationBloc, SendReservationState>(
-                    builder: (context, state) {
-                      if (state is SendReservationLoading) {
-                        return Center(
-                          child: LoadingAnimationWidget.staggeredDotsWave(
-                            color: AppColors.primaryColor,
-                            size: 8.0.hp,
-                          ),
-                        );
-                      }
-                      return ButtonWidget(
-                        title: "Confirm",
-                        backgroundColor: specifyConfirmButtonBackgroundColor(
-                          isValid,
-                        ),
-                        titleColor: AppColors.widgetBackgroundColor,
-                        onTap: () {
-                          if (isValid) {
-                            context.read<SendReservationBloc>().add(
-                              SendReservation(reservation: reservation),
-                            );
-                          }
-                        },
+          child: SafeArea(
+            child: ListView(
+              padding: EdgeInsets.all(AppDimensions.mp),
+              children: [
+                BlocBuilder<FetchDepartmentsBloc, FetchDepartmentsState>(
+                  builder: (context, state) {
+                    if (state is FetchDepartmentsLoaded) {
+                      return DepartmentsWidget(departments: state.departments);
+                    }
+                    return ShimmerDepartmentsWidget();
+                  },
+                ),
+                SizedBox(height: AppDimensions.mp),
+                RequestTypesWidget(),
+                SizedBox(height: AppDimensions.mp),
+                SubtitleWidget(subtitle: "Dates And Times"),
+                SizedBox(height: AppDimensions.mp),
+                BlocBuilder<FetchDaysBloc, FetchDaysState>(
+                  builder: (context, state) {
+                    if (state is FetchDaysLoaded) {
+                      return DaysWidget(days: state.days);
+                    }
+                    return ShimmerDaysWidget();
+                  },
+                ),
+                SizedBox(height: AppDimensions.mp),
+                BlocBuilder<FetchMorningTimesBloc, FetchTimesState>(
+                  builder: (context, state) {
+                    if (state is FetchTimesLoaded) {
+                      return SubtitleWithTextButtonWidget(
+                        subtitle: "Morning Times",
+                        buttonTitle: "Doctor Profile",
+                        onPressed: () {},
                       );
-                    },
-                  );
-                },
-              ),
-            ],
+                    }
+                    return SubtitleWidget(subtitle: "Morning Times");
+                  },
+                ),
+                SizedBox(height: AppDimensions.mp),
+                BlocBuilder<FetchMorningTimesBloc, FetchTimesState>(
+                  builder: (context, state) {
+                    if (state is FetchTimesLoaded) {
+                      return TimesWidget(
+                        times: state.dayTimes,
+                        currentDoctorId: state.doctorId,
+                        shift: "Morning",
+                      );
+                    }
+                    return ShimmerTimesWidget();
+                  },
+                ),
+                SizedBox(height: AppDimensions.mp),
+                BlocBuilder<FetchAfternoonTimesBloc, FetchTimesState>(
+                  builder: (context, state) {
+                    if (state is FetchTimesLoaded) {
+                      return SubtitleWithTextButtonWidget(
+                        subtitle: "Afternoon Times",
+                        buttonTitle: "Doctor Profile",
+                        onPressed: () {},
+                      );
+                    }
+                    return SubtitleWidget(subtitle: "Afternoon Times");
+                  },
+                ),
+                SizedBox(height: AppDimensions.mp),
+                BlocBuilder<FetchAfternoonTimesBloc, FetchTimesState>(
+                  builder: (context, state) {
+                    if (state is FetchTimesLoaded) {
+                      return TimesWidget(
+                        times: state.dayTimes,
+                        currentDoctorId: state.doctorId,
+                        shift: "Afternoon",
+                      );
+                    }
+                    return ShimmerTimesWidget();
+                  },
+                ),
+                SizedBox(height: AppDimensions.mp),
+                TitledCheckboxWidget(title: "Do you need a medical Report?"),
+                SizedBox(height: AppDimensions.mp),
+                BlocBuilder<
+                  BookAppointmentValidatorBloc,
+                  BookAppointmentValidatorState
+                >(
+                  builder: (context, state) {
+                    ReservationModel reservation = state.currentReservation;
+                    bool isValid = state.isValid;
+                    return BlocBuilder<
+                      SendReservationBloc,
+                      SendReservationState
+                    >(
+                      builder: (context, state) {
+                        if (state is SendReservationLoading) {
+                          return Center(
+                            child: LoadingAnimationWidget.staggeredDotsWave(
+                              color: AppColors.primaryColor,
+                              size: 8.0.hp,
+                            ),
+                          );
+                        }
+                        return ButtonWidget(
+                          title: "Confirm",
+                          backgroundColor: specifyConfirmButtonBackgroundColor(
+                            isValid,
+                          ),
+                          titleColor: AppColors.widgetBackgroundColor,
+                          onTap: () {
+                            if (isValid) {
+                              context.read<SendReservationBloc>().add(
+                                SendReservation(reservation: reservation),
+                              );
+                            }
+                          },
+                        );
+                      },
+                    );
+                  },
+                ),
+              ],
+            ),
           ),
         ),
       ),

@@ -13,14 +13,14 @@ class ServicesButtonsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GridView(
-      padding: EdgeInsets.all(AppDimensions.mp),
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
+      padding: EdgeInsets.symmetric(horizontal: AppDimensions.mp),
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
         crossAxisSpacing: AppDimensions.sm,
         mainAxisSpacing: AppDimensions.sm,
-        mainAxisExtent: 20.0.hp,
+        mainAxisExtent: 45.0.wp,
       ),
       children: [
         ServiceButtonWidget(

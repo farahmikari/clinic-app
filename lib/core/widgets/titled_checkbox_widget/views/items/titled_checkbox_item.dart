@@ -1,7 +1,6 @@
 import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
 import 'package:clinic_app/core/widgets/titled_checkbox_widget/controllers/titled_checkbox_bloc/titled_checkbox_bloc.dart';
-import 'package:clinic_app/core/widgets/titled_checkbox_widget/views/items/title_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -37,19 +36,31 @@ class TitledCheckboxItem extends StatelessWidget {
       }
     }
 
-    return CheckboxListTile(
-      contentPadding: EdgeInsets.symmetric(horizontal: AppDimensions.mp),
-      value: isCurrentChecked,
-      onChanged: (value) {
-        if (isTitledCheckboxWidgetActived) {
-          context.read<TitledCheckboxBloc>().add(IsCurrentCheckedIsToggled());
-        }
-      },
-      title: TitleItem(title: title, color: specifyTitleAndSideColor()),
-      activeColor: specifyActiveColor(),
-      side: BorderSide(color: specifyTitleAndSideColor(), width: 2),
-
-      ///checkboxShape: CircleBorder(),
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Text(
+          title,
+          style: TextStyle(
+            color: AppColors.mainTextColor,
+            fontSize: AppDimensions.mfs,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+        Checkbox(
+          value: isCurrentChecked,
+          onChanged: (value) {
+            if (isTitledCheckboxWidgetActived) {
+              context.read<TitledCheckboxBloc>().add(
+                IsCurrentCheckedIsToggled(),
+              );
+            }
+          },
+          activeColor: specifyActiveColor(),
+          side: BorderSide(color: specifyTitleAndSideColor(), width: 2),
+        ),
+      ],
     );
   }
 }
