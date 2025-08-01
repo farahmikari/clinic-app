@@ -8,7 +8,7 @@ import 'package:dio/dio.dart';
 import 'package:get_storage/get_storage.dart';
 
 class SignupService {
-  Future<void> signupUser({
+  Future<Map<String, dynamic>> signupUser({
     required String firstName,
     required String lastName,
     required String gender,
@@ -43,8 +43,8 @@ class SignupService {
     SignupModel model = SignupModel.fromJson(response);
 
     if (model.token.isNotEmpty) {
-  SharedPereferenceService.saveToken(model.token);
-}
-    
+      SharedPereferenceService.saveToken(model.token);
+    }
+    return response;
   }
 }

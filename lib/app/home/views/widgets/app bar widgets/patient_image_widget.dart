@@ -1,18 +1,18 @@
-import 'package:clinic_app/app/user_drawer/views/screen/drawer_screen.dart';
+import 'package:clinic_app/app/user_drawer/controllers/bloc/drawer_bloc/drawer_bloc.dart';
 import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
 import 'package:clinic_app/core/constants/app_shadow.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_state_manager/src/simple/get_view.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class PatientImageWidget extends GetView<MyDrawerController> {
+class PatientImageWidget extends StatelessWidget {
   const PatientImageWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        controller.toggleDrawer();
+        context.read<DrawerBloc>().add(ToggleDrawerEvent());
       },
       child: Container(
         margin: EdgeInsets.all(AppDimensions.mm),

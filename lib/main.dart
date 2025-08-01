@@ -4,7 +4,6 @@ import 'package:clinic_app/app/login/views/screens/login_screen.dart';
 import 'package:clinic_app/app/onboarding/views/screens/splash_screen.dart';
 import 'package:clinic_app/app/signup/views/screens/email_screen.dart';
 import 'package:clinic_app/app/signup/views/screens/sign_up_screen.dart';
-import 'package:clinic_app/app/user_drawer/views/screen/drawer_screen.dart';
 import 'package:clinic_app/app/verification/views/screen/verification_screen.dart';
 import 'package:clinic_app/service_locator.dart';
 
@@ -22,7 +21,7 @@ import 'package:get_storage/get_storage.dart';
 
 
 void main() async {
-  Get.put<MyDrawerController>(MyDrawerController());
+  
   WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);

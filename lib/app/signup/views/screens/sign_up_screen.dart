@@ -45,7 +45,6 @@ class _SignupState extends State<SignUp> with SingleTickerProviderStateMixin {
         ),
         BlocProvider.value(value: getIt<MostRatedDoctorsBloc>()),
       ],
-
       child: Scaffold(
         backgroundColor: Colors.white,
         body: AnimatedBackground(
@@ -124,7 +123,6 @@ class _SignupState extends State<SignUp> with SingleTickerProviderStateMixin {
                         TextFormFieldWidget(
                           label: 'First Name',
                           iconTextField: Icons.person,
-
                           onChanged: (value) {
                             context.read<SignupBloc>().add(
                               SFirstNameFieldEvent(name: value),
