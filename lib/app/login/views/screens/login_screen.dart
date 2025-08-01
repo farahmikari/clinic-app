@@ -2,7 +2,6 @@ import 'package:animated_background/animated_background.dart';
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:clinic_app/app/bottom_navigation_bar/views/screens/bottom_navigation_bar_screen.dart';
 import 'package:clinic_app/app/forget_password/views/screens/set_email_screen.dart';
-import 'package:clinic_app/app/home/controllers/most%20rated%20doctors%20bloc/most_rated_doctors_bloc.dart';
 import 'package:clinic_app/app/login/controllers/login_bloc/login_bloc.dart';
 import 'package:clinic_app/app/login/views/widgets/button_widget.dart';
 import 'package:clinic_app/app/login/views/widgets/text_form_field_widget.dart';
@@ -11,7 +10,6 @@ import 'package:clinic_app/app/signup/views/widgets/text_button_widget.dart';
 import 'package:clinic_app/app/user_drawer/views/screen/drawer_screen.dart';
 import 'package:clinic_app/consts.dart';
 import 'package:clinic_app/core/utils/snack_bar_util.dart';
-import 'package:clinic_app/service_locator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
@@ -33,11 +31,7 @@ class _LoginScreenState extends State<LoginScreen>
     final width = size.width;
 
     return MultiBlocProvider(
-      providers: [
-        BlocProvider(create: (context) => LoginBlocBloc()),
-
-        BlocProvider.value(value: getIt<MostRatedDoctorsBloc>()),
-      ],
+      providers: [BlocProvider(create: (context) => LoginBlocBloc())],
 
       child: Scaffold(
         backgroundColor: kPrimaryColor,
@@ -55,7 +49,7 @@ class _LoginScreenState extends State<LoginScreen>
           ),
           child: SingleChildScrollView(
             child: BlocConsumer<LoginBlocBloc, LoginBaseState>(
-              listener: (context, state) async{
+              listener: (context, state) async {
                 switch (state) {
                   case LoginSuccess():
                     showSnackBar(
@@ -63,10 +57,6 @@ class _LoginScreenState extends State<LoginScreen>
                       title: "Success",
                       message: "Login Successfully",
                       contentType: ContentType.success,
-                    );
-
-                    context.read<MostRatedDoctorsBloc>().add(
-                      FetchMostRatedDoctors(),
                     );
                     await Future.delayed(Duration(seconds: 3));
                     Get.offAll(() => DrawerScreen());

@@ -16,37 +16,30 @@ class SubtitleWithTextButtonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      contentPadding: EdgeInsets.symmetric(
-        horizontal: AppDimensions.mp,
-        vertical: 0,
-      ),
-      dense: true,
-      minTileHeight: 0,
-      title: Text(
-        subtitle,
-        style: TextStyle(
-          color: AppColors.mainTextColor,
-          fontSize: AppDimensions.lfs,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
-      trailing: TextButton(
-        style: ButtonStyle(
-          overlayColor: WidgetStatePropertyAll(Colors.transparent),
-          padding: WidgetStatePropertyAll(EdgeInsets.all(0)),
-        ),
-
-        onPressed: onPressed,
-        child: Text(
-          buttonTitle,
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Text(
+          subtitle,
           style: TextStyle(
-            color: AppColors.primaryColor,
-            fontSize: AppDimensions.sfs,
+            color: AppColors.mainTextColor,
+            fontSize: AppDimensions.lfs,
             fontWeight: FontWeight.bold,
           ),
         ),
-      ),
+        GestureDetector(
+          onTap: onPressed,
+          child: Text(
+            buttonTitle,
+            style: TextStyle(
+              color: AppColors.primaryColor,
+              fontSize: AppDimensions.sfs,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

@@ -3,21 +3,23 @@ import 'package:clinic_app/app/appointment_details/models/completed_appointment_
 import 'package:clinic_app/app/appointment_details/models/completed_appointment_models/medication_model.dart';
 import 'package:clinic_app/app/appointment_details/models/completed_appointment_models/surgery_model.dart';
 
-class CompletedAppointmentModel {
+class PrescriptionModel {
   final List<MedicationModel> medications;
   final List<LabTestModel> labTests;
   final List<SurgeryModel> surgeries;
   final List<AdviceModel> advices;
+  final bool isPrescriptionViewed;
 
-  CompletedAppointmentModel({
+  PrescriptionModel({
     required this.medications,
     required this.labTests,
     required this.surgeries,
     required this.advices,
+    required this.isPrescriptionViewed,
   });
 
-  factory CompletedAppointmentModel.fromJson(Map<String, dynamic> jsonData) {
-    return CompletedAppointmentModel(
+  factory PrescriptionModel.fromJson(Map<String, dynamic> jsonData) {
+    return PrescriptionModel(
       medications:
           (jsonData["medications"] as List<dynamic>)
               .map((medication) => MedicationModel.fromJson(medication))
@@ -34,6 +36,7 @@ class CompletedAppointmentModel {
           (jsonData["advices"] as List<dynamic>)
               .map((advice) => AdviceModel.fromJson(advice))
               .toList(),
+      isPrescriptionViewed: jsonData['is_prescription_viewed'],
     );
   }
 }

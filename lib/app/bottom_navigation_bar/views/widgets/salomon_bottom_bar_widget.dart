@@ -1,4 +1,4 @@
-import 'package:clinic_app/app/bottom_navigation_bar/controllers/bottom%20navigation%20bar%20bloc/bottom_navigation_bar_bloc.dart';
+import 'package:clinic_app/app/bottom_navigation_bar/controllers/bottom_navigation_bar_bloc/bottom_navigation_bar_bloc.dart';
 import 'package:clinic_app/app/bottom_navigation_bar/models/item_model.dart';
 import 'package:clinic_app/app/bottom_navigation_bar/models/json_data.dart';
 import 'package:clinic_app/core/constants/app_colors.dart';

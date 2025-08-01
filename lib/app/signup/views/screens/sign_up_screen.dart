@@ -1,6 +1,5 @@
 import 'package:animated_background/animated_background.dart';
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
-import 'package:clinic_app/app/home/controllers/most%20rated%20doctors%20bloc/most_rated_doctors_bloc.dart';
 import 'package:clinic_app/app/login/views/widgets/button_widget.dart';
 import 'package:clinic_app/app/login/views/widgets/text_form_field_widget.dart';
 import 'package:clinic_app/app/user_drawer/views/screen/drawer_screen.dart';
@@ -8,11 +7,8 @@ import 'package:clinic_app/core/widgets/image_widget/controller/bloc/image_bloc/
 import 'package:clinic_app/app/signup/controllers/bloc/signup_bloc/signup_bloc.dart';
 import 'package:clinic_app/core/widgets/image_widget/controller/service/image_picker_service.dart';
 import 'package:clinic_app/core/widgets/image_widget/views/widget/image_profile_widget.dart';
-
 import 'package:clinic_app/consts.dart';
 import 'package:clinic_app/core/utils/snack_bar_util.dart';
-import 'package:clinic_app/service_locator.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
@@ -43,7 +39,6 @@ class _SignupState extends State<SignUp> with SingleTickerProviderStateMixin {
         BlocProvider(
           create: (context) => ImageBloc(pickimage: ImagePickerService()),
         ),
-        BlocProvider.value(value: getIt<MostRatedDoctorsBloc>()),
       ],
       child: Scaffold(
         backgroundColor: Colors.white,
@@ -61,7 +56,7 @@ class _SignupState extends State<SignUp> with SingleTickerProviderStateMixin {
           ),
           child: SingleChildScrollView(
             child: BlocConsumer<SignupBloc, SignupBaseState>(
-              listener: (context, state)async {
+              listener: (context, state) async {
                 switch (state) {
                   case SignupSuccess():
                     showSnackBar(

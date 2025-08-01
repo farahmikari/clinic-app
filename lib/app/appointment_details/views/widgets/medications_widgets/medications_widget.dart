@@ -14,12 +14,13 @@ class MedicationsWidget extends StatelessWidget {
       height: 30.0.hp,
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
-        padding: EdgeInsets.all(AppDimensions.mp),
+        clipBehavior: Clip.none,
+        padding: EdgeInsets.symmetric(horizontal: AppDimensions.mp),
         itemBuilder: (context, index) {
           return MedicationWidget(medication: medications[index]);
         },
         separatorBuilder: (context, index) {
-          return SizedBox(width: AppDimensions.mm);
+          return SizedBox(width: AppDimensions.mp);
         },
         itemCount: medications.length,
       ),

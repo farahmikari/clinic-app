@@ -63,7 +63,7 @@ class TypeItem extends StatelessWidget {
           requestType.type,
           style: TextStyle(
             color: specifyTitleColor(),
-            fontSize: AppDimensions.sfs,
+            fontSize: AppDimensions.mfs,
             fontWeight: FontWeight.bold,
           ),
         ),

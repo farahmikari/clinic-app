@@ -6,6 +6,7 @@ import 'package:clinic_app/app/appointment_details/controllers/upcoming_validato
 import 'package:clinic_app/app/appointment_details/views/widgets/summary_widgets/summary_widget.dart';
 import 'package:clinic_app/app/appointments/models/appointment_model.dart';
 import 'package:clinic_app/core/constants/app_colors.dart';
+import 'package:clinic_app/core/constants/app_dimensions.dart';
 import 'package:clinic_app/core/extentions/percent_sized_extention.dart';
 import 'package:clinic_app/core/widgets/button_widget.dart';
 import 'package:clinic_app/core/widgets/custom_dialog_widget.dart';
@@ -214,8 +215,10 @@ class UpcomingAppointmentWidget extends StatelessWidget {
           ),
         ],
         child: ListView(
+          padding: EdgeInsets.all(AppDimensions.mp),
           children: [
             SummaryWidget(appointment: appointment),
+            SizedBox(height: AppDimensions.mp),
             BlocBuilder<UpcomingValidatorBloc, UpcomingValidatorState>(
               builder: (context, state) {
                 return SubtitleWithTextButtonWidget(
@@ -248,8 +251,11 @@ class UpcomingAppointmentWidget extends StatelessWidget {
                 );
               },
             ),
+            SizedBox(height: AppDimensions.mp),
             RequestTypesWidget(),
+            SizedBox(height: AppDimensions.mp),
             SubtitleWidget(subtitle: "Date"),
+            SizedBox(height: AppDimensions.mp),
             BlocBuilder<FetchDaysBloc, FetchDaysState>(
               builder: (context, state) {
                 if (state is FetchDaysLoaded) {
@@ -258,7 +264,9 @@ class UpcomingAppointmentWidget extends StatelessWidget {
                 return ShimmerDaysWidget();
               },
             ),
+            SizedBox(height: AppDimensions.mp),
             SubtitleWidget(subtitle: "Time"),
+            SizedBox(height: AppDimensions.mp),
             BlocBuilder<FetchTimesBloc, FetchTimesState>(
               builder: (context, state) {
                 if (state is FetchTimesLoaded) {
@@ -271,7 +279,9 @@ class UpcomingAppointmentWidget extends StatelessWidget {
                 return ShimmerTimesWidget();
               },
             ),
+            SizedBox(height: AppDimensions.mp),
             TitledCheckboxWidget(title: "Do you need a medical report?"),
+            SizedBox(height: AppDimensions.mp),
             BlocBuilder<
               SendCancelOrEditReservationBloc,
               SendCancelOrEditReservationState

@@ -45,6 +45,7 @@ var completedAppointmentsDetails = {
       {"id": 3, "advice": "Avoid scratching affected areas."},
       {"id": 4, "advice": "Use prescribed products only on affected areas."},
     ],
+    "is_prescription_viewed": false,
   },
   2: {
     "medications": [
@@ -160,6 +161,7 @@ var completedAppointmentsDetails = {
             "Attend regular follow-up appointments for monitoring and adjustments.",
       },
     ],
+    "is_prescription_viewed": false,
   },
   3: {
     "medications": [
@@ -260,5 +262,6 @@ var completedAppointmentsDetails = {
       },
       {"id": 10, "advice": "Follow up as scheduled for reassessment."},
     ],
+    "is_prescription_viewed": true,
   },
 };

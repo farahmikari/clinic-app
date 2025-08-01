@@ -16,7 +16,6 @@ class DepartmentsWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 8.0.hp,
-      margin: EdgeInsets.symmetric(horizontal: AppDimensions.mm),
       decoration: BoxDecoration(
         color: AppColors.widgetBackgroundColor,
         borderRadius: BorderRadius.circular(AppDimensions.lbr),

@@ -1,4 +1,4 @@
-import 'package:clinic_app/app/appointment_details/controllers/completed_appointment_details_bloc/fetch_completed_appointment_details_bloc.dart';
+import 'package:clinic_app/app/appointment_details/controllers/fetch_prescription_bloc/fetch_prescription_bloc.dart';
 import 'package:clinic_app/app/appointment_details/models/completed_appointment_models/completed_appointment_model.dart';
 import 'package:clinic_app/app/appointment_details/views/widgets/advices_widgets/advices_widget.dart';
 import 'package:clinic_app/app/appointment_details/views/widgets/lab_tests_widgets/lab_tests_widget.dart';
@@ -6,69 +6,157 @@ import 'package:clinic_app/app/appointment_details/views/widgets/medications_wid
 import 'package:clinic_app/app/appointment_details/views/widgets/summary_widgets/summary_widget.dart';
 import 'package:clinic_app/app/appointment_details/views/widgets/surgeries_widgets/surgeries_widget.dart';
 import 'package:clinic_app/app/appointments/models/appointment_model.dart';
-import 'package:clinic_app/core/constants/app_colors.dart';
-import 'package:clinic_app/core/extentions/percent_sized_extention.dart';
+import 'package:clinic_app/core/constants/app_dimensions.dart';
+import 'package:clinic_app/core/widgets/loading_widget.dart';
+import 'package:clinic_app/app/appointment_details/controllers/rating_dialog_bloc/rating_dialog_bloc.dart';
+import 'package:clinic_app/app/appointment_details/views/widgets/rating_dialog_widget.dart';
 import 'package:clinic_app/core/widgets/subtitle_widget.dart';
-import 'package:clinic_app/service_locator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 class CompletedAppointmentWidget extends StatelessWidget {
   const CompletedAppointmentWidget({super.key, required this.appointment});
   final AppointmentModel appointment;
 
+  void _triggerRatingDialog({
+    required BuildContext context,
+    required FetchPrescriptionState state,
+  }) {
+    if (state is FetchPrescriptionLoaded &&
+        !state.prescription.isPrescriptionViewed) {
+      context.read<RatingDialogBloc>().add(
+        RatingDialogIsDisplayed(appointmentId: appointment.id),
+      );
+    }
+  }
+
+  void _displayRatingDialog({
+    required BuildContext context,
+    required RatingDialogState state,
+  }) {
+    if (state is RatingDialogVisible) {
+      showDialog(
+        context: context,
+        builder:
+            (_) => BlocProvider.value(
+              value: context.read<RatingDialogBloc>(),
+              child: RatingDialogWidget(
+                doctorImage: appointment.doctorImage,
+                doctorName: appointment.doctorName,
+              ),
+            ),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create:
-          (context) =>
-              getIt<FetchCompletedAppointmentDetailsBloc>()..add(
-                FetchCompletedAppointmentDetails(appointmentId: appointment.id),
-              ),
-      child: BlocBuilder<
-        FetchCompletedAppointmentDetailsBloc,
-        FetchCompletedAppointmentDetailsState
-      >(
-        builder: (context, state) {
-          switch (state) {
-            case FetchCompletedAppointmentDetailsLoading():
-              return Center(
-                child: LoadingAnimationWidget.staggeredDotsWave(
-                  color: AppColors.primaryColor,
-                  size: 8.0.hp,
-                ),
-              );
-            case FetchCompletedAppointmentDetailsLoaded():
-              CompletedAppointmentModel completedAppointment =
-                  state.completedAppointment;
-              return ListView(
-                children: [
-                  SummaryWidget(appointment: appointment),
-                  //-----------Medications Subtitle--------------------------------------------------------------------------------------------------------------------------------------
-                  SubtitleWidget(subtitle: "Medications"),
-                  //---------------Medications-------------------------------------------------------------------------------------------------------------------------------------------
-                  MedicationsWidget(
-                    medications: completedAppointment.medications,
-                  ),
-                  //------------Lab Tests Subtitle---------------------------------------------------------------------------------------------------------------------------------------
-                  SubtitleWidget(subtitle: "Lab Tests"),
-                  //----------------Lab Tests--------------------------------------------------------------------------------------------------------------------------------------------
-                  LabTestsWidget(labTests: completedAppointment.labTests),
-                  //------------Surgeries Subtitle---------------------------------------------------------------------------------------------------------------------------------------
-                  SubtitleWidget(subtitle: "Surgeries"),
-                  //----------------Surgeries--------------------------------------------------------------------------------------------------------------------------------------------
-                  SurgeriesWidget(surgeries: completedAppointment.surgeries),
-                  //-------------Advices Subtitle----------------------------------------------------------------------------------------------------------------------------------------
-                  SubtitleWidget(subtitle: "Advices"),
-                  //-----------------Advices---------------------------------------------------------------------------------------------------------------------------------------------
-                  AdvicesWidget(advices: completedAppointment.advices),
-                ],
-              );
-            case FetchCompletedAppointmentDetailsFailed():
-              return Center(child: Text(state.errorMessage));
-          }
-        },
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => RatingDialogBloc()),
+        BlocProvider(
+          create:
+              (context) =>
+                  FetchPrescriptionBloc()
+                    ..add(FetchPrescription(appointmentId: appointment.id)),
+        ),
+      ],
+      child: MultiBlocListener(
+        listeners: [
+          BlocListener<FetchPrescriptionBloc, FetchPrescriptionState>(
+            listenWhen:
+                (previous, current) => current is FetchPrescriptionLoaded,
+            listener: (context, state) {
+              _triggerRatingDialog(context: context, state: state);
+            },
+          ),
+          BlocListener<RatingDialogBloc, RatingDialogState>(
+            listenWhen: (previous, current) => current is RatingDialogVisible,
+            listener: (context, state) {
+              _displayRatingDialog(context: context, state: state);
+            },
+          ),
+        ],
+        child: BlocBuilder<FetchPrescriptionBloc, FetchPrescriptionState>(
+          builder: (context, state) {
+            switch (state) {
+              case FetchPrescriptionLoading():
+                return LoadingWidget();
+              case FetchPrescriptionLoaded():
+                PrescriptionModel prescription = state.prescription;
+                return ListView(
+                  padding: EdgeInsets.symmetric(vertical: AppDimensions.mp),
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: AppDimensions.mp,
+                      ),
+                      child: SummaryWidget(appointment: appointment),
+                    ),
+                    SizedBox(height: AppDimensions.mp),
+                    if (prescription.medications.isNotEmpty) ...[
+                      //-----------Medications Subtitle--------------------------------------------------------------------------------------------------------------------------------------
+                      Padding(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: AppDimensions.mp,
+                        ),
+                        child: SubtitleWidget(subtitle: "Medications"),
+                      ),
+                      SizedBox(height: AppDimensions.mp),
+                      //---------------Medications-------------------------------------------------------------------------------------------------------------------------------------------
+                      MedicationsWidget(medications: prescription.medications),
+                    ],
+                    SizedBox(height: AppDimensions.mp),
+                    if (prescription.labTests.isNotEmpty) ...[
+                      //------------Lab Tests Subtitle---------------------------------------------------------------------------------------------------------------------------------------
+                      Padding(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: AppDimensions.mp,
+                        ),
+                        child: SubtitleWidget(subtitle: "Lab Tests"),
+                      ),
+                      SizedBox(height: AppDimensions.mp),
+                      //----------------Lab Tests--------------------------------------------------------------------------------------------------------------------------------------------
+                      LabTestsWidget(labTests: prescription.labTests),
+                    ],
+                    SizedBox(height: AppDimensions.mp),
+                    if (prescription.surgeries.isNotEmpty) ...[
+                      //------------Surgeries Subtitle---------------------------------------------------------------------------------------------------------------------------------------
+                      Padding(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: AppDimensions.mp,
+                        ),
+                        child: SubtitleWidget(subtitle: "Surgeries"),
+                      ),
+                      SizedBox(height: AppDimensions.mp),
+                      //----------------Surgeries--------------------------------------------------------------------------------------------------------------------------------------------
+                      SurgeriesWidget(surgeries: prescription.surgeries),
+                    ],
+                    SizedBox(height: AppDimensions.mp),
+                    if (prescription.advices.isNotEmpty) ...[
+                      //-------------Advices Subtitle----------------------------------------------------------------------------------------------------------------------------------------
+                      Padding(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: AppDimensions.mp,
+                        ),
+                        child: SubtitleWidget(subtitle: "Advices"),
+                      ),
+                      SizedBox(height: AppDimensions.mp),
+                      //-----------------Advices---------------------------------------------------------------------------------------------------------------------------------------------
+                      Padding(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: AppDimensions.mp,
+                        ),
+                        child: AdvicesWidget(advices: prescription.advices),
+                      ),
+                    ],
+                  ],
+                );
+              case FetchPrescriptionFailed():
+                return Center(child: Text(state.errorMessage));
+            }
+          },
+        ),
       ),
     );
   }

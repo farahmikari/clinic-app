@@ -21,7 +21,6 @@ class LabelItem extends StatelessWidget {
       child: Container(
         height: 8.0.hp,
         alignment: Alignment.center,
-        margin: EdgeInsets.all(AppDimensions.mm),
         decoration: BoxDecoration(
           color: AppColors.widgetBackgroundColor,
           borderRadius: BorderRadius.circular(AppDimensions.mbr),
@@ -39,7 +38,7 @@ class LabelItem extends StatelessWidget {
             style: TextStyle(
               color: AppColors.darkGreyColor,
               fontSize: AppDimensions.mfs,
-              fontWeight: FontWeight.w500,
+              fontWeight: FontWeight.bold,
             ),
           ),
           trailing: Icon(

@@ -1,6 +1,6 @@
 import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
-import 'package:clinic_app/core/extentions/percent_sized_extention.dart';
+import 'package:clinic_app/core/widgets/filter_badge_widget.dart';
 import 'package:flutter/material.dart';
 
 class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
@@ -12,7 +12,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    Color specifyStatusBackgroundColor() {
+    Color specifyBadgeColor() {
       return status == "Pending"
           ? AppColors.transparentGreen
           : AppColors.transparentYellow;
@@ -21,6 +21,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       backgroundColor: AppColors.backgroundColor,
       surfaceTintColor: AppColors.backgroundColor,
+      actionsPadding: EdgeInsets.only(right: AppDimensions.mp),
       title: Text(
         "Appointment Details",
         style: TextStyle(
@@ -29,27 +30,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
           fontWeight: FontWeight.bold,
         ),
       ),
-      actions: [
-        Container(
-          padding: EdgeInsets.symmetric(
-            horizontal: AppDimensions.sp,
-            vertical: 1.0.wp,
-          ),
-          margin: EdgeInsets.only(right: AppDimensions.mp),
-          decoration: BoxDecoration(
-            color: specifyStatusBackgroundColor(),
-            borderRadius: BorderRadius.circular(AppDimensions.mbr),
-          ),
-          child: Text(
-            status,
-            style: TextStyle(
-              color: AppColors.widgetBackgroundColor,
-              fontSize: AppDimensions.sfs,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
-      ],
+      actions: [FilterBadgeWidget(badge: status, color: specifyBadgeColor())],
     );
   }
 }
