@@ -19,7 +19,7 @@ class DepartmentsScreen extends StatelessWidget {
       create: (context) => FetchDepartmentsBloc()..add(FetchDepartments()),
       child: Scaffold(
         backgroundColor: AppColors.backgroundColor,
-        appBar: AppBarWithSearchWidget(title: "Search"),
+        appBar: AppBarWithSearchWidget(title: "Departments"),
         body: Builder(
           builder: (context) {
             return RefreshIndicator(

@@ -13,6 +13,14 @@ class EndPoints {
     return "/api/appointments/$appointmentId";
   }
 
+  static String doctorProfile(int doctorId) {
+    return "/api/doctors/$doctorId/profile";
+  }
+
+  static String prescriptionId(int appointmentId) {
+    return "/api/prescription/$appointmentId";
+  }
+
   /////send otp code to email/////
   static String sendEmailVerify() {
     return "/api/send-email";
@@ -58,6 +66,8 @@ class EndPoints {
   static String appointments = "/api/appointments";
   static String patientAppointments = "/api/patient/appointments";
   static String availableSlotsByShift = "/api/availableSlotsByShift";
+  static String top5 = "/api/top5";
+  static String rate = "/api/doctors/rate";
 }
 
 class ApiKey {
@@ -89,4 +99,27 @@ class ApiKey {
   static String isAvailable = "isAvailable";
   static String name = "name";
   static String time = "time";
+  static String treatments = "treatments";
+  static String rate = "rate";
+  static String specialty = "specialty";
+  static String image = "image";
+  static String speciality = "speciality";
+  static String startTime = "start_time";
+  static String endTime = "end_time";
+  static String experience = "experience";
+  static String bio = "bio";
+  static String qualifications = "qualifications";
+  static String medications = "medications";
+  static String type = "type";
+  static String dosage = "dosage";
+  static String frequesncy = "frequency";
+  static String duration = "duration";
+  static String note = "note";
+  static String labTests = "lab_tests";
+  static String surgeries = "surgeries";
+  static String advices = "advices";
+  static String advice = "advice";
+  static String isPrescriptionViewed = "is_prescription_viewed";
+  static String appointmentId = "appointment_id";
+  static String rating = "rating";
 }

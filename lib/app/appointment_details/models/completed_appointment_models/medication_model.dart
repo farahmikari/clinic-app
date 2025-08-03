@@ -1,3 +1,5 @@
+import 'package:clinic_app/core/api/end_points.dart';
+
 class MedicationModel {
   final int id;
   final String name;
@@ -19,13 +21,13 @@ class MedicationModel {
 
   factory MedicationModel.fromJson(Map<String, dynamic> jsonData) {
     return MedicationModel(
-      id: jsonData["id"],
-      name: jsonData["name"],
-      type: jsonData["type"],
-      dosage: jsonData["dosage"],
-      frequency: jsonData["frequency"],
-      duration: jsonData["duration"],
-      note: jsonData["note"],
+      id: jsonData[ApiKey.id],
+      name: jsonData[ApiKey.name],
+      type: jsonData[ApiKey.type],
+      dosage: jsonData[ApiKey.dosage],
+      frequency: jsonData[ApiKey.frequesncy],
+      duration: jsonData[ApiKey.duration],
+      note: jsonData[ApiKey.note],
     );
   }
 }

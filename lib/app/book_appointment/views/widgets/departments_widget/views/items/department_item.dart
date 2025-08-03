@@ -52,7 +52,7 @@ class DepartmentItem extends StatelessWidget {
           style: TextStyle(
             color: specifyTitleColor(),
             fontSize: AppDimensions.mfs,
-            fontWeight: FontWeight.bold,
+            fontWeight: FontWeight.w500,
           ),
         ),
       ),

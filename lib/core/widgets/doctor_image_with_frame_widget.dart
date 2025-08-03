@@ -18,9 +18,13 @@ class DoctorImageWithFrameWidget extends StatelessWidget {
       decoration: BoxDecoration(
         color: AppColors.backgroundColor,
         borderRadius: BorderRadius.circular(AppDimensions.sbr),
+        image: DecorationImage(
+          image: AssetImage("assets/images/watermark3.png"),
+          fit: BoxFit.cover,
+        ),
       ),
       clipBehavior: Clip.hardEdge,
-      child: Image(image: NetworkImage(image)),
+      child: Image(image: AssetImage(image)),
     );
   }
 }

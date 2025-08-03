@@ -41,7 +41,7 @@ class RatingDialogWidget extends StatelessWidget {
               shape: BoxShape.circle,
             ),
             clipBehavior: Clip.hardEdge,
-            child: Image(image: NetworkImage(doctorImage)),
+            child: Image(image: AssetImage("assets/images/doctor10.png")),
           ),
           Text(
             "How was your visit with Dr.$doctorName? You can leave a quick rating if you’d like.",

@@ -19,27 +19,40 @@ class MostRatedDoctorWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Get.to(() => DoctorProfileScreen(id: mostRatedDoctor.id));
+        Get.to(
+          () => DoctorProfileScreen(id: mostRatedDoctor.id),
+          transition: Transition.zoom,
+        );
       },
       child: SizedBox(
+        height: 62.0.wp,
         width: 45.0.wp,
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
+          spacing: AppDimensions.sp,
           children: [
             Container(
               height: 45.0.wp,
+              width: 45.0.wp,
               padding: EdgeInsets.only(top: AppDimensions.mp),
               clipBehavior: Clip.hardEdge,
               decoration: BoxDecoration(
                 color: AppColors.widgetBackgroundColor,
                 borderRadius: BorderRadius.circular(AppDimensions.mbr),
+                image: DecorationImage(
+                  image: AssetImage("assets/images/watermark3.png"),
+                  fit: BoxFit.cover,
+                ),
                 boxShadow: AppShadow.boxShadow,
               ),
               child: Stack(
                 children: [
                   Align(
                     alignment: Alignment.center,
-                    child: Image(image: AssetImage(mostRatedDoctor.image)),
+                    child: Image(
+                      image: AssetImage("assets/images/doctor10.png"),
+                    ),
                   ),
                   Align(
                     alignment: Alignment.bottomLeft,
@@ -67,14 +80,13 @@ class MostRatedDoctorWidget extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(height: AppDimensions.mp),
             DoctorNameWidget(
               name: mostRatedDoctor.name,
               size: AppDimensions.mfs,
             ),
-            SizedBox(height: AppDimensions.mp),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 InfoWithIconWidget(
                   icon: AppIcons.rate,

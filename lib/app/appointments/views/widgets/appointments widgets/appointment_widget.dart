@@ -45,11 +45,15 @@ class AppointmentWidget extends StatelessWidget {
 
     return InkWell(
       onTap: () {
-        Get.to(() => AppointmentDetailsScreen(appointment: appointment));
+        Get.to(
+          () => AppointmentDetailsScreen(appointment: appointment),
+          transition: Transition.zoom,
+        );
       },
       borderRadius: BorderRadius.circular(AppDimensions.mbr),
       child: Container(
-        height: 28.0.hp,
+        height: 54.0.wp,
+        width: 92.0.wp,
         padding: EdgeInsets.all(AppDimensions.mp),
         decoration: BoxDecoration(
           color: AppColors.widgetBackgroundColor,
@@ -57,14 +61,22 @@ class AppointmentWidget extends StatelessWidget {
           boxShadow: AppShadow.boxShadow,
         ),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          spacing: AppDimensions.mp,
           children: [
             Expanded(
               flex: 3,
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                spacing: AppDimensions.mp,
                 children: [
                   Expanded(
                     flex: 3,
                     child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         //-----------|Appointment Status|---------------------------------------------------------------------------------------------------------------------------------------------
                         Expanded(
@@ -115,28 +127,28 @@ class AppointmentWidget extends StatelessWidget {
                       ],
                     ),
                   ),
-                  SizedBox(width: AppDimensions.mp),
                   //----------------------|Doctor Image|----------------------------------------------------------------------------------------------------------------------------------------------
                   Expanded(
                     flex: 2,
                     child: DoctorImageWithFrameWidget(
-                      image: appointment.doctorImage,
+                      image: "assets/images/doctor18.png",
                     ),
                   ),
                 ],
               ),
             ),
-            SizedBox(height: AppDimensions.mp),
             Expanded(
               flex: 1,
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                spacing: AppDimensions.mp,
                 children: [
                   //----------------------|Request Type|----------------------------------------------------------------------------------------------------------------------------------------------
                   InfoWithIconAndFrameWidget(
                     title: specifyWithOrWithoutReport(),
                     icon: AppIcons.medicalReport,
                   ),
-                  SizedBox(width: AppDimensions.mp),
                   //--------------|With or Without Medical Report|------------------------------------------------------------------------------------------------------------------------------------
                   InfoWithIconAndFrameWidget(
                     title: specifyRequestType(),

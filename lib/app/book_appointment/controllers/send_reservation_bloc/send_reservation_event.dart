@@ -6,3 +6,10 @@ class SendReservation extends SendReservationEvent {
   final ReservationModel reservation;
   SendReservation({required this.reservation});
 }
+
+class SendOfferReservation extends SendReservationEvent {
+  final int offerId;
+  final ReservationModel reservation;
+
+  SendOfferReservation({required this.offerId, required this.reservation});
+}

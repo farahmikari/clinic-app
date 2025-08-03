@@ -34,7 +34,7 @@ class ServicesButtonsWidget extends StatelessWidget {
           onPressed: () {
             Get.to(
               () => const BookAppointmentScreen(),
-              transition: Transition.fade,
+              transition: Transition.zoom,
             );
           },
         ),

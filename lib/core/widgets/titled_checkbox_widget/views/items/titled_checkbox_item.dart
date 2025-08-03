@@ -44,8 +44,8 @@ class TitledCheckboxItem extends StatelessWidget {
           title,
           style: TextStyle(
             color: AppColors.mainTextColor,
-            fontSize: AppDimensions.mfs,
-            fontWeight: FontWeight.w500,
+            fontSize: AppDimensions.lfs,
+            fontWeight: FontWeight.bold,
           ),
         ),
         Checkbox(

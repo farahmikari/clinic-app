@@ -16,7 +16,7 @@ class DepartmentsWidget extends StatelessWidget {
         crossAxisCount: 2,
         crossAxisSpacing: AppDimensions.sm,
         mainAxisSpacing: AppDimensions.sm,
-        mainAxisExtent: 20.0.hp,
+        mainAxisExtent: 45.0.wp,
       ),
       itemBuilder: (context, index) {
         return DepartmentWidget(department: departments[index]);

@@ -40,7 +40,7 @@ class TimesGridViewItem extends StatelessWidget {
         crossAxisCount: 3,
         crossAxisSpacing: AppDimensions.sm,
         mainAxisSpacing: AppDimensions.sm,
-        mainAxisExtent: 6.0.hp,
+        mainAxisExtent: 12.0.wp,
       ),
       itemBuilder: (context, index) {
         switch (index == itemCount) {

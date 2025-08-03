@@ -2,6 +2,7 @@ import 'package:clinic_app/app/appointment_details/models/completed_appointment_
 import 'package:clinic_app/app/appointment_details/models/completed_appointment_models/lab_test_model.dart';
 import 'package:clinic_app/app/appointment_details/models/completed_appointment_models/medication_model.dart';
 import 'package:clinic_app/app/appointment_details/models/completed_appointment_models/surgery_model.dart';
+import 'package:clinic_app/core/api/end_points.dart';
 
 class PrescriptionModel {
   final List<MedicationModel> medications;
@@ -21,22 +22,22 @@ class PrescriptionModel {
   factory PrescriptionModel.fromJson(Map<String, dynamic> jsonData) {
     return PrescriptionModel(
       medications:
-          (jsonData["medications"] as List<dynamic>)
+          (jsonData[ApiKey.medications] as List<dynamic>)
               .map((medication) => MedicationModel.fromJson(medication))
               .toList(),
       labTests:
-          (jsonData["lab_tests"] as List<dynamic>)
+          (jsonData[ApiKey.labTests] as List<dynamic>)
               .map((labTest) => LabTestModel.formJson(labTest))
               .toList(),
       surgeries:
-          (jsonData["surgeries"] as List<dynamic>)
+          (jsonData[ApiKey.surgeries] as List<dynamic>)
               .map((surgery) => SurgeryModel.fromJson(surgery))
               .toList(),
       advices:
-          (jsonData["advices"] as List<dynamic>)
+          (jsonData[ApiKey.advices] as List<dynamic>)
               .map((advice) => AdviceModel.fromJson(advice))
               .toList(),
-      isPrescriptionViewed: jsonData['is_prescription_viewed'],
+      isPrescriptionViewed: jsonData[ApiKey.isPrescriptionViewed],
     );
   }
 }

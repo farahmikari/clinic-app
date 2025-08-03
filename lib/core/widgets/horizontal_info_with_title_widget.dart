@@ -16,6 +16,7 @@ class HorizontalInfoWithTitleWidget extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.center,
+      spacing: AppDimensions.sp,
       children: [
         Text(
           "$title:",
@@ -25,7 +26,6 @@ class HorizontalInfoWithTitleWidget extends StatelessWidget {
             fontWeight: FontWeight.w500,
           ),
         ),
-        SizedBox(width: AppDimensions.sm),
         Text(
           info,
           style: TextStyle(

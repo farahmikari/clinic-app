@@ -11,14 +11,14 @@ import 'package:clinic_app/app/book_appointment/views/widgets/departments_widget
 import 'package:clinic_app/app/book_appointment/views/widgets/departments_widget/views/widgets/shimmer_departments_widget.dart';
 import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
-import 'package:clinic_app/core/extentions/percent_sized_extention.dart';
 import 'package:clinic_app/core/widgets/button_widget.dart';
 import 'package:clinic_app/core/widgets/custom_dialog_widget.dart';
 import 'package:clinic_app/core/widgets/days_widget/controllers/days_bloc/days_bloc.dart';
 import 'package:clinic_app/core/widgets/days_widget/views/widgets/days_widget.dart';
 import 'package:clinic_app/core/widgets/days_widget/views/widgets/shimmer_days_widget.dart';
-import 'package:clinic_app/core/widgets/request%20types%20widget/controllers/request%20types%20bloc/request_types_bloc.dart';
-import 'package:clinic_app/core/widgets/request%20types%20widget/views/widgets/request_types_widget.dart';
+import 'package:clinic_app/core/widgets/loading_widget.dart';
+import 'package:clinic_app/core/widgets/request_types_widget/controllers/request%20types%20bloc/request_types_bloc.dart';
+import 'package:clinic_app/core/widgets/request_types_widget/views/widgets/request_types_widget.dart';
 import 'package:clinic_app/core/widgets/subtitle_widget.dart';
 import 'package:clinic_app/core/widgets/subtitle_with_text_button_widget.dart';
 import 'package:clinic_app/core/widgets/times_widget/controllers/times%20bloc/times_bloc.dart';
@@ -29,7 +29,6 @@ import 'package:clinic_app/core/widgets/titled_checkbox_widget/views/widgets/tit
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/route_manager.dart';
-import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 class BookAppointmentScreen extends StatelessWidget {
   const BookAppointmentScreen({super.key});
@@ -301,12 +300,7 @@ class BookAppointmentScreen extends StatelessWidget {
                     >(
                       builder: (context, state) {
                         if (state is SendReservationLoading) {
-                          return Center(
-                            child: LoadingAnimationWidget.staggeredDotsWave(
-                              color: AppColors.primaryColor,
-                              size: 8.0.hp,
-                            ),
-                          );
+                          return LoadingWidget();
                         }
                         return ButtonWidget(
                           title: "Confirm",

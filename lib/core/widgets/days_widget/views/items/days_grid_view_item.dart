@@ -27,7 +27,7 @@ class DaysGridViewItem extends StatelessWidget {
         crossAxisCount: 5,
         crossAxisSpacing: AppDimensions.sm,
         mainAxisSpacing: AppDimensions.sm,
-        mainAxisExtent: 10.0.hp,
+        mainAxisExtent: 20.0.wp,
       ),
       itemBuilder: (context, index) {
         return DayItem(

@@ -20,7 +20,7 @@ class MedicationsWidget extends StatelessWidget {
           return MedicationWidget(medication: medications[index]);
         },
         separatorBuilder: (context, index) {
-          return SizedBox(width: AppDimensions.mp);
+          return SizedBox(width: AppDimensions.sp);
         },
         itemCount: medications.length,
       ),

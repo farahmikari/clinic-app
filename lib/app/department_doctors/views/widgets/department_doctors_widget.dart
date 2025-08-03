@@ -11,13 +11,14 @@ class DepartmentDoctorsWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView.separated(
       padding: EdgeInsets.all(AppDimensions.mp),
+      clipBehavior: Clip.none,
       itemBuilder: (context, index) {
         return DepartmentDoctorWidget(
           departmentDoctor: departmentDoctors[index],
         );
       },
       separatorBuilder: (context, index) {
-        return SizedBox(height: AppDimensions.mp);
+        return SizedBox(height: AppDimensions.sp);
       },
       itemCount: departmentDoctors.length,
     );

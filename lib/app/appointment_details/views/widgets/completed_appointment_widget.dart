@@ -3,7 +3,7 @@ import 'package:clinic_app/app/appointment_details/models/completed_appointment_
 import 'package:clinic_app/app/appointment_details/views/widgets/advices_widgets/advices_widget.dart';
 import 'package:clinic_app/app/appointment_details/views/widgets/lab_tests_widgets/lab_tests_widget.dart';
 import 'package:clinic_app/app/appointment_details/views/widgets/medications_widgets/medications_widget.dart';
-import 'package:clinic_app/app/appointment_details/views/widgets/summary_widgets/summary_widget.dart';
+import 'package:clinic_app/app/appointment_details/views/widgets/reservation_summary_widgets/reservation_summary_widget.dart';
 import 'package:clinic_app/app/appointment_details/views/widgets/surgeries_widgets/surgeries_widget.dart';
 import 'package:clinic_app/app/appointments/models/appointment_model.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
@@ -91,7 +91,7 @@ class CompletedAppointmentWidget extends StatelessWidget {
                       padding: EdgeInsets.symmetric(
                         horizontal: AppDimensions.mp,
                       ),
-                      child: SummaryWidget(appointment: appointment),
+                      child: ReservationSummaryWidget(appointment: appointment),
                     ),
                     SizedBox(height: AppDimensions.mp),
                     if (prescription.medications.isNotEmpty) ...[

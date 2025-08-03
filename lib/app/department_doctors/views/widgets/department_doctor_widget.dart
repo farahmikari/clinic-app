@@ -4,6 +4,7 @@ import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
 import 'package:clinic_app/core/constants/app_shadow.dart';
 import 'package:clinic_app/core/extentions/percent_sized_extention.dart';
+import 'package:clinic_app/core/widgets/doctor_image_with_frame_widget.dart';
 import 'package:clinic_app/core/widgets/doctor_name_widget.dart';
 import 'package:clinic_app/core/widgets/filter_badge_widget.dart';
 import 'package:clinic_app/core/widgets/info_with_icon_widget.dart';
@@ -24,12 +25,13 @@ class DepartmentDoctorWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
+    return GestureDetector(
       onTap: () {
         Get.to(() => DoctorProfileScreen(id: 1), transition: Transition.zoom);
       },
       child: Container(
-        height: 20.0.hp,
+        height: 42.0.wp,
+        width: 92.0.wp,
         padding: EdgeInsets.all(AppDimensions.mp),
         decoration: BoxDecoration(
           color: AppColors.widgetBackgroundColor,
@@ -37,15 +39,21 @@ class DepartmentDoctorWidget extends StatelessWidget {
           boxShadow: AppShadow.boxShadow,
         ),
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          spacing: AppDimensions.mp,
           children: [
             Expanded(
               flex: 3,
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Expanded(
                     flex: 2,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         FilterBadgeWidget(
                           badge: departmentDoctor.shift,
@@ -86,23 +94,9 @@ class DepartmentDoctorWidget extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(width: AppDimensions.mp),
             Expanded(
               flex: 2,
-              child: Container(
-                alignment: Alignment.bottomCenter,
-                padding: EdgeInsets.only(
-                  top: AppDimensions.sp,
-                  left: AppDimensions.sp,
-                  right: AppDimensions.sp,
-                ),
-                decoration: BoxDecoration(
-                  color: AppColors.backgroundColor,
-                  borderRadius: BorderRadius.circular(AppDimensions.sbr),
-                ),
-                clipBehavior: Clip.hardEdge,
-                child: Image(image: AssetImage(departmentDoctor.image)),
-              ),
+              child: DoctorImageWithFrameWidget(image: departmentDoctor.image),
             ),
           ],
         ),
