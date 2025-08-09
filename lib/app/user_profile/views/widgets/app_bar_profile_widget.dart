@@ -29,14 +29,14 @@ class AppBarProfileWidget extends StatelessWidget {
           ),
         ),
         Positioned(
-          top: (height * 0.3) / 2 - 80,
+          top: (height * 0.3) / 2 - 50,
           left: (width / 2) - 80,
           child: BlocListener<ImageBloc, ImageState>(
             listener: (context, state) {},
             child: Column(
               children: [
                 ImageProfileWidget(),
-                SizedBox(height:(height * 0.3) / 2 - 60 ,),
+                SizedBox(height:(height * 0.3) / 2 - 80 ,),
                 Text(
                   fullName,
                   style: TextStyle(

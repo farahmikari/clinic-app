@@ -1,7 +1,7 @@
-import 'package:clinic_app/app/user_profile/views/widgets/app_bar_profile_widget.dart';
-import 'package:clinic_app/app/user_profile/views/widgets/card_info_widget.dart';
-import 'package:clinic_app/app/user_profile/views/widgets/edit_info_profile_button_widget.dart';
-import 'package:clinic_app/core/constants/app_colors.dart';
+import 'package:clinic_app/app/user_profile/controllers/bloc/profile_bloc/profile_bloc.dart';
+import 'package:clinic_app/app/user_profile/views/widgets/failure_screen_widget.dart';
+import 'package:clinic_app/app/user_profile/views/widgets/profile_information_widget.dart';
+import 'package:clinic_app/app/user_profile/views/widgets/profile_loading_widget.dart';
 import 'package:clinic_app/core/widgets/image_widget/controller/bloc/image_bloc/image_bloc.dart';
 import 'package:clinic_app/core/widgets/image_widget/controller/service/image_picker_service.dart';
 import 'package:flutter/material.dart';
@@ -16,27 +16,45 @@ class ProfileScreen extends StatelessWidget {
     final width = size.width;
     final height = size.height;
 
-    return BlocProvider(
-      create: (context) => ImageBloc(pickimage: ImagePickerService()),
-      child: Scaffold(
-        backgroundColor: AppColors.backgroundColor,
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              AppBarProfileWidget(fullName: 'Farah Mikari',width: width, height: height),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  EditInfoProfileButtonWidget(text: 'Edit profile',onTap: (){},width: width, height: height),
-                  EditInfoProfileButtonWidget(text: 'Edit password',onTap: (){},width: width, height: height),
-                ],
-              ),
-              CardInfoWidget(width:width),
-            ],
-          ),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => ProfileBloc()..add(ProfileEvent())),
+        BlocProvider(
+          create: (context) => ImageBloc(pickimage: ImagePickerService()),
         ),
+      ],
+      child: BlocBuilder<ProfileBloc, ProfileState>(
+        builder: (context, state) {
+          switch (state) {
+            //////////////////////visitor//////////////////////////////////////////
+            case ProfileBlocVisitor():
+              return FailureScreenWidget(
+                height: height,
+                width: width,
+                pathImage: "assets/images/No data-cuate.png",
+                errorMessage: "Login first to show your data",
+              );
+            ///////////////////loading///////////////////////////////////////////
+            case ProfileBlocLoading():
+              return ProfileLoadingWidget(height: height, width: width);
+            ///////////////////profile information///////////////////////////////
+            case ProfileBlocSuccess():
+              return ProfileInformationWidget(width: width, height: height);
+          }
+          ////////////////////failure////////////////////////////////////////////
+          return FailureScreenWidget(
+            height: height,
+            width: width,
+            pathImage: "assets/images/404_Error_with_a_cute_animal-pana.png",
+            errorMessage: "Data not found",
+          );
+        },
       ),
     );
   }
 }
+
+
+
+
 

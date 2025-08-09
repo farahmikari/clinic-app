@@ -16,7 +16,7 @@ import 'package:clinic_app/core/widgets/request_types_widget/controllers/request
 import 'package:clinic_app/core/widgets/request_types_widget/views/widgets/request_types_widget.dart';
 import 'package:clinic_app/core/widgets/subtitle_widget.dart';
 import 'package:clinic_app/core/widgets/subtitle_with_text_button_widget.dart';
-import 'package:clinic_app/core/widgets/times_widget/controllers/times%20bloc/times_bloc.dart';
+import 'package:clinic_app/core/widgets/times_widget/controllers/times_bloc/times_bloc.dart';
 import 'package:clinic_app/core/widgets/times_widget/views/widgets/shimmer_times_widget.dart';
 import 'package:clinic_app/core/widgets/times_widget/views/widgets/times_widget.dart';
 import 'package:clinic_app/core/widgets/titled_checkbox_widget/controllers/titled_checkbox_bloc/titled_checkbox_bloc.dart';
@@ -25,8 +25,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 
-class BookAppointmentWithDoctor extends StatelessWidget {
-  const BookAppointmentWithDoctor({super.key, required this.doctor});
+class BookAppointmentWithDoctorScreen extends StatelessWidget {
+  const BookAppointmentWithDoctorScreen({super.key, required this.doctor});
 
   final DoctorModel doctor;
 
@@ -51,8 +51,9 @@ class BookAppointmentWithDoctor extends StatelessWidget {
         BlocProvider(
           create:
               (context) =>
-                  FetchDaysBloc()
-                    ..add(FetchDays(departmentId: doctor.departmentId)),
+                  FetchDaysBloc()..add(
+                    FetchDepartmentDays(departmentId: doctor.departmentId),
+                  ),
         ),
         BlocProvider(
           create:
@@ -178,7 +179,7 @@ class BookAppointmentWithDoctor extends StatelessWidget {
                 SizedBox(height: AppDimensions.mp),
                 BlocBuilder<FetchDaysBloc, FetchDaysState>(
                   builder: (context, state) {
-                    if (state is FetchDaysLoaded) {
+                    if (state is FetchDepartmentDaysLoaded) {
                       return DaysWidget(days: state.days);
                     }
                     return ShimmerDaysWidget();

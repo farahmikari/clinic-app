@@ -2,8 +2,11 @@ import 'package:clinic_app/app/book_appointment/controllers/book_appointment_val
 import 'package:clinic_app/app/book_appointment/controllers/fetch_days_bloc/fetch_days_bloc.dart';
 import 'package:clinic_app/app/book_appointment/controllers/fetch_times_bloc/fetch_times_bloc.dart';
 import 'package:clinic_app/app/book_appointment/controllers/send_reservation_bloc/send_reservation_bloc.dart';
+import 'package:clinic_app/app/book_appointment/models/offer_reservation_model.dart';
 import 'package:clinic_app/app/book_appointment/models/reservation_model.dart';
 import 'package:clinic_app/app/book_appointment_with_offer/controllers/fetch_reservation_price_bloc/fetch_reservation_pricing_bloc.dart';
+import 'package:clinic_app/app/book_appointment_with_offer/models/request_offer_cash_price_model.dart';
+import 'package:clinic_app/app/book_appointment_with_offer/models/request_offer_points_price_model.dart';
 import 'package:clinic_app/app/book_appointment_with_offer/models/selected_service_model.dart';
 import 'package:clinic_app/app/doctor/views/screens/doctor_profile_screen.dart';
 import 'package:clinic_app/app/offers/models/offer_model.dart';
@@ -12,6 +15,7 @@ import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
 import 'package:clinic_app/core/extentions/percent_sized_extention.dart';
 import 'package:clinic_app/core/widgets/button_widget.dart';
+import 'package:clinic_app/core/widgets/custom_dialog_widget.dart';
 import 'package:clinic_app/core/widgets/days_widget/controllers/days_bloc/days_bloc.dart';
 import 'package:clinic_app/core/widgets/days_widget/views/widgets/days_widget.dart';
 import 'package:clinic_app/core/widgets/days_widget/views/widgets/shimmer_days_widget.dart';
@@ -20,7 +24,7 @@ import 'package:clinic_app/core/widgets/request_types_widget/controllers/request
 import 'package:clinic_app/core/widgets/request_types_widget/views/widgets/request_types_widget.dart';
 import 'package:clinic_app/core/widgets/subtitle_widget.dart';
 import 'package:clinic_app/core/widgets/subtitle_with_text_button_widget.dart';
-import 'package:clinic_app/core/widgets/times_widget/controllers/times%20bloc/times_bloc.dart';
+import 'package:clinic_app/core/widgets/times_widget/controllers/times_bloc/times_bloc.dart';
 import 'package:clinic_app/core/widgets/times_widget/views/widgets/shimmer_times_widget.dart';
 import 'package:clinic_app/core/widgets/times_widget/views/widgets/times_widget.dart';
 import 'package:clinic_app/core/widgets/titled_checkbox_widget/controllers/titled_checkbox_bloc/titled_checkbox_bloc.dart';
@@ -54,8 +58,7 @@ class BookAppointmentWithOfferScreen extends StatelessWidget {
         BlocProvider(
           create:
               (context) =>
-                  FetchDaysBloc()
-                    ..add(FetchDays(departmentId: offer.departmentId)),
+                  FetchDaysBloc()..add(FetchOfferDays(offerId: offer.id)),
         ), //
         BlocProvider(
           create:
@@ -212,10 +215,14 @@ class BookAppointmentWithOfferScreen extends StatelessWidget {
                                     .read<BookAppointmentValidatorBloc>()
                                     .state
                                     .currentReservation;
+                            OfferReservationModel offerReservation =
+                                OfferReservationModel(
+                                  offerId: offer.id,
+                                  reservation: reservation,
+                                );
                             context.read<SendReservationBloc>().add(
                               SendOfferReservation(
-                                offerId: offer.id,
-                                reservation: reservation,
+                                offerReservation: offerReservation,
                               ),
                             );
                           },
@@ -237,6 +244,20 @@ class BookAppointmentWithOfferScreen extends StatelessWidget {
                     );
                   },
                 );
+              } else if (state is FetchReservationPricingFailed) {
+                showDialog(
+                  context: context,
+                  builder: (dialogContext) {
+                    return CustomDialogWidget(
+                      title: "Oops",
+                      content: state.errorMessage,
+                      buttonTitle: "Ok",
+                      onPressed: () {
+                        Get.back();
+                      },
+                    );
+                  },
+                );
               }
             },
           ),
@@ -244,6 +265,20 @@ class BookAppointmentWithOfferScreen extends StatelessWidget {
             listener: (context, state) {
               if (state is SendReservationLoaded) {
                 Get.back();
+              } else if (state is SendReservationFailed) {
+                showDialog(
+                  context: context,
+                  builder: (dialogContext) {
+                    return CustomDialogWidget(
+                      title: "Oops",
+                      content: state.errorMessage,
+                      buttonTitle: "Ok",
+                      onPressed: () {
+                        Get.back();
+                      },
+                    );
+                  },
+                );
               }
             },
           ),
@@ -281,7 +316,7 @@ class BookAppointmentWithOfferScreen extends StatelessWidget {
                 SizedBox(height: AppDimensions.mp),
                 BlocBuilder<FetchDaysBloc, FetchDaysState>(
                   builder: (context, state) {
-                    if (state is FetchDaysLoaded) {
+                    if (state is FetchDepartmentDaysLoaded) {
                       return DaysWidget(days: state.days);
                     }
                     return ShimmerDaysWidget();
@@ -353,21 +388,33 @@ class BookAppointmentWithOfferScreen extends StatelessWidget {
                                                   .currentReservation
                                                   .withMedicalReport,
                                         );
+                                    RequestOfferCashPriceModel
+                                    requestOfferCashPrice =
+                                        RequestOfferCashPriceModel(
+                                          offerId: offer.id,
+                                          selectedService: selectedService,
+                                        );
                                     context
                                         .read<FetchReservationPricingBloc>()
                                         .add(
                                           FetchReservationCashOfferPricing(
-                                            offerId: offer.id,
-                                            selectedService: selectedService,
+                                            requestOfferCashPrice:
+                                                requestOfferCashPrice,
                                           ),
                                         );
                                   }
                                   if (offer.paymentMethod == "points") {
+                                    RequestOfferPointsPriceModel
+                                    requestOfferPointsPrice =
+                                        RequestOfferPointsPriceModel(
+                                          offerId: offer.id,
+                                        );
                                     context
                                         .read<FetchReservationPricingBloc>()
                                         .add(
                                           FetchReservationPointsOfferPricing(
-                                            offerId: offer.id,
+                                            requestOfferPointsPrice:
+                                                requestOfferPointsPrice,
                                           ),
                                         );
                                   }

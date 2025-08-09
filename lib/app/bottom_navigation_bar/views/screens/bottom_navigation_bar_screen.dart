@@ -1,5 +1,5 @@
-import 'package:clinic_app/app/appointments/views/screens/appointments_screen.dart';
-import 'package:clinic_app/app/bills/views/screens/bills_screen.dart';
+import 'package:clinic_app/app/appointments/views/widgets/appointments_auth_decision_widget.dart';
+import 'package:clinic_app/app/bills/views/widgets/bills_auth_decision_widget.dart';
 import 'package:clinic_app/app/bottom_navigation_bar/controllers/bottom_navigation_bar_bloc/bottom_navigation_bar_bloc.dart';
 import 'package:clinic_app/app/bottom_navigation_bar/views/widgets/salomon_bottom_bar_widget.dart';
 import 'package:clinic_app/app/departments/views/screens/departments_screen.dart';
@@ -13,9 +13,15 @@ class BottomNavigationBarScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create:
-          (context) => BottomNavigationBarBloc()..add(CurrentIndexChanged(0)),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create:
+              (context) =>
+                  BottomNavigationBarBloc()..add(CurrentIndexChanged(0)),
+        ),
+      ],
+
       child:
           BlocSelector<BottomNavigationBarBloc, BottomNavigationBarState, int>(
             selector: (state) {
@@ -28,9 +34,9 @@ class BottomNavigationBarScreen extends StatelessWidget {
                   index: state,
                   children: [
                     const HomeScreen(),
-                    const AppointmentsScreen(),
+                    const AppointmentsAuthDecisionWidget(),
                     const DepartmentsScreen(),
-                    const BillsScreen(),
+                    const BillsAuthDecisionWidget(),
                   ],
                 ),
                 bottomNavigationBar: SafeArea(child: SalomonBottomBarWidget()),

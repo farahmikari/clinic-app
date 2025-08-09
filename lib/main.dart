@@ -1,10 +1,10 @@
-import 'package:clinic_app/app/bottom_navigation_bar/views/screens/bottom_navigation_bar_screen.dart';
+import 'package:clinic_app/app/auth_prompt/controllers/check_user_authentication_bloc/check_user_authentication_bloc.dart';
 import 'package:clinic_app/app/forget_password/views/screens/reset_password.dart';
 import 'package:clinic_app/app/forget_password/views/screens/set_email_screen.dart';
 import 'package:clinic_app/app/login/views/screens/login_screen.dart';
+import 'package:clinic_app/app/onboarding/views/screens/splash_screen.dart';
 import 'package:clinic_app/app/signup/views/screens/email_screen.dart';
 import 'package:clinic_app/app/signup/views/screens/sign_up_screen.dart';
-import 'package:clinic_app/app/user_drawer/views/screen/drawer_screen.dart';
 import 'package:clinic_app/app/verification/views/screen/verification_screen.dart';
 import 'package:clinic_app/service_locator.dart';
 import 'package:clinic_app/core/services/app_bloc_observer.dart';
@@ -15,12 +15,9 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 
 void main() async {
-  Get.put<MyDrawerController>(MyDrawerController());
   WidgetsFlutterBinding.ensureInitialized();
-  await GetStorage.init();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   Future.wait([
     PushNotificationsService.init(),
@@ -28,7 +25,15 @@ void main() async {
   ]);
   Bloc.observer = AppBlocObserver();
   setup();
-  runApp(const ClinicApp());
+  runApp(
+    BlocProvider(
+      create:
+          (context) =>
+              getIt<CheckUserAuthenticationBloc>()
+                ..add(UserAuthenticationIsChecked()),
+      child: const ClinicApp(),
+    ),
+  );
 }
 
 class ClinicApp extends StatelessWidget {
@@ -64,7 +69,7 @@ class ClinicApp extends StatelessWidget {
       //     ),
       //   ),
       // ),
-      home: BottomNavigationBarScreen(),
+      home: SplashScreen(),
     );
   }
 }

@@ -1,6 +1,7 @@
 import 'package:animated_background/animated_background.dart';
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:clinic_app/app/login/models/form_model.dart';
+import 'package:clinic_app/app/login/views/screens/login_screen.dart';
 import 'package:clinic_app/app/signup/controllers/bloc/email_bloc/email_bloc.dart';
 import 'package:clinic_app/app/signup/controllers/bloc/email_bloc/email_event.dart';
 import 'package:clinic_app/app/signup/controllers/bloc/email_bloc/email_state.dart';
@@ -11,6 +12,7 @@ import 'package:clinic_app/app/login/views/widgets/text_form_field_widget.dart';
 import 'package:clinic_app/core/utils/snack_bar_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 
 class EmailScreen extends StatefulWidget {
   EmailScreen({super.key});
@@ -146,17 +148,15 @@ class _EmailScreenState extends State<EmailScreen>
                                     onPressed:
                                         (state.canSubmit && !isLoading)
                                             ? () {
-                                             
                                               context.read<EmailBloc>().add(
                                                 CanSubmitEmail(
                                                   email:
                                                       widget
                                                           .emailController
                                                           .text,
-                                                          signUp: true
+                                                  signUp: true,
                                                 ),
                                               );
-                                              
                                             }
                                             : null,
                                   ),
@@ -173,7 +173,7 @@ class _EmailScreenState extends State<EmailScreen>
                                       ),
                                       TextButton(
                                         onPressed: () {
-                                          Navigator.pop(context);
+                                          Get.off(() => LoginScreen());
                                         },
                                         child: Text(
                                           'login ',
@@ -203,6 +203,4 @@ class _EmailScreenState extends State<EmailScreen>
       ),
     );
   }
-
-  
 }

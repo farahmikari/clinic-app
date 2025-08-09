@@ -1,15 +1,16 @@
 import 'package:clinic_app/app/home/views/widgets/app_bar_widgets/action_button_widget.dart';
-import 'package:clinic_app/app/user_drawer/views/screen/drawer_screen.dart';
+import 'package:clinic_app/app/notifications/views/screens/notification_screen.dart';
+import 'package:clinic_app/app/user_drawer/controllers/bloc/drawer_bloc/drawer_bloc.dart';
 import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
 import 'package:clinic_app/core/constants/app_icons.dart';
 import 'package:clinic_app/core/extentions/percent_sized_extention.dart';
 import 'package:clinic_app/core/widgets/search_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:get/state_manager.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart' as getx;
 
-class HomeAppBarWidget extends GetView<MyDrawerController>
-    implements PreferredSizeWidget {
+class HomeAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   const HomeAppBarWidget({super.key});
 
   @override
@@ -31,13 +32,23 @@ class HomeAppBarWidget extends GetView<MyDrawerController>
           fontWeight: FontWeight.bold,
         ),
       ),
-      actions: [ActionButtonWidget(icon: AppIcons.notifications, onTap: () {})],
+      actions: [
+        ActionButtonWidget(
+          icon: AppIcons.notifications,
+          onTap: () {
+            getx.Get.to(
+              () => NotificationScreen(),
+              transition: getx.Transition.zoom,
+            );
+          },
+        ),
+      ],
       leading: Align(
         alignment: Alignment.centerRight,
         child: ActionButtonWidget(
           icon: AppIcons.menu,
           onTap: () {
-            controller.toggleDrawer();
+            context.read<DrawerBloc>().add(ToggleDrawerEvent());
           },
         ),
       ),

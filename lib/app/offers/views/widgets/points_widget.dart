@@ -48,7 +48,7 @@ class PointsWidget extends StatelessWidget {
             flex: 1,
             child: Center(
               child: Text(
-                "250 Points",
+                "${userPoints.points} Points",
                 style: TextStyle(
                   color: AppColors.darkGreyColor,
                   fontSize: AppDimensions.xlfs,

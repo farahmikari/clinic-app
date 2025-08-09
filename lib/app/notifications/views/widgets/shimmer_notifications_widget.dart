@@ -1,11 +1,11 @@
-import 'package:clinic_app/app/appointments/views/widgets/appointments%20widgets/shimmer_appointment_widget.dart';
+import 'package:clinic_app/app/notifications/views/widgets/shimmer_notification_widget.dart';
 import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
-class ShimmerAppointmentsWidget extends StatelessWidget {
-  const ShimmerAppointmentsWidget({super.key});
+class ShimmerNotificationsWidget extends StatelessWidget {
+  const ShimmerNotificationsWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,7 @@ class ShimmerAppointmentsWidget extends StatelessWidget {
       child: ListView.separated(
         padding: EdgeInsets.all(AppDimensions.mp),
         itemBuilder: (context, index) {
-          return ShimmerAppointmentWidget();
+          return ShimmerNotificationWidget();
         },
         separatorBuilder: (context, index) {
           return SizedBox(height: AppDimensions.sp);

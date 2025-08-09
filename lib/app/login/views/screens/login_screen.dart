@@ -143,7 +143,6 @@ class _LoginScreenState extends State<LoginScreen>
                                     context.read<LoginBlocBloc>().add(
                                       ButtonEvent(),
                                     );
-                                    // print("errorrrrrr");
                                   },
                                   validator: (value) => loginData.email.error,
                                   error: loginData.email.error,
@@ -209,10 +208,6 @@ class _LoginScreenState extends State<LoginScreen>
                                     Get.offAll(
                                       () => BottomNavigationBarScreen(),
                                     );
-                                    // context.read<MostRatedDoctorsBloc>().add(
-                                    //   FetchMostRatedDoctors(),
-                                    // );
-                                    // Get.to(() => HomeScreen());
                                   },
                                   color: kPrimaryColor,
                                 ),
@@ -231,10 +226,7 @@ class _LoginScreenState extends State<LoginScreen>
                                       textButton: 'sign up ',
                                       color: kPrimaryColor,
                                       onPressed: () {
-                                        Navigator.pushNamed(
-                                          context,
-                                          EmailScreen.id,
-                                        );
+                                        Get.off(() => EmailScreen());
                                       },
                                     ),
                                   ],

@@ -3,8 +3,15 @@ import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class CardInfoWidget extends StatelessWidget {
-  const CardInfoWidget({super.key, required this.width});
+  const CardInfoWidget({super.key, required this.width, required this.firstName, required this.lastName, required this.gender, required this.phone, required this.email, required this.birthdayDate, required this.password});
   final double width;
+  final String firstName;
+  final String lastName;
+  final String gender;
+  final String phone;
+  final String email;
+  final String birthdayDate;
+  final String password;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -18,37 +25,37 @@ class CardInfoWidget extends StatelessWidget {
           children: [
             ListTileInfoProfileWidget(
               title: 'first name',
-              text: 'Farah',
+              text: firstName,
               icon: Icons.person_pin_circle_outlined,
             ),
             ListTileInfoProfileWidget(
               title: 'last name',
-              text: 'Mikari',
+              text: lastName,
               icon: Icons.person_pin_circle_outlined,
             ),
             ListTileInfoProfileWidget(
               title: 'birthday date',
-              text: '21/3/2004',
+              text:  birthdayDate,
               icon: Icons.calendar_month_outlined,
             ),
             ListTileInfoProfileWidget(
               title: 'gender',
-              text: 'female',
+              text: gender,
               icon: Icons.transgender,
             ),
             ListTileInfoProfileWidget(
               title: 'phone number',
-              text: 'Phone',
+              text: phone,
               icon: Icons.phone_android_outlined,
             ),
             ListTileInfoProfileWidget(
               title: 'email',
-              text: 'farah@gmail.com',
+              text: email,
               icon: Icons.email_outlined,
             ),
             ListTileInfoProfileWidget(
               title: 'pasword',
-              text: '***********',
+              text: password,
               icon: Icons.key,
             ),
           ],

@@ -1,7 +1,6 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:clinic_app/app/login/views/screens/login_screen.dart';
 import 'package:clinic_app/app/user_drawer/controllers/bloc/logout_bloc/logout_bloc.dart';
-import 'package:clinic_app/app/user_drawer/views/screen/drawer_screen.dart';
 import 'package:clinic_app/app/user_drawer/views/widgets/list_tile_drawer.dart';
 import 'package:clinic_app/app/user_profile/views/screens/profile_screen.dart';
 import 'package:clinic_app/core/constants/app_colors.dart';
@@ -10,9 +9,10 @@ import 'package:clinic_app/core/utils/show_dialog_alert.dart';
 import 'package:clinic_app/core/utils/snack_bar_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get/get.dart';
+import 'package:get/get.dart' as getx;
+import 'package:get/get_core/src/get_main.dart';
 
-class MenuScreen extends GetView<MyDrawerController> {
+class MenuScreen extends StatelessWidget {
   const MenuScreen({super.key});
 
   @override
@@ -20,6 +20,7 @@ class MenuScreen extends GetView<MyDrawerController> {
     final Size size = MediaQuery.of(context).size;
     final double height = size.height;
     final double width = size.width;
+    
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
       body: Column(
@@ -36,7 +37,7 @@ class MenuScreen extends GetView<MyDrawerController> {
             backgroundIconColor: AppColors.transparentGreen,
             title: 'Profile',
             onTap: () {
-              Get.to(() => ProfileScreen());
+               Get.to(() => ProfileScreen(),transition:getx.Transition.fade );
             },
           ),
           ListTileDrawerWidget(
@@ -59,7 +60,7 @@ class MenuScreen extends GetView<MyDrawerController> {
             backgroundIconColor: const Color(0x84FFAC40),
             title: 'About Us',
           ),
-          
+
           BlocListener<LogoutBloc, LogoutState>(
             listener: (context, state) {
               if (state is LogoutLoading) {

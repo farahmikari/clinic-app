@@ -48,9 +48,7 @@ class ReservationSummaryWidget extends StatelessWidget {
         children: [
           //----------------------Doctor Image------------------------------------------------------------------------------------------------------------------------
           Expanded(
-            child: DoctorImageWithFrameWidget(
-              image: "assets/images/doctor18.png",
-            ),
+            child: DoctorImageWithFrameWidget(image: appointment.doctorImage),
           ),
           Expanded(
             child: Padding(

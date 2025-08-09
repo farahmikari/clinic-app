@@ -10,46 +10,51 @@ part 'fetch_days_event.dart';
 part 'fetch_days_state.dart';
 
 class FetchDaysBloc extends Bloc<FetchDaysEvent, FetchDaysState> {
-  FetchDaysBloc() : super(FetchDaysLoading()) {
+  FetchDaysBloc() : super(FetchDepartmentDaysLoading()) {
     DioConsumer api = DioConsumer(dio: Dio());
     EventTransformer<FetchData> switchMapTransformer<FetchData>() {
       return (events, mapper) => events.switchMap(mapper);
     }
 
     late bool hasDefaultDaysFetched = false;
-    late bool hasDaysFetched = false;
-    late int previousDepartmentId;
     late List<DayModel> defaultDays;
-    late List<DayModel> days;
 
-    on<FetchDays>((event, emit) async {
-      if (hasDaysFetched && previousDepartmentId == event.departmentId) {
-        emit(FetchDaysLoaded(days));
-        return;
-      }
-      emit(FetchDaysLoading());
+    on<FetchDepartmentDays>((event, emit) async {
+      emit(FetchDepartmentDaysLoading());
       try {
         dynamic response = await api.get(
           EndPoints.departmentId(event.departmentId),
         );
-        days =
+        List<DayModel> days =
             (response as List<dynamic>)
                 .map((day) => DayModel.fromJson(day))
                 .toList();
-        previousDepartmentId = event.departmentId;
-        hasDaysFetched = true;
-        emit(FetchDaysLoaded(days));
+        emit(FetchDepartmentDaysLoaded(days));
       } on ServerException catch (e) {
-        emit(FetchDaysFailed(e.errorModel.errorMessage));
+        emit(FetchDepartmentDaysFailed(e.errorModel.errorMessage));
+      }
+    }, transformer: switchMapTransformer());
+
+    on<FetchOfferDays>((event, emit) async {
+      emit(FetchDepartmentDaysLoading());
+      try {
+        dynamic response = await api.get(EndPoints.offerId(event.offerId));
+        List<DayModel> days =
+            (response as List<dynamic>)
+                .map((day) => DayModel.fromJson(day))
+                .toList();
+        emit(FetchDepartmentDaysLoaded(days));
+      } on ServerException catch (e) {
+        emit(FetchDepartmentDaysFailed(e.errorModel.errorMessage));
       }
     }, transformer: switchMapTransformer());
 
     on<FetchDefaultDays>((event, emit) async {
       if (hasDefaultDaysFetched) {
-        emit(FetchDaysLoaded(defaultDays));
+        emit(FetchDepartmentDaysLoaded(defaultDays));
         return;
       }
-      emit(FetchDaysLoading());
+      emit(FetchDepartmentDaysLoading());
       try {
         dynamic response = await api.get(EndPoints.defaultDays);
         defaultDays =
@@ -57,9 +62,9 @@ class FetchDaysBloc extends Bloc<FetchDaysEvent, FetchDaysState> {
                 .map((day) => DayModel.fromJson(day))
                 .toList();
         hasDefaultDaysFetched = true;
-        emit(FetchDaysLoaded(defaultDays));
+        emit(FetchDepartmentDaysLoaded(defaultDays));
       } on ServerException catch (e) {
-        emit(FetchDaysFailed(e.errorModel.errorMessage));
+        emit(FetchDepartmentDaysFailed(e.errorModel.errorMessage));
       }
     });
   }

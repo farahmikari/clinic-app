@@ -21,6 +21,10 @@ class EndPoints {
     return "/api/prescription/$appointmentId";
   }
 
+  static String offerId(int offerId) {
+    return "/api/offer/$offerId";
+  }
+
   /////send otp code to email/////
   static String sendEmailVerify() {
     return "/api/send-email";
@@ -68,6 +72,9 @@ class EndPoints {
   static String availableSlotsByShift = "/api/availableSlotsByShift";
   static String top5 = "/api/top5";
   static String rate = "/api/doctors/rate";
+  static String points = "/api/points";
+  static String offers = "/api/offers";
+  static String offerPrice = "/api/offer_price";
 }
 
 class ApiKey {
@@ -122,4 +129,11 @@ class ApiKey {
   static String isPrescriptionViewed = "is_prescription_viewed";
   static String appointmentId = "appointment_id";
   static String rating = "rating";
+  static String points = "points";
+  static String paymentMethod = "payment_method";
+  static String offerId = "offer_id";
+  static String reservation = "reservation";
+  static String selectedService = "selected_service";
+  static String price = "price";
+  static String currency = "currency";
 }

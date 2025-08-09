@@ -131,7 +131,7 @@ class AppointmentWidget extends StatelessWidget {
                   Expanded(
                     flex: 2,
                     child: DoctorImageWithFrameWidget(
-                      image: "assets/images/doctor18.png",
+                      image: appointment.doctorImage,
                     ),
                   ),
                 ],

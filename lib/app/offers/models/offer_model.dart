@@ -1,3 +1,5 @@
+import 'package:clinic_app/core/api/end_points.dart';
+
 class OfferModel {
   final int id;
   final String image;
@@ -17,12 +19,12 @@ class OfferModel {
 
   factory OfferModel.fromJson(Map<String, dynamic> jsonData) {
     return OfferModel(
-      id: jsonData["id"],
-      image: jsonData["image"],
-      departmentId: jsonData["department_id"],
-      doctorId: jsonData["doctor_id"],
-      shift: jsonData["shift"],
-      paymentMethod: jsonData["payment_method"],
+      id: jsonData[ApiKey.id],
+      image: jsonData[ApiKey.image],
+      departmentId: jsonData[ApiKey.departmentId],
+      doctorId: jsonData[ApiKey.doctorId],
+      shift: jsonData[ApiKey.shift],
+      paymentMethod: jsonData[ApiKey.paymentMethod],
     );
   }
 }

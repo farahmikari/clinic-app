@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:clinic_app/app/doctor/views/screens/doctor_profile_screen.dart';
 import 'package:clinic_app/app/home/models/most_rated_doctor_model.dart';
 import 'package:clinic_app/core/constants/app_colors.dart';
@@ -7,6 +8,7 @@ import 'package:clinic_app/core/constants/app_shadow.dart';
 import 'package:clinic_app/core/extentions/percent_sized_extention.dart';
 import 'package:clinic_app/core/widgets/doctor_name_widget.dart';
 import 'package:clinic_app/core/widgets/info_with_icon_widget.dart';
+import 'package:clinic_app/core/widgets/loading_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -50,8 +52,10 @@ class MostRatedDoctorWidget extends StatelessWidget {
                 children: [
                   Align(
                     alignment: Alignment.center,
-                    child: Image(
-                      image: AssetImage("assets/images/doctor10.png"),
+                    child: CachedNetworkImage(
+                      imageUrl: mostRatedDoctor.image,
+                      placeholder: (context, url) => LoadingWidget(),
+                      errorWidget: (context, url, error) => Icon(Icons.error),
                     ),
                   ),
                   Align(

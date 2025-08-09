@@ -17,7 +17,7 @@ import 'package:clinic_app/core/widgets/request_types_widget/controllers/request
 import 'package:clinic_app/core/widgets/request_types_widget/views/widgets/request_types_widget.dart';
 import 'package:clinic_app/core/widgets/subtitle_widget.dart';
 import 'package:clinic_app/core/widgets/subtitle_with_text_button_widget.dart';
-import 'package:clinic_app/core/widgets/times_widget/controllers/times%20bloc/times_bloc.dart';
+import 'package:clinic_app/core/widgets/times_widget/controllers/times_bloc/times_bloc.dart';
 import 'package:clinic_app/core/widgets/times_widget/views/widgets/shimmer_times_widget.dart';
 import 'package:clinic_app/core/widgets/times_widget/views/widgets/times_widget.dart';
 import 'package:clinic_app/core/widgets/titled_checkbox_widget/controllers/titled_checkbox_bloc/titled_checkbox_bloc.dart';
@@ -106,7 +106,9 @@ class UpcomingAppointmentWidget extends StatelessWidget {
                   ),
                 );
                 context.read<FetchDaysBloc>().add(
-                  FetchDays(departmentId: state.reservation.departmentId),
+                  FetchDepartmentDays(
+                    departmentId: state.reservation.departmentId,
+                  ),
                 );
                 context.read<DaysBloc>().add(
                   CurrentDepartmentIdAndCurrentAndPreviousDayAndPreviousTimeIdAreSet(
@@ -258,7 +260,7 @@ class UpcomingAppointmentWidget extends StatelessWidget {
             SizedBox(height: AppDimensions.mp),
             BlocBuilder<FetchDaysBloc, FetchDaysState>(
               builder: (context, state) {
-                if (state is FetchDaysLoaded) {
+                if (state is FetchDepartmentDaysLoaded) {
                   return DaysWidget(days: state.days);
                 }
                 return ShimmerDaysWidget();

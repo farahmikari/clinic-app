@@ -1,10 +1,9 @@
 import 'dart:developer';
 
 import 'package:clinic_app/core/services/local_notification_service.dart';
-import 'package:clinic_app/service_locator.dart';
+import 'package:clinic_app/core/services/shared_preferences/shared_pereference_service.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:get_storage/get_storage.dart';
 
 class PushNotificationsService {
   static FirebaseMessaging messaging = FirebaseMessaging.instance;
@@ -13,8 +12,10 @@ class PushNotificationsService {
     //log(messaging.getToken().toString());
     await messaging.requestPermission();
     await messaging.getToken().then((value) async {
-      log(value.toString());
-      await getIt<GetStorage>().write('fcm_token', value);
+      if (value != null) {
+        log(value.toString());
+        await SharedPreferencesService.saveFcm(value);
+      }
       return;
     });
     messaging.onTokenRefresh.listen((event) {

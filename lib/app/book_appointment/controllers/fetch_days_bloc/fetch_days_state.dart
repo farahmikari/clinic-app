@@ -2,14 +2,14 @@ part of 'fetch_days_bloc.dart';
 
 sealed class FetchDaysState {}
 
-class FetchDaysLoading extends FetchDaysState {}
+class FetchDepartmentDaysLoading extends FetchDaysState {}
 
-class FetchDaysLoaded extends FetchDaysState {
+class FetchDepartmentDaysLoaded extends FetchDaysState {
   final List<DayModel> days;
-  FetchDaysLoaded(this.days);
+  FetchDepartmentDaysLoaded(this.days);
 }
 
-class FetchDaysFailed extends FetchDaysState {
+class FetchDepartmentDaysFailed extends FetchDaysState {
   final String errorMessage;
-  FetchDaysFailed(this.errorMessage);
+  FetchDepartmentDaysFailed(this.errorMessage);
 }

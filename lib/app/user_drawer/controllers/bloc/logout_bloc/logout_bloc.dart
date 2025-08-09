@@ -13,9 +13,8 @@ class LogoutBloc extends Bloc<LogoutEvent, LogoutState> {
     emit(LogoutLoading());
     try {
       await LogoutService().logout();
-      await SharedPereferenceService.clearToken();
+      await SharedPreferencesService.clearToken();
       emit(LogoutSuccess());
-      
     } on Exception catch (e) {
       emit(LogoutFailure(message: e.toString()));
     }

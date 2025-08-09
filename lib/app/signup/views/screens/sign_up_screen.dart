@@ -40,7 +40,6 @@ class _SignupState extends State<SignUp> with SingleTickerProviderStateMixin {
           create: (context) => ImageBloc(pickimage: ImagePickerService()),
         ),
       ],
-
       child: Scaffold(
         backgroundColor: Colors.white,
         body: AnimatedBackground(
@@ -119,7 +118,6 @@ class _SignupState extends State<SignUp> with SingleTickerProviderStateMixin {
                         TextFormFieldWidget(
                           label: 'First Name',
                           iconTextField: Icons.person,
-
                           onChanged: (value) {
                             context.read<SignupBloc>().add(
                               SFirstNameFieldEvent(name: value),
