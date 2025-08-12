@@ -42,8 +42,8 @@ class DoctorSummaryWidget extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      FilterBadgeWidget(
-                        badge: doctor.shift,
+                      BadgeWidget(
+                        title: doctor.shift,
                         color: AppColors.transparentGreen,
                       ),
                       InfoWithIconWidget(

@@ -15,6 +15,7 @@ class UpcomingValidatorBloc
 
     late bool hasCancelAbilityFetched = false;
     late bool isCancelable;
+
     on<IsReservationEditingIsToggled>((event, emit) {
       emit(
         UpcomingValidatorUpdate(

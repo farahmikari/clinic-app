@@ -3,13 +3,9 @@ import 'package:clinic_app/core/constants/app_dimensions.dart';
 import 'package:clinic_app/core/extentions/percent_sized_extention.dart';
 import 'package:flutter/widgets.dart';
 
-class FilterBadgeWidget extends StatelessWidget {
-  const FilterBadgeWidget({
-    super.key,
-    required this.badge,
-    required this.color,
-  });
-  final String badge;
+class BadgeWidget extends StatelessWidget {
+  const BadgeWidget({super.key, required this.title, required this.color});
+  final String title;
   final Color color;
 
   @override
@@ -24,7 +20,7 @@ class FilterBadgeWidget extends StatelessWidget {
         borderRadius: BorderRadius.circular(AppDimensions.mbr),
       ),
       child: Text(
-        badge,
+        title,
         style: TextStyle(
           color: AppColors.widgetBackgroundColor,
           fontSize: AppDimensions.sfs,

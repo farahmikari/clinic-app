@@ -55,8 +55,8 @@ class DepartmentDoctorWidget extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        FilterBadgeWidget(
-                          badge: departmentDoctor.shift,
+                        BadgeWidget(
+                          title: departmentDoctor.shift,
                           color: specifyShiftColor(),
                         ),
                         InfoWithIconWidget(

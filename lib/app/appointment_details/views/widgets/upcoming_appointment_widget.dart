@@ -3,13 +3,13 @@ import 'package:clinic_app/app/book_appointment/controllers/fetch_days_bloc/fetc
 import 'package:clinic_app/app/appointment_details/controllers/fetch_reservation_bloc/fetch_reservation_bloc.dart';
 import 'package:clinic_app/app/book_appointment/controllers/fetch_times_bloc/fetch_times_bloc.dart';
 import 'package:clinic_app/app/appointment_details/controllers/upcoming_validator_bloc/upcoming_validator_bloc.dart';
-import 'package:clinic_app/app/appointment_details/views/widgets/reservation_summary_widgets/reservation_summary_widget.dart';
+import 'package:clinic_app/core/widgets/reservation_summary_widget.dart';
 import 'package:clinic_app/app/appointments/models/appointment_model.dart';
 import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
 import 'package:clinic_app/core/extentions/percent_sized_extention.dart';
 import 'package:clinic_app/core/widgets/button_widget.dart';
-import 'package:clinic_app/core/widgets/custom_dialog_widget.dart';
+import 'package:clinic_app/core/widgets/custom_warning_dialog_widget.dart';
 import 'package:clinic_app/core/widgets/days_widget/controllers/days_bloc/days_bloc.dart';
 import 'package:clinic_app/core/widgets/days_widget/views/widgets/days_widget.dart';
 import 'package:clinic_app/core/widgets/days_widget/views/widgets/shimmer_days_widget.dart';
@@ -202,11 +202,9 @@ class UpcomingAppointmentWidget extends StatelessWidget {
                 showDialog(
                   context: context,
                   builder: (dialogContext) {
-                    return CustomDialogWidget(
-                      title: "Oops!",
-                      content: state.errorMessage,
-                      buttonTitle: "Ok",
-                      onPressed: () {
+                    return CustomWarningDialogWidget(
+                      warning: state.errorMessage,
+                      onOk: () {
                         Get.back();
                       },
                     );
@@ -260,7 +258,7 @@ class UpcomingAppointmentWidget extends StatelessWidget {
             SizedBox(height: AppDimensions.mp),
             BlocBuilder<FetchDaysBloc, FetchDaysState>(
               builder: (context, state) {
-                if (state is FetchDepartmentDaysLoaded) {
+                if (state is FetchDaysLoaded) {
                   return DaysWidget(days: state.days);
                 }
                 return ShimmerDaysWidget();

@@ -58,7 +58,7 @@ class ClinicApp extends StatelessWidget {
       //       fontSize: 23,
       //       fontWeight: FontWeight.w700,
       //       color: Colors.black,
-      //       fontFamily: "Montserat",
+      //        fontFamily: "Montserat",
       //     ),
       //     titleSmall: const TextStyle(
       //       fontFamily: "Montserat",

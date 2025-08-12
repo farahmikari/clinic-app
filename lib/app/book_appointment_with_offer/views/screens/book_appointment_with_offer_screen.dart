@@ -13,9 +13,9 @@ import 'package:clinic_app/app/offers/models/offer_model.dart';
 import 'package:clinic_app/app/offers/views/widgets/offer_widget.dart';
 import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
-import 'package:clinic_app/core/extentions/percent_sized_extention.dart';
 import 'package:clinic_app/core/widgets/button_widget.dart';
-import 'package:clinic_app/core/widgets/custom_dialog_widget.dart';
+import 'package:clinic_app/core/widgets/custom_pricing_dialog_widget.dart';
+import 'package:clinic_app/core/widgets/custom_warning_dialog_widget.dart';
 import 'package:clinic_app/core/widgets/days_widget/controllers/days_bloc/days_bloc.dart';
 import 'package:clinic_app/core/widgets/days_widget/views/widgets/days_widget.dart';
 import 'package:clinic_app/core/widgets/days_widget/views/widgets/shimmer_days_widget.dart';
@@ -140,107 +140,27 @@ class BookAppointmentWithOfferScreen extends StatelessWidget {
                 showDialog(
                   context: context,
                   builder: (dialogContext) {
-                    return AlertDialog(
-                      backgroundColor: AppColors.widgetBackgroundColor,
-                      title: Center(
-                        child: Text(
-                          "Reservation Price",
-                          style: TextStyle(
-                            color: AppColors.mainTextColor,
-                            fontSize: AppDimensions.xlfs,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                      content: SizedBox(
-                        height: 30.0.wp,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          spacing: AppDimensions.sp,
-                          children: [
-                            Text(
-                              "The total price for this reservation is",
-                              style: TextStyle(
-                                color: AppColors.hintTextColor,
-                                fontSize: AppDimensions.sfs,
-                                fontWeight: FontWeight.w500,
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                            Text(
-                              "${state.pricing.price} ${state.pricing.currency}",
-                              style: TextStyle(
-                                color: AppColors.primaryColor,
-                                fontSize: AppDimensions.lfs,
-                                fontWeight: FontWeight.w500,
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                            Text(
-                              "Do you want to continue with the booking?",
-                              style: TextStyle(
-                                color: AppColors.hintTextColor,
-                                fontSize: AppDimensions.sfs,
-                                fontWeight: FontWeight.w500,
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                          ],
-                        ),
-                      ),
-                      actions: [
-                        TextButton(
-                          onPressed: () {
-                            Get.back();
-                          },
-                          style: ButtonStyle(
-                            overlayColor: WidgetStatePropertyAll(
-                              Colors.transparent,
-                            ),
-                          ),
-                          child: Text(
-                            "Cancel",
-                            style: TextStyle(
-                              color: AppColors.primaryColor,
-                              fontSize: AppDimensions.mfs,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                        ),
-                        TextButton(
-                          onPressed: () {
-                            Get.back();
-                            ReservationModel reservation =
-                                context
-                                    .read<BookAppointmentValidatorBloc>()
-                                    .state
-                                    .currentReservation;
-                            OfferReservationModel offerReservation =
-                                OfferReservationModel(
-                                  offerId: offer.id,
-                                  reservation: reservation,
-                                );
-                            context.read<SendReservationBloc>().add(
-                              SendOfferReservation(
-                                offerReservation: offerReservation,
-                              ),
+                    return CustomPricingDialogWidget(
+                      pricing: state.pricing,
+                      onCancel: () => Get.back(),
+                      onContinue: () {
+                        Get.back();
+                        ReservationModel reservation =
+                            context
+                                .read<BookAppointmentValidatorBloc>()
+                                .state
+                                .currentReservation;
+                        OfferReservationModel offerReservation =
+                            OfferReservationModel(
+                              offerId: offer.id,
+                              reservation: reservation,
                             );
-                          },
-                          style: ButtonStyle(
-                            overlayColor: WidgetStatePropertyAll(
-                              Colors.transparent,
-                            ),
+                        context.read<SendReservationBloc>().add(
+                          SendOfferReservation(
+                            offerReservation: offerReservation,
                           ),
-                          child: Text(
-                            "Continue",
-                            style: TextStyle(
-                              color: AppColors.primaryColor,
-                              fontSize: AppDimensions.mfs,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                        ),
-                      ],
+                        );
+                      },
                     );
                   },
                 );
@@ -248,11 +168,9 @@ class BookAppointmentWithOfferScreen extends StatelessWidget {
                 showDialog(
                   context: context,
                   builder: (dialogContext) {
-                    return CustomDialogWidget(
-                      title: "Oops",
-                      content: state.errorMessage,
-                      buttonTitle: "Ok",
-                      onPressed: () {
+                    return CustomWarningDialogWidget(
+                      warning: state.errorMessage,
+                      onOk: () {
                         Get.back();
                       },
                     );
@@ -269,11 +187,9 @@ class BookAppointmentWithOfferScreen extends StatelessWidget {
                 showDialog(
                   context: context,
                   builder: (dialogContext) {
-                    return CustomDialogWidget(
-                      title: "Oops",
-                      content: state.errorMessage,
-                      buttonTitle: "Ok",
-                      onPressed: () {
+                    return CustomWarningDialogWidget(
+                      warning: state.errorMessage,
+                      onOk: () {
                         Get.back();
                       },
                     );
@@ -316,7 +232,7 @@ class BookAppointmentWithOfferScreen extends StatelessWidget {
                 SizedBox(height: AppDimensions.mp),
                 BlocBuilder<FetchDaysBloc, FetchDaysState>(
                   builder: (context, state) {
-                    if (state is FetchDepartmentDaysLoaded) {
+                    if (state is FetchDaysLoaded) {
                       return DaysWidget(days: state.days);
                     }
                     return ShimmerDaysWidget();

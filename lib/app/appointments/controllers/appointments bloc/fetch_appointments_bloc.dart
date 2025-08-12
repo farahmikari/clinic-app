@@ -1,4 +1,5 @@
 import 'package:clinic_app/app/appointments/models/appointment_model.dart';
+//import 'package:clinic_app/app/appointments/models/json_model.dart';
 import 'package:clinic_app/core/api/dio_consumer.dart';
 import 'package:clinic_app/core/api/end_points.dart';
 import 'package:clinic_app/core/errors/exceptions.dart';
@@ -19,6 +20,8 @@ class FetchAppointmentsBloc
     on<FetchAppointments>((event, emit) async {
       emit(FetchAppointmentsLoading());
       try {
+        //this is the rest api version
+
         dynamic pendingAppointmentsResponse = await api.get(
           EndPoints.patientAppointments,
           queryParameter: {ApiKey.status: ApiKey.pending},
@@ -37,6 +40,17 @@ class FetchAppointmentsBloc
                 .toList();
         allAppointments = [...pendingAppointments, ...completedAppointments];
         emit(FetchAppointmentsLoaded(appointments: allAppointments));
+
+        // pendingAppointments =
+        //     myPendingAppointments
+        //         .map((appointment) => AppointmentModel.fromJson(appointment))
+        //         .toList();
+        // completedAppointments =
+        //     myCompletedAppointments
+        //         .map((appointment) => AppointmentModel.fromJson(appointment))
+        //         .toList();
+        // allAppointments = [...pendingAppointments, ...completedAppointments];
+        // emit(FetchAppointmentsLoaded(appointments: allAppointments));
       } on ServerException catch (e) {
         emit(FetchAppointmentsFailed(errorMessage: e.errorModel.errorMessage));
       }

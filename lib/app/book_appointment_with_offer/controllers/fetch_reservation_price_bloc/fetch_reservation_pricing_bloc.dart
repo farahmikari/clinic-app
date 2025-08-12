@@ -14,6 +14,7 @@ class FetchReservationPricingBloc
     extends Bloc<FetchReservationPricingEvent, FetchReservationPricingState> {
   FetchReservationPricingBloc() : super(FetchReservationPricingInitial()) {
     DioConsumer api = DioConsumer(dio: Dio());
+
     on<FetchReservationCashOfferPricing>((event, emit) async {
       emit(FetchReservationPricingLoading());
       try {
@@ -23,8 +24,12 @@ class FetchReservationPricingBloc
         );
         PricingModel pricing = PricingModel.fromJson(response);
         emit(FetchReservationPricingLoaded(pricing: pricing));
-      } catch (e) {
-        emit(FetchReservationPricingFailed(errorMessage: e.toString()));
+      } on ServerException catch (e) {
+        emit(
+          FetchReservationPricingFailed(
+            errorMessage: e.errorModel.errorMessage,
+          ),
+        );
       }
     });
 

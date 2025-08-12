@@ -7,7 +7,7 @@ import 'package:clinic_app/app/doctor/models/doctor_model.dart';
 import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
 import 'package:clinic_app/core/widgets/button_widget.dart';
-import 'package:clinic_app/core/widgets/custom_dialog_widget.dart';
+import 'package:clinic_app/core/widgets/custom_warning_dialog_widget.dart';
 import 'package:clinic_app/core/widgets/days_widget/controllers/days_bloc/days_bloc.dart';
 import 'package:clinic_app/core/widgets/days_widget/views/widgets/days_widget.dart';
 import 'package:clinic_app/core/widgets/days_widget/views/widgets/shimmer_days_widget.dart';
@@ -133,11 +133,9 @@ class BookAppointmentWithDoctorScreen extends StatelessWidget {
                 showDialog(
                   context: context,
                   builder: (dialogContext) {
-                    return CustomDialogWidget(
-                      title: "Oops",
-                      content: state.errorMessage,
-                      buttonTitle: "Ok",
-                      onPressed: () {
+                    return CustomWarningDialogWidget(
+                      warning: state.errorMessage,
+                      onOk: () {
                         Get.back();
                       },
                     );
@@ -179,7 +177,7 @@ class BookAppointmentWithDoctorScreen extends StatelessWidget {
                 SizedBox(height: AppDimensions.mp),
                 BlocBuilder<FetchDaysBloc, FetchDaysState>(
                   builder: (context, state) {
-                    if (state is FetchDepartmentDaysLoaded) {
+                    if (state is FetchDaysLoaded) {
                       return DaysWidget(days: state.days);
                     }
                     return ShimmerDaysWidget();

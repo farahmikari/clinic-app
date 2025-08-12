@@ -41,7 +41,7 @@ class BillDetailsScreen extends StatelessWidget {
             ),
           ),
           actions: [
-            FilterBadgeWidget(badge: bill.status, color: specifyStatusColor()),
+            BadgeWidget(title: bill.status, color: specifyStatusColor()),
           ],
         ),
         body: SafeArea(

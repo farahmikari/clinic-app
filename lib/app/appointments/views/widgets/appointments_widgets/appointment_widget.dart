@@ -1,5 +1,6 @@
-import 'package:clinic_app/app/appointment_details/views/screens/appointment_details_screen.dart';
 import 'package:clinic_app/app/appointments/models/appointment_model.dart';
+import 'package:clinic_app/app/manage_booking/views/screens/manage_booking_screen.dart';
+import 'package:clinic_app/app/prescription/views/screens/prescription_screen.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
 import 'package:clinic_app/core/constants/app_shadow.dart';
 import 'package:clinic_app/core/extentions/percent_sized_extention.dart';
@@ -43,14 +44,20 @@ class AppointmentWidget extends StatelessWidget {
           : AppColors.transparentYellow;
     }
 
-    return InkWell(
+    return GestureDetector(
       onTap: () {
-        Get.to(
-          () => AppointmentDetailsScreen(appointment: appointment),
-          transition: Transition.zoom,
-        );
+        if (appointment.status == "Completed") {
+          Get.to(
+            () => PrescriptionScreen(appointment: appointment),
+            transition: Transition.zoom,
+          );
+        } else {
+          Get.to(
+            () => ManageBookingScreen(appointment: appointment),
+            transition: Transition.zoom,
+          );
+        }
       },
-      borderRadius: BorderRadius.circular(AppDimensions.mbr),
       child: Container(
         height: 54.0.wp,
         width: 92.0.wp,
@@ -83,8 +90,8 @@ class AppointmentWidget extends StatelessWidget {
                           flex: 2,
                           child: Align(
                             alignment: Alignment.centerLeft,
-                            child: FilterBadgeWidget(
-                              badge: appointment.status,
+                            child: BadgeWidget(
+                              title: appointment.status,
                               color: specifyStatusColor(),
                             ),
                           ),
