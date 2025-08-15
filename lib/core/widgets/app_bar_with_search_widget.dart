@@ -17,7 +17,7 @@ class AppBarWithSearchWidget extends StatelessWidget
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: AppColors.backgroundColor,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       surfaceTintColor: AppColors.backgroundColor,
       toolbarHeight: 20.0.wp,
 
@@ -37,54 +37,52 @@ class AppBarWithSearchWidget extends StatelessWidget
             left: AppDimensions.mp,
             right: AppDimensions.mp,
           ),
-          child: Expanded(
-            child: Container(
-              height: 15.0.wp,
-              padding: EdgeInsets.symmetric(horizontal: AppDimensions.mp),
-              decoration: BoxDecoration(
-                color: AppColors.widgetBackgroundColor,
-                borderRadius: BorderRadius.circular(AppDimensions.lbr),
-                boxShadow: AppShadow.boxShadow,
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                spacing: AppDimensions.mp,
-                children: [
-                  SvgPicture.asset(
-                    AppIcons.search,
-                    height: AppDimensions.sis,
-                    width: AppDimensions.mis,
-                    color: AppColors.darkGreyColor,
-                  ),
-                  Expanded(
-                    child: TextField(
-                      style: TextStyle(
-                        color: AppColors.mainTextColor,
+          child: Container(
+            height: 15.0.wp,
+            padding: EdgeInsets.symmetric(horizontal: AppDimensions.mp),
+            decoration: BoxDecoration(
+              color: Theme.of(context).cardColor,
+              borderRadius: BorderRadius.circular(AppDimensions.lbr),
+              boxShadow: AppShadow.boxShadow,
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              spacing: AppDimensions.mp,
+              children: [
+                SvgPicture.asset(
+                  AppIcons.search,
+                  height: AppDimensions.sis,
+                  width: AppDimensions.mis,
+                  color: AppColors.darkGreyColor,
+                ),
+                Expanded(
+                  child: TextField(
+                    style: TextStyle(
+                      color: AppColors.mainTextColor,
+                      fontSize: AppDimensions.mfs,
+                      fontWeight: FontWeight.w500,
+                    ),
+                    decoration: InputDecoration(
+                      hintText: "Doctor, Symptom, Facility, Specialty...",
+                      hintStyle: TextStyle(
+                        color: AppColors.hintTextColor,
                         fontSize: AppDimensions.mfs,
                         fontWeight: FontWeight.w500,
                       ),
-                      decoration: InputDecoration(
-                        hintText: "Doctor, Symptom, Facility, Specialty...",
-                        hintStyle: TextStyle(
-                          color: AppColors.hintTextColor,
-                          fontSize: AppDimensions.mfs,
-                          fontWeight: FontWeight.w500,
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide.none,
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide.none,
-                        ),
-                        contentPadding: EdgeInsets.all(0.0),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide.none,
                       ),
-                      cursorColor: AppColors.mainTextColor,
-                      autocorrect: false,
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide.none,
+                      ),
+                      contentPadding: EdgeInsets.all(0.0),
                     ),
+                    cursorColor: AppColors.mainTextColor,
+                    autocorrect: false,
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ),

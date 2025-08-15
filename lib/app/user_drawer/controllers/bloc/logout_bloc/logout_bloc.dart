@@ -7,15 +7,22 @@ part 'logout_state.dart';
 
 class LogoutBloc extends Bloc<LogoutEvent, LogoutState> {
   LogoutBloc() : super(LogoutInitial()) {
-    on<LogoutEvent>(_logoutEvent);
+    on<LogoutUserEvent>(_logoutEvent);
+    on<LogoutVisitorEvent>(_logoutVisitor);
   }
-  Future<void> _logoutEvent(event, emit) async {
+  Future<void> _logoutVisitor(LogoutVisitorEvent event, emit) async {
+    final token = await SharedPereferenceService.getToken();
+    if (token == null || token.isEmpty) {
+      emit(LogoutVisitor());
+    }
+  }
+
+  Future<void> _logoutEvent(LogoutUserEvent event, emit) async {
     emit(LogoutLoading());
     try {
       await LogoutService().logout();
       await SharedPereferenceService.clearToken();
       emit(LogoutSuccess());
-      
     } on Exception catch (e) {
       emit(LogoutFailure(message: e.toString()));
     }

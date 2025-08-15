@@ -1,5 +1,4 @@
 import 'package:clinic_app/app/bills/models/bill_model.dart';
-import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
 import 'package:clinic_app/core/constants/app_shadow.dart';
 import 'package:clinic_app/core/extentions/percent_sized_extention.dart';
@@ -33,7 +32,7 @@ class ServiceWidget extends StatelessWidget {
           padding: EdgeInsets.all(AppDimensions.mp),
           margin: EdgeInsets.only(top: AppDimensions.lm),
           decoration: BoxDecoration(
-            color: AppColors.widgetBackgroundColor,
+            color: Theme.of(context).cardColor,
             borderRadius: BorderRadius.circular(AppDimensions.mbr),
             boxShadow: AppShadow.boxShadow,
           ),

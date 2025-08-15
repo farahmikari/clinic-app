@@ -1,4 +1,5 @@
 import 'package:clinic_app/app/user_profile/controllers/bloc/profile_bloc/profile_bloc.dart';
+import 'package:clinic_app/app/user_profile/models/user_data.dart';
 import 'package:clinic_app/app/user_profile/views/widgets/failure_screen_widget.dart';
 import 'package:clinic_app/app/user_profile/views/widgets/profile_information_widget.dart';
 import 'package:clinic_app/app/user_profile/views/widgets/profile_loading_widget.dart';
@@ -15,6 +16,14 @@ class ProfileScreen extends StatelessWidget {
     final Size size = MediaQuery.of(context).size;
     final width = size.width;
     final height = size.height;
+     UserData user = UserData(
+      firstName: "farah",
+      lastName: "mikari",
+      gender: "Female",
+      birthDate: DateTime(2004,3,21),
+      phoneNumber: "0999999999",
+      email:"farah@gmail.com"
+    );
 
     return MultiBlocProvider(
       providers: [
@@ -29,6 +38,7 @@ class ProfileScreen extends StatelessWidget {
             //////////////////////visitor//////////////////////////////////////////
             case ProfileBlocVisitor():
               return FailureScreenWidget(
+                isVisitor: true,
                 height: height,
                 width: width,
                 pathImage: "assets/images/No data-cuate.png",
@@ -39,10 +49,11 @@ class ProfileScreen extends StatelessWidget {
               return ProfileLoadingWidget(height: height, width: width);
             ///////////////////profile information///////////////////////////////
             case ProfileBlocSuccess():
-              return ProfileInformationWidget(width: width, height: height);
+              return ProfileInformationWidget(width: width, height: height,user: user,);
           }
           ////////////////////failure////////////////////////////////////////////
           return FailureScreenWidget(
+            isVisitor: false,
             height: height,
             width: width,
             pathImage: "assets/images/404_Error_with_a_cute_animal-pana.png",

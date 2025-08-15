@@ -24,7 +24,10 @@ class TimerCountdownBloc
 
   void _onTick(Tick event, Emitter<TimerCountdownState> emit) {
     final newSecond = state.second - 1;
-    if (emit.isDone) return;
+    //if (emit.isDone) return;
+    if (newSecond <= 0) {
+      _timer?.cancel();
+    }
     emit(
       TimerCountdownState(
         second: newSecond < 0 ? 0 : newSecond,

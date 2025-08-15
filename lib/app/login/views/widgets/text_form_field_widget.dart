@@ -55,7 +55,7 @@ class TextFormFieldWidget extends StatelessWidget {
           ),
           enabledBorder: outlineBorder(color: kUnfocsedColor),
           focusedBorder: outlineBorder(color: kPrimaryColor),
-          fillColor: Colors.white,
+          fillColor: Theme.of(context).appBarTheme.backgroundColor,
           filled: true,
         ),
       ),

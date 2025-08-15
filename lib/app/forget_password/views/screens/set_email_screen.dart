@@ -3,6 +3,7 @@ import 'package:clinic_app/app/login/models/form_model.dart';
 import 'package:clinic_app/app/signup/controllers/bloc/email_bloc/email_bloc.dart';
 import 'package:clinic_app/app/signup/controllers/bloc/email_bloc/email_event.dart';
 import 'package:clinic_app/app/signup/controllers/bloc/email_bloc/email_state.dart';
+import 'package:clinic_app/app/verification/model/verification_goto.dart';
 import 'package:clinic_app/consts.dart';
 import 'package:clinic_app/app/verification/views/screen/verification_screen.dart';
 import 'package:clinic_app/app/login/views/widgets/button_widget.dart';
@@ -10,6 +11,7 @@ import 'package:clinic_app/app/login/views/widgets/text_form_field_widget.dart';
 import 'package:clinic_app/core/utils/snack_bar_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 
 class SetEmailScreen extends StatelessWidget {
   SetEmailScreen({super.key});
@@ -24,7 +26,7 @@ class SetEmailScreen extends StatelessWidget {
     return BlocProvider(
       create: (context) => EmailBloc(),
       child: Scaffold(
-        backgroundColor: Colors.white,
+        //backgroundColor: Colors.white,
         body: SingleChildScrollView(
           child: BlocConsumer<EmailBloc, EmailState>(
             listener: (context, state) {
@@ -36,13 +38,11 @@ class SetEmailScreen extends StatelessWidget {
                     message: "Verify code is sent Successfully",
                     contentType: ContentType.success,
                   );
-                  Navigator.pushNamed(
-                    context,
-                    VerificationScreen.id,
-                    arguments: <String, dynamic>{
-                      'verification': emailController.text,
-                      'sign': false,
-                    },
+                  Get.to(
+                    () => VerificationScreen(
+                      email: emailController.text,
+                      source: VerificationGoto.forgetPassword,
+                    ),
                   );
                   break;
                 case EmailFailed():
@@ -88,20 +88,21 @@ class SetEmailScreen extends StatelessWidget {
                         context.read<EmailBloc>().add(
                           InitEmailEvent(email: value),
                         );
-                      
                       },
                       error: emailState.email.error,
                       validator: (value) => emailState.email.error,
                     ),
                     MyButtonWidget(
                       text: 'Verify',
-                      isLoading:isLoading ,
+                      isLoading: isLoading,
                       onPressed:
                           (state.canSubmit && !isLoading)
                               ? () {
-                                
                                 context.read<EmailBloc>().add(
-                                  CanSubmitEmail(email: emailController.text,signUp: false),
+                                  CanSubmitEmail(
+                                    email: emailController.text,
+                                    source: VerificationGoto.forgetPassword,
+                                  ),
                                 );
                               }
                               : null,

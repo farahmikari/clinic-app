@@ -1,4 +1,3 @@
-import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:flutter/widgets.dart';
 
 class DoctorNameWidget extends StatelessWidget {
@@ -11,7 +10,7 @@ class DoctorNameWidget extends StatelessWidget {
     return Text(
       "Dr.$name",
       style: TextStyle(
-        color: AppColors.mainTextColor,
+        //color: AppColors.mainTextColor,
         fontSize: size,
         fontWeight: FontWeight.bold,
       ),

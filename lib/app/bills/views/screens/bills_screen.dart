@@ -51,7 +51,7 @@ class BillsScreen extends StatelessWidget {
           ),
         ],
         child: Scaffold(
-          backgroundColor: AppColors.backgroundColor,
+          //backgroundColor: AppColors.backgroundColor,
           appBar: AppBarWithFilterAndSearchWidget(
             appBarTitle: "Bills",
             searchHintText: "Department, Doctor, Date...",

@@ -1,4 +1,3 @@
-import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
 import 'package:flutter/material.dart';
 
@@ -12,7 +11,7 @@ class SubtitleWidget extends StatelessWidget {
     return Text(
       subtitle,
       style: TextStyle(
-        color: AppColors.mainTextColor,
+        //color: AppColors.mainTextColor,
         fontSize: AppDimensions.lfs,
         fontWeight: FontWeight.bold,
       ),

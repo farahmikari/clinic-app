@@ -15,7 +15,7 @@ class ShimmerMostRatedDoctorWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Shimmer.fromColors(
-            baseColor: AppColors.shimmerBaseColor,
+            baseColor: Theme.of(context).shadowColor,
             highlightColor: AppColors.shimmerHighlightColor,
             child: Container(
               height: 45.0.wp,
@@ -28,7 +28,7 @@ class ShimmerMostRatedDoctorWidget extends StatelessWidget {
           SizedBox(height: AppDimensions.mp),
           Expanded(
             child: Shimmer.fromColors(
-              baseColor: AppColors.shimmerBaseColor,
+              baseColor: Theme.of(context).shadowColor,
               highlightColor: AppColors.shimmerHighlightColor,
               child: Container(
                 width: 30.0.wp,
@@ -42,7 +42,7 @@ class ShimmerMostRatedDoctorWidget extends StatelessWidget {
           SizedBox(height: AppDimensions.mp),
           Expanded(
             child: Shimmer.fromColors(
-              baseColor: AppColors.shimmerBaseColor,
+              baseColor: Theme.of(context).shadowColor,
               highlightColor: AppColors.shimmerHighlightColor,
               child: Container(
                 width: 45.0.wp,

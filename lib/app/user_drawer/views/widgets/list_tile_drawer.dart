@@ -28,7 +28,7 @@ class ListTileDrawerWidget extends StatelessWidget {
             title: Text(
               title,
               style: TextStyle(
-                color: AppColors.mainTextColor,
+              //color: AppColors.mainTextColor,
                 fontSize: 12,
                 fontWeight: FontWeight.w700,
                 fontFamily: "Montserat",

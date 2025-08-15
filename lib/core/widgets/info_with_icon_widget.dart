@@ -1,6 +1,6 @@
 import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class InfoWithIconWidget extends StatelessWidget {
@@ -30,7 +30,7 @@ class InfoWithIconWidget extends StatelessWidget {
         Text(
           info,
           style: TextStyle(
-            color: AppColors.darkGreyColor,
+            color: Theme.of(context).hintColor,
             fontSize: infoSize,
             fontWeight: FontWeight.w500,
           ),

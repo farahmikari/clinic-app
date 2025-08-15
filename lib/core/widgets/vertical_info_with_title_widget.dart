@@ -36,7 +36,7 @@ class VerticalInfoWithTitleWidget extends StatelessWidget {
         Text(
           info,
           style: TextStyle(
-            color: AppColors.mainTextColor,
+            //color: AppColors.mainTextColor,
             fontSize: infoSize,
             fontWeight: FontWeight.bold,
           ),

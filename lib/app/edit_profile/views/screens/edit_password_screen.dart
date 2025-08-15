@@ -1,6 +1,6 @@
-import 'package:clinic_app/app/edit_profile/controller/bloc/edit_bloc/edit_password_bloc.dart';
-import 'package:clinic_app/app/edit_profile/controller/bloc/edit_bloc/edit_password_event.dart';
-import 'package:clinic_app/app/edit_profile/controller/bloc/edit_bloc/edit_password_state.dart';
+import 'package:clinic_app/app/edit_profile/controller/bloc/edit_passowrd_bloc/edit_password_bloc.dart';
+import 'package:clinic_app/app/edit_profile/controller/bloc/edit_passowrd_bloc/edit_password_event.dart';
+import 'package:clinic_app/app/edit_profile/controller/bloc/edit_passowrd_bloc/edit_password_state.dart';
 import 'package:clinic_app/app/login/views/widgets/button_widget.dart';
 import 'package:clinic_app/app/login/views/widgets/text_form_field_widget.dart';
 import 'package:clinic_app/core/constants/app_colors.dart';
@@ -23,16 +23,16 @@ class EditPasswordScreen extends StatelessWidget {
           backgroundColor: AppColors.primaryColor,
           title: Text(
             "change passsword",
-            style: Theme.of(
-              context,
-            ).textTheme.titleLarge!.copyWith(color: AppColors.backgroundColor),
+            style: Theme.of(context).textTheme.titleLarge!.copyWith(
+              color: AppColors.backgroundColor,
+              fontSize: 20,
+            ),
           ),
-          actionsIconTheme: IconThemeData(color: AppColors.backgroundColor),
+          iconTheme: IconThemeData(color: AppColors.backgroundColor),
         ),
-        backgroundColor: AppColors.backgroundColor,
+        //backgroundColor: AppColors.backgroundColor,
         body: SingleChildScrollView(
           child: BlocBuilder<EditPasswordBloc, EditPasswordBaseState>(
-           
             builder: (context, state) {
               final data = state.data;
               return Form(
@@ -65,24 +65,24 @@ class EditPasswordScreen extends StatelessWidget {
                             OldObscurEvent(obscure: !obscure),
                           );
                         },
-                        icon: Icon(oldObscure
-                                  ? Icons.visibility_off
-                                  : Icons.visibility,),
+                        icon: Icon(
+                          oldObscure ? Icons.visibility_off : Icons.visibility,
+                        ),
                       ),
                     ),
-                  /////////////////new password////////////////  
+                    /////////////////new password////////////////
                     SizedBox(height: 1.0.hp),
 
                     TextFormFieldWidget(
                       label: 'new password',
                       iconTextField: Icons.lock,
-                       onChanged: (value) {
+                      onChanged: (value) {
                         context.read<EditPasswordBloc>().add(
                           PasswordEvent(password: value),
                         );
                         context.read<EditPasswordBloc>().add(EditButtonEvent());
                       },
-                       error: data.password.error,
+                      error: data.password.error,
                       validator: (value) => data.password.error,
                       obscure: obscure,
                       suffixIcon: IconButton(
@@ -92,9 +92,9 @@ class EditPasswordScreen extends StatelessWidget {
                             ObscurEvent(obscure: !obscure),
                           );
                         },
-                        icon: Icon(obscure
-                                  ? Icons.visibility_off
-                                  : Icons.visibility,),
+                        icon: Icon(
+                          obscure ? Icons.visibility_off : Icons.visibility,
+                        ),
                       ),
                     ),
                     ////////////////confirm password//////////////
@@ -102,7 +102,7 @@ class EditPasswordScreen extends StatelessWidget {
                     TextFormFieldWidget(
                       label: 'confirm password',
                       iconTextField: Icons.lock,
-                       onChanged: (value) {
+                      onChanged: (value) {
                         context.read<EditPasswordBloc>().add(
                           ConPasswordEvent(password: value),
                         );
@@ -118,12 +118,12 @@ class EditPasswordScreen extends StatelessWidget {
                             ConObscurEvent(obscure: !conObscure),
                           );
                         },
-                        icon: Icon(conObscure
-                                  ? Icons.visibility_off
-                                  : Icons.visibility,),
+                        icon: Icon(
+                          conObscure ? Icons.visibility_off : Icons.visibility,
+                        ),
                       ),
                     ),
-                  //////////////////////////button change password///////////  
+                    //////////////////////////button change password///////////
                     SizedBox(height: 5.0.hp),
                     MyButtonWidget(
                       text: "change password",

@@ -4,7 +4,6 @@ import 'package:clinic_app/app/bottom_navigation_bar/controllers/bottom_navigati
 import 'package:clinic_app/app/bottom_navigation_bar/views/widgets/salomon_bottom_bar_widget.dart';
 import 'package:clinic_app/app/departments/views/screens/departments_screen.dart';
 import 'package:clinic_app/app/home/views/screens/home_screen.dart';
-import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -24,7 +23,7 @@ class BottomNavigationBarScreen extends StatelessWidget {
             },
             builder: (context, state) {
               return Scaffold(
-                backgroundColor: AppColors.backgroundColor,
+               //backgroundColor: AppColors.backgroundColor,
                 body: IndexedStack(
                   index: state,
                   children: [

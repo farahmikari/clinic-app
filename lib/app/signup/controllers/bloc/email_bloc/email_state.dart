@@ -4,8 +4,7 @@ import 'package:flutter/widgets.dart';
 class EmailState {
   final GlobalKey<FormState>? formKey;
   final bool canSubmit;
-  bool signUp;
-  EmailState({this.canSubmit = false, this.formKey,this.signUp=true});
+  EmailState({this.canSubmit = false, this.formKey});
 }
 
 final class EmailInitial extends EmailState {

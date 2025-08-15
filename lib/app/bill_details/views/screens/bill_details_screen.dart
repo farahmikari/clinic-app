@@ -27,15 +27,15 @@ class BillDetailsScreen extends StatelessWidget {
           (context) =>
               FetchBillDetailsBloc()..add(FetchBillDetails(bill: bill)),
       child: Scaffold(
-        backgroundColor: AppColors.backgroundColor,
+       // backgroundColor: AppColors.backgroundColor,
         appBar: AppBar(
           actionsPadding: EdgeInsets.only(right: AppDimensions.mp),
-          backgroundColor: AppColors.backgroundColor,
+          //backgroundColor: AppColors.backgroundColor,
           surfaceTintColor: AppColors.backgroundColor,
           title: Text(
             "Details",
             style: TextStyle(
-              color: AppColors.mainTextColor,
+              //color: AppColors.mainTextColor,
               fontSize: AppDimensions.lfs,
               fontWeight: FontWeight.bold,
             ),

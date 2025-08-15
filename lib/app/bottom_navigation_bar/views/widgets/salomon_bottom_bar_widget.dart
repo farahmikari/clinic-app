@@ -56,7 +56,7 @@ class SalomonBottomBarWidget extends StatelessWidget {
                 );
               }).toList(),
           selectedItemColor: AppColors.primaryColor,
-          backgroundColor: AppColors.widgetBackgroundColor,
+          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         );
       },
     );

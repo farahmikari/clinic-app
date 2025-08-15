@@ -8,30 +8,29 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 
-
 class DrawerScreen extends StatelessWidget {
   DrawerScreen({super.key});
   final ZoomDrawerController zoomDrawerController = ZoomDrawerController();
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => DrawerBloc(zoomDrawerController),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => DrawerBloc(zoomDrawerController)),
+        BlocProvider(
+          create: (context) => LogoutBloc()..add(LogoutVisitorEvent()),
+        ),
+        BlocProvider(create: (context) => ProfileBloc()),
+      ],
       child: BlocBuilder<DrawerBloc, DrawState>(
         builder: (context, state) {
           return ZoomDrawer(
             controller: zoomDrawerController,
             angle: 0.0,
-            menuScreen: MultiBlocProvider(
-              providers: [
-                BlocProvider(create: (context) => LogoutBloc()),
-                BlocProvider(create: (context) => ProfileBloc()),
-              ],
-              child: MenuScreen(),
-            ),
+            menuScreen: MenuScreen(),
             mainScreen: BottomNavigationBarScreen(),
             borderRadius: 24.0,
             showShadow: true,
-            menuBackgroundColor: AppColors.backgroundColor,
+             menuBackgroundColor: Theme.of(context).scaffoldBackgroundColor,
             drawerShadowsBackgroundColor: AppColors.hintTextColor,
             slideWidth: MediaQuery.of(context).size.width * 0.7,
           );
@@ -40,4 +39,3 @@ class DrawerScreen extends StatelessWidget {
     );
   }
 }
-

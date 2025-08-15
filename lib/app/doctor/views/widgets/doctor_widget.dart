@@ -41,7 +41,7 @@ class DoctorWidget extends StatelessWidget {
               right: AppDimensions.sp,
             ),
             decoration: BoxDecoration(
-              color: AppColors.widgetBackgroundColor,
+              color: Theme.of(context).cardColor,
               borderRadius: BorderRadius.circular(AppDimensions.mbr),
               boxShadow: AppShadow.boxShadow,
             ),
@@ -89,14 +89,14 @@ class DoctorWidget extends StatelessWidget {
           Container(
             padding: EdgeInsets.all(AppDimensions.mp),
             decoration: BoxDecoration(
-              color: AppColors.widgetBackgroundColor,
+              color: Theme.of(context).cardColor,
               borderRadius: BorderRadius.circular(AppDimensions.mbr),
               boxShadow: AppShadow.boxShadow,
             ),
             child: Text(
               doctor.bio,
               style: TextStyle(
-                color: AppColors.darkGreyColor,
+                color: Theme.of(context).hintColor,
                 fontSize: AppDimensions.sfs,
                 fontWeight: FontWeight.w500,
               ),

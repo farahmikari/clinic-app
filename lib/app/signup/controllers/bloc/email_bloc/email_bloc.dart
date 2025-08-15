@@ -3,6 +3,7 @@ import 'package:clinic_app/app/login/models/form_model.dart';
 import 'package:clinic_app/app/signup/controllers/bloc/email_bloc/email_event.dart';
 import 'package:clinic_app/app/signup/controllers/bloc/email_bloc/email_state.dart';
 import 'package:clinic_app/app/signup/controllers/services/send_email_verify.dart';
+import 'package:clinic_app/app/verification/model/verification_goto.dart';
 import 'package:clinic_app/core/utils/validators.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -26,12 +27,26 @@ class EmailBloc extends Bloc<EmailEvent, EmailState> {
       bool isArrive;
       try {
         emit(EmailLoading());
-        isArrive =  event.signUp? await SendEmailVerify().sendEmailVerifyService(email: event.email )
-        :await EmailForgetPasswordService().sendEmailForgetPasswordService(email: event.email);
+        switch (event.source) {
+          case VerificationGoto.signup:
+            isArrive = await SendEmailVerify().sendEmailVerifyService(
+              email: event.email,
+            );
+            break;
+          case VerificationGoto.forgetPassword:
+            isArrive = await EmailForgetPasswordService()
+                .sendEmailForgetPasswordService(email: event.email);
+            break;
+          case VerificationGoto.changeEmail:
+            isArrive = true;
+            break;
+          default:
+            isArrive = false;
+            break;
+        }
         if (isArrive) {
           emit(EmailSuccess());
-        }
-        else{
+        } else {
           emit(EmailFailed(message: 'Verify code failed to send'));
         }
       } catch (e) {

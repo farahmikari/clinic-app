@@ -31,7 +31,7 @@ class MostRatedDoctorWidget extends StatelessWidget {
               padding: EdgeInsets.only(top: AppDimensions.mp),
               clipBehavior: Clip.hardEdge,
               decoration: BoxDecoration(
-                color: AppColors.widgetBackgroundColor,
+                color: Theme.of(context).cardColor,
                 borderRadius: BorderRadius.circular(AppDimensions.mbr),
                 boxShadow: AppShadow.boxShadow,
               ),

@@ -1,6 +1,7 @@
 import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
 import 'package:clinic_app/core/extentions/percent_sized_extention.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -25,7 +26,7 @@ class ShimmerAppointmentWidget extends StatelessWidget {
                     children: [
                       Expanded(
                         child: Shimmer.fromColors(
-                          baseColor: AppColors.shimmerBaseColor,
+                          baseColor: Theme.of(context).shadowColor,
                           highlightColor: AppColors.shimmerHighlightColor,
                           child: Container(
                             width: 40.0.wp,
@@ -41,7 +42,7 @@ class ShimmerAppointmentWidget extends StatelessWidget {
                       SizedBox(height: AppDimensions.mp),
                       Expanded(
                         child: Shimmer.fromColors(
-                          baseColor: AppColors.shimmerBaseColor,
+                          baseColor: Theme.of(context).shadowColor,
                           highlightColor: AppColors.shimmerHighlightColor,
                           child: Container(
                             width: 30.0.wp,
@@ -57,7 +58,7 @@ class ShimmerAppointmentWidget extends StatelessWidget {
                       SizedBox(height: AppDimensions.mp),
                       Expanded(
                         child: Shimmer.fromColors(
-                          baseColor: AppColors.shimmerBaseColor,
+                          baseColor: Theme.of(context).shadowColor,
                           highlightColor: AppColors.shimmerHighlightColor,
                           child: Container(
                             width: 20.0.wp,
@@ -76,7 +77,7 @@ class ShimmerAppointmentWidget extends StatelessWidget {
                 Expanded(
                   flex: 2,
                   child: Shimmer.fromColors(
-                    baseColor: AppColors.shimmerBaseColor,
+                    baseColor: Theme.of(context).shadowColor,
                     highlightColor: AppColors.shimmerHighlightColor,
                     child: Container(
                       decoration: BoxDecoration(
@@ -96,7 +97,7 @@ class ShimmerAppointmentWidget extends StatelessWidget {
               children: [
                 Expanded(
                   child: Shimmer.fromColors(
-                    baseColor: AppColors.shimmerBaseColor,
+                    baseColor: Theme.of(context).shadowColor,
                     highlightColor: AppColors.shimmerHighlightColor,
                     child: Container(
                       decoration: BoxDecoration(
@@ -109,7 +110,7 @@ class ShimmerAppointmentWidget extends StatelessWidget {
                 SizedBox(width: AppDimensions.mp),
                 Expanded(
                   child: Shimmer.fromColors(
-                    baseColor: AppColors.shimmerBaseColor,
+                    baseColor: Theme.of(context).shadowColor,
                     highlightColor: AppColors.shimmerHighlightColor,
                     child: Container(
                       decoration: BoxDecoration(

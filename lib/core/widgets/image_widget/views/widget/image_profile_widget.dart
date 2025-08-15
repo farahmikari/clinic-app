@@ -18,7 +18,7 @@ class ImageProfileWidget extends StatelessWidget {
           width: 160,
           height: 160,
           decoration: BoxDecoration(
-            color: AppColors.backgroundColor,
+            color: Theme.of(context).appBarTheme.backgroundColor,
             borderRadius: BorderRadius.circular(80),
             border: Border.all(color: kPrimaryColor),
           ),

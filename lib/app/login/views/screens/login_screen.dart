@@ -1,6 +1,5 @@
 import 'package:animated_background/animated_background.dart';
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
-import 'package:clinic_app/app/bottom_navigation_bar/views/screens/bottom_navigation_bar_screen.dart';
 import 'package:clinic_app/app/forget_password/views/screens/set_email_screen.dart';
 import 'package:clinic_app/app/login/controllers/login_bloc/login_bloc.dart';
 import 'package:clinic_app/app/login/views/widgets/button_widget.dart';
@@ -58,7 +57,7 @@ class _LoginScreenState extends State<LoginScreen>
                       message: "Login Successfully",
                       contentType: ContentType.success,
                     );
-                    await Future.delayed(Duration(seconds: 3));
+                    await Future.delayed(Duration(seconds: 2));
                     Get.offAll(() => DrawerScreen());
                     break;
                   case LoginFailed():
@@ -90,7 +89,7 @@ class _LoginScreenState extends State<LoginScreen>
                         height: size.height * 0.7,
                         width: size.width,
                         decoration: BoxDecoration(
-                          color: Colors.white,
+                          color: Theme.of(context).scaffoldBackgroundColor,
                           borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(30),
                             topRight: Radius.circular(30),
@@ -125,7 +124,7 @@ class _LoginScreenState extends State<LoginScreen>
                                   child: Text(
                                     " Welcome Back !",
                                     style: TextStyle(
-                                      color: Colors.black,
+                                     // color: Colors.black,
                                       fontFamily: "Lato",
                                       fontSize: 15,
                                       fontWeight: FontWeight.bold,
@@ -143,7 +142,6 @@ class _LoginScreenState extends State<LoginScreen>
                                     context.read<LoginBlocBloc>().add(
                                       ButtonEvent(),
                                     );
-                                    // print("errorrrrrr");
                                   },
                                   validator: (value) => loginData.email.error,
                                   error: loginData.email.error,
@@ -207,12 +205,8 @@ class _LoginScreenState extends State<LoginScreen>
                                   text: 'Continue as a guest',
                                   onPressed: () {
                                     Get.offAll(
-                                      () => BottomNavigationBarScreen(),
+                                      () => DrawerScreen(),
                                     );
-                                    // context.read<MostRatedDoctorsBloc>().add(
-                                    //   FetchMostRatedDoctors(),
-                                    // );
-                                    // Get.to(() => HomeScreen());
                                   },
                                   color: kPrimaryColor,
                                 ),

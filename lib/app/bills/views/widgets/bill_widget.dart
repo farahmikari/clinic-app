@@ -44,7 +44,7 @@ class BillWidget extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.all(AppDimensions.mp),
         decoration: BoxDecoration(
-          color: AppColors.widgetBackgroundColor,
+          color: Theme.of(context).cardColor,
           borderRadius: BorderRadius.circular(AppDimensions.mbr),
           boxShadow: AppShadow.boxShadow,
         ),

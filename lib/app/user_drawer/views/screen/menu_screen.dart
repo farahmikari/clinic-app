@@ -1,14 +1,10 @@
-import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
-import 'package:clinic_app/app/login/views/screens/login_screen.dart';
-import 'package:clinic_app/app/user_drawer/controllers/bloc/logout_bloc/logout_bloc.dart';
+import 'package:clinic_app/app/setting/views/screen/setting_screen.dart';
 import 'package:clinic_app/app/user_drawer/views/widgets/list_tile_drawer.dart';
+import 'package:clinic_app/app/user_drawer/views/widgets/list_tile_logout_widget.dart';
 import 'package:clinic_app/app/user_profile/views/screens/profile_screen.dart';
 import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/constants/app_logo.dart';
-import 'package:clinic_app/core/utils/show_dialog_alert.dart';
-import 'package:clinic_app/core/utils/snack_bar_util.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart' as getx;
 import 'package:get/get_core/src/get_main.dart';
 
@@ -20,9 +16,9 @@ class MenuScreen extends StatelessWidget {
     final Size size = MediaQuery.of(context).size;
     final double height = size.height;
     final double width = size.width;
-    
+
     return Scaffold(
-      backgroundColor: AppColors.backgroundColor,
+     // backgroundColor: AppColors.backgroundColor,
       body: Column(
         children: [
           SizedBox(
@@ -37,7 +33,7 @@ class MenuScreen extends StatelessWidget {
             backgroundIconColor: AppColors.transparentGreen,
             title: 'Profile',
             onTap: () {
-               Get.to(() => ProfileScreen(),transition:getx.Transition.fade );
+              Get.to(() => ProfileScreen(), transition: getx.Transition.fade);
             },
           ),
           ListTileDrawerWidget(
@@ -52,6 +48,11 @@ class MenuScreen extends StatelessWidget {
             iconColor: Colors.deepPurple,
             backgroundIconColor: const Color(0x7C683AB7),
             title: 'Setting',
+            onTap:
+                () => Get.to(
+                  () => SettingScreen(),
+                  transition: getx.Transition.zoom,
+                ),
           ),
 
           ListTileDrawerWidget(
@@ -61,61 +62,7 @@ class MenuScreen extends StatelessWidget {
             title: 'About Us',
           ),
 
-          BlocListener<LogoutBloc, LogoutState>(
-            listener: (context, state) {
-              if (state is LogoutLoading) {
-                Get.dialog(
-                  const Center(
-                    child: CircularProgressIndicator(
-                      color: AppColors.primaryColor,
-                    ),
-                  ),
-                  barrierDismissible: false,
-                );
-              } else {
-                if (Get.isDialogOpen ?? false) Get.back();
-              }
-              switch (state) {
-                case LogoutSuccess():
-                  showSnackBar(
-                    context,
-                    title: "Success",
-                    message: "Logout Successfully",
-                    contentType: ContentType.success,
-                  );
-                  Get.offAll(() => LoginScreen());
-                  break;
-                case LogoutFailure():
-                  showSnackBar(
-                    context,
-                    title: "Failed",
-                    message: "Failed Logout",
-                    contentType: ContentType.failure,
-                  );
-                  break;
-                default:
-                  break;
-              }
-            },
-
-            child: ListTileDrawerWidget(
-              icon: Icons.report,
-              iconColor: const Color(0xFFD50404),
-              backgroundIconColor: const Color(0x82D50404),
-              title: 'Logout',
-              onTap: () {
-                final logout = context.read<LogoutBloc>();
-                showDialogAlert(
-                  context: context,
-                  title: "Logout",
-                  content: "Are you sure you want to logout ?!",
-                  onPressed: () {
-                    logout.add(LogoutEvent());
-                  },
-                );
-              },
-            ),
-          ),
+          ListTileLogoutWidget(),
         ],
       ),
     );

@@ -1,8 +1,9 @@
 import 'package:clinic_app/app/edit_profile/views/screens/edit_password_screen.dart';
+import 'package:clinic_app/app/edit_profile/views/screens/edit_profile_screen.dart';
+import 'package:clinic_app/app/user_profile/models/user_data.dart';
 import 'package:clinic_app/app/user_profile/views/widgets/app_bar_profile_widget.dart';
 import 'package:clinic_app/app/user_profile/views/widgets/card_info_widget.dart';
 import 'package:clinic_app/app/user_profile/views/widgets/edit_info_profile_button_widget.dart';
-import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 
@@ -10,16 +11,17 @@ class ProfileInformationWidget extends StatelessWidget {
   const ProfileInformationWidget({
     super.key,
     required this.width,
-    required this.height,
+    required this.height, required this.user,
   });
 
   final double width;
   final double height;
+  final UserData user;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.backgroundColor,
+     // backgroundColor: AppColors.backgroundColor,
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -33,14 +35,22 @@ class ProfileInformationWidget extends StatelessWidget {
               children: [
                 EditInfoProfileButtonWidget(
                   text: 'Edit profile',
-                  onTap: () {},
+                  onTap: () {
+                    Get.to(()=>
+                      EditProfileScreen(user: user,),
+                      transition: Transition.cupertino,
+                    );
+                  },
                   width: width,
                   height: height,
                 ),
                 EditInfoProfileButtonWidget(
                   text: 'Edit password',
                   onTap: () {
-                    Get.to(EditPasswordScreen());
+                    Get.to(()=>
+                      EditPasswordScreen(),
+                      transition: Transition.cupertino,
+                    );
                   },
                   width: width,
                   height: height,
@@ -49,13 +59,13 @@ class ProfileInformationWidget extends StatelessWidget {
             ),
             CardInfoWidget(
               width: width,
-              firstName: 'Farah',
-              lastName: 'Mikari',
-              gender: 'Female',
-              phone: '09999999999',
+              firstName: user.firstName,
+              lastName: user.lastName,
+              gender: user.gender,
+              phone: user.phoneNumber,
               password: '************',
-              birthdayDate: '21/3/2004',
-              email: 'farah@gmail.com',
+              birthdayDate: user.gender,
+              email: user.email,
             ),
           ],
         ),

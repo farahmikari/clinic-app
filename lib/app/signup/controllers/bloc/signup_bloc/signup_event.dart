@@ -2,8 +2,6 @@ part of 'signup_bloc.dart';
 
 abstract class SignupEvent {}
 
-class InitEvent extends SignupEvent {}
-
 class SImageEvent extends SignupEvent {
   final File? image;
 

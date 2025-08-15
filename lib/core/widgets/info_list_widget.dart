@@ -1,7 +1,7 @@
 import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
 import 'package:clinic_app/core/constants/app_shadow.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class InfoListWidget extends StatelessWidget {
@@ -14,7 +14,7 @@ class InfoListWidget extends StatelessWidget {
     return Container(
       padding: EdgeInsets.all(AppDimensions.mp),
       decoration: BoxDecoration(
-        color: AppColors.widgetBackgroundColor,
+        color: Theme.of(context).cardColor,
         borderRadius: BorderRadius.circular(AppDimensions.mbr),
         boxShadow: AppShadow.boxShadow,
       ),
@@ -37,7 +37,7 @@ class InfoListWidget extends StatelessWidget {
                 child: Text(
                   info[index],
                   style: TextStyle(
-                    color: AppColors.darkGreyColor,
+                    color: Theme.of(context).hintColor,
                     fontSize: AppDimensions.sfs,
                     fontWeight: FontWeight.w500,
                   ),

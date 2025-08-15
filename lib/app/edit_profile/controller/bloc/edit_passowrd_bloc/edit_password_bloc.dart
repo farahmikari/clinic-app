@@ -1,5 +1,5 @@
-import 'package:clinic_app/app/edit_profile/controller/bloc/edit_bloc/edit_password_event.dart';
-import 'package:clinic_app/app/edit_profile/controller/bloc/edit_bloc/edit_password_state.dart';
+import 'package:clinic_app/app/edit_profile/controller/bloc/edit_passowrd_bloc/edit_password_event.dart';
+import 'package:clinic_app/app/edit_profile/controller/bloc/edit_passowrd_bloc/edit_password_state.dart';
 import 'package:clinic_app/app/login/models/form_model.dart';
 import 'package:clinic_app/core/utils/validators.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

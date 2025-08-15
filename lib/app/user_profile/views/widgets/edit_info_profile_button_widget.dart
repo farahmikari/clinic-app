@@ -6,7 +6,8 @@ class EditInfoProfileButtonWidget extends StatelessWidget {
     super.key,
     required this.width,
     required this.height,
-    required this.text, required this.onTap,
+    required this.text,
+    required this.onTap,
   });
 
   final double width;
@@ -16,26 +17,33 @@ class EditInfoProfileButtonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(width*0.03),
+      padding: EdgeInsets.all(width * 0.03),
       child: InkWell(
         onTap: onTap,
         child: Container(
-          width: width * 0.3,
+          width: width * 0.4,
           height: height * 0.05,
           decoration: BoxDecoration(
             color: const Color(0x4617B8A5),
             borderRadius: BorderRadius.circular(12),
-            border: Border.all(color: AppColors.primaryColor),
+            border: Border.all(color: AppColors.primaryColor, width: 2),
           ),
           child: Center(
-            child: Text(
-              text,
-              style: TextStyle(
-                color: AppColors.primaryColor,
-                fontWeight: FontWeight.bold,
-                fontFamily: "Montserat",
-                fontSize: 12,
-              ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(Icons.edit, color: AppColors.primaryColor, size: 18),
+                SizedBox(width: 4),
+                Text(
+                  text,
+                  style: TextStyle(
+                    color: AppColors.primaryColor,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: "Montserat",
+                    fontSize: 12,
+                  ),
+                ),
+              ],
             ),
           ),
         ),

@@ -13,13 +13,14 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     String? token = await SharedPereferenceService.getToken();
     if (token == null) {
       emit(ProfileBlocVisitor());
-    }
-    try {
-      emit(ProfileBlocLoading());
-      await Future.delayed(Duration(seconds: 5));
-      emit(ProfileBlocSuccess());
-    } on Exception catch (e) {
-      emit(ProfileBlocFailure(message: e.toString()));
+    } else {
+      try {
+        emit(ProfileBlocLoading());
+        await Future.delayed(Duration(seconds: 2));
+        emit(ProfileBlocSuccess());
+      } on Exception catch (e) {
+        emit(ProfileBlocFailure(message: e.toString()));
+      }
     }
   }
 }

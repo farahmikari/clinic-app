@@ -18,9 +18,9 @@ class ProfileLoadingWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.backgroundColor,
+     // backgroundColor: AppColors.backgroundColor,
       body: Shimmer.fromColors(
-        baseColor: AppColors.shimmerBaseColor,
+        baseColor: Theme.of(context).shadowColor,
         highlightColor: AppColors.shimmerHighlightColor,
         enabled: true,
         child: Column(

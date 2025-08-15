@@ -11,8 +11,8 @@ class InitVerificationEvent extends VerificationEvent {
 
 class CanSubmitVerificationEvent extends VerificationEvent {
   final EmailVerificationModel emailModel;
-  bool signUp;
-  CanSubmitVerificationEvent({required this.emailModel,required this.signUp});
+  dynamic source;
+  CanSubmitVerificationEvent({required this.emailModel, required this.source});
 }
 
 class OtpChangedEvent extends VerificationEvent {

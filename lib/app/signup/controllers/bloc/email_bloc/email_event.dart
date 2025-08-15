@@ -9,6 +9,6 @@ class InitEmailEvent extends EmailEvent {
 }
 
 class CanSubmitEmail extends EmailEvent {
-  bool signUp;
-  CanSubmitEmail({required super.email, required this.signUp});
+  dynamic source;
+  CanSubmitEmail({required super.email, required this.source});
 }

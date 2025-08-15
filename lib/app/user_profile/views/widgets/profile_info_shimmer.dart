@@ -14,26 +14,25 @@ class ProfileInfoShimmer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemBuilder: (context, index) =>  Column(
-        children: [
-          Row(
+      itemCount: 7,
+      itemBuilder:
+          (context, index) => Column(
             children: [
-              Skelton(height: height*0.08, width: width*0.15, border: 80),
-              SizedBox(width: width * 0.03),
-              Skelton(
-                height: height * 0.08,
-                width: width * 0.6,
-                border: 5,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Skelton(
+                    height: height * 0.08,
+                    width: width * 0.15,
+                    border: 80,
+                  ),
+                  SizedBox(width: width * 0.03),
+                  Skelton(height: height * 0.08, width: width * 0.7, border: 5),
+                ],
               ),
+              SizedBox(height: height * 0.03),
             ],
           ),
-          SizedBox(height: height*0.03,)
-        ],
-      ),
-      itemCount: 7
-      ,
     );
   }
 }
-
-

@@ -31,13 +31,13 @@ class AppBarWithFilterAndSearchWidget extends StatelessWidget
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: AppColors.backgroundColor,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       surfaceTintColor: AppColors.backgroundColor,
       toolbarHeight: 20.0.wp,
       title: Text(
         appBarTitle,
         style: TextStyle(
-          color: AppColors.mainTextColor,
+          //color: AppColors.mainTextColor,
           fontSize: AppDimensions.lfs,
           fontWeight: FontWeight.bold,
         ),
@@ -60,7 +60,7 @@ class AppBarWithFilterAndSearchWidget extends StatelessWidget
                   height: 15.0.wp,
                   padding: EdgeInsets.symmetric(horizontal: AppDimensions.mp),
                   decoration: BoxDecoration(
-                    color: AppColors.widgetBackgroundColor,
+                    color: Theme.of(context).cardColor,
                     borderRadius: BorderRadius.circular(AppDimensions.lbr),
                     boxShadow: AppShadow.boxShadow,
                   ),

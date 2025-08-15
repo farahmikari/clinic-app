@@ -14,9 +14,7 @@ class SplashScreen extends StatelessWidget {
     return AnimatedSplashScreen(
       backgroundColor: Colors.white,
       splash: Center(
-        child: Column(
-          children: [Expanded(child: Image.asset(AppLogo.logoBackground))],
-        ),
+        child: Image.asset(AppLogo.logoBackground),
       ),
       nextScreen: SplashDecision(),
       splashIconSize: size.width * 0.6,

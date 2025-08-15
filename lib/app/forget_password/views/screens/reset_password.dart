@@ -9,8 +9,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ResetPassword extends StatelessWidget {
-  const ResetPassword({super.key});
-  static String id = "Reset Password";
+  const ResetPassword({super.key, required this.email, required this.code});
+  final String email;
+  final String code;
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
@@ -18,14 +19,14 @@ class ResetPassword extends StatelessWidget {
     final height = size.height;
     bool obscure = false;
     bool conObscure = false;
-    final map =
-        ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>;
-    final String email = map['email'];
-    final String code = map['code'];
+    // final map =
+    //     ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>;
+    // final String email = map['email'];
+    // final String code = map['code'];
     return BlocProvider(
       create: (context) => ForgetPasswordBloc(),
       child: Scaffold(
-        backgroundColor: Colors.white,
+        //backgroundColor: Colors.white,
         body: SingleChildScrollView(
           child: BlocConsumer<ForgetPasswordBloc, ForgetPasswordBaseState>(
             listener: (context, state) {

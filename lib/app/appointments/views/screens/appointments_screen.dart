@@ -60,7 +60,7 @@ class AppointmentsScreen extends StatelessWidget {
           ),
         ],
         child: Scaffold(
-          backgroundColor: AppColors.backgroundColor,
+          //backgroundColor: AppColors.backgroundColor,
           appBar: AppBarWithFilterAndSearchWidget(
             appBarTitle: "Appointments",
             searchHintText: "Department, Doctor, Date...",

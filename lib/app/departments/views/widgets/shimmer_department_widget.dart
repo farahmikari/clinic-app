@@ -1,6 +1,6 @@
 import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
 class ShimmerDepartmentWidget extends StatelessWidget {
@@ -9,7 +9,7 @@ class ShimmerDepartmentWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Shimmer.fromColors(
-      baseColor: AppColors.shimmerBaseColor,
+      baseColor: Theme.of(context).shadowColor,
       highlightColor: AppColors.shimmerHighlightColor,
       child: Container(
         decoration: BoxDecoration(

@@ -2,9 +2,11 @@ import 'dart:core';
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:clinic_app/app/signup/controllers/bloc/email_bloc/email_bloc.dart';
 import 'package:clinic_app/app/signup/controllers/bloc/email_bloc/email_event.dart';
+import 'package:clinic_app/app/user_profile/views/screens/profile_screen.dart';
 import 'package:clinic_app/app/verification/controllers/bloc/timer_countdown_bloc/timer_countdown_bloc.dart';
 import 'package:clinic_app/app/verification/controllers/bloc/verification_bloc/verification_bloc.dart';
 import 'package:clinic_app/app/verification/controllers/bloc/verification_bloc/verification_event.dart';
+import 'package:clinic_app/app/verification/model/verification_goto.dart';
 import 'package:clinic_app/app/verification/views/widget/otp_textfield.dart';
 import 'package:clinic_app/consts.dart';
 import 'package:clinic_app/app/forget_password/views/screens/reset_password.dart';
@@ -14,21 +16,23 @@ import 'package:clinic_app/app/signup/views/widgets/text_button_widget.dart';
 import 'package:clinic_app/core/utils/snack_bar_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 
 class VerificationScreen extends StatelessWidget {
-  VerificationScreen({super.key});
-  static String id = "verify";
+  VerificationScreen({required this.email, required this.source, super.key});
+  // static String id = "verify";
   final controllers = List.generate(6, (_) => TextEditingController());
-
+  final String email;
+  final dynamic source;
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
     final width = size.width;
     final height = size.height;
-    final map =
-        ModalRoute.of(context)?.settings.arguments as Map<dynamic, dynamic>;
-    final String email = map['verification'];
-    final bool push = map['sign'];
+    // final map =
+    //     ModalRoute.of(context)?.settings.arguments as Map<dynamic, dynamic>;
+    // final String email = map['verification'];
+    // final bool push = map['sign'];
 
     return MultiBlocProvider(
       providers: [
@@ -41,7 +45,7 @@ class VerificationScreen extends StatelessWidget {
       ],
 
       child: Scaffold(
-        backgroundColor: Colors.white,
+        //backgroundColor: Colors.white,
         body: SingleChildScrollView(
           child: BlocConsumer<VerificationBloc, VerificationState>(
             listener: (context, state) {
@@ -53,20 +57,24 @@ class VerificationScreen extends StatelessWidget {
                     message: "Verification Successfully",
                     contentType: ContentType.success,
                   );
-                  push
-                      ? Navigator.pushNamed(
-                        context,
-                        SignUp.id,
-                        arguments: email,
-                      )
-                      : Navigator.pushNamed(
-                        context,
-                        ResetPassword.id,
-                        arguments: <String, String>{
-                          'email': email,
-                          'code': state.emailModel!.code,
-                        },
+                  
+
+                   switch (source) {
+                    case VerificationGoto.signup:
+                      Get.offAll(() => SignUp(email: email));
+                      break;
+                    case VerificationGoto.forgetPassword:
+                      Get.offAll(
+                        () => ResetPassword(
+                          email: email,
+                          code: state.emailModel!.code,
+                        ),
                       );
+                      break;
+                    case VerificationGoto.changeEmail:
+                      Get.offAll(() => ProfileScreen());
+                      break;
+                  }
                   break;
                 case VerificationFailed():
                   showSnackBar(
@@ -140,11 +148,10 @@ class VerificationScreen extends StatelessWidget {
                     onPressed:
                         (state.canSubmit && !isLoading)
                             ? () {
-                              state.signUp = push;
                               context.read<VerificationBloc>().add(
                                 CanSubmitVerificationEvent(
-                                  emailModel: state.emailModel!,
-                                  signUp: push,
+                                  emailModel: state.emailModel!, source: source,
+                                  
                                 ),
                               );
                             }
@@ -164,9 +171,9 @@ class VerificationScreen extends StatelessWidget {
                         onPressed:
                             isCounting
                                 ? null
-                                : ()async {
+                                : () async {
                                   context.read<EmailBloc>().add(
-                                    CanSubmitEmail(email: email, signUp: push),
+                                    CanSubmitEmail(email: email,source: source),
                                   );
                                   context.read<TimerCountdownBloc>().add(
                                     StartTimer(seconds: 30),

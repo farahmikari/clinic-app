@@ -24,10 +24,10 @@ class SignupState {
     required this.lastName,
     required this.gender,
     this.image,
-    this.formKey,
     this.obscure = true,
     this.conObscure = true,
     this.buttonEvent = false,
+    this.formKey,
   });
 
   SignupState copyWith({

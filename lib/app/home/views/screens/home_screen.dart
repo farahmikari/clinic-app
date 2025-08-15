@@ -26,7 +26,7 @@ class HomeScreen extends StatelessWidget {
     return BlocProvider(
       create: (context) => MostRatedDoctorsBloc()..add(FetchMostRatedDoctors()),
       child: Scaffold(
-        backgroundColor: AppColors.backgroundColor,
+       // backgroundColor: AppColors.backgroundColor,
         appBar: HomeAppBarWidget(),
         body: Builder(
           builder: (context) {
@@ -45,7 +45,7 @@ class HomeScreen extends StatelessWidget {
                         horizontal: AppDimensions.mp,
                       ),
                       decoration: BoxDecoration(
-                        color: AppColors.widgetBackgroundColor,
+                        color: Theme.of(context).cardColor,
                         borderRadius: BorderRadius.circular(AppDimensions.lbr),
                         boxShadow: AppShadow.boxShadow,
                       ),
@@ -63,7 +63,7 @@ class HomeScreen extends StatelessWidget {
                           Expanded(
                             child: TextField(
                               style: TextStyle(
-                                color: AppColors.mainTextColor,
+                               // color: AppColors.mainTextColor,
                                 fontSize: AppDimensions.mfs,
                                 fontWeight: FontWeight.w500,
                               ),

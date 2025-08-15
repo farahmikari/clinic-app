@@ -3,7 +3,17 @@ import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class CardInfoWidget extends StatelessWidget {
-  const CardInfoWidget({super.key, required this.width, required this.firstName, required this.lastName, required this.gender, required this.phone, required this.email, required this.birthdayDate, required this.password});
+  const CardInfoWidget({
+    super.key,
+    required this.width,
+    required this.firstName,
+    required this.lastName,
+    required this.gender,
+    required this.phone,
+    required this.email,
+    required this.birthdayDate,
+    required this.password,
+  });
   final double width;
   final String firstName;
   final String lastName;
@@ -18,8 +28,8 @@ class CardInfoWidget extends StatelessWidget {
       padding: EdgeInsets.all(width * 0.05),
       child: Container(
         decoration: BoxDecoration(
-          color: Colors.white,
-          border: Border.all(color: AppColors.primaryColor),
+          color: Theme.of(context).appBarTheme.backgroundColor,
+          border: Border.all(color: AppColors.primaryColor, width: 2),
         ),
         child: Column(
           children: [
@@ -35,7 +45,7 @@ class CardInfoWidget extends StatelessWidget {
             ),
             ListTileInfoProfileWidget(
               title: 'birthday date',
-              text:  birthdayDate,
+              text: birthdayDate,
               icon: Icons.calendar_month_outlined,
             ),
             ListTileInfoProfileWidget(

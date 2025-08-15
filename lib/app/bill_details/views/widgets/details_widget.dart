@@ -1,6 +1,5 @@
 import 'package:clinic_app/app/bill_details/models/bill_info_model.dart';
 import 'package:clinic_app/app/bill_details/views/widgets/detail_widget.dart';
-import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
 import 'package:clinic_app/core/constants/app_shadow.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +13,7 @@ class DetailsWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: AppColors.widgetBackgroundColor,
+        color: Theme.of(context).cardColor,
         borderRadius: BorderRadius.circular(AppDimensions.mbr),
         boxShadow: AppShadow.boxShadow,
       ),

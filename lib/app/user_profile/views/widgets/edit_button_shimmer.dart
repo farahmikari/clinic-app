@@ -18,11 +18,11 @@ class EditButtonShimmer extends StatelessWidget {
       children: [
         Padding(
           padding: EdgeInsets.all(width * 0.03),
-          child: Skelton(height: height * 0.05, width: width * 0.3, border: 12),
+          child: Skelton(height: height * 0.06, width: width * 0.3, border: 12),
         ),
         Padding(
           padding: EdgeInsets.all(width * 0.03),
-          child: Skelton(height: height * 0.05, width: width * 0.3, border: 12),
+          child: Skelton(height: height * 0.06, width: width * 0.3, border: 12),
         ),
       ],
     );

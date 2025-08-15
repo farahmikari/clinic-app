@@ -18,7 +18,7 @@ class HomeAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: AppColors.backgroundColor,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       surfaceTintColor: AppColors.backgroundColor,
       toolbarHeight: 12.0.hp,
       leadingWidth: 12.0.hp,

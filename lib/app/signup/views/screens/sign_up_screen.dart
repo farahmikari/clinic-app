@@ -14,9 +14,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 
 class SignUp extends StatefulWidget {
-  const SignUp({super.key});
-  static String id = "Sign Up";
-
+  const SignUp({super.key, required this.email});
+  //static String id = "Sign Up";
+  final String email;
   @override
   State<SignUp> createState() => _SignupState();
 }
@@ -32,7 +32,7 @@ class _SignupState extends State<SignUp> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    final email = ModalRoute.of(context)?.settings.arguments as String;
+   // final email = ModalRoute.of(context)?.settings.arguments as String;
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => SignupBloc()),
@@ -41,7 +41,7 @@ class _SignupState extends State<SignUp> with SingleTickerProviderStateMixin {
         ),
       ],
       child: Scaffold(
-        backgroundColor: Colors.white,
+        //backgroundColor: Colors.white,
         body: AnimatedBackground(
           vsync: this,
           behaviour: RandomParticleBehaviour(
@@ -65,7 +65,7 @@ class _SignupState extends State<SignUp> with SingleTickerProviderStateMixin {
                       message: "Signup Successfully",
                       contentType: ContentType.success,
                     );
-                    await Future.delayed(Duration(seconds: 3));
+                    await Future.delayed(Duration(seconds: 2));
                     Get.offAll(() => DrawerScreen());
                     break;
                   case SignupFailed():
@@ -83,7 +83,6 @@ class _SignupState extends State<SignUp> with SingleTickerProviderStateMixin {
               builder: (context, state) {
                 final signupData = state.data;
                 final bool isLoading = state is SignupLoading;
-
                 return Form(
                   key: signupData.formKey,
                   child: Padding(
@@ -114,6 +113,7 @@ class _SignupState extends State<SignUp> with SingleTickerProviderStateMixin {
                           },
                           child: ImageProfileWidget(),
                         ),
+
                         SizedBox(height: 10),
                         TextFormFieldWidget(
                           label: 'First Name',
@@ -131,7 +131,6 @@ class _SignupState extends State<SignUp> with SingleTickerProviderStateMixin {
                         TextFormFieldWidget(
                           label: 'Last Name',
                           iconTextField: Icons.person,
-
                           onChanged: (value) {
                             context.read<SignupBloc>().add(
                               SLastNameFieldEvent(name: value),
@@ -146,13 +145,10 @@ class _SignupState extends State<SignUp> with SingleTickerProviderStateMixin {
                           iconTextField: Icons.person,
                           validator: (value) => signupData.birthDate.error,
                           error: signupData.birthDate.error,
-
                           controller: birthController,
                           suffixIcon: IconButton(
-                            icon: Icon(Icons.calendar_today),
-                            onPressed: () {
-                              _selectDate(context);
-                            },
+                            icon: Icon(Icons.calendar_month_outlined),
+                            onPressed: () => selectDate(context),
                           ),
 
                           readOnly: true,
@@ -163,12 +159,9 @@ class _SignupState extends State<SignUp> with SingleTickerProviderStateMixin {
                           iconTextField: Icons.transgender,
                           error: signupData.gender.error,
                           validator: (value) => signupData.gender.error,
-                          onChanged: (value) {},
                           controller: genderController,
                           readOnly: true,
-                          onTap: () {
-                            selectGender(context);
-                          },
+                          onTap: () => selectGender(context),
                         ),
                         TextFormFieldWidget(
                           label: 'Phone',
@@ -246,7 +239,7 @@ class _SignupState extends State<SignUp> with SingleTickerProviderStateMixin {
                               (signupData.buttonEvent && !isLoading)
                                   ? () {
                                     context.read<SignupBloc>().add(
-                                      SEmailFieldEvent(email: email),
+                                      SEmailFieldEvent(email:widget.email),
                                     );
                                     context.read<SignupBloc>().add(
                                       SignupSubmitEvent(),
@@ -277,7 +270,10 @@ class _SignupState extends State<SignUp> with SingleTickerProviderStateMixin {
               genderOption.map((gender) {
                 return ListTile(
                   leading: Icon(gender == 'Male' ? Icons.male : Icons.female),
-                  title: Text(gender),
+                  title: Text(
+                    gender,
+                    style: Theme.of(context).textTheme.titleSmall,
+                  ),
                   onTap: () {
                     context.read<SignupBloc>().add(
                       SGenderFieldEvent(gender: gender),
@@ -293,7 +289,7 @@ class _SignupState extends State<SignUp> with SingleTickerProviderStateMixin {
     );
   }
 
-  Future<void> _selectDate(BuildContext context) async {
+  Future<void> selectDate(BuildContext context) async {
     final bloc = context.read<SignupBloc>();
     DateTime? picked = await showDatePicker(
       builder: (context, child) {

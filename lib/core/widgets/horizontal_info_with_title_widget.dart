@@ -29,7 +29,7 @@ class HorizontalInfoWithTitleWidget extends StatelessWidget {
         Text(
           info,
           style: TextStyle(
-            color: AppColors.mainTextColor,
+           //color: AppColors.mainTextColor,
             fontSize: AppDimensions.sfs,
             fontWeight: FontWeight.bold,
           ),

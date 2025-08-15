@@ -23,7 +23,7 @@ class AppBarProfileWidget extends StatelessWidget {
           height: height * 0.4,
           decoration: BoxDecoration(
             gradient: LinearGradient(
-              colors: [AppColors.primaryColor, AppColors.backgroundColor],
+              colors: [AppColors.primaryColor, Theme.of(context).scaffoldBackgroundColor],
               begin: Alignment.topLeft,
             ),
           ),
