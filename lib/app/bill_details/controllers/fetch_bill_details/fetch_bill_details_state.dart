@@ -5,9 +5,9 @@ sealed class FetchBillDetailsState {}
 final class FetchBillDetailsLoading extends FetchBillDetailsState {}
 
 final class FetchBillDetailsLoaded extends FetchBillDetailsState {
-  final List<BillInfoModel> billInfo;
+  final List<BillInfoModel> billDetails;
 
-  FetchBillDetailsLoaded({required this.billInfo});
+  FetchBillDetailsLoaded({required this.billDetails});
 }
 
 final class FetchBillDetailsFailed extends FetchBillDetailsState {

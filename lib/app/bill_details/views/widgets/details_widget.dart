@@ -6,9 +6,9 @@ import 'package:clinic_app/core/constants/app_shadow.dart';
 import 'package:flutter/material.dart';
 
 class DetailsWidget extends StatelessWidget {
-  const DetailsWidget({super.key, required this.billInfo});
+  const DetailsWidget({super.key, required this.billDetails});
 
-  final List<BillInfoModel> billInfo;
+  final List<BillInfoModel> billDetails;
 
   @override
   Widget build(BuildContext context) {
@@ -24,14 +24,14 @@ class DetailsWidget extends StatelessWidget {
         padding: EdgeInsets.all(AppDimensions.mp),
         itemBuilder: (context, index) {
           return DetailWidget(
-            title: billInfo[index].title,
-            detail: billInfo[index].info,
+            title: billDetails[index].title,
+            detail: billDetails[index].info,
           );
         },
         separatorBuilder: (context, index) {
           return Divider(height: AppDimensions.xlp);
         },
-        itemCount: billInfo.length,
+        itemCount: billDetails.length,
       ),
     );
   }

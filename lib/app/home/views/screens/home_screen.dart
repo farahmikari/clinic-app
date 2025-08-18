@@ -12,6 +12,7 @@ import 'package:clinic_app/core/constants/app_dimensions.dart';
 import 'package:clinic_app/app/home/views/widgets/card_widget.dart';
 import 'package:clinic_app/core/widgets/subtitle_widget.dart';
 import 'package:clinic_app/core/widgets/subtitle_with_text_button_widget.dart';
+import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
@@ -51,8 +52,8 @@ class HomeScreen extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: AppDimensions.mp),
                     child: SubtitleWithTextButtonWidget(
-                      subtitle: "Latest Offers",
-                      buttonTitle: "See All",
+                      subtitle: S.current.latest_offers,
+                      buttonTitle: S.current.see_more,
                       onPressed: () {
                         Get.to(() => OffersScreen());
                       },
@@ -70,7 +71,7 @@ class HomeScreen extends StatelessWidget {
                   SizedBox(height: AppDimensions.mp),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: AppDimensions.mp),
-                    child: SubtitleWidget(subtitle: "Most Rated"),
+                    child: SubtitleWidget(subtitle: S.current.most_rated),
                   ),
                   SizedBox(height: AppDimensions.mp),
                   BlocBuilder<MostRatedDoctorsBloc, MostRatedDoctorsState>(
@@ -91,7 +92,7 @@ class HomeScreen extends StatelessWidget {
                   SizedBox(height: AppDimensions.mp),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: AppDimensions.mp),
-                    child: SubtitleWidget(subtitle: "Services"),
+                    child: SubtitleWidget(subtitle: S.current.services),
                   ),
                   SizedBox(height: AppDimensions.mp),
                   ServicesButtonsWidget(),

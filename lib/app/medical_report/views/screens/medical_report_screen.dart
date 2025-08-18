@@ -1,6 +1,7 @@
 import 'package:clinic_app/app/medical_report/models/medical_report_model.dart';
 import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
+import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_core/theme.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
@@ -17,7 +18,7 @@ class MedicalReportScreen extends StatelessWidget {
         backgroundColor: AppColors.backgroundColor,
         surfaceTintColor: AppColors.backgroundColor,
         title: Text(
-          "Medical Report",
+          S.current.medical_report,
           style: TextStyle(
             color: AppColors.mainTextColor,
             fontSize: AppDimensions.lfs,

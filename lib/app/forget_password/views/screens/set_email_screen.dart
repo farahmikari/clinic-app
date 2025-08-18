@@ -8,6 +8,7 @@ import 'package:clinic_app/app/verification/views/screen/verification_screen.dar
 import 'package:clinic_app/app/login/views/widgets/button_widget.dart';
 import 'package:clinic_app/app/login/views/widgets/text_form_field_widget.dart';
 import 'package:clinic_app/core/utils/snack_bar_util.dart';
+import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -32,8 +33,8 @@ class SetEmailScreen extends StatelessWidget {
                 case EmailSuccess():
                   showSnackBar(
                     context,
-                    title: "Success",
-                    message: "Verify code is sent Successfully",
+                    title: S.current.success,
+                    message: S.current.verify_code_is_sent_successfully,
                     contentType: ContentType.success,
                   );
                   Navigator.pushNamed(
@@ -48,8 +49,8 @@ class SetEmailScreen extends StatelessWidget {
                 case EmailFailed():
                   showSnackBar(
                     context,
-                    title: "Failed",
-                    message: "Failed to send verify code",
+                    title: S.current.failed,
+                    message: S.current.failed_to_send_verify_code,
                     contentType: ContentType.failure,
                   );
                   break;
@@ -75,33 +76,34 @@ class SetEmailScreen extends StatelessWidget {
                     ),
                     SizedBox(height: 20),
                     Text(
-                      'Set Your Email',
+                      S.current.set_your_email,
                       style: Theme.of(context).textTheme.titleLarge,
                     ),
 
                     SizedBox(height: height * 0.1),
                     TextFormFieldWidget(
-                      label: 'Email',
+                      label: S.current.email,
                       controller: emailController,
                       iconTextField: Icons.email,
                       onChanged: (value) {
                         context.read<EmailBloc>().add(
                           InitEmailEvent(email: value),
                         );
-                      
                       },
                       error: emailState.email.error,
                       validator: (value) => emailState.email.error,
                     ),
                     MyButtonWidget(
-                      text: 'Verify',
-                      isLoading:isLoading ,
+                      text: S.current.verify,
+                      isLoading: isLoading,
                       onPressed:
                           (state.canSubmit && !isLoading)
                               ? () {
-                                
                                 context.read<EmailBloc>().add(
-                                  CanSubmitEmail(email: emailController.text,signUp: false),
+                                  CanSubmitEmail(
+                                    email: emailController.text,
+                                    signUp: false,
+                                  ),
                                 );
                               }
                               : null,

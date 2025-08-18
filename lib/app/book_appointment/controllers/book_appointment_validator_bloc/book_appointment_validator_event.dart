@@ -3,6 +3,7 @@ part of 'book_appointment_validator_bloc.dart';
 sealed class BookAppointmentValidatorEvent {}
 
 class CheckConfirmAbility extends BookAppointmentValidatorEvent {
+  final int? offerId;
   final int? departmentId;
   final int? doctorId;
   final int? requestTypeId;
@@ -11,6 +12,7 @@ class CheckConfirmAbility extends BookAppointmentValidatorEvent {
   final bool? withMedicalReport;
 
   CheckConfirmAbility({
+    this.offerId,
     this.departmentId,
     this.doctorId,
     this.requestTypeId,

@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:clinic_app/app/book_appointment_with_offer/views/widgets/book_appointment_with_offer_auth_decision_widget.dart';
 import 'package:clinic_app/app/offers/models/offer_model.dart';
+import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
 import 'package:clinic_app/core/constants/app_shadow.dart';
 import 'package:clinic_app/core/extentions/percent_sized_extention.dart';
@@ -26,6 +27,7 @@ class OfferWidget extends StatelessWidget {
         width: 92.0.wp,
         clipBehavior: Clip.hardEdge,
         decoration: BoxDecoration(
+          color: AppColors.widgetBackgroundColor,
           borderRadius: BorderRadius.circular(AppDimensions.mbr),
           boxShadow: AppShadow.boxShadow,
         ),

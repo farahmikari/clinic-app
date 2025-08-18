@@ -10,7 +10,7 @@ sealed class FetchNewReservationState extends Equatable {
 final class FetchNewReservationLoading extends FetchNewReservationState {}
 
 final class FetchNewReservationLoaded extends FetchNewReservationState {
-  final NewReservationModel reservation;
+  final ReservationModel reservation;
 
   const FetchNewReservationLoaded({required this.reservation});
 }

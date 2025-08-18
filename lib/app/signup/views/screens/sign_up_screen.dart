@@ -9,6 +9,7 @@ import 'package:clinic_app/core/widgets/image_widget/controller/service/image_pi
 import 'package:clinic_app/core/widgets/image_widget/views/widget/image_profile_widget.dart';
 import 'package:clinic_app/consts.dart';
 import 'package:clinic_app/core/utils/snack_bar_util.dart';
+import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
@@ -25,7 +26,7 @@ class _SignupState extends State<SignUp> with SingleTickerProviderStateMixin {
   String? valueBirth;
   bool _obscure = false;
   bool _conObscure = false;
-  final List<String> genderOption = ['Male', 'Female'];
+  final List<String> genderOption = [S.current.male, S.current.female];
 
   TextEditingController birthController = TextEditingController();
   TextEditingController genderController = TextEditingController();
@@ -61,8 +62,8 @@ class _SignupState extends State<SignUp> with SingleTickerProviderStateMixin {
                   case SignupSuccess():
                     showSnackBar(
                       context,
-                      title: "Success",
-                      message: "Signup Successfully",
+                      title: S.current.success,
+                      message: S.current.sign_up_successfully,
                       contentType: ContentType.success,
                     );
                     await Future.delayed(Duration(seconds: 3));
@@ -71,8 +72,8 @@ class _SignupState extends State<SignUp> with SingleTickerProviderStateMixin {
                   case SignupFailed():
                     showSnackBar(
                       context,
-                      title: "Failed",
-                      message: "Failed signup",
+                      title: S.current.failed,
+                      message: S.current.failed_sign_up,
                       contentType: ContentType.failure,
                     );
                     break;
@@ -95,7 +96,7 @@ class _SignupState extends State<SignUp> with SingleTickerProviderStateMixin {
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
-                            "set your information ",
+                            S.current.set_your_information,
                             style: TextStyle(
                               fontFamily: "Montserat",
                               fontSize: 22,
@@ -116,7 +117,7 @@ class _SignupState extends State<SignUp> with SingleTickerProviderStateMixin {
                         ),
                         SizedBox(height: 10),
                         TextFormFieldWidget(
-                          label: 'First Name',
+                          label: S.current.first_name,
                           iconTextField: Icons.person,
                           onChanged: (value) {
                             context.read<SignupBloc>().add(
@@ -129,7 +130,7 @@ class _SignupState extends State<SignUp> with SingleTickerProviderStateMixin {
                         ),
 
                         TextFormFieldWidget(
-                          label: 'Last Name',
+                          label: S.current.last_name,
                           iconTextField: Icons.person,
 
                           onChanged: (value) {
@@ -142,7 +143,7 @@ class _SignupState extends State<SignUp> with SingleTickerProviderStateMixin {
                           validator: (value) => signupData.lastName.error,
                         ),
                         TextFormFieldWidget(
-                          label: 'Birthday Date',
+                          label: S.current.birthday_date,
                           iconTextField: Icons.person,
                           validator: (value) => signupData.birthDate.error,
                           error: signupData.birthDate.error,
@@ -159,7 +160,7 @@ class _SignupState extends State<SignUp> with SingleTickerProviderStateMixin {
                         ),
 
                         TextFormFieldWidget(
-                          label: 'Gender',
+                          label: S.current.gender,
                           iconTextField: Icons.transgender,
                           error: signupData.gender.error,
                           validator: (value) => signupData.gender.error,
@@ -171,7 +172,7 @@ class _SignupState extends State<SignUp> with SingleTickerProviderStateMixin {
                           },
                         ),
                         TextFormFieldWidget(
-                          label: 'Phone',
+                          label: S.current.phone,
                           iconTextField: Icons.phone,
 
                           onChanged: (value) {
@@ -187,7 +188,7 @@ class _SignupState extends State<SignUp> with SingleTickerProviderStateMixin {
                         ),
 
                         TextFormFieldWidget(
-                          label: 'Password',
+                          label: S.current.password,
                           iconTextField: Icons.key,
                           error: signupData.password.error,
                           validator: (value) => signupData.password.error,
@@ -213,7 +214,7 @@ class _SignupState extends State<SignUp> with SingleTickerProviderStateMixin {
                           ),
                         ),
                         TextFormFieldWidget(
-                          label: 'Confirm Password',
+                          label: S.current.confirm_password,
                           iconTextField: Icons.key,
                           error: signupData.conPassword.error,
                           validator: (value) => signupData.conPassword.error,
@@ -239,7 +240,7 @@ class _SignupState extends State<SignUp> with SingleTickerProviderStateMixin {
                           ),
                         ),
                         MyButtonWidget(
-                          text: 'Sign Up',
+                          text: S.current.sign_up,
                           color: kPrimaryColor,
                           isLoading: isLoading,
                           onPressed:
@@ -276,7 +277,9 @@ class _SignupState extends State<SignUp> with SingleTickerProviderStateMixin {
           children:
               genderOption.map((gender) {
                 return ListTile(
-                  leading: Icon(gender == 'Male' ? Icons.male : Icons.female),
+                  leading: Icon(
+                    gender == S.current.male ? Icons.male : Icons.female,
+                  ),
                   title: Text(gender),
                   onTap: () {
                     context.read<SignupBloc>().add(

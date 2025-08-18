@@ -9,6 +9,7 @@ class BookAppointmentValidatorBloc
   BookAppointmentValidatorBloc() : super(BookAppointmentValidatorInitial()) {
     on<CheckConfirmAbility>((event, emit) {
       ReservationModel currentReservation = state.currentReservation.copyWith(
+        offerId: event.offerId,
         departmentId: event.departmentId,
         doctorId: event.doctorId,
         requestTypeId: event.requestTypeId,

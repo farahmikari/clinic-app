@@ -1,6 +1,10 @@
 class EndPoints {
   static String baseUrl = "http://192.168.1.2:8000";
 
+  static void setBaseUrl(String newBaseUrl) {
+    baseUrl = newBaseUrl;
+  }
+
   static String departmentId(int departmentId) {
     return "/api/department/$departmentId";
   }
@@ -23,6 +27,18 @@ class EndPoints {
 
   static String offerId(int offerId) {
     return "/api/offer/$offerId";
+  }
+
+  static String doctorDepartmentId(int departmentId) {
+    return "/api/doctors/department/$departmentId";
+  }
+
+  static String doctorId(int doctorId) {
+    return "/api/days/doctor/$doctorId";
+  }
+
+  static String billId(int billId) {
+    return "/api/user/bill/$billId";
   }
 
   /////send otp code to email/////
@@ -75,6 +91,8 @@ class EndPoints {
   static String points = "/api/points";
   static String offers = "/api/offers";
   static String offerPrice = "/api/offer_price";
+  static String notifications = "/api/notifications";
+  static String bills = "/api/user/bills";
 }
 
 class ApiKey {
@@ -136,4 +154,12 @@ class ApiKey {
   static String selectedService = "selected_service";
   static String price = "price";
   static String currency = "currency";
+  static String morningDoctorsCount = "morning_Doctors_Count";
+  static String afternoonDoctorsCount = "morning_Doctors_Count";
+  static String afternoon = "afternoon";
+  static String morning = "morning";
+  static String unreadNotifications = "Unread Notifications";
+  static String readNotifications = "Read Notifications";
+  static String paid = "paid";
+  static String unpaid = "unpaid";
 }

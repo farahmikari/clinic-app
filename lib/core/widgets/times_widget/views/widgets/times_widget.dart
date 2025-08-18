@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:clinic_app/app/book_appointment/models/time_model.dart';
 import 'package:clinic_app/core/widgets/times_widget/controllers/times_bloc/times_bloc.dart';
 import 'package:clinic_app/core/widgets/times_widget/views/items/times_grid_view_item.dart';
+import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -38,11 +39,11 @@ class TimesWidget extends StatelessWidget {
       if (shift == "Morning") {
         isDroppedDown =
             context.read<TimesBloc>().state.areMorningTimesDroppedDown;
-        return isDroppedDown ? "Less" : "More";
+        return isDroppedDown ? S.current.less : S.current.more;
       } else {
         isDroppedDown =
             context.read<TimesBloc>().state.areAfternoonTimesDroppedDown;
-        return isDroppedDown ? "Less" : "More";
+        return isDroppedDown ? S.current.less : S.current.more;
       }
     }
 

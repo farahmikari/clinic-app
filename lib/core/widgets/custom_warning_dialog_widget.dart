@@ -1,5 +1,6 @@
 import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
+import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 
 class CustomWarningDialogWidget extends StatelessWidget {
@@ -17,7 +18,7 @@ class CustomWarningDialogWidget extends StatelessWidget {
       backgroundColor: AppColors.widgetBackgroundColor,
       title: Center(
         child: Text(
-          "Oops",
+          S.current.oops,
           style: TextStyle(
             color: AppColors.mainTextColor,
             fontSize: AppDimensions.xlfs,
@@ -41,7 +42,7 @@ class CustomWarningDialogWidget extends StatelessWidget {
             overlayColor: WidgetStatePropertyAll(Colors.transparent),
           ),
           child: Text(
-            "Ok",
+            S.current.ok,
             style: TextStyle(
               color: AppColors.primaryColor,
               fontSize: AppDimensions.mfs,

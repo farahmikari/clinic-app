@@ -1,4 +1,5 @@
 import 'package:clinic_app/app/home/views/widgets/app_bar_widgets/action_button_widget.dart';
+import 'package:clinic_app/app/languages/views/screens/languages_screen.dart';
 import 'package:clinic_app/app/notifications/views/screens/notification_screen.dart';
 import 'package:clinic_app/app/user_drawer/controllers/bloc/drawer_bloc/drawer_bloc.dart';
 import 'package:clinic_app/core/constants/app_colors.dart';
@@ -6,6 +7,7 @@ import 'package:clinic_app/core/constants/app_dimensions.dart';
 import 'package:clinic_app/core/constants/app_icons.dart';
 import 'package:clinic_app/core/extentions/percent_sized_extention.dart';
 import 'package:clinic_app/core/widgets/search_widget.dart';
+import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart' as getx;
@@ -23,9 +25,9 @@ class HomeAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
       leadingWidth: 14.0.wp,
       backgroundColor: AppColors.backgroundColor,
       surfaceTintColor: AppColors.backgroundColor,
-      actionsPadding: EdgeInsets.only(right: AppDimensions.mp),
+      actionsPadding: EdgeInsetsDirectional.only(end: AppDimensions.mp),
       title: Text(
-        "Home",
+        S.current.home,
         style: TextStyle(
           color: AppColors.mainTextColor,
           fontSize: AppDimensions.lfs,
@@ -42,9 +44,19 @@ class HomeAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
             );
           },
         ),
+        SizedBox(width: AppDimensions.mp),
+        ActionButtonWidget(
+          icon: AppIcons.settings,
+          onTap: () {
+            getx.Get.to(
+              () => LanguagesScreen(),
+              transition: getx.Transition.zoom,
+            );
+          },
+        ),
       ],
       leading: Align(
-        alignment: Alignment.centerRight,
+        alignment: AlignmentDirectional.centerEnd,
         child: ActionButtonWidget(
           icon: AppIcons.menu,
           onTap: () {
@@ -55,10 +67,10 @@ class HomeAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
       bottom: PreferredSize(
         preferredSize: Size.fromHeight(15.0.wp),
         child: Padding(
-          padding: EdgeInsets.only(
+          padding: EdgeInsetsDirectional.only(
             bottom: AppDimensions.mp,
-            left: AppDimensions.mp,
-            right: AppDimensions.mp,
+            start: AppDimensions.mp,
+            end: AppDimensions.mp,
           ),
           child: SearchWidget(),
         ),

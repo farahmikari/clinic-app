@@ -7,10 +7,10 @@ class SelectedServiceModel {
     required this.withMedicalReport,
   });
 
-  SelectedServiceModel copyWith({int? requestTypeId, bool? withMedicalReport}) {
+  factory SelectedServiceModel.fromJson(Map<String, dynamic> jsonData) {
     return SelectedServiceModel(
-      requestTypeId: requestTypeId ?? this.requestTypeId,
-      withMedicalReport: withMedicalReport ?? this.withMedicalReport,
+      requestTypeId: jsonData['request_type_id'],
+      withMedicalReport: jsonData['with_medical_report'],
     );
   }
 

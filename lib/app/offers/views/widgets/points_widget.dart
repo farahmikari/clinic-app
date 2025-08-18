@@ -3,6 +3,7 @@ import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
 import 'package:clinic_app/core/constants/app_shadow.dart';
 import 'package:clinic_app/core/extentions/percent_sized_extention.dart';
+import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 
 class PointsWidget extends StatelessWidget {
@@ -12,50 +13,72 @@ class PointsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String specifyPointsUnit() {
+      return userPoints.points > 1
+          ? S.current.points_unit
+          : S.current.point_unit;
+    }
+
     return Container(
-      height: 32.0.wp,
+      height: 35.0.wp,
       width: 92.0.wp,
-      padding: EdgeInsets.all(AppDimensions.mp),
+      padding: EdgeInsets.all(AppDimensions.sp),
       clipBehavior: Clip.hardEdge,
       decoration: BoxDecoration(
+        color: AppColors.transparentGreen,
         borderRadius: BorderRadius.circular(AppDimensions.mbr),
         boxShadow: AppShadow.boxShadow,
-        image: DecorationImage(
-          image: AssetImage("assets/images/points_background.jpeg"),
-          fit: BoxFit.cover,
-        ),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
-        spacing: AppDimensions.sp,
         children: [
           Expanded(
-            flex: 1,
             child: Center(
-              child: Text(
-                "Well done!\nhere’s your total point balance!",
-                style: TextStyle(
-                  color: AppColors.widgetBackgroundColor,
-                  fontSize: AppDimensions.mfs,
-                  fontWeight: FontWeight.w500,
-                ),
-                textAlign: TextAlign.center,
-              ),
+              child: Image(image: AssetImage("assets/images/offers.png")),
             ),
           ),
           Expanded(
-            flex: 1,
-            child: Center(
-              child: Text(
-                "${userPoints.points} Points",
-                style: TextStyle(
-                  color: AppColors.darkGreyColor,
-                  fontSize: AppDimensions.xlfs,
-                  fontWeight: FontWeight.bold,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Expanded(
+                  child: Center(
+                    child: Text(
+                      S.current.points_title,
+                      style: TextStyle(
+                        color: AppColors.widgetBackgroundColor,
+                        fontSize: AppDimensions.mfs,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
                 ),
-                textAlign: TextAlign.center,
-              ),
+                Expanded(
+                  child: Center(
+                    child: Container(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: AppDimensions.mp,
+                        vertical: AppDimensions.sp,
+                      ),
+                      decoration: BoxDecoration(
+                        color: AppColors.widgetBackgroundColor,
+                        borderRadius: BorderRadius.circular(AppDimensions.lbr),
+                      ),
+                      child: Text(
+                        "${userPoints.points} ${specifyPointsUnit()}",
+                        style: TextStyle(
+                          color: AppColors.primaryColor,
+                          fontSize: AppDimensions.sfs,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
         ],

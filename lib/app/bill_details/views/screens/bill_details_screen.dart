@@ -6,6 +6,7 @@ import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
 import 'package:clinic_app/core/widgets/filter_badge_widget.dart';
 import 'package:clinic_app/core/widgets/loading_widget.dart';
+import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -25,15 +26,15 @@ class BillDetailsScreen extends StatelessWidget {
     return BlocProvider(
       create:
           (context) =>
-              FetchBillDetailsBloc()..add(FetchBillDetails(bill: bill)),
+              FetchBillDetailsBloc()..add(FetchBillDetails(billId: bill.id)),
       child: Scaffold(
         backgroundColor: AppColors.backgroundColor,
         appBar: AppBar(
-          actionsPadding: EdgeInsets.only(right: AppDimensions.mp),
+          actionsPadding: EdgeInsetsDirectional.only(end: AppDimensions.mp),
           backgroundColor: AppColors.backgroundColor,
           surfaceTintColor: AppColors.backgroundColor,
           title: Text(
-            "Details",
+            S.current.bill_details,
             style: TextStyle(
               color: AppColors.mainTextColor,
               fontSize: AppDimensions.lfs,
@@ -49,15 +50,15 @@ class BillDetailsScreen extends StatelessWidget {
             builder: (context, state) {
               if (state is FetchBillDetailsLoaded) {
                 return ListView(
-                  padding: EdgeInsets.only(
-                    left: AppDimensions.mp,
-                    right: AppDimensions.mp,
+                  padding: EdgeInsetsDirectional.only(
+                    start: AppDimensions.mp,
+                    end: AppDimensions.mp,
                     bottom: AppDimensions.mp,
                   ),
                   children: [
                     ServiceWidget(bill: bill),
                     SizedBox(height: AppDimensions.sp),
-                    DetailsWidget(billInfo: state.billInfo),
+                    DetailsWidget(billDetails: state.billDetails),
                   ],
                 );
               }

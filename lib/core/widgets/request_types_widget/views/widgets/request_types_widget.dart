@@ -3,6 +3,7 @@ import 'package:clinic_app/core/widgets/request_types_widget/controllers/request
 import 'package:clinic_app/core/widgets/request_types_widget/models/request_type_ids.dart';
 import 'package:clinic_app/core/widgets/request_types_widget/views/items/droppable_item.dart';
 import 'package:clinic_app/core/widgets/request_types_widget/views/items/label_item.dart';
+import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -26,20 +27,20 @@ class RequestTypesWidget extends StatelessWidget {
         ),
         BlocBuilder<RequestTypesBloc, RequestTypesState>(
           builder: (context, state) {
-            late String label = "Request Type";
+            late String label = S.current.reservation_type;
             if (state.currentRequestTypeId != -1) {
               switch (state.currentRequestTypeId) {
                 case RequestTypeIds.checkUp:
-                  label = "Check-Up";
+                  label = S.current.check_up;
                 case RequestTypeIds.followUp:
-                  label = "Follow-Up";
+                  label = S.current.follow_up;
               }
             } else if (state.previousRequestTypeId != -1) {
               switch (state.previousRequestTypeId) {
                 case RequestTypeIds.checkUp:
-                  label = "Check-Up";
+                  label = S.current.check_up;
                 case RequestTypeIds.followUp:
-                  label = "Follow-Up";
+                  label = S.current.follow_up;
               }
             }
             return LabelItem(

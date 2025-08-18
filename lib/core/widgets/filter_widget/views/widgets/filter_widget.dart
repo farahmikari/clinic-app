@@ -9,23 +9,18 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class FilterWidget extends StatelessWidget {
   const FilterWidget({
     super.key,
-    required this.filter,
-    required this.whiteFilterName,
-    required this.greenFilterName,
-    required this.yelloFilterName,
+    required this.filterIndex,
+    required this.filterNames,
     required this.isActivated,
   });
-
-  final String filter;
-  final String whiteFilterName;
-  final String greenFilterName;
-  final String yelloFilterName;
+  final int filterIndex;
+  final List<String> filterNames;
   final bool isActivated;
 
   Color specifyFilterBackgroundColor() {
-    if (filter == greenFilterName) {
+    if (filterIndex == 1) {
       return AppColors.transparentGreen;
-    } else if (filter == yelloFilterName) {
+    } else if (filterIndex == 2) {
       return AppColors.transparentYellow;
     } else {
       return AppColors.widgetBackgroundColor;
@@ -35,7 +30,7 @@ class FilterWidget extends StatelessWidget {
   Color specifyFilterColor() {
     if (!isActivated) {
       return AppColors.hintTextColor;
-    } else if (filter == whiteFilterName) {
+    } else if (filterIndex == 0) {
       return AppColors.mainTextColor;
     } else {
       return AppColors.widgetBackgroundColor;
@@ -60,7 +55,7 @@ class FilterWidget extends StatelessWidget {
           boxShadow: AppShadow.boxShadow,
         ),
         child: Text(
-          filter,
+          filterNames[filterIndex],
           style: TextStyle(
             color: specifyFilterColor(),
             fontSize: AppDimensions.sfs,

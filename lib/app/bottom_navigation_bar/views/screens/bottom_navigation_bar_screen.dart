@@ -13,36 +13,34 @@ class BottomNavigationBarScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create:
-              (context) =>
-                  BottomNavigationBarBloc()..add(CurrentIndexChanged(0)),
-        ),
-      ],
-
-      child:
-          BlocSelector<BottomNavigationBarBloc, BottomNavigationBarState, int>(
-            selector: (state) {
-              return state.currentIndex;
-            },
-            builder: (context, state) {
-              return Scaffold(
-                backgroundColor: AppColors.backgroundColor,
-                body: IndexedStack(
-                  index: state,
-                  children: [
-                    const HomeScreen(),
-                    const AppointmentsAuthDecisionWidget(),
-                    const DepartmentsScreen(),
-                    const BillsAuthDecisionWidget(),
-                  ],
-                ),
-                bottomNavigationBar: SafeArea(child: SalomonBottomBarWidget()),
-              );
-            },
-          ),
+    return BlocProvider(
+      create:
+          (context) => BottomNavigationBarBloc()..add(CurrentIndexChanged(0)),
+      child: BlocBuilder<BottomNavigationBarBloc, BottomNavigationBarState>(
+        builder: (context, state) {
+          return Scaffold(
+            backgroundColor: AppColors.backgroundColor,
+            body: IndexedStack(
+              index: state.currentIndex,
+              children: [
+                state.isHomeBlocsInitialized ? const HomeScreen() : SizedBox(),
+                state.isAppointmentsBlocsInitialized
+                    ? const AppointmentsAuthDecisionWidget()
+                    : SizedBox(),
+                state.isDepartmentsBlocsInitialized
+                    ? const DepartmentsScreen()
+                    : SizedBox(),
+                state.isBillsBlocsInitialized
+                    ? const BillsAuthDecisionWidget()
+                    : SizedBox(),
+              ],
+            ),
+            bottomNavigationBar: SafeArea(
+              child: SalomonBottomBarWidget(currentIndex: state.currentIndex),
+            ),
+          );
+        },
+      ),
     );
   }
 }

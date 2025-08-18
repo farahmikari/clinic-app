@@ -1,11 +1,13 @@
 import 'package:clinic_app/app/auth_prompt/controllers/check_user_authentication_bloc/check_user_authentication_bloc.dart';
 import 'package:clinic_app/app/forget_password/views/screens/reset_password.dart';
 import 'package:clinic_app/app/forget_password/views/screens/set_email_screen.dart';
+import 'package:clinic_app/app/languages/controllers_2/bloc/localization_bloc.dart';
 import 'package:clinic_app/app/login/views/screens/login_screen.dart';
 import 'package:clinic_app/app/onboarding/views/screens/splash_screen.dart';
 import 'package:clinic_app/app/signup/views/screens/email_screen.dart';
 import 'package:clinic_app/app/signup/views/screens/sign_up_screen.dart';
 import 'package:clinic_app/app/verification/views/screen/verification_screen.dart';
+import 'package:clinic_app/generated/l10n.dart';
 import 'package:clinic_app/service_locator.dart';
 import 'package:clinic_app/core/services/app_bloc_observer.dart';
 import 'package:clinic_app/core/services/local_notification_service.dart';
@@ -14,6 +16,7 @@ import 'package:clinic_app/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
 
 void main() async {
@@ -26,11 +29,18 @@ void main() async {
   Bloc.observer = AppBlocObserver();
   setup();
   runApp(
-    BlocProvider(
-      create:
-          (context) =>
-              getIt<CheckUserAuthenticationBloc>()
-                ..add(UserAuthenticationIsChecked()),
+    MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create:
+              (context) =>
+                  getIt<CheckUserAuthenticationBloc>()
+                    ..add(UserAuthenticationIsChecked()),
+        ),
+        BlocProvider(
+          create: (context) => LocalizationBloc()..add(SavedLocaleIsFetched()),
+        ),
+      ],
       child: const ClinicApp(),
     ),
   );
@@ -41,35 +51,47 @@ class ClinicApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      debugShowCheckedModeBanner: false,
-      routes: {
-        LoginScreen.id: (context) => LoginScreen(),
-        EmailScreen.id: (context) => EmailScreen(),
-        VerificationScreen.id: (context) => VerificationScreen(),
-        SignUp.id: (context) => SignUp(),
-        SetEmailScreen.id: (context) => SetEmailScreen(),
-        ResetPassword.id: (context) => ResetPassword(),
+    return BlocBuilder<LocalizationBloc, LocalizationState>(
+      builder: (context, state) {
+        return GetMaterialApp(
+          debugShowCheckedModeBanner: false,
+          routes: {
+            LoginScreen.id: (context) => LoginScreen(),
+            EmailScreen.id: (context) => EmailScreen(),
+            VerificationScreen.id: (context) => VerificationScreen(),
+            SignUp.id: (context) => SignUp(),
+            SetEmailScreen.id: (context) => SetEmailScreen(),
+            ResetPassword.id: (context) => ResetPassword(),
+          },
+          // theme: ThemeData(
+          //   useMaterial3: true,
+          //   textTheme: Theme.of(context).textTheme.copyWith(
+          //     titleLarge: const TextStyle(
+          //       fontSize: 23,
+          //       fontWeight: FontWeight.w700,
+          //       color: Colors.black,
+          //        fontFamily: "Montserat",
+          //     ),
+          //     titleSmall: const TextStyle(
+          //       fontFamily: "Montserat",
+          //       fontSize: 15,
+          //       fontWeight: FontWeight.w700,
+          //       color: Colors.black,
+          //       height: 1.8,
+          //     ),
+          //   ),
+          // ),
+          localizationsDelegates: const [
+            S.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          supportedLocales: S.delegate.supportedLocales,
+          locale: state.locale,
+          home: SplashScreen(),
+        );
       },
-      // theme: ThemeData(
-      //   useMaterial3: true,
-      //   textTheme: Theme.of(context).textTheme.copyWith(
-      //     titleLarge: const TextStyle(
-      //       fontSize: 23,
-      //       fontWeight: FontWeight.w700,
-      //       color: Colors.black,
-      //        fontFamily: "Montserat",
-      //     ),
-      //     titleSmall: const TextStyle(
-      //       fontFamily: "Montserat",
-      //       fontSize: 15,
-      //       fontWeight: FontWeight.w700,
-      //       color: Colors.black,
-      //       height: 1.8,
-      //     ),
-      //   ),
-      // ),
-      home: SplashScreen(),
     );
   }
 }

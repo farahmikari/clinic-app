@@ -3,6 +3,7 @@ import 'package:clinic_app/app/onboarding/controllers/onboarding_bloc/onboarding
 import 'package:clinic_app/app/onboarding/controllers/onboarding_bloc/onboarding_event.dart';
 import 'package:clinic_app/app/onboarding/controllers/onboarding_bloc/onboarding_state.dart';
 import 'package:clinic_app/consts.dart';
+import 'package:clinic_app/generated/l10n.dart';
 import 'package:clinic_app/service_locator.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
@@ -35,21 +36,19 @@ class OnboardingScreen extends StatelessWidget {
                     _page(
                       pageIndex: 0,
                       imageUrl: 'assets/images/Person with a cold-pana.png',
-                      title:
-                          'Taking care of your health has never been this simple',
+                      title: S.current.onboarding_1,
                       context: context,
                     ),
                     _page(
                       pageIndex: 1,
                       imageUrl: 'assets/images/Doctors-pana.png',
-                      title:
-                          'We’re here to make healthcare simple , so we have the best doctors available!',
+                      title: S.current.onboarding_2,
                       context: context,
                     ),
                     _page(
                       pageIndex: 2,
                       imageUrl: 'assets/images/Online calendar-pana.png',
-                      title: 'Book your doctor’s visit in just a few taps',
+                      title: S.current.onboarding_3,
                       context: context,
                     ),
                   ],
@@ -117,7 +116,7 @@ class OnboardingScreen extends StatelessWidget {
                     Navigator.pushNamed(context, LoginScreen.id);
                   },
                   child: Text(
-                    'Skip',
+                    S.current.skip,
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 15,
@@ -147,10 +146,10 @@ class OnboardingScreen extends StatelessWidget {
                             color: kPrimaryColor,
                             borderRadius: BorderRadius.circular(5),
                           ),
-                          child: const Text(
-                            'Get Started',
+                          child: Text(
+                            S.current.get_started,
                             textAlign: TextAlign.center,
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.bold,
                               color: Colors.white,

@@ -4,6 +4,7 @@ import 'package:clinic_app/app/bills/views/widgets/shimmer_bills_widget.dart';
 import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/widgets/app_bar_with_filter_and_search_widget.dart';
 import 'package:clinic_app/core/widgets/filter_widget/controllers/filter_bloc/filter_bloc.dart';
+import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -17,14 +18,10 @@ class BillsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<String> filters = ["All", "Unpaid", "Paid"];
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => FetchBillsBloc()..add(FetchBills())),
-        BlocProvider(
-          create:
-              (context) => FilterBloc()..add(FitlersAreSet(filters: filters)),
-        ),
+        BlocProvider(create: (context) => FilterBloc()),
       ],
       child: MultiBlocListener(
         listeners: [
@@ -40,9 +37,9 @@ class BillsScreen extends StatelessWidget {
               return current.isFilterWidgetActivated == true;
             },
             listener: (context, state) {
-              if (state.filterName == "Unpaid") {
+              if (state.filterIndex == 1) {
                 context.read<FetchBillsBloc>().add(DisplayUnpaidBills());
-              } else if (state.filterName == "Paid") {
+              } else if (state.filterIndex == 2) {
                 context.read<FetchBillsBloc>().add(DisplayPaidBills());
               } else {
                 context.read<FetchBillsBloc>().add(DisplayAllBills());
@@ -53,11 +50,8 @@ class BillsScreen extends StatelessWidget {
         child: Scaffold(
           backgroundColor: AppColors.backgroundColor,
           appBar: AppBarWithFilterAndSearchWidget(
-            appBarTitle: "Bills",
-            searchHintText: "Department, Doctor, Date...",
-            whiteFilterName: "All",
-            greenFilterName: "Unpaid",
-            yelloFilterName: "Paid",
+            appBarTitle: S.current.bills,
+            filterNames: [S.current.all, S.current.unpaid, S.current.paid],
           ),
           body: Builder(
             builder: (context) {

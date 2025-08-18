@@ -58,7 +58,7 @@ class LabelItem extends StatelessWidget {
             ),
             Expanded(
               child: Align(
-                alignment: Alignment.centerRight,
+                alignment: AlignmentDirectional.centerEnd,
                 child: SvgPicture.asset(
                   AppIcons.arrowDown,
                   height: AppDimensions.sis,

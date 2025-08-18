@@ -9,6 +9,11 @@ class FetchDepartmentDays extends FetchDaysEvent {
   FetchDepartmentDays({required this.departmentId});
 }
 
+class FetchDoctorDays extends FetchDaysEvent {
+  final int doctorId;
+  FetchDoctorDays({required this.doctorId});
+}
+
 class FetchOfferDays extends FetchDaysEvent {
   final int offerId;
   FetchOfferDays({required this.offerId});

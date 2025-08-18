@@ -5,6 +5,7 @@ import 'package:clinic_app/consts.dart';
 import 'package:clinic_app/app/login/views/widgets/button_widget.dart';
 import 'package:clinic_app/app/login/views/widgets/text_form_field_widget.dart';
 import 'package:clinic_app/core/utils/snack_bar_util.dart';
+import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -33,8 +34,8 @@ class ResetPassword extends StatelessWidget {
                 case ForgetPasswordSuccess():
                   showSnackBar(
                     context,
-                    title: "Success",
-                    message: "Reset password Successfully",
+                    title: S.current.success,
+                    message: S.current.reset_password_successfully,
                     contentType: ContentType.success,
                   );
                   Navigator.pushNamed(context, LoginScreen.id);
@@ -42,8 +43,8 @@ class ResetPassword extends StatelessWidget {
                 case ForgetPasswordFailed():
                   showSnackBar(
                     context,
-                    title: "Failed",
-                    message: "Reset password Failed",
+                    title: S.current.failed,
+                    message: S.current.reset_password_failed,
                     contentType: ContentType.failure,
                   );
                   break;
@@ -66,12 +67,12 @@ class ResetPassword extends StatelessWidget {
                   ),
                   SizedBox(height: height * 0.1),
                   Text(
-                    "Reset Password",
+                    S.current.reset_password,
                     style: Theme.of(context).textTheme.titleLarge,
                   ),
                   SizedBox(height: height * 0.05),
                   TextFormFieldWidget(
-                    label: 'password',
+                    label: S.current.password,
                     iconTextField: Icons.key,
                     error: resetData.password.error,
                     validator: (value) => resetData.password.error,
@@ -95,7 +96,7 @@ class ResetPassword extends StatelessWidget {
                     ),
                   ),
                   TextFormFieldWidget(
-                    label: 'confirm password',
+                    label: S.current.confirm_password,
                     iconTextField: Icons.key,
                     error: resetData.conPassword.error,
                     validator: (value) => resetData.conPassword.error,
@@ -119,7 +120,7 @@ class ResetPassword extends StatelessWidget {
                     ),
                   ),
                   MyButtonWidget(
-                    text: 'Reset Password',
+                    text: S.current.reset,
                     color: kPrimaryColor,
                     isLoading: isLoading,
                     onPressed:

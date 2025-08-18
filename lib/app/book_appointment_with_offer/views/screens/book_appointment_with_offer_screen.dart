@@ -2,12 +2,8 @@ import 'package:clinic_app/app/book_appointment/controllers/book_appointment_val
 import 'package:clinic_app/app/book_appointment/controllers/fetch_days_bloc/fetch_days_bloc.dart';
 import 'package:clinic_app/app/book_appointment/controllers/fetch_times_bloc/fetch_times_bloc.dart';
 import 'package:clinic_app/app/book_appointment/controllers/send_reservation_bloc/send_reservation_bloc.dart';
-import 'package:clinic_app/app/book_appointment/models/offer_reservation_model.dart';
 import 'package:clinic_app/app/book_appointment/models/reservation_model.dart';
 import 'package:clinic_app/app/book_appointment_with_offer/controllers/fetch_reservation_price_bloc/fetch_reservation_pricing_bloc.dart';
-import 'package:clinic_app/app/book_appointment_with_offer/models/request_offer_cash_price_model.dart';
-import 'package:clinic_app/app/book_appointment_with_offer/models/request_offer_points_price_model.dart';
-import 'package:clinic_app/app/book_appointment_with_offer/models/selected_service_model.dart';
 import 'package:clinic_app/app/doctor/views/screens/doctor_profile_screen.dart';
 import 'package:clinic_app/app/offers/models/offer_model.dart';
 import 'package:clinic_app/app/offers/views/widgets/offer_widget.dart';
@@ -29,6 +25,7 @@ import 'package:clinic_app/core/widgets/times_widget/views/widgets/shimmer_times
 import 'package:clinic_app/core/widgets/times_widget/views/widgets/times_widget.dart';
 import 'package:clinic_app/core/widgets/titled_checkbox_widget/controllers/titled_checkbox_bloc/titled_checkbox_bloc.dart';
 import 'package:clinic_app/core/widgets/titled_checkbox_widget/views/widgets/titled_checkbox_widget.dart';
+import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
@@ -50,41 +47,42 @@ class BookAppointmentWithOfferScreen extends StatelessWidget {
               (context) =>
                   RequestTypesBloc()
                     ..add(IsRequestTypesWidgetActivedIsToggled()),
-        ), //
+        ),
         BlocProvider(
           create:
               (context) => DaysBloc()..add(IsDaysWidgetActivatedIsToggled()),
-        ), //
+        ),
         BlocProvider(
           create:
               (context) =>
                   FetchDaysBloc()..add(FetchOfferDays(offerId: offer.id)),
-        ), //
+        ),
         BlocProvider(
           create:
               (context) => TimesBloc()..add(IsTimesWidgetActivatedIsToggled()),
-        ), //
+        ),
         BlocProvider(
           create:
               (context) =>
                   FetchTimesBloc()..add(FetchDefaultTimes(shift: offer.shift)),
-        ), //
+        ),
         BlocProvider(
           create:
               (context) =>
                   TitledCheckboxBloc()
                     ..add(IsTitledCheckboxWidgetActivatedIsToggled()),
-        ), //
+        ),
         BlocProvider(
           create:
               (context) =>
                   BookAppointmentValidatorBloc()..add(
                     CheckConfirmAbility(
+                      offerId: offer.id,
                       departmentId: offer.departmentId,
                       doctorId: offer.doctorId,
                     ),
                   ),
-        ), // you make an unnecessary rebuild
+        ),
         BlocProvider(create: (context) => FetchReservationPricingBloc()),
         BlocProvider(create: (context) => SendReservationBloc()),
       ],
@@ -143,23 +141,16 @@ class BookAppointmentWithOfferScreen extends StatelessWidget {
                     return CustomPricingDialogWidget(
                       pricing: state.pricing,
                       onCancel: () => Get.back(),
-                      onContinue: () {
-                        Get.back();
+                      onKeepGoing: () {
                         ReservationModel reservation =
                             context
                                 .read<BookAppointmentValidatorBloc>()
                                 .state
                                 .currentReservation;
-                        OfferReservationModel offerReservation =
-                            OfferReservationModel(
-                              offerId: offer.id,
-                              reservation: reservation,
-                            );
                         context.read<SendReservationBloc>().add(
-                          SendOfferReservation(
-                            offerReservation: offerReservation,
-                          ),
+                          SendReservation(reservation: reservation),
                         );
+                        Get.back();
                       },
                     );
                   },
@@ -205,7 +196,7 @@ class BookAppointmentWithOfferScreen extends StatelessWidget {
             backgroundColor: AppColors.backgroundColor,
             surfaceTintColor: AppColors.backgroundColor,
             title: Text(
-              "Offer Booking",
+              S.current.book_appointment,
               style: TextStyle(
                 color: AppColors.mainTextColor,
                 fontSize: AppDimensions.lfs,
@@ -220,15 +211,11 @@ class BookAppointmentWithOfferScreen extends StatelessWidget {
               children: [
                 OfferWidget(offer: offer),
                 SizedBox(height: AppDimensions.mp),
-                SubtitleWidget(subtitle: "Reservation Info"),
+                SubtitleWidget(subtitle: S.current.reservation_info),
                 SizedBox(height: AppDimensions.mp),
                 RequestTypesWidget(),
                 SizedBox(height: AppDimensions.mp),
-                SubtitleWithTextButtonWidget(
-                  subtitle: "Date",
-                  buttonTitle: "Open Calendar",
-                  onPressed: () {},
-                ),
+                SubtitleWidget(subtitle: S.current.days),
                 SizedBox(height: AppDimensions.mp),
                 BlocBuilder<FetchDaysBloc, FetchDaysState>(
                   builder: (context, state) {
@@ -240,8 +227,8 @@ class BookAppointmentWithOfferScreen extends StatelessWidget {
                 ),
                 SizedBox(height: AppDimensions.mp),
                 SubtitleWithTextButtonWidget(
-                  subtitle: "Time",
-                  buttonTitle: "Doctor Profile",
+                  subtitle: S.current.times,
+                  buttonTitle: S.current.doctor,
                   onPressed: () {
                     Get.to(() => DoctorProfileScreen(id: offer.doctorId));
                   },
@@ -260,7 +247,7 @@ class BookAppointmentWithOfferScreen extends StatelessWidget {
                   },
                 ),
                 SizedBox(height: AppDimensions.mp),
-                TitledCheckboxWidget(title: "Do you need a medical Report?"),
+                TitledCheckboxWidget(title: S.current.need_medical_report),
                 SizedBox(height: AppDimensions.mp),
                 BlocBuilder<
                   BookAppointmentValidatorBloc,
@@ -284,7 +271,7 @@ class BookAppointmentWithOfferScreen extends StatelessWidget {
                               return LoadingWidget();
                             }
                             return ButtonWidget(
-                              title: "Book Now",
+                              title: S.current.confirm,
                               backgroundColor:
                                   specifyConfirmButtonBackgroundColor(
                                     validatorState.isValid,
@@ -292,48 +279,14 @@ class BookAppointmentWithOfferScreen extends StatelessWidget {
                               titleColor: AppColors.widgetBackgroundColor,
                               onTap: () {
                                 if (validatorState.isValid) {
-                                  if (offer.paymentMethod == "cash") {
-                                    SelectedServiceModel selectedService =
-                                        SelectedServiceModel(
-                                          requestTypeId:
-                                              validatorState
-                                                  .currentReservation
-                                                  .requestTypeId,
-                                          withMedicalReport:
-                                              validatorState
-                                                  .currentReservation
-                                                  .withMedicalReport,
-                                        );
-                                    RequestOfferCashPriceModel
-                                    requestOfferCashPrice =
-                                        RequestOfferCashPriceModel(
-                                          offerId: offer.id,
-                                          selectedService: selectedService,
-                                        );
-                                    context
-                                        .read<FetchReservationPricingBloc>()
-                                        .add(
-                                          FetchReservationCashOfferPricing(
-                                            requestOfferCashPrice:
-                                                requestOfferCashPrice,
-                                          ),
-                                        );
-                                  }
-                                  if (offer.paymentMethod == "points") {
-                                    RequestOfferPointsPriceModel
-                                    requestOfferPointsPrice =
-                                        RequestOfferPointsPriceModel(
-                                          offerId: offer.id,
-                                        );
-                                    context
-                                        .read<FetchReservationPricingBloc>()
-                                        .add(
-                                          FetchReservationPointsOfferPricing(
-                                            requestOfferPointsPrice:
-                                                requestOfferPointsPrice,
-                                          ),
-                                        );
-                                  }
+                                  context
+                                      .read<FetchReservationPricingBloc>()
+                                      .add(
+                                        FetchReservationPricing(
+                                          reservation:
+                                              validatorState.currentReservation,
+                                        ),
+                                      );
                                 }
                               },
                             );

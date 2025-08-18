@@ -17,6 +17,7 @@ import 'package:clinic_app/core/constants/app_dimensions.dart';
 import 'package:clinic_app/core/widgets/app_bar_with_badge_widget.dart';
 import 'package:clinic_app/core/widgets/loading_widget.dart';
 import 'package:clinic_app/core/widgets/subtitle_widget.dart';
+import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/route_manager.dart';
@@ -61,7 +62,7 @@ class PrescriptionScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
       appBar: AppBarWithBadgeWidget(
-        title: "Prescription",
+        title: S.current.prescription,
         badgeTitle: "Completed",
         badgeColor: AppColors.transparentYellow,
       ),
@@ -134,7 +135,7 @@ class PrescriptionScreen extends StatelessWidget {
                         padding: EdgeInsets.symmetric(
                           horizontal: AppDimensions.mp,
                         ),
-                        child: SubtitleWidget(subtitle: "Medications"),
+                        child: SubtitleWidget(subtitle: S.current.medications),
                       ),
                       SizedBox(height: AppDimensions.mp),
                       //---------------Medications-------------------------------------------------------------------------------------------------------------------------------------------
@@ -147,7 +148,7 @@ class PrescriptionScreen extends StatelessWidget {
                         padding: EdgeInsets.symmetric(
                           horizontal: AppDimensions.mp,
                         ),
-                        child: SubtitleWidget(subtitle: "Lab Tests"),
+                        child: SubtitleWidget(subtitle: S.current.lab_tests),
                       ),
                       SizedBox(height: AppDimensions.mp),
                       //----------------Lab Tests--------------------------------------------------------------------------------------------------------------------------------------------
@@ -160,7 +161,7 @@ class PrescriptionScreen extends StatelessWidget {
                         padding: EdgeInsets.symmetric(
                           horizontal: AppDimensions.mp,
                         ),
-                        child: SubtitleWidget(subtitle: "Surgeries"),
+                        child: SubtitleWidget(subtitle: S.current.surgeries),
                       ),
                       SizedBox(height: AppDimensions.mp),
                       //----------------Surgeries--------------------------------------------------------------------------------------------------------------------------------------------
@@ -173,7 +174,7 @@ class PrescriptionScreen extends StatelessWidget {
                         padding: EdgeInsets.symmetric(
                           horizontal: AppDimensions.mp,
                         ),
-                        child: SubtitleWidget(subtitle: "Advices"),
+                        child: SubtitleWidget(subtitle: S.current.advices),
                       ),
                       SizedBox(height: AppDimensions.mp),
                       //-----------------Advices---------------------------------------------------------------------------------------------------------------------------------------------
@@ -199,7 +200,7 @@ class PrescriptionScreen extends StatelessWidget {
                               return LoadingWidget();
                             }
                             return ButtonWidget(
-                              title: "Medical Report",
+                              title: S.current.view_medical_report,
                               backgroundColor: AppColors.primaryColor,
                               titleColor: AppColors.widgetBackgroundColor,
                               onTap: () {

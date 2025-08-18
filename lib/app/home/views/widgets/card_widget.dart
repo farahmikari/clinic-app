@@ -2,6 +2,7 @@ import 'package:clinic_app/core/constants/app_dimensions.dart';
 import 'package:clinic_app/core/constants/app_shadow.dart';
 import 'package:clinic_app/core/extentions/percent_sized_extention.dart';
 import 'package:clinic_app/core/constants/app_colors.dart';
+import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 
 class CardWidget extends StatelessWidget {
@@ -10,10 +11,11 @@ class CardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      //padding: EdgeInsets.all(AppDimensions.mp),
       decoration: BoxDecoration(
-        gradient: const LinearGradient(
+        gradient: LinearGradient(
           colors: [AppColors.darkBlueColor, AppColors.lightBlueColor],
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
         ),
         borderRadius: BorderRadius.circular(AppDimensions.mbr),
         boxShadow: AppShadow.boxShadow,
@@ -21,9 +23,9 @@ class CardWidget extends StatelessWidget {
       clipBehavior: Clip.hardEdge,
       child: Stack(
         children: [
-          Positioned(
-            right: -35,
-            bottom: -35,
+          PositionedDirectional(
+            end: -10.0.wp,
+            bottom: -10.0.wp,
             child: SizedBox(
               height: 30.0.wp,
               width: 30.0.wp,
@@ -32,10 +34,9 @@ class CardWidget extends StatelessWidget {
           ),
           Container(
             margin: EdgeInsets.all(AppDimensions.mm),
-            alignment: Alignment.centerLeft,
             child: ListTile(
               title: Text(
-                "Discover Your Wellbeing",
+                S.current.card_title,
                 style: TextStyle(
                   color: AppColors.widgetBackgroundColor,
                   fontSize: AppDimensions.lfs,
@@ -43,7 +44,7 @@ class CardWidget extends StatelessWidget {
                 ),
               ),
               subtitle: Text(
-                "Your path to better health starts here !",
+                S.current.card_subtitle,
                 style: TextStyle(
                   color: AppColors.widgetBackgroundColor,
                   fontSize: AppDimensions.sfs,

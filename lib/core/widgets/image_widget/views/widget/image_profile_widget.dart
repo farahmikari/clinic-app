@@ -3,6 +3,7 @@ import 'package:clinic_app/core/widgets/image_widget/controller/bloc/image_bloc/
 import 'package:clinic_app/consts.dart';
 import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/utils/snack_bar_util.dart';
+import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
@@ -72,7 +73,7 @@ class ImageProfileWidget extends StatelessWidget {
   }
 
   void chooseTypeImage(BuildContext context) {
-     showModalBottomSheet(
+    showModalBottomSheet(
       context: context,
       builder: (_) {
         return Column(
@@ -84,42 +85,28 @@ class ImageProfileWidget extends StatelessWidget {
                 height: 50,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(80),
-                  border: Border.all(
-                    color: AppColors.hintTextColor,
-                  ),
+                  border: Border.all(color: AppColors.hintTextColor),
                 ),
-                child: Icon(
-                  Icons.camera_alt_outlined,
-                  color: kPrimaryColor,
-                ),
+                child: Icon(Icons.camera_alt_outlined, color: kPrimaryColor),
               ),
-              title: Text("Camera"),
+              title: Text(S.current.camera),
               onTap: () {
-                context.read<ImageBloc>().add(
-                  PickImageFromCameraEvent(),
-                );
+                context.read<ImageBloc>().add(PickImageFromCameraEvent());
               },
             ),
             ListTile(
               leading: Container(
-                 width: 50,
+                width: 50,
                 height: 50,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(80),
-                  border: Border.all(
-                    color: AppColors.hintTextColor,
-                  ),
+                  border: Border.all(color: AppColors.hintTextColor),
                 ),
-                child: Icon(
-                  Icons.image_outlined,
-                  color: kPrimaryColor,
-                ),
+                child: Icon(Icons.image_outlined, color: kPrimaryColor),
               ),
-              title: Text("Gallery"),
+              title: Text(S.current.gallery),
               onTap: () {
-                context.read<ImageBloc>().add(
-                  PickImageFromGalleryEvent(),
-                );
+                context.read<ImageBloc>().add(PickImageFromGalleryEvent());
               },
             ),
           ],

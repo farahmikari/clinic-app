@@ -1,26 +1,25 @@
 part of 'filter_bloc.dart';
 
 sealed class FilterState extends Equatable {
-  final String filterName;
+  final int filterIndex;
   final bool isFilterWidgetActivated;
 
   const FilterState({
-    required this.filterName,
+    required this.filterIndex,
     required this.isFilterWidgetActivated,
   });
 
   @override
-  List<Object?> get props => [filterName, isFilterWidgetActivated];
+  List<Object?> get props => [filterIndex, isFilterWidgetActivated];
 }
 
 final class FilterInitial extends FilterState {
-  const FilterInitial()
-    : super(filterName: "All", isFilterWidgetActivated: false);
+  const FilterInitial() : super(filterIndex: 0, isFilterWidgetActivated: false);
 }
 
-final class UpdateFilterName extends FilterState {
-  const UpdateFilterName({
-    required super.filterName,
+final class FilterUpdate extends FilterState {
+  const FilterUpdate({
+    required super.filterIndex,
     required super.isFilterWidgetActivated,
   });
 }

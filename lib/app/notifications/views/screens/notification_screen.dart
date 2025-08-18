@@ -3,6 +3,7 @@ import 'package:clinic_app/app/notifications/views/widgets/notifications_widget.
 import 'package:clinic_app/app/notifications/views/widgets/shimmer_notifications_widget.dart';
 import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
+import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -24,7 +25,7 @@ class NotificationScreen extends StatelessWidget {
           backgroundColor: AppColors.backgroundColor,
           surfaceTintColor: AppColors.backgroundColor,
           title: Text(
-            "Notifications",
+            S.current.notifications,
             style: TextStyle(
               color: AppColors.mainTextColor,
               fontSize: AppDimensions.lfs,

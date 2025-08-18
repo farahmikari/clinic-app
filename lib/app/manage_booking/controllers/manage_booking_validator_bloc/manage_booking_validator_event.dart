@@ -25,7 +25,7 @@ class EditAbilityIsChecked extends ManageBookingValidatorEvent {
 }
 
 class CurrentAndPreviousReservationAreSet extends ManageBookingValidatorEvent {
-  final NewReservationModel currentAndPreviousReservation;
+  final ReservationModel currentAndPreviousReservation;
 
   CurrentAndPreviousReservationAreSet({
     required this.currentAndPreviousReservation,

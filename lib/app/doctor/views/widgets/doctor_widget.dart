@@ -14,6 +14,7 @@ import 'package:clinic_app/core/widgets/info_list_widget.dart';
 import 'package:clinic_app/core/widgets/info_with_icon_widget.dart';
 import 'package:clinic_app/core/widgets/loading_widget.dart';
 import 'package:clinic_app/core/widgets/subtitle_widget.dart';
+import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -24,11 +25,23 @@ class DoctorWidget extends StatelessWidget {
   final DoctorModel doctor;
 
   String formatTime(String time) {
-    return DateFormat("h:mm a").format(DateFormat("HH:mm:ss").parse(time));
+    return DateFormat(
+      "h:mm a",
+    ).format(DateFormat("HH:mm:ss", "en").parse(time));
   }
 
   String formatShift() {
     return "${formatTime(doctor.startTime)} - ${formatTime(doctor.endTime)}";
+  }
+
+  String specifyExperienceUnit() {
+    return doctor.experience > 1 ? S.current.years_unit : S.current.year_unit;
+  }
+
+  String specifyTreatmentsUnit() {
+    return doctor.treatments > 1
+        ? S.current.treatments_unit
+        : S.current.treatment_unit;
   }
 
   @override
@@ -82,17 +95,17 @@ class DoctorWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               HorizontalInfoWithTitleWidget(
-                title: "Experience",
-                info: "${doctor.experience} Years",
+                title: S.current.experiences_title,
+                info: "${doctor.experience} ${specifyExperienceUnit()}",
               ),
               HorizontalInfoWithTitleWidget(
-                title: "Treatments",
-                info: "${doctor.treatments} Patients",
+                title: S.current.treatments_title,
+                info: "${doctor.treatments} ${specifyTreatmentsUnit()}",
               ),
             ],
           ),
           SizedBox(height: AppDimensions.mp),
-          SubtitleWidget(subtitle: "About"),
+          SubtitleWidget(subtitle: S.current.about_doctor),
           SizedBox(height: AppDimensions.mp),
           Container(
             padding: EdgeInsets.all(AppDimensions.mp),
@@ -112,7 +125,7 @@ class DoctorWidget extends StatelessWidget {
             ),
           ),
           SizedBox(height: AppDimensions.mp),
-          SubtitleWidget(subtitle: "Qualifications"),
+          SubtitleWidget(subtitle: S.current.qualifications),
           SizedBox(height: AppDimensions.mp),
           InfoListWidget(
             icon: AppIcons.qualification,
@@ -120,7 +133,7 @@ class DoctorWidget extends StatelessWidget {
           ),
           SizedBox(height: AppDimensions.mp),
           ButtonWidget(
-            title: "Book Now",
+            title: S.current.book_now,
             backgroundColor: AppColors.primaryColor,
             titleColor: AppColors.widgetBackgroundColor,
             onTap: () {

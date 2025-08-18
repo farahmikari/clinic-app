@@ -4,6 +4,7 @@ import 'package:clinic_app/core/constants/app_dimensions.dart';
 import 'package:clinic_app/core/constants/app_shadow.dart';
 import 'package:clinic_app/core/extentions/percent_sized_extention.dart';
 import 'package:clinic_app/core/widgets/vertical_info_with_title_widget.dart';
+import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -41,7 +42,7 @@ class ServiceWidget extends StatelessWidget {
             children: [
               Expanded(
                 child: VerticalInfoWithTitleWidget(
-                  title: "Total Amount",
+                  title: S.current.total_amount,
                   info: "${bill.totalPrice} ${bill.currency}",
                   titleSize: AppDimensions.sfs,
                   infoSize: AppDimensions.xlfs,
@@ -51,13 +52,17 @@ class ServiceWidget extends StatelessWidget {
               ),
               Expanded(
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Expanded(
                       child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Expanded(
                             child: VerticalInfoWithTitleWidget(
-                              title: "Doctor",
+                              title: S.current.doctor,
                               info: bill.doctorName,
                               titleSize: AppDimensions.sfs,
                               infoSize: AppDimensions.mfs,
@@ -67,7 +72,7 @@ class ServiceWidget extends StatelessWidget {
                           ),
                           Expanded(
                             child: VerticalInfoWithTitleWidget(
-                              title: "Department",
+                              title: S.current.department,
                               info: bill.department,
                               titleSize: AppDimensions.sfs,
                               infoSize: AppDimensions.mfs,
@@ -80,10 +85,12 @@ class ServiceWidget extends StatelessWidget {
                     ),
                     Expanded(
                       child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Expanded(
                             child: VerticalInfoWithTitleWidget(
-                              title: "Appointment Date",
+                              title: S.current.appointment_date,
                               info: formatAppointmentDateTimeToDate(),
                               titleSize: AppDimensions.sfs,
                               infoSize: AppDimensions.mfs,
@@ -93,7 +100,7 @@ class ServiceWidget extends StatelessWidget {
                           ),
                           Expanded(
                             child: VerticalInfoWithTitleWidget(
-                              title: "Appointment Time",
+                              title: S.current.appointment_time,
                               info: formatAppointmentDateTimeToTime(),
                               titleSize: AppDimensions.sfs,
                               infoSize: AppDimensions.mfs,

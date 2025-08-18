@@ -1,6 +1,8 @@
+import 'package:clinic_app/generated/l10n.dart';
+
 class Validators {
   static String? validateRequired(String value) =>
-      value.isEmpty ? "Field is required!" : null;
+      value.isEmpty ? S.current.field_is_required : null;
   static String? validateEmail(String value) {
     const pattern =
         r"(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'"
@@ -13,32 +15,32 @@ class Validators {
     final regexp = RegExp(pattern);
 
     if (value.isEmpty) {
-      return "Field is required!";
+      return S.current.field_is_required;
     } else if (!regexp.hasMatch(value)) {
-      return "Invalid email";
+      return S.current.invalid_email;
     }
     return null;
   }
 
   static String? validatePhone(String value) =>
       value.isEmpty
-          ? "Field is required!"
+          ? S.current.field_is_required
           : value.length < 10
-          ? "less than 10 numbers"
+          ? S.current.less_than_10_numbers
           : null;
 
   static String? validatePassword(String value) =>
       value.isEmpty
-          ? "Field is required!"
+          ? S.current.field_is_required
           : value.length < 8
-          ? "Password must be 8 letters at least"
+          ? S.current.password_must_be_8_letters_at_least
           : null;
   static String? validateConPassword(String value, String orginal) =>
       value.isEmpty
-          ? "Field is required!"
+          ? S.current.field_is_required
           : value.length < 8
-          ? "Password must be 8 letters at least"
+          ? S.current.password_must_be_8_letters_at_least
           : value != orginal
-          ? "The passwords don't match"
+          ? S.current.the_password_dont_match
           : null;
 }

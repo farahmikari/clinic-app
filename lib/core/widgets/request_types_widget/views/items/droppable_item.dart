@@ -2,9 +2,9 @@ import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
 import 'package:clinic_app/core/constants/app_shadow.dart';
 import 'package:clinic_app/core/extentions/percent_sized_extention.dart';
-import 'package:clinic_app/core/widgets/request_types_widget/models/json_data.dart';
 import 'package:clinic_app/core/widgets/request_types_widget/models/request_type_model.dart';
 import 'package:clinic_app/core/widgets/request_types_widget/views/items/type_item.dart';
+import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 
 class DroppableItem extends StatelessWidget {
@@ -36,13 +36,13 @@ class DroppableItem extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           TypeItem(
-            requestType: RequestTypeModel.fromJson(requestTypes[0]),
+            requestType: RequestTypeModel(id: 1, type: S.current.check_up),
             currentRequestTypeId: currentRequestTypeId,
             previousRequestTypeId: previousRequestTypeId,
             isRequestTypesWidgetActived: isRequestTypesWidgetActived,
           ),
           TypeItem(
-            requestType: RequestTypeModel.fromJson(requestTypes[1]),
+            requestType: RequestTypeModel(id: 2, type: S.current.follow_up),
             currentRequestTypeId: currentRequestTypeId,
             previousRequestTypeId: previousRequestTypeId,
             isRequestTypesWidgetActived: isRequestTypesWidgetActived,

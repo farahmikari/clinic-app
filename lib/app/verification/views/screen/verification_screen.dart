@@ -12,6 +12,7 @@ import 'package:clinic_app/app/signup/views/screens/sign_up_screen.dart';
 import 'package:clinic_app/app/login/views/widgets/button_widget.dart';
 import 'package:clinic_app/app/signup/views/widgets/text_button_widget.dart';
 import 'package:clinic_app/core/utils/snack_bar_util.dart';
+import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -49,8 +50,8 @@ class VerificationScreen extends StatelessWidget {
                 case VerificationSuccess():
                   showSnackBar(
                     context,
-                    title: "Success",
-                    message: "Verification Successfully",
+                    title: S.current.success,
+                    message: S.current.verification_success,
                     contentType: ContentType.success,
                   );
                   push
@@ -71,8 +72,8 @@ class VerificationScreen extends StatelessWidget {
                 case VerificationFailed():
                   showSnackBar(
                     context,
-                    title: "Failed",
-                    message: "Verification Failed ",
+                    title: S.current.failed,
+                    message: S.current.verification_failed,
                     contentType: ContentType.failure,
                   );
                   break;
@@ -91,7 +92,7 @@ class VerificationScreen extends StatelessWidget {
                     height: height * 0.4,
                   ),
                   Text(
-                    "OTP Verfication",
+                    S.current.otp_verification,
                     style: TextStyle(
                       fontFamily: "Montserat",
                       color: Colors.black,
@@ -101,7 +102,7 @@ class VerificationScreen extends StatelessWidget {
                   ),
                   SizedBox(height: 8),
                   Text(
-                    "We sent your code to $email\nThis code will expired in 05:00",
+                    "${S.current.we_sent_your_code_to} $email ${S.current.this_code_will_expired_in}",
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Color(0xFF757575),
@@ -134,7 +135,7 @@ class VerificationScreen extends StatelessWidget {
                   SizedBox(height: 24),
 
                   MyButtonWidget(
-                    text: "Submit",
+                    text: S.current.submit,
                     color: kPrimaryColor,
                     isLoading: isLoading,
                     onPressed:
@@ -159,12 +160,12 @@ class VerificationScreen extends StatelessWidget {
                         textButton:
                             isCounting
                                 ? "0:${seconds.toString().padLeft(2, '0')}"
-                                : "Resend OTP Code",
+                                : S.current.resend_otp_code,
                         color: isCounting ? Colors.grey : kPrimaryColor,
                         onPressed:
                             isCounting
                                 ? null
-                                : ()async {
+                                : () async {
                                   context.read<EmailBloc>().add(
                                     CanSubmitEmail(email: email, signUp: push),
                                   );
