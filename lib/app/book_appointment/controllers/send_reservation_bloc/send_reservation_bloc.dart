@@ -1,3 +1,4 @@
+import 'package:clinic_app/app/book_appointment/models/offer_reservation_model.dart';
 import 'package:clinic_app/app/book_appointment/models/reservation_model.dart';
 import 'package:clinic_app/core/api/dio_consumer.dart';
 import 'package:clinic_app/core/api/end_points.dart';
@@ -19,7 +20,19 @@ class SendReservationBloc
           EndPoints.appointments,
           data: event.reservation.toJson(),
         );
-        event.reservation;
+        emit(SendReservationLoaded());
+      } on ServerException catch (e) {
+        emit(SendReservationFailed(errorMessage: e.errorModel.errorMessage));
+      }
+    });
+
+    on<SendOfferReservation>((event, emit) async {
+      emit(SendReservationLoading());
+      try {
+        await api.post(
+          EndPoints.appointments,
+          data: event.offerReservation.toJson(),
+        );
         emit(SendReservationLoaded());
       } on ServerException catch (e) {
         emit(SendReservationFailed(errorMessage: e.errorModel.errorMessage));

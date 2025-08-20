@@ -1,4 +1,4 @@
-import 'package:clinic_app/app/book_appointment/views/screens/book_appointment_screen.dart';
+import 'package:clinic_app/app/book_appointment/views/widgets/book_appointment_auth_decision_widget.dart';
 import 'package:clinic_app/app/home/views/widgets/services%20button%20widgets/service_button_widget.dart';
 import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
@@ -33,8 +33,8 @@ class ServicesButtonsWidget extends StatelessWidget {
           subTitleColor: AppColors.widgetBackgroundColor,
           onPressed: () {
             Get.to(
-              () => const BookAppointmentScreen(),
-              transition: Transition.fade,
+              () => BookAppointmentAuthDecisionWidget(),
+              transition: Transition.zoom,
             );
           },
         ),
@@ -44,8 +44,8 @@ class ServicesButtonsWidget extends StatelessWidget {
           subtitle: "Your Medications, Treatment & drugs",
           backgroundColor: Theme.of(context).appBarTheme.backgroundColor!,
           iconColor: AppColors.primaryColor,
-          titleColor: AppColors.mainTextColor,
-          subTitleColor: AppColors.hintTextColor,
+          titleColor: Theme.of(context).textTheme.titleLarge!.color!,
+          subTitleColor: Theme.of(context).hintColor,
           onPressed: () {},
         ),
         ServiceButtonWidget(
@@ -54,8 +54,8 @@ class ServicesButtonsWidget extends StatelessWidget {
           subtitle: "Lab Reports Radiology Microbiology",
           backgroundColor: Theme.of(context).appBarTheme.backgroundColor!,
           iconColor: AppColors.primaryColor,
-          titleColor: AppColors.mainTextColor,
-          subTitleColor: AppColors.hintTextColor,
+          titleColor: Theme.of(context).textTheme.titleLarge!.color!,
+          subTitleColor: Theme.of(context).hintColor,
           onPressed: () {},
         ),
         ServiceButtonWidget(
@@ -64,8 +64,8 @@ class ServicesButtonsWidget extends StatelessWidget {
           subtitle: "Medicine\nCosmetics & More",
           backgroundColor: Theme.of(context).appBarTheme.backgroundColor!,
           iconColor: AppColors.primaryColor,
-          titleColor: AppColors.mainTextColor,
-          subTitleColor: AppColors.hintTextColor,
+          titleColor: Theme.of(context).textTheme.titleLarge!.color!,
+          subTitleColor: Theme.of(context).hintColor,
           onPressed: () {},
         ),
       ],

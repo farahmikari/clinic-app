@@ -29,7 +29,7 @@ class DayItem extends StatelessWidget {
       } else if (day.day == currentDay) {
         return AppColors.primaryColor;
       } else {
-        return AppColors.widgetBackgroundColor;
+        return Theme.of(context).cardColor;
       }
     }
 
@@ -37,9 +37,9 @@ class DayItem extends StatelessWidget {
       if (day.day == previousDay || day.day == currentDay) {
         return AppColors.widgetBackgroundColor;
       } else if (day.isAvailable && isDaysWidgetActivated) {
-        return AppColors.mainTextColor;
+        return Theme.of(context).textTheme.titleLarge!.color!;
       } else {
-        return AppColors.hintTextColor;
+        return Theme.of(context).hintColor;
       }
     }
 

@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:clinic_app/app/bills/models/bill_model.dart';
 import 'package:clinic_app/app/bills/models/json_model.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -15,7 +13,6 @@ class FetchBillsBloc extends Bloc<FetchBillsEvent, FetchBillsState> {
 
     on<FetchBills>((event, emit) async {
       emit(FetchBillsLoading());
-      log("lancer");
       await Future.delayed(Duration(seconds: 10));
       try {
         paidBills =
@@ -29,7 +26,6 @@ class FetchBillsBloc extends Bloc<FetchBillsEvent, FetchBillsState> {
         allBills = [...unpaidBills, ...paidBills];
         emit(FetchBillsLoaded(bills: allBills));
       } catch (e) {
-        log(e.toString());
         emit(FetchBillsFailed(errorMessage: e.toString()));
       }
     });

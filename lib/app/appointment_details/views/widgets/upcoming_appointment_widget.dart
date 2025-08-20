@@ -3,21 +3,21 @@ import 'package:clinic_app/app/book_appointment/controllers/fetch_days_bloc/fetc
 import 'package:clinic_app/app/appointment_details/controllers/fetch_reservation_bloc/fetch_reservation_bloc.dart';
 import 'package:clinic_app/app/book_appointment/controllers/fetch_times_bloc/fetch_times_bloc.dart';
 import 'package:clinic_app/app/appointment_details/controllers/upcoming_validator_bloc/upcoming_validator_bloc.dart';
-import 'package:clinic_app/app/appointment_details/views/widgets/summary_widgets/summary_widget.dart';
+import 'package:clinic_app/core/widgets/reservation_summary_widget.dart';
 import 'package:clinic_app/app/appointments/models/appointment_model.dart';
 import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
 import 'package:clinic_app/core/extentions/percent_sized_extention.dart';
 import 'package:clinic_app/core/widgets/button_widget.dart';
-import 'package:clinic_app/core/widgets/custom_dialog_widget.dart';
+import 'package:clinic_app/core/widgets/custom_warning_dialog_widget.dart';
 import 'package:clinic_app/core/widgets/days_widget/controllers/days_bloc/days_bloc.dart';
 import 'package:clinic_app/core/widgets/days_widget/views/widgets/days_widget.dart';
 import 'package:clinic_app/core/widgets/days_widget/views/widgets/shimmer_days_widget.dart';
-import 'package:clinic_app/core/widgets/request%20types%20widget/controllers/request%20types%20bloc/request_types_bloc.dart';
-import 'package:clinic_app/core/widgets/request%20types%20widget/views/widgets/request_types_widget.dart';
+import 'package:clinic_app/core/widgets/request_types_widget/controllers/request%20types%20bloc/request_types_bloc.dart';
+import 'package:clinic_app/core/widgets/request_types_widget/views/widgets/request_types_widget.dart';
 import 'package:clinic_app/core/widgets/subtitle_widget.dart';
 import 'package:clinic_app/core/widgets/subtitle_with_text_button_widget.dart';
-import 'package:clinic_app/core/widgets/times_widget/controllers/times%20bloc/times_bloc.dart';
+import 'package:clinic_app/core/widgets/times_widget/controllers/times_bloc/times_bloc.dart';
 import 'package:clinic_app/core/widgets/times_widget/views/widgets/shimmer_times_widget.dart';
 import 'package:clinic_app/core/widgets/times_widget/views/widgets/times_widget.dart';
 import 'package:clinic_app/core/widgets/titled_checkbox_widget/controllers/titled_checkbox_bloc/titled_checkbox_bloc.dart';
@@ -106,7 +106,9 @@ class UpcomingAppointmentWidget extends StatelessWidget {
                   ),
                 );
                 context.read<FetchDaysBloc>().add(
-                  FetchDays(departmentId: state.reservation.departmentId),
+                  FetchDepartmentDays(
+                    departmentId: state.reservation.departmentId,
+                  ),
                 );
                 context.read<DaysBloc>().add(
                   CurrentDepartmentIdAndCurrentAndPreviousDayAndPreviousTimeIdAreSet(
@@ -200,11 +202,9 @@ class UpcomingAppointmentWidget extends StatelessWidget {
                 showDialog(
                   context: context,
                   builder: (dialogContext) {
-                    return CustomDialogWidget(
-                      title: "Oops!",
-                      content: state.errorMessage,
-                      buttonTitle: "Ok",
-                      onPressed: () {
+                    return CustomWarningDialogWidget(
+                      warning: state.errorMessage,
+                      onOk: () {
                         Get.back();
                       },
                     );
@@ -217,7 +217,7 @@ class UpcomingAppointmentWidget extends StatelessWidget {
         child: ListView(
           padding: EdgeInsets.all(AppDimensions.mp),
           children: [
-            SummaryWidget(appointment: appointment),
+            ReservationSummaryWidget(appointment: appointment),
             SizedBox(height: AppDimensions.mp),
             BlocBuilder<UpcomingValidatorBloc, UpcomingValidatorState>(
               builder: (context, state) {

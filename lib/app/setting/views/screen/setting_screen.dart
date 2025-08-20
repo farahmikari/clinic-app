@@ -34,7 +34,7 @@ class SettingScreen extends StatelessWidget {
               width: 100.0.wp,
               height: 20.0.hp,
               decoration: BoxDecoration(
-                color: const Color(0x4617B8A5),
+                color: AppColors.transparentGreen,
                 borderRadius: BorderRadius.circular(20),
                 border: Border.all(color: AppColors.primaryColor),
               ),
@@ -47,10 +47,9 @@ class SettingScreen extends StatelessWidget {
                     ),
                     child: Text(
                       "change theme Dark / Light mode : ",
-                      style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                        color: AppColors.darkGreyColor,
-                        fontSize: 14,
-                      ),
+                      style: Theme.of(
+                        context,
+                      ).textTheme.titleLarge!.copyWith(fontSize: 18),
                     ),
                   ),
                   RollingSwitch.icon(
@@ -62,7 +61,10 @@ class SettingScreen extends StatelessWidget {
                         ),
                       );
                     },
-                    initialState: state is LoadedThemeState?state.themeData==AppTheme.lightTheme:false,
+                    initialState:
+                        state is LoadedThemeState
+                            ? state.themeData == AppTheme.lightTheme
+                            : false,
                     rollingInfoRight: RollingIconInfo(
                       text: Text(
                         'Light',

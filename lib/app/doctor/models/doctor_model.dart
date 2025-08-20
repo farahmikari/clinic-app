@@ -1,8 +1,12 @@
+import 'package:clinic_app/core/api/end_points.dart';
+
 class DoctorModel {
   final int id;
+  final int departmentId; // new please ask to add this property
+  final String shift; // new please ask to add this property
   final String image;
   final String name;
-  final String specialty;
+  final String specialty; // the returned value is department not specialty
   final String startTime;
   final String endTime;
   final num rate;
@@ -13,6 +17,8 @@ class DoctorModel {
 
   DoctorModel({
     required this.id,
+    required this.departmentId,
+    required this.shift,
     required this.image,
     required this.name,
     required this.specialty,
@@ -27,17 +33,19 @@ class DoctorModel {
 
   factory DoctorModel.fromJson(Map<String, dynamic> jsonData) {
     return DoctorModel(
-      id: jsonData["id"],
-      image: jsonData["image"],
-      name: jsonData["name"],
-      specialty: jsonData["specialty"],
-      startTime: jsonData["start_time"],
-      endTime: jsonData["end_time"],
-      rate: jsonData["rate"],
-      experience: jsonData["experience"],
-      treatments: jsonData["treatments"],
-      bio: jsonData["bio"],
-      qualifications: jsonData["qualifications"],
+      id: jsonData[ApiKey.id],
+      departmentId: 2,
+      shift: "morning",
+      image: jsonData[ApiKey.image],
+      name: jsonData[ApiKey.name],
+      specialty: jsonData[ApiKey.speciality],
+      startTime: jsonData[ApiKey.startTime],
+      endTime: jsonData[ApiKey.endTime],
+      rate: jsonData[ApiKey.rate],
+      experience: jsonData[ApiKey.experience],
+      treatments: jsonData[ApiKey.treatments],
+      bio: jsonData[ApiKey.bio],
+      qualifications: List<String>.from(jsonData[ApiKey.qualifications]),
     );
   }
 }

@@ -1,4 +1,3 @@
-import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
 import 'package:flutter/material.dart';
 
@@ -12,7 +11,7 @@ class DoctorDepartmentWidget extends StatelessWidget {
     return Text(
       department,
       style: TextStyle(
-        color: AppColors.darkGreyColor,
+        color: Theme.of(context).hintColor,
         fontSize: AppDimensions.mfs,
         fontWeight: FontWeight.w500,
       ),

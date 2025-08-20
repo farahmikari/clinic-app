@@ -9,7 +9,7 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
   ThemeBloc() : super(ThemeInitial()) {
     on<ThemeEvent>((event, emit) async {
       if (event is GetCurrentThemeEvent) {
-        final theme = await SharedPereferenceService.getTheme();
+        final theme = await SharedPreferencesService.getTheme();
 
         final themeApp =
             theme == 'dark' ? AppTheme.darkTheme : AppTheme.lightTheme;
@@ -18,7 +18,7 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
       } else if (event is ChangeThemeEvent) {
         final theme = event.myThemes;
 
-        await SharedPereferenceService.saveTheme(
+        await SharedPreferencesService.saveTheme(
           theme ==AppTheme.darkTheme?'dark':'light'
         );
 

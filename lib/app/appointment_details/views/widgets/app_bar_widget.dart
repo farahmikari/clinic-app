@@ -30,7 +30,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
           fontWeight: FontWeight.bold,
         ),
       ),
-      actions: [FilterBadgeWidget(badge: status, color: specifyBadgeColor())],
+      actions: [BadgeWidget(title: status, color: specifyBadgeColor())],
     );
   }
 }

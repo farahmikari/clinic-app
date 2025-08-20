@@ -11,7 +11,6 @@ class SubtitleWidget extends StatelessWidget {
     return Text(
       subtitle,
       style: TextStyle(
-        //color: AppColors.mainTextColor,
         fontSize: AppDimensions.lfs,
         fontWeight: FontWeight.bold,
       ),

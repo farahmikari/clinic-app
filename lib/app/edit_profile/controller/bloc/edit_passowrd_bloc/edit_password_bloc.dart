@@ -1,5 +1,7 @@
 import 'package:clinic_app/app/edit_profile/controller/bloc/edit_passowrd_bloc/edit_password_event.dart';
 import 'package:clinic_app/app/edit_profile/controller/bloc/edit_passowrd_bloc/edit_password_state.dart';
+import 'package:clinic_app/app/edit_profile/controller/services/change_password_service.dart';
+import 'package:clinic_app/app/edit_profile/models/change_password_model.dart';
 import 'package:clinic_app/app/login/models/form_model.dart';
 import 'package:clinic_app/core/utils/validators.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -22,6 +24,7 @@ class EditPasswordBloc extends Bloc<EditPasswordEvent, EditPasswordBaseState> {
     on<OldObscurEvent>(_oldObscure);
     on<ConObscurEvent>(_conObscure);
     on<EditButtonEvent>(_buttonEvent);
+    on<EditSubmitEvent>(_onSubmit);
   }
   void _oldPasswordEvent(
     OldPasswordEvent event,
@@ -95,16 +98,41 @@ class EditPasswordBloc extends Bloc<EditPasswordEvent, EditPasswordBaseState> {
     emit(EditPasswordInitial(currentState.copyWith(conObscure: !obscure)));
   }
 
-    void _buttonEvent(EditButtonEvent event, Emitter<EditPasswordBaseState> emit) {
+  void _buttonEvent(
+    EditButtonEvent event,
+    Emitter<EditPasswordBaseState> emit,
+  ) {
     final currentState = state.data;
     final isValid = [
       currentState.password,
       currentState.conPassword,
-      currentState.oldPassword
+      currentState.oldPassword,
     ].every((field) => field.value.isNotEmpty && field.error == null);
 
     emit(EditPasswordInitial(currentState.copyWith(buttonEvent: isValid)));
   }
-  
 
+  Future<void> _onSubmit(
+    EditSubmitEvent event,
+    Emitter<EditPasswordBaseState> emit,
+  ) async {
+    final currentState = state.data;
+    emit(EditPasswordLoading(currentState));
+    try {
+      Map<String, dynamic> response = await ChangePasswordService()
+          .changePassword(
+            changePasswordModel:
+                ChangePasswordModel(
+                  oldPassword: currentState.oldPassword.value,
+                  newPassword: currentState.password.value,
+                  confirmPassword: currentState.conPassword.value,
+                ).toJson(),
+          );
+      String? message = response["Done"];
+
+      emit(EditPasswordSuccess(currentState, message: message));
+    } on Exception catch (e) {
+      emit(EditPasswordFailed(currentState, message: e.toString()));
+    }
+  }
 }

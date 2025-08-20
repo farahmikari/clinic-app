@@ -17,27 +17,32 @@ class FetchDaysBloc extends Bloc<FetchDaysEvent, FetchDaysState> {
     }
 
     late bool hasDefaultDaysFetched = false;
-    late bool hasDaysFetched = false;
-    late int previousDepartmentId;
     late List<DayModel> defaultDays;
-    late List<DayModel> days;
 
-    on<FetchDays>((event, emit) async {
-      if (hasDaysFetched && previousDepartmentId == event.departmentId) {
-        emit(FetchDaysLoaded(days));
-        return;
-      }
+    on<FetchDepartmentDays>((event, emit) async {
       emit(FetchDaysLoading());
       try {
         dynamic response = await api.get(
           EndPoints.departmentId(event.departmentId),
         );
-        days =
+        List<DayModel> days =
             (response as List<dynamic>)
                 .map((day) => DayModel.fromJson(day))
                 .toList();
-        previousDepartmentId = event.departmentId;
-        hasDaysFetched = true;
+        emit(FetchDaysLoaded(days));
+      } on ServerException catch (e) {
+        emit(FetchDaysFailed(e.errorModel.errorMessage));
+      }
+    }, transformer: switchMapTransformer());
+
+    on<FetchOfferDays>((event, emit) async {
+      emit(FetchDaysLoading());
+      try {
+        dynamic response = await api.get(EndPoints.offerId(event.offerId));
+        List<DayModel> days =
+            (response as List<dynamic>)
+                .map((day) => DayModel.fromJson(day))
+                .toList();
         emit(FetchDaysLoaded(days));
       } on ServerException catch (e) {
         emit(FetchDaysFailed(e.errorModel.errorMessage));

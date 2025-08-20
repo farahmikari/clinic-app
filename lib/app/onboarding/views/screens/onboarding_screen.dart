@@ -17,7 +17,6 @@ class OnboardingScreen extends StatelessWidget {
     return BlocProvider(
       create: (context) => getIt<OnboardingBloc>(),
       child: Scaffold(
-        backgroundColor: Colors.white,
         body: BlocBuilder<OnboardingBloc, OnboardingState>(
           builder: (context, state) {
             return Stack(
@@ -88,92 +87,94 @@ class OnboardingScreen extends StatelessWidget {
     required BuildContext context,
   }) {
     final Size size = MediaQuery.of(context).size;
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Image.asset(imageUrl, height: size.height * 0.4, width: size.width),
-        const SizedBox(height: 40),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Text(
-            title,
-            textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.titleLarge,
+    return SingleChildScrollView(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Image.asset(imageUrl, height: size.height * 0.4, width: size.width),
+          const SizedBox(height: 40),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              title,
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.titleLarge,
+            ),
           ),
-        ),
-        SizedBox(height: 120),
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 40),
-          child: Row(
-            mainAxisAlignment:
-                pageIndex == 2
-                    ? MainAxisAlignment.center
-                    : MainAxisAlignment.spaceBetween,
-            children: [
-              Visibility(
-                visible: pageIndex != 2,
-                child: InkWell(
-                  onTap: () {
-                    Navigator.pushNamed(context, LoginScreen.id);
-                  },
-                  child: Text(
-                    'Skip',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.normal,
-                      color: Colors.grey,
+          Spacer(),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 40),
+            child: Row(
+              mainAxisAlignment:
+                  pageIndex == 2
+                      ? MainAxisAlignment.center
+                      : MainAxisAlignment.spaceBetween,
+              children: [
+                Visibility(
+                  visible: pageIndex != 2,
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.pushNamed(context, LoginScreen.id);
+                    },
+                    child: Text(
+                      'Skip',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.normal,
+                        color: Colors.grey,
+                      ),
                     ),
                   ),
                 ),
-              ),
-              InkWell(
-                onTap: () {
-                  pageIndex == 2
-                      ? Navigator.pushNamed(context, LoginScreen.id)
-                      : controller.animateToPage(
-                        pageIndex + 1,
-                        duration: const Duration(milliseconds: 500),
-                        curve: Curves.decelerate,
-                      );
-                },
-                child:
+                InkWell(
+                  onTap: () {
                     pageIndex == 2
-                        ? Container(
-                          width: 150,
-                          height: 50,
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(
-                            color: kPrimaryColor,
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                          child: const Text(
-                            'Get Started',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
+                        ? Navigator.pushNamed(context, LoginScreen.id)
+                        : controller.animateToPage(
+                          pageIndex + 1,
+                          duration: const Duration(milliseconds: 500),
+                          curve: Curves.decelerate,
+                        );
+                  },
+                  child:
+                      pageIndex == 2
+                          ? Container(
+                            width: 150,
+                            height: 50,
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                              color: kPrimaryColor,
+                              borderRadius: BorderRadius.circular(5),
+                            ),
+                            child: const Text(
+                              'Get Started',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
+                            ),
+                          )
+                          : Container(
+                            width: 60,
+                            height: 50,
+                            decoration: BoxDecoration(
+                              color: kPrimaryColor,
+                              borderRadius: BorderRadius.circular(5),
+                            ),
+                            child: const Icon(
+                              Icons.arrow_forward_ios_rounded,
                               color: Colors.white,
                             ),
                           ),
-                        )
-                        : Container(
-                          width: 60,
-                          height: 50,
-                          decoration: BoxDecoration(
-                            color: kPrimaryColor,
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                          child: const Icon(
-                            Icons.arrow_forward_ios_rounded,
-                            color: Colors.white,
-                          ),
-                        ),
-              ),
-            ],
+                ),
+              ],
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

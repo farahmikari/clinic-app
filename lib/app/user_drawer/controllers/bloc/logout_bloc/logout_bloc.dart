@@ -11,7 +11,7 @@ class LogoutBloc extends Bloc<LogoutEvent, LogoutState> {
     on<LogoutVisitorEvent>(_logoutVisitor);
   }
   Future<void> _logoutVisitor(LogoutVisitorEvent event, emit) async {
-    final token = await SharedPereferenceService.getToken();
+    final token = await SharedPreferencesService.getToken();
     if (token == null || token.isEmpty) {
       emit(LogoutVisitor());
     }
@@ -21,7 +21,7 @@ class LogoutBloc extends Bloc<LogoutEvent, LogoutState> {
     emit(LogoutLoading());
     try {
       await LogoutService().logout();
-      await SharedPereferenceService.clearToken();
+      await SharedPreferencesService.clearToken();
       emit(LogoutSuccess());
     } on Exception catch (e) {
       emit(LogoutFailure(message: e.toString()));

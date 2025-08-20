@@ -19,6 +19,7 @@ class InfoWithIconWidget extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.center,
+      spacing: AppDimensions.sp,
       children: [
         SvgPicture.asset(
           icon,
@@ -26,7 +27,6 @@ class InfoWithIconWidget extends StatelessWidget {
           height: AppDimensions.sis,
           color: AppColors.primaryColor,
         ),
-        SizedBox(width: AppDimensions.sm),
         Text(
           info,
           style: TextStyle(

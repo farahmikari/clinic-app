@@ -1,15 +1,16 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:clinic_app/core/widgets/image_widget/controller/bloc/image_bloc/image_bloc.dart';
-import 'package:clinic_app/consts.dart';
 import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/utils/snack_bar_util.dart';
+import 'package:clinic_app/core/widgets/image_widget/views/widget/image_loading_widget.dart';
+import 'package:clinic_app/core/widgets/image_widget/views/widget/image_selected_widget.dart';
+import 'package:clinic_app/core/widgets/image_widget/views/widget/image_user_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 class ImageProfileWidget extends StatelessWidget {
-  const ImageProfileWidget({super.key});
-
+  const ImageProfileWidget({super.key, required this.isProfile});
+  final bool isProfile;
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -20,26 +21,16 @@ class ImageProfileWidget extends StatelessWidget {
           decoration: BoxDecoration(
             color: Theme.of(context).appBarTheme.backgroundColor,
             borderRadius: BorderRadius.circular(80),
-            border: Border.all(color: kPrimaryColor),
+            border: Border.all(color: AppColors.primaryColor),
           ),
           child: BlocBuilder<ImageBloc, ImageState>(
             builder: (context, state) {
-              if (state is ImageLoading) {
-                return SizedBox(
-                  width: 50,
-                  height: 42,
-                  child: LoadingAnimationWidget.hexagonDots(
-                    color: kPrimaryColor,
-                    size: 30,
-                  ),
-                );
+              if (state is ImageInitialState && state.imageLoaded != null) {
+                return ImageUser(image: state.imageLoaded!);
+              } else if (state is ImageLoading) {
+                return ImageLoadingWidget();
               } else if (state is ImageSuccess) {
-                return CircleAvatar(
-                  backgroundColor: Colors.grey.shade200,
-                  radius: 65,
-                  foregroundImage:
-                      Image.file(state.image, fit: BoxFit.cover).image,
-                );
+                return ImageSelected(image: state.image);
               } else if (state is ImageFailure) {
                 showSnackBar(
                   context,
@@ -48,7 +39,11 @@ class ImageProfileWidget extends StatelessWidget {
                   contentType: ContentType.failure,
                 );
               }
-              return Icon(Icons.person, color: kPrimaryColor, size: 120);
+              return Icon(
+                Icons.person,
+                color: AppColors.primaryColor,
+                size: 120,
+              );
             },
           ),
         ),
@@ -72,54 +67,59 @@ class ImageProfileWidget extends StatelessWidget {
   }
 
   void chooseTypeImage(BuildContext context) {
-     showModalBottomSheet(
+    showModalBottomSheet(
       context: context,
       builder: (_) {
         return Column(
           mainAxisSize: MainAxisSize.min,
           children: [
+            Center(
+              child: Divider(
+                color: AppColors.hintTextColor,
+                thickness: 0.5,
+                height: 0.5,
+              ),
+            ),
             ListTile(
               leading: Container(
                 width: 50,
                 height: 50,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(80),
-                  border: Border.all(
-                    color: AppColors.hintTextColor,
-                  ),
+                  border: Border.all(color: AppColors.hintTextColor),
                 ),
                 child: Icon(
                   Icons.camera_alt_outlined,
-                  color: kPrimaryColor,
+                  color: AppColors.primaryColor,
                 ),
               ),
               title: Text("Camera"),
               onTap: () {
                 context.read<ImageBloc>().add(
-                  PickImageFromCameraEvent(),
+                  PickImageFromCameraEvent(isProfile: isProfile),
                 );
+                Navigator.pop(context);
               },
             ),
             ListTile(
               leading: Container(
-                 width: 50,
+                width: 50,
                 height: 50,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(80),
-                  border: Border.all(
-                    color: AppColors.hintTextColor,
-                  ),
+                  border: Border.all(color: AppColors.hintTextColor),
                 ),
                 child: Icon(
                   Icons.image_outlined,
-                  color: kPrimaryColor,
+                  color: AppColors.primaryColor,
                 ),
               ),
               title: Text("Gallery"),
               onTap: () {
                 context.read<ImageBloc>().add(
-                  PickImageFromGalleryEvent(),
+                  PickImageFromGalleryEvent(isProfile: isProfile),
                 );
+                Navigator.pop(context);
               },
             ),
           ],
@@ -128,3 +128,5 @@ class ImageProfileWidget extends StatelessWidget {
     );
   }
 }
+
+

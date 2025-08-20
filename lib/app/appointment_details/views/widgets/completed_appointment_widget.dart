@@ -1,15 +1,15 @@
-import 'package:clinic_app/app/appointment_details/controllers/fetch_prescription_bloc/fetch_prescription_bloc.dart';
-import 'package:clinic_app/app/appointment_details/models/completed_appointment_models/completed_appointment_model.dart';
-import 'package:clinic_app/app/appointment_details/views/widgets/advices_widgets/advices_widget.dart';
-import 'package:clinic_app/app/appointment_details/views/widgets/lab_tests_widgets/lab_tests_widget.dart';
-import 'package:clinic_app/app/appointment_details/views/widgets/medications_widgets/medications_widget.dart';
-import 'package:clinic_app/app/appointment_details/views/widgets/summary_widgets/summary_widget.dart';
-import 'package:clinic_app/app/appointment_details/views/widgets/surgeries_widgets/surgeries_widget.dart';
+import 'package:clinic_app/app/prescription/controllers/fetch_prescription_bloc/fetch_prescription_bloc.dart';
+import 'package:clinic_app/app/prescription/models/completed_appointment_model.dart';
+import 'package:clinic_app/app/prescription/views/widgets/advices_widgets/advices_widget.dart';
+import 'package:clinic_app/app/prescription/views/widgets/lab_tests_widgets/lab_tests_widget.dart';
+import 'package:clinic_app/app/prescription/views/widgets/medications_widgets/medications_widget.dart';
+import 'package:clinic_app/core/widgets/reservation_summary_widget.dart';
+import 'package:clinic_app/app/prescription/views/widgets/surgeries_widgets/surgeries_widget.dart';
 import 'package:clinic_app/app/appointments/models/appointment_model.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
 import 'package:clinic_app/core/widgets/loading_widget.dart';
-import 'package:clinic_app/app/appointment_details/controllers/rating_dialog_bloc/rating_dialog_bloc.dart';
-import 'package:clinic_app/app/appointment_details/views/widgets/rating_dialog_widget.dart';
+import 'package:clinic_app/app/prescription/controllers/rating_dialog_bloc/rating_dialog_bloc.dart';
+import 'package:clinic_app/app/prescription/views/widgets/rating_dialog_widget.dart';
 import 'package:clinic_app/core/widgets/subtitle_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -91,7 +91,7 @@ class CompletedAppointmentWidget extends StatelessWidget {
                       padding: EdgeInsets.symmetric(
                         horizontal: AppDimensions.mp,
                       ),
-                      child: SummaryWidget(appointment: appointment),
+                      child: ReservationSummaryWidget(appointment: appointment),
                     ),
                     SizedBox(height: AppDimensions.mp),
                     if (prescription.medications.isNotEmpty) ...[

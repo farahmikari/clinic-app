@@ -15,7 +15,7 @@ class SearchWidget extends StatelessWidget {
       height: 15.0.wp,
       padding: EdgeInsets.symmetric(horizontal: AppDimensions.mp),
       decoration: BoxDecoration(
-        color: AppColors.widgetBackgroundColor,
+        color: Theme.of(context).cardColor,
         borderRadius: BorderRadius.circular(AppDimensions.lbr),
         boxShadow: AppShadow.boxShadow,
       ),
@@ -28,7 +28,7 @@ class SearchWidget extends StatelessWidget {
             AppIcons.search,
             height: AppDimensions.sis,
             width: AppDimensions.mis,
-            color: AppColors.darkGreyColor,
+            color: Theme.of(context).hintColor,
           ),
           Expanded(
             child: TextField(
@@ -36,7 +36,6 @@ class SearchWidget extends StatelessWidget {
                 color: AppColors.mainTextColor,
                 fontSize: AppDimensions.mfs,
                 fontWeight: FontWeight.w500,
-                decoration: TextDecoration.none,
               ),
               decoration: InputDecoration(
                 hintText: "Doctor, Symptom, Facility, Specialty...",
@@ -58,46 +57,3 @@ class SearchWidget extends StatelessWidget {
     );
   }
 }
-//  Container(
-//       decoration: BoxDecoration(
-//         borderRadius: BorderRadius.circular(AppDimensions.lbr),
-//         boxShadow: AppShadow.boxShadow,
-//       ),
-//       child: TextFormField(
-//         style: TextStyle(
-//           color: AppColors.mainTextColor,
-//           fontSize: AppDimensions.mfs,
-//           fontWeight: FontWeight.w500,
-//           decoration: TextDecoration.none,
-//         ),
-//         decoration: InputDecoration(
-//           filled: true,
-//           fillColor: AppColors.widgetBackgroundColor,
-
-//           enabledBorder: OutlineInputBorder(
-//             borderRadius: BorderRadius.circular(AppDimensions.lbr),
-//             borderSide: BorderSide.none,
-//           ),
-//           focusedBorder: OutlineInputBorder(
-//             borderRadius: BorderRadius.circular(AppDimensions.lbr),
-//             borderSide: BorderSide.none,
-//           ),
-//           prefix: SvgPicture.asset(
-//             AppIcons.search,
-//             height: AppDimensions.sis,
-//             colorFilter: ColorFilter.mode(
-//               AppColors.darkGreyColor,
-//               BlendMode.srcIn,
-//             ),
-//           ),
-//           hintText: "Doctor, Symptom, Facility, Specialty...",
-//           hintStyle: TextStyle(
-//             color: AppColors.hintTextColor,
-//             fontSize: AppDimensions.mfs,
-//             fontWeight: FontWeight.w500,
-//           ),
-//         ),
-//         cursorColor: AppColors.mainTextColor,
-//         autocorrect: false,
-//       ),
-//     );

@@ -1,6 +1,6 @@
 import 'package:clinic_app/app/appointments/controllers/appointments%20bloc/fetch_appointments_bloc.dart';
-import 'package:clinic_app/app/appointments/views/widgets/appointments%20widgets/appointments_widget.dart';
-import 'package:clinic_app/app/appointments/views/widgets/appointments%20widgets/shimmer_appointments_widget.dart';
+import 'package:clinic_app/app/appointments/views/widgets/appointments_widgets/appointments_widget.dart';
+import 'package:clinic_app/app/appointments/views/widgets/appointments_widgets/shimmer_appointments_widget.dart';
 import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/widgets/app_bar_with_filter_and_search_widget.dart';
 import 'package:clinic_app/core/widgets/filter_widget/controllers/filter_bloc/filter_bloc.dart';
@@ -60,7 +60,6 @@ class AppointmentsScreen extends StatelessWidget {
           ),
         ],
         child: Scaffold(
-          //backgroundColor: AppColors.backgroundColor,
           appBar: AppBarWithFilterAndSearchWidget(
             appBarTitle: "Appointments",
             searchHintText: "Department, Doctor, Date...",
@@ -73,7 +72,7 @@ class AppointmentsScreen extends StatelessWidget {
               return RefreshIndicator(
                 onRefresh: () => _onRefresh(context),
                 color: AppColors.primaryColor,
-                backgroundColor: AppColors.widgetBackgroundColor,
+                backgroundColor: Theme.of(context).cardColor,
                 child:
                     BlocBuilder<FetchAppointmentsBloc, FetchAppointmentsState>(
                       builder: (context, state) {

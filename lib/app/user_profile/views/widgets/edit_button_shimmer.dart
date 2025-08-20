@@ -1,4 +1,4 @@
-import 'package:clinic_app/app/user_profile/views/widgets/skelton.dart';
+import 'package:clinic_app/core/widgets/skelton.dart';
 import 'package:flutter/widgets.dart';
 
 class EditButtonShimmer extends StatelessWidget {

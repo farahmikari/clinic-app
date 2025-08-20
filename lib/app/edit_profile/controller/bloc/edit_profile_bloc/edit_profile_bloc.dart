@@ -1,15 +1,17 @@
 import 'package:clinic_app/app/edit_profile/controller/bloc/edit_profile_bloc/edit_profile_event.dart';
+import 'package:clinic_app/app/edit_profile/controller/services/edit_profile_service.dart';
+import 'package:clinic_app/app/edit_profile/models/edit_profile_model.dart';
 import 'package:clinic_app/app/login/models/form_model.dart';
-import 'package:clinic_app/app/user_profile/models/user_data.dart';
+import 'package:clinic_app/app/user_profile/models/user_data_model.dart';
 import 'package:clinic_app/core/utils/validators.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:intl/intl.dart';
+
 
 part 'edit_profile_state.dart';
 
 class EditProfileBloc extends Bloc<EditProfileEvent, EditProfileBaseState> {
-  final UserData user;
+  final UserDataModel user;
   EditProfileBloc(this.user)
     : super(
         EditProfileInitial(
@@ -17,7 +19,7 @@ class EditProfileBloc extends Bloc<EditProfileEvent, EditProfileBaseState> {
             firstName: FormModelItem(value: user.firstName),
             lastName: FormModelItem(value: user.lastName),
             phone: FormModelItem(value: user.phoneNumber),
-            birthday: DateFormat('yyyy-MM-dd').format(user.birthDate),
+            birthday: user.birthDate,
             gender: user.gender,
           ),
         ),
@@ -110,8 +112,7 @@ class EditProfileBloc extends Bloc<EditProfileEvent, EditProfileBaseState> {
         currentState.firstName.value.trim() != user.firstName.trim() ||
         currentState.lastName.value.trim() != user.lastName.trim() ||
         currentState.gender != user.gender ||
-        currentState.birthday !=
-            DateFormat('yyyy-MM-dd').format(user.birthDate);
+        currentState.birthday !=user.birthDate;
 
     emit(
       EditProfileInitial(
@@ -127,8 +128,20 @@ class EditProfileBloc extends Bloc<EditProfileEvent, EditProfileBaseState> {
     final currentState = state.data;
     emit(EditProfileLoading(currentState));
     try {
-      Future.delayed(Duration(seconds: 2));
-      emit(EditProfileSuccess(currentState));
+      Map<String, dynamic> response = await EditProfileService()
+          .editProfileService(
+            editModel:
+                EditProfileModel(
+                  firstName: currentState.firstName.value,
+                  lastName: currentState.lastName.value,
+                  gender: currentState.gender,
+                  birthDate: currentState.birthday,
+                  phoneNumber: currentState.phone.value,
+                ).toJson(),
+          );
+      String? message = response["Done"];
+      //Future.delayed(Duration(seconds: 2));
+      emit(EditProfileSuccess(currentState,message: message));
     } on Exception catch (e) {
       emit(EditProfileFailed(currentState, message: e.toString()));
     }

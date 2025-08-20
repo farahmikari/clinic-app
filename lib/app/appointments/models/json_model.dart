@@ -1,4 +1,4 @@
-final upcomingAppointments = [
+final myPendingAppointments = [
   {
     "id": 1,
     "shift": "morning",
@@ -6,7 +6,7 @@ final upcomingAppointments = [
     "doctor_name": "Layla Hassan",
     "doctor_image": "assets/images/doctor1.png",
     "department": "Cardiology",
-    "date_time": "2025-05-24T10:30:00Z",
+    "date_time": "2025-08-12T10:30:00Z",
     "request_type_id": 1,
     "with_medical_report": true,
   },
@@ -17,7 +17,7 @@ final upcomingAppointments = [
     "doctor_name": "Fares Al Midany",
     "doctor_image": "assets/images/doctor2.png",
     "department": "Neurology",
-    "date_time": "2025-05-25T12:30:00Z",
+    "date_time": "2025-08-13T12:30:00Z",
     "request_type_id": 2,
     "with_medical_report": false,
   },
@@ -28,13 +28,13 @@ final upcomingAppointments = [
     "doctor_name": "Rand Skaf",
     "doctor_image": "assets/images/doctor4.png",
     "department": "Pediatrics",
-    "date_time": "2025-05-26T15:00:00Z",
+    "date_time": "2025-08-14T15:00:00Z",
     "request_type_id": 2,
     "with_medical_report": true,
   },
 ];
 
-final completedAppointments = [
+final myCompletedAppointments = [
   {
     "id": 1,
     "shift": "morning",

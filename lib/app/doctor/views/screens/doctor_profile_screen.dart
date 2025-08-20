@@ -4,19 +4,14 @@ import 'package:clinic_app/core/widgets/loading_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class DoctorProfileScreen extends StatefulWidget {
+class DoctorProfileScreen extends StatelessWidget {
   final int id;
   const DoctorProfileScreen({super.key, required this.id});
 
   @override
-  State<DoctorProfileScreen> createState() => _DoctorProfileScreenState();
-}
-
-class _DoctorProfileScreenState extends State<DoctorProfileScreen> {
-  @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => DoctorBloc()..add(FetchDoctor(id: widget.id)),
+      create: (context) => DoctorBloc()..add(FetchDoctor(id: id)),
       child: Scaffold(
         //backgroundColor: AppColors.backgroundColor,
         body: BlocBuilder<DoctorBloc, DoctorState>(

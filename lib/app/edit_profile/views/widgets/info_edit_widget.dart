@@ -22,6 +22,8 @@ class InfoEditWidget extends StatelessWidget {
     required this.phoneController,
     required this.emailController,
     required this.newEmailController,
+    required this.editData,
+    required this.isLoading,
   });
 
   final TextEditingController firstNameController;
@@ -33,100 +35,89 @@ class InfoEditWidget extends StatelessWidget {
   final TextEditingController phoneController;
   final TextEditingController emailController;
   final TextEditingController newEmailController;
-
+  final EditProfileState editData;
+  final bool isLoading;
+  
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<EditProfileBloc, EditProfileBaseState>(
-      listener: (context, state) {},
-      builder: (context, state) {
-        final editData = state.data;
-        final bloc = context.read<EditProfileBloc>();
-        return Form(
-          key: editData.formKey,
-          child: Column(
-            children: [
-              TextFormFieldWidget(
-                label: "first name",
-                iconTextField: Icons.person_outline,
-                controller: firstNameController,
-                validator: (value) => editData.firstName.value,
-                error: editData.firstName.error,
-                onChanged: (value) {
-                  bloc.add(EditFirstNameFieldEvent(name: value));
-                  bloc.add(EditButtonEvent());
-                },
-              ),
-              TextFormFieldWidget(
-                label: "last name",
-                iconTextField: Icons.person_outlined,
-                controller: lastNameController,
-                validator: (value) => editData.lastName.value,
-                error: editData.lastName.error,
-                onChanged: (value) {
-                  bloc.add(EditLastNameFieldEvent(name: value));
-                  bloc.add(EditButtonEvent());
-                },
-              ),
-              TextFormFieldWidget(
-                label: "birthday date",
-                iconTextField: Icons.person_outline,
-                controller: birthdayController,
-                suffixIcon: IconButton(
-                  onPressed:
-                      () => selectDate(
-                        context,
-                        valueBirth,
-                        birthdayController,
-                        bloc,
-                      ),
-                  icon: Icon(Icons.calendar_month_outlined),
-                ),
-                readOnly: true,
-              ),
-              TextFormFieldWidget(
-                label: "gender",
-                iconTextField: Icons.transgender,
-                controller: genderController,
-                onTap:
-                    () => selectGender(
-                      context,
-                      genderOption,
-                      genderController,
-                      bloc,
-                    ),
-                readOnly: true,
-              ),
-              TextFormFieldWidget(
-                label: "phone number",
-                iconTextField: Icons.phone_android_outlined,
-                controller: phoneController,
-                validator: (value) => editData.phone.value,
-                error: editData.phone.error,
-                onChanged: (value) {
-                  bloc.add(EditPhoneFieldEvent(phone: value));
-                  bloc.add(EditButtonEvent());
-                },
-                keyboardType: TextInputType.numberWithOptions(),
-              ),
-              EmailEditWidget(
-                emailController: emailController,
-                newEmailController: newEmailController,
-              ),
-              SizedBox(height: 0.2.hp),
-              MyButtonWidget(
-                text: "save",
-                color: AppColors.primaryColor,
-                onPressed:
-                    (editData.buttonEvent)
-                        ? () {
-                          bloc.add(EditSubmitEvent());
-                        }
-                        : null,
-              ),
-            ],
+    final bloc = context.read<EditProfileBloc>();
+    return Form(
+      key: editData.formKey,
+      child: Column(
+        children: [
+          TextFormFieldWidget(
+            label: "first name",
+            iconTextField: Icons.person_outline,
+            controller: firstNameController,
+            validator: (value) => editData.firstName.value,
+            error: editData.firstName.error,
+            onChanged: (value) {
+              bloc.add(EditFirstNameFieldEvent(name: value));
+              bloc.add(EditButtonEvent());
+            },
           ),
-        );
-      },
+          TextFormFieldWidget(
+            label: "last name",
+            iconTextField: Icons.person_outlined,
+            controller: lastNameController,
+            validator: (value) => editData.lastName.value,
+            error: editData.lastName.error,
+            onChanged: (value) {
+              bloc.add(EditLastNameFieldEvent(name: value));
+              bloc.add(EditButtonEvent());
+            },
+          ),
+          TextFormFieldWidget(
+            label: "birthday date",
+            iconTextField: Icons.person_outline,
+            controller: birthdayController,
+            suffixIcon: IconButton(
+              onPressed:
+                  () =>
+                      selectDate(context, valueBirth, birthdayController, bloc),
+              icon: Icon(Icons.calendar_month_outlined),
+            ),
+            readOnly: true,
+          ),
+          TextFormFieldWidget(
+            label: "gender",
+            iconTextField: Icons.transgender,
+            controller: genderController,
+            onTap:
+                () =>
+                    selectGender(context, genderOption, genderController, bloc),
+            readOnly: true,
+          ),
+          TextFormFieldWidget(
+            label: "phone number",
+            iconTextField: Icons.phone_android_outlined,
+            controller: phoneController,
+            validator: (value) => editData.phone.value,
+            error: editData.phone.error,
+            onChanged: (value) {
+              bloc.add(EditPhoneFieldEvent(phone: value));
+              bloc.add(EditButtonEvent());
+            },
+            keyboardType: TextInputType.numberWithOptions(),
+          ),
+          EmailEditWidget(
+            emailController: emailController,
+            newEmailController: newEmailController,
+          ),
+          SizedBox(height: 0.2.hp),
+          MyButtonWidget(
+            text: "save",
+            color: AppColors.primaryColor,
+            isLoading: isLoading,
+            onPressed:
+                (editData.buttonEvent && !isLoading)
+                    ? () {
+                      bloc.add(EditSubmitEvent());
+                    }
+                    : null,
+          ),
+        ],
+      ),
     );
   }
 }

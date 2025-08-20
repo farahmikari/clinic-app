@@ -21,7 +21,6 @@ class AppointmentDetailsScreen extends StatelessWidget {
     }
 
     return Scaffold(
-      //backgroundColor: AppColors.backgroundColor,
       appBar: AppBarWidget(status: appointment.status),
       body: SafeArea(child: specifyBodyWidget()),
     );

@@ -1,3 +1,5 @@
+import 'package:clinic_app/app/edit_profile/controller/services/edit_email_service.dart';
+import 'package:clinic_app/app/edit_profile/models/edit_email_model.dart';
 import 'package:clinic_app/app/forget_password/controllers/services/check_code_forget_password_service.dart';
 import 'package:clinic_app/app/verification/controllers/bloc/verification_bloc/verification_event.dart';
 import 'package:clinic_app/app/verification/controllers/services/check_code_service.dart';
@@ -52,7 +54,13 @@ class VerificationBloc extends Bloc<VerificationEvent, VerificationState> {
             );
             break;
           case VerificationGoto.changeEmail:
-            isArrive = true;
+            isArrive = await EditEmailService().editEmailProfileService(
+              emailModel:
+                  EditEmailModel(
+                    email: event.emailModel.email,
+                    code: event.emailModel.code,
+                  ).toJson(),
+            );
             break;
           default:
             isArrive = false;

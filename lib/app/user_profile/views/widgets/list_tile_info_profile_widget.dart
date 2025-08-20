@@ -29,7 +29,6 @@ class ListTileInfoProfileWidget extends StatelessWidget {
           subtitle: Text(
             text,
             style: TextStyle(
-              //color: AppColors.mainTextColor,
               fontWeight: FontWeight.w700,
               fontSize: 15,
               fontFamily: "Montserat",

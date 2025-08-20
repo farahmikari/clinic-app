@@ -53,7 +53,8 @@ final class EditProfileLoading extends EditProfileBaseState {
 }
 
 final class EditProfileSuccess extends EditProfileBaseState {
-  EditProfileSuccess(EditProfileState data) : super(data: data);
+  String? message;
+  EditProfileSuccess(EditProfileState data,{this.message}) : super(data: data);
 }
 
 final class EditProfileFailed extends EditProfileBaseState {

@@ -1,13 +1,11 @@
-import 'package:clinic_app/core/constants/app_icons.dart';
 import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
-import 'package:clinic_app/core/constants/app_shadow.dart';
 import 'package:clinic_app/core/extentions/percent_sized_extention.dart';
 import 'package:clinic_app/core/widgets/filter_widget/controllers/filter_bloc/filter_bloc.dart';
 import 'package:clinic_app/core/widgets/filter_widget/views/widgets/filter_widget.dart';
+import 'package:clinic_app/core/widgets/search_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
 
 class AppBarWithFilterAndSearchWidget extends StatelessWidget
     implements PreferredSizeWidget {
@@ -37,7 +35,6 @@ class AppBarWithFilterAndSearchWidget extends StatelessWidget
       title: Text(
         appBarTitle,
         style: TextStyle(
-          //color: AppColors.mainTextColor,
           fontSize: AppDimensions.lfs,
           fontWeight: FontWeight.bold,
         ),
@@ -54,57 +51,7 @@ class AppBarWithFilterAndSearchWidget extends StatelessWidget
             crossAxisAlignment: CrossAxisAlignment.center,
             spacing: AppDimensions.sm,
             children: [
-              Expanded(
-                flex: 3,
-                child: Container(
-                  height: 15.0.wp,
-                  padding: EdgeInsets.symmetric(horizontal: AppDimensions.mp),
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).cardColor,
-                    borderRadius: BorderRadius.circular(AppDimensions.lbr),
-                    boxShadow: AppShadow.boxShadow,
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    spacing: AppDimensions.mp,
-                    children: [
-                      SvgPicture.asset(
-                        AppIcons.search,
-                        height: AppDimensions.sis,
-                        width: AppDimensions.mis,
-                        color: AppColors.darkGreyColor,
-                      ),
-                      Expanded(
-                        child: TextField(
-                          style: TextStyle(
-                            color: AppColors.mainTextColor,
-                            fontSize: AppDimensions.mfs,
-                            fontWeight: FontWeight.w500,
-                          ),
-                          decoration: InputDecoration(
-                            hintText: searchHintText,
-                            hintStyle: TextStyle(
-                              color: AppColors.hintTextColor,
-                              fontSize: AppDimensions.mfs,
-                              fontWeight: FontWeight.w500,
-                            ),
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide.none,
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide.none,
-                            ),
-                            contentPadding: EdgeInsets.all(0.0),
-                          ),
-                          cursorColor: AppColors.mainTextColor,
-                          autocorrect: false,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+              Expanded(flex: 3, child: SearchWidget()),
               Expanded(
                 flex: 1,
                 child: BlocBuilder<FilterBloc, FilterState>(

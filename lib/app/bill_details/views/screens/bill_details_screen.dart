@@ -27,10 +27,8 @@ class BillDetailsScreen extends StatelessWidget {
           (context) =>
               FetchBillDetailsBloc()..add(FetchBillDetails(bill: bill)),
       child: Scaffold(
-       // backgroundColor: AppColors.backgroundColor,
         appBar: AppBar(
           actionsPadding: EdgeInsets.only(right: AppDimensions.mp),
-          //backgroundColor: AppColors.backgroundColor,
           surfaceTintColor: AppColors.backgroundColor,
           title: Text(
             "Details",
@@ -41,7 +39,7 @@ class BillDetailsScreen extends StatelessWidget {
             ),
           ),
           actions: [
-            FilterBadgeWidget(badge: bill.status, color: specifyStatusColor()),
+            BadgeWidget(title: bill.status, color: specifyStatusColor()),
           ],
         ),
         body: SafeArea(

@@ -1,3 +1,4 @@
+import 'package:clinic_app/app/book_appointment/models/department_model.dart';
 import 'package:clinic_app/app/department_doctors/controllers/fetch_department_doctors/fetch_department_doctors_bloc.dart';
 import 'package:clinic_app/app/department_doctors/views/widgets/department_doctors_widget.dart';
 import 'package:clinic_app/app/department_doctors/views/widgets/shimmer_department_doctors.dart';
@@ -8,11 +9,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class DepartmentDoctorsScreen extends StatelessWidget {
-  const DepartmentDoctorsScreen({super.key});
+  const DepartmentDoctorsScreen({super.key, required this.department});
+  final DepartmentModel department;
 
   Future<void> _onRefresh(BuildContext context) async {
     context.read<FetchDepartmentDoctorsBloc>().add(
-      FetchDepartmentDoctors(departmentId: 1),
+      FetchDepartmentDoctors(departmentId: department.id),
     );
     context.read<FilterBloc>().add(FilterIsReset());
   }
@@ -26,7 +28,7 @@ class DepartmentDoctorsScreen extends StatelessWidget {
           create:
               (context) =>
                   FetchDepartmentDoctorsBloc()
-                    ..add(FetchDepartmentDoctors(departmentId: 1)),
+                    ..add(FetchDepartmentDoctors(departmentId: department.id)),
         ),
         BlocProvider(
           create:
@@ -64,9 +66,8 @@ class DepartmentDoctorsScreen extends StatelessWidget {
           ),
         ],
         child: Scaffold(
-          backgroundColor: AppColors.backgroundColor,
           appBar: AppBarWithFilterAndSearchWidget(
-            appBarTitle: "Departments",
+            appBarTitle: department.name,
             searchHintText: "Department",
             whiteFilterName: "All",
             greenFilterName: "Morning",
@@ -78,7 +79,7 @@ class DepartmentDoctorsScreen extends StatelessWidget {
                 return RefreshIndicator(
                   onRefresh: () => _onRefresh(context),
                   color: AppColors.primaryColor,
-                  backgroundColor: AppColors.widgetBackgroundColor,
+                  backgroundColor: Theme.of(context).scaffoldBackgroundColor,
                   child: BlocBuilder<
                     FetchDepartmentDoctorsBloc,
                     FetchDepartmentDoctorsState

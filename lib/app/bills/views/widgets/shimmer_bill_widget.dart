@@ -11,7 +11,7 @@ class ShimmerBillWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Shimmer.fromColors(
-      baseColor: AppColors.shimmerBaseColor,
+      baseColor: Theme.of(context).shadowColor,
       highlightColor: AppColors.shimmerHighlightColor,
       child: Container(
         padding: EdgeInsets.all(AppDimensions.mp),

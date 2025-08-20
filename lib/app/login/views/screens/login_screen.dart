@@ -8,6 +8,7 @@ import 'package:clinic_app/app/signup/views/screens/email_screen.dart';
 import 'package:clinic_app/app/signup/views/widgets/text_button_widget.dart';
 import 'package:clinic_app/app/user_drawer/views/screen/drawer_screen.dart';
 import 'package:clinic_app/consts.dart';
+import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/utils/snack_bar_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -223,12 +224,9 @@ class _LoginScreenState extends State<LoginScreen>
                                     ),
                                     MyTextButton(
                                       textButton: 'sign up ',
-                                      color: kPrimaryColor,
+                                      color: AppColors.primaryColor,
                                       onPressed: () {
-                                        Navigator.pushNamed(
-                                          context,
-                                          EmailScreen.id,
-                                        );
+                                        Get.off(() => EmailScreen());
                                       },
                                     ),
                                   ],

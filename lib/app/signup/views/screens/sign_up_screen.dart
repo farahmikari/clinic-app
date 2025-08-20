@@ -3,9 +3,10 @@ import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:clinic_app/app/login/views/widgets/button_widget.dart';
 import 'package:clinic_app/app/login/views/widgets/text_form_field_widget.dart';
 import 'package:clinic_app/app/user_drawer/views/screen/drawer_screen.dart';
+import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/widgets/image_widget/controller/bloc/image_bloc/image_bloc.dart';
 import 'package:clinic_app/app/signup/controllers/bloc/signup_bloc/signup_bloc.dart';
-import 'package:clinic_app/core/widgets/image_widget/controller/service/image_picker_service.dart';
+import 'package:clinic_app/core/widgets/image_widget/controller/services/image_picker_service.dart';
 import 'package:clinic_app/core/widgets/image_widget/views/widget/image_profile_widget.dart';
 import 'package:clinic_app/consts.dart';
 import 'package:clinic_app/core/utils/snack_bar_util.dart';
@@ -32,7 +33,6 @@ class _SignupState extends State<SignUp> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-   // final email = ModalRoute.of(context)?.settings.arguments as String;
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => SignupBloc()),
@@ -111,7 +111,7 @@ class _SignupState extends State<SignUp> with SingleTickerProviderStateMixin {
                               );
                             }
                           },
-                          child: ImageProfileWidget(),
+                          child: ImageProfileWidget(isProfile: false),
                         ),
 
                         SizedBox(height: 10),
@@ -239,7 +239,7 @@ class _SignupState extends State<SignUp> with SingleTickerProviderStateMixin {
                               (signupData.buttonEvent && !isLoading)
                                   ? () {
                                     context.read<SignupBloc>().add(
-                                      SEmailFieldEvent(email:widget.email),
+                                      SEmailFieldEvent(email: widget.email),
                                     );
                                     context.read<SignupBloc>().add(
                                       SignupSubmitEvent(),
@@ -293,10 +293,21 @@ class _SignupState extends State<SignUp> with SingleTickerProviderStateMixin {
     final bloc = context.read<SignupBloc>();
     DateTime? picked = await showDatePicker(
       builder: (context, child) {
+        final isDark = Theme.of(context).brightness == Brightness.dark;
+
         return Theme(
-          data: Theme.of(
-            context,
-          ).copyWith(colorScheme: ColorScheme.light(primary: kPrimaryColor)),
+          data: Theme.of(context).copyWith(
+            colorScheme:
+                isDark
+                    ? ColorScheme.dark(
+                      primary: AppColors.primaryColor,
+                      surface: Theme.of(context).cardColor,
+                    )
+                    : ColorScheme.light(
+                      primary: AppColors.primaryColor,
+                      surface: Theme.of(context).cardColor,
+                    ),
+          ),
           child: child!,
         );
       },

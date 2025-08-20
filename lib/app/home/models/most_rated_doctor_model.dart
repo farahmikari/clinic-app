@@ -1,3 +1,5 @@
+import 'package:clinic_app/core/api/end_points.dart';
+
 class MostRatedDoctorModel {
   final int id;
   final String image;
@@ -17,12 +19,12 @@ class MostRatedDoctorModel {
 
   factory MostRatedDoctorModel.fromJson(Map<String, dynamic> jsonData) {
     return MostRatedDoctorModel(
-      id: jsonData["id"],
-      image: jsonData["image"],
-      name: jsonData["name"],
-      specialty: jsonData["specialty"],
-      rate: jsonData["rate"],
-      treatments: jsonData["treatments"],
+      id: jsonData[ApiKey.id],
+      image: jsonData[ApiKey.image],
+      name: jsonData[ApiKey.name],
+      specialty: jsonData[ApiKey.specialty],
+      rate: jsonData[ApiKey.rate],
+      treatments: jsonData[ApiKey.treatments],
     );
   }
 }

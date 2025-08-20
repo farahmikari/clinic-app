@@ -1,5 +1,5 @@
 class EndPoints {
-  static String baseUrl = "http://192.168.1.4:8000";
+  static String baseUrl = "http://192.168.1.15:8000";
 
   static String departmentId(int departmentId) {
     return "/api/department/$departmentId";
@@ -11,6 +11,18 @@ class EndPoints {
 
   static String appointmentId(int appointmentId) {
     return "/api/appointments/$appointmentId";
+  }
+
+  static String doctorProfile(int doctorId) {
+    return "/api/doctors/$doctorId/profile";
+  }
+
+  static String prescriptionId(int appointmentId) {
+    return "/api/prescription/$appointmentId";
+  }
+
+  static String offerId(int offerId) {
+    return "/api/offer/$offerId";
   }
 
   /////send otp code to email/////
@@ -48,8 +60,34 @@ class EndPoints {
     return "/api/password/reset/email";
   }
 
+  ///////logout//////////////
   static String logout() {
     return "/api/user_logout";
+  }
+
+  ///////edit profile////////
+  static String editProfile() {
+    return "/api/user/profile";
+  }
+
+  //////edit email///////////
+  static String editEmail() {
+    return "/api/user/email";
+  }
+
+  ///////change password/////
+  static String changePassword() {
+    return "/api/user/password";
+  }
+
+  /////change image///////////
+  static String changeImage() {
+    return "/api/upload_image";
+  }
+
+  /////show info profile///////
+  static String showInfoProfile() {
+    return "/api/user/profile";
   }
 
   static String departments = "/api/departments";
@@ -58,6 +96,11 @@ class EndPoints {
   static String appointments = "/api/appointments";
   static String patientAppointments = "/api/patient/appointments";
   static String availableSlotsByShift = "/api/availableSlotsByShift";
+  static String top5 = "/api/top5";
+  static String rate = "/api/doctors/rate";
+  static String points = "/api/points";
+  static String offers = "/api/offers";
+  static String offerPrice = "/api/offer_price";
 }
 
 class ApiKey {
@@ -89,4 +132,34 @@ class ApiKey {
   static String isAvailable = "isAvailable";
   static String name = "name";
   static String time = "time";
+  static String treatments = "treatments";
+  static String rate = "rate";
+  static String specialty = "specialty";
+  static String image = "image";
+  static String speciality = "speciality";
+  static String startTime = "start_time";
+  static String endTime = "end_time";
+  static String experience = "experience";
+  static String bio = "bio";
+  static String qualifications = "qualifications";
+  static String medications = "medications";
+  static String type = "type";
+  static String dosage = "dosage";
+  static String frequesncy = "frequency";
+  static String duration = "duration";
+  static String note = "note";
+  static String labTests = "lab_tests";
+  static String surgeries = "surgeries";
+  static String advices = "advices";
+  static String advice = "advice";
+  static String isPrescriptionViewed = "is_prescription_viewed";
+  static String appointmentId = "appointment_id";
+  static String rating = "rating";
+  static String points = "points";
+  static String paymentMethod = "payment_method";
+  static String offerId = "offer_id";
+  static String reservation = "reservation";
+  static String selectedService = "selected_service";
+  static String price = "price";
+  static String currency = "currency";
 }

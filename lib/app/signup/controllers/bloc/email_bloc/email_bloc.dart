@@ -38,7 +38,9 @@ class EmailBloc extends Bloc<EmailEvent, EmailState> {
                 .sendEmailForgetPasswordService(email: event.email);
             break;
           case VerificationGoto.changeEmail:
-            isArrive = true;
+            isArrive = await SendEmailVerify().sendEmailVerifyService(
+              email: event.email,
+            );
             break;
           default:
             isArrive = false;

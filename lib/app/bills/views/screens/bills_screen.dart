@@ -51,7 +51,6 @@ class BillsScreen extends StatelessWidget {
           ),
         ],
         child: Scaffold(
-          //backgroundColor: AppColors.backgroundColor,
           appBar: AppBarWithFilterAndSearchWidget(
             appBarTitle: "Bills",
             searchHintText: "Department, Doctor, Date...",
@@ -62,7 +61,7 @@ class BillsScreen extends StatelessWidget {
           body: Builder(
             builder: (context) {
               return RefreshIndicator(
-                backgroundColor: AppColors.backgroundColor,
+                backgroundColor: Theme.of(context).cardColor,
                 color: AppColors.primaryColor,
                 onRefresh: () => _onRefresh(context),
                 child: BlocBuilder<FetchBillsBloc, FetchBillsState>(

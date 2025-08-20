@@ -18,14 +18,13 @@ class DepartmentsScreen extends StatelessWidget {
     return BlocProvider(
       create: (context) => FetchDepartmentsBloc()..add(FetchDepartments()),
       child: Scaffold(
-        //backgroundColor: AppColors.backgroundColor,
-        appBar: AppBarWithSearchWidget(title: "Search"),
+        appBar: AppBarWithSearchWidget(title: "Departments"),
         body: Builder(
           builder: (context) {
             return RefreshIndicator(
               onRefresh: () => _onRefresh(context),
               color: AppColors.primaryColor,
-              backgroundColor: AppColors.widgetBackgroundColor,
+              backgroundColor: Theme.of(context).cardColor,
               child: BlocBuilder<FetchDepartmentsBloc, FetchDepartmentsState>(
                 builder: (context, state) {
                   if (state is FetchDepartmentsLoaded) {

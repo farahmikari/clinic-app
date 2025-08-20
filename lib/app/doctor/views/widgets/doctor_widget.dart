@@ -1,3 +1,5 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:clinic_app/app/book_appointment_with_doctor/views/widgets/book_appointment_with_doctor_auth_decision_widget.dart';
 import 'package:clinic_app/app/doctor/models/doctor_model.dart';
 import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
@@ -10,8 +12,10 @@ import 'package:clinic_app/core/widgets/doctor_specialty_widget.dart';
 import 'package:clinic_app/core/widgets/horizontal_info_with_title_widget.dart';
 import 'package:clinic_app/core/widgets/info_list_widget.dart';
 import 'package:clinic_app/core/widgets/info_with_icon_widget.dart';
+import 'package:clinic_app/core/widgets/loading_widget.dart';
 import 'package:clinic_app/core/widgets/subtitle_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 class DoctorWidget extends StatelessWidget {
@@ -45,7 +49,11 @@ class DoctorWidget extends StatelessWidget {
               borderRadius: BorderRadius.circular(AppDimensions.mbr),
               boxShadow: AppShadow.boxShadow,
             ),
-            child: Image(image: AssetImage(doctor.image)),
+            child: CachedNetworkImage(
+              imageUrl: doctor.image,
+              placeholder: (context, url) => LoadingWidget(),
+              errorWidget: (context, url, error) => Icon(Icons.error),
+            ),
           ),
           SizedBox(height: AppDimensions.mp),
           Center(
@@ -115,7 +123,14 @@ class DoctorWidget extends StatelessWidget {
             title: "Book Now",
             backgroundColor: AppColors.primaryColor,
             titleColor: AppColors.widgetBackgroundColor,
-            onTap: () {},
+            onTap: () {
+              Get.to(
+                () => BookAppointmentWithDoctorScreenAuthDecisionWidget(
+                  doctor: doctor,
+                ),
+                transition: Transition.zoom,
+              );
+            },
           ),
         ],
       ),

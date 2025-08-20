@@ -1,4 +1,4 @@
-abstract class EditPasswordEvent  {}
+class EditPasswordEvent  {}
 class OldPasswordEvent extends EditPasswordEvent {
   final String password;
 

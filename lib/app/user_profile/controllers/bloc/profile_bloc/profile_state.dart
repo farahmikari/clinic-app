@@ -6,7 +6,10 @@ final class ProfileBlocInitial extends ProfileState {}
 
 final class ProfileBlocLoading extends ProfileState {}
 
-final class ProfileBlocSuccess extends ProfileState {}
+final class ProfileBlocSuccess extends ProfileState {
+  UserDataModel user;
+  ProfileBlocSuccess({required this.user});
+}
 
 final class ProfileBlocFailure extends ProfileState {
   String? message;

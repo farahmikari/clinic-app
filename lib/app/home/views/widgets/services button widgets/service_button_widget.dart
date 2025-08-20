@@ -27,14 +27,17 @@ class ServiceButtonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
+    return GestureDetector(
       onTap: onPressed,
-      borderRadius: BorderRadius.circular(AppDimensions.mbr),
       child: Container(
         padding: EdgeInsets.all(AppDimensions.mp),
         decoration: BoxDecoration(
           color: backgroundColor,
           borderRadius: BorderRadius.circular(AppDimensions.mbr),
+          image: DecorationImage(
+            image: AssetImage("assets/images/watermark1.png"),
+            fit: BoxFit.cover,
+          ),
           boxShadow: AppShadow.boxShadow,
         ),
         child: Stack(

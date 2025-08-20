@@ -2,7 +2,7 @@ import 'package:clinic_app/app/book_appointment/models/time_model.dart';
 import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
 import 'package:clinic_app/core/constants/app_shadow.dart';
-import 'package:clinic_app/core/widgets/times_widget/controllers/times%20bloc/times_bloc.dart';
+import 'package:clinic_app/core/widgets/times_widget/controllers/times_bloc/times_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
@@ -35,7 +35,7 @@ class TimeItem extends StatelessWidget {
       } else if (time.id == currentTimeId) {
         return AppColors.primaryColor;
       } else {
-        return AppColors.widgetBackgroundColor;
+        return Theme.of(context).cardColor;
       }
     }
 
@@ -44,9 +44,9 @@ class TimeItem extends StatelessWidget {
           time.id == currentTimeId) {
         return AppColors.widgetBackgroundColor;
       } else if (time.isAvailable && isTimesWidgetActivated) {
-        return AppColors.mainTextColor;
+        return Theme.of(context).textTheme.titleLarge!.color!;
       } else {
-        return AppColors.hintTextColor;
+        return Theme.of(context).hintColor;
       }
     }
 
@@ -79,7 +79,7 @@ class TimeItem extends StatelessWidget {
           style: TextStyle(
             color: specifyTitleColor(),
             fontSize: AppDimensions.mfs,
-            fontWeight: FontWeight.bold,
+            fontWeight: FontWeight.w500,
           ),
         ),
       ),

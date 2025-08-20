@@ -20,7 +20,7 @@ class DepartmentItem extends StatelessWidget {
       if (currentDepartmentItem == department.id) {
         return AppColors.primaryColor;
       } else {
-        return AppColors.widgetBackgroundColor;
+        return Theme.of(context).cardColor;
       }
     }
 
@@ -28,7 +28,7 @@ class DepartmentItem extends StatelessWidget {
       if (currentDepartmentItem == department.id) {
         return AppColors.widgetBackgroundColor;
       } else {
-        return AppColors.mainTextColor;
+        return Theme.of(context).textTheme.titleLarge!.color!;
       }
     }
 
@@ -52,7 +52,7 @@ class DepartmentItem extends StatelessWidget {
           style: TextStyle(
             color: specifyTitleColor(),
             fontSize: AppDimensions.mfs,
-            fontWeight: FontWeight.bold,
+            fontWeight: FontWeight.w500,
           ),
         ),
       ),

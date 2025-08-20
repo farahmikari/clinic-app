@@ -1,6 +1,7 @@
 import 'package:animated_background/animated_background.dart';
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:clinic_app/app/login/models/form_model.dart';
+import 'package:clinic_app/app/login/views/screens/login_screen.dart';
 import 'package:clinic_app/app/signup/controllers/bloc/email_bloc/email_bloc.dart';
 import 'package:clinic_app/app/signup/controllers/bloc/email_bloc/email_event.dart';
 import 'package:clinic_app/app/signup/controllers/bloc/email_bloc/email_state.dart';
@@ -9,6 +10,7 @@ import 'package:clinic_app/consts.dart';
 import 'package:clinic_app/app/verification/views/screen/verification_screen.dart';
 import 'package:clinic_app/app/login/views/widgets/button_widget.dart';
 import 'package:clinic_app/app/login/views/widgets/text_form_field_widget.dart';
+import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/utils/snack_bar_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -117,7 +119,7 @@ class _EmailScreenState extends State<EmailScreen>
                                     child: Text(
                                       "Glad to see you :)",
                                       style: TextStyle(
-                                        color: kPrimaryColor,
+                                        color: AppColors.primaryColor,
                                         fontFamily: "Montserat",
                                         fontSize: 25,
                                         fontWeight: FontWeight.bold,
@@ -171,7 +173,7 @@ class _EmailScreenState extends State<EmailScreen>
                                       ),
                                       TextButton(
                                         onPressed: () {
-                                          Navigator.pop(context);
+                                          Get.off(() => LoginScreen());
                                         },
                                         child: Text(
                                           'login ',

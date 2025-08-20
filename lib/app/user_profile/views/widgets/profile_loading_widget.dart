@@ -1,6 +1,6 @@
 import 'package:clinic_app/app/user_profile/views/widgets/edit_button_shimmer.dart';
 import 'package:clinic_app/app/user_profile/views/widgets/profile_info_shimmer.dart';
-import 'package:clinic_app/app/user_profile/views/widgets/skelton.dart';
+import 'package:clinic_app/core/widgets/skelton.dart';
 import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
@@ -18,7 +18,6 @@ class ProfileLoadingWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-     // backgroundColor: AppColors.backgroundColor,
       body: Shimmer.fromColors(
         baseColor: Theme.of(context).shadowColor,
         highlightColor: AppColors.shimmerHighlightColor,
@@ -36,7 +35,7 @@ class ProfileLoadingWidget extends StatelessWidget {
             SizedBox(height: height * 0.05),
             EditButtonShimmer(width: width, height: height),
             SizedBox(height: height * 0.6,
-           child:  ProfileInfoShimmer(height: height, width: width)),
+           child:ProfileInfoShimmer(height: height, width: width)),
           ],
         ),
       ),

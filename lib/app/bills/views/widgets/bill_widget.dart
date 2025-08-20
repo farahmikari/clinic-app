@@ -62,10 +62,7 @@ class BillWidget extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                 ),
-                FilterBadgeWidget(
-                  badge: bill.status,
-                  color: specifyStatusColor(),
-                ),
+                BadgeWidget(title: bill.status, color: specifyStatusColor()),
               ],
             ),
             SizedBox(height: AppDimensions.mp),

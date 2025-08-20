@@ -30,7 +30,7 @@ class TitledCheckboxItem extends StatelessWidget {
 
     Color specifyTitleAndSideColor() {
       if (isTitledCheckboxWidgetActived) {
-        return AppColors.mainTextColor;
+        return Theme.of(context).textTheme.titleLarge!.color!;
       } else {
         return AppColors.hintTextColor;
       }
@@ -43,9 +43,8 @@ class TitledCheckboxItem extends StatelessWidget {
         Text(
           title,
           style: TextStyle(
-            color: AppColors.mainTextColor,
-            fontSize: AppDimensions.mfs,
-            fontWeight: FontWeight.w500,
+            fontSize: AppDimensions.lfs,
+            fontWeight: FontWeight.bold,
           ),
         ),
         Checkbox(

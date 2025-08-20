@@ -1,7 +1,6 @@
 import 'package:clinic_app/app/book_appointment/models/department_model.dart';
 import 'package:clinic_app/app/book_appointment/views/widgets/departments_widget/controller/departments_bloc/departments_bloc.dart';
 import 'package:clinic_app/app/book_appointment/views/widgets/departments_widget/views/items/departments_list_view_item.dart';
-import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
 import 'package:clinic_app/core/constants/app_shadow.dart';
 import 'package:clinic_app/core/extentions/percent_sized_extention.dart';
@@ -17,7 +16,7 @@ class DepartmentsWidget extends StatelessWidget {
     return Container(
       height: 8.0.hp,
       decoration: BoxDecoration(
-        color: AppColors.widgetBackgroundColor,
+        color: Theme.of(context).cardColor,
         borderRadius: BorderRadius.circular(AppDimensions.lbr),
         boxShadow: AppShadow.boxShadow,
       ),

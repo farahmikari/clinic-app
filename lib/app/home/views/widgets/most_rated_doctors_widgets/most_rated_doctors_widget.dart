@@ -11,7 +11,7 @@ class MostRatedDoctorsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 34.0.hp,
+      height: 62.0.wp,
       child: ListView.separated(
         clipBehavior: Clip.none,
         scrollDirection: Axis.horizontal,

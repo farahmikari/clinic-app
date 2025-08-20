@@ -10,14 +10,17 @@ void showSnackBar(
     ScaffoldMessenger.of(context)..removeCurrentSnackBar()..showSnackBar(
       SnackBar(
         elevation: 0,
-        duration: Duration(seconds: 1),
+        duration: Duration(milliseconds: 300),
         behavior: SnackBarBehavior.floating,
         backgroundColor: Colors.transparent,
-        content: AwesomeSnackbarContent(
-          title: title,
-          message: message,
-          contentType: contentType,
-          key: UniqueKey(),
+        content: Material(
+          color: Colors.transparent,
+          child: AwesomeSnackbarContent(
+            title: title,
+            message: message,
+            contentType: contentType,
+            inMaterialBanner: true,
+          ),
         ),
       ),
     );

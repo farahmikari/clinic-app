@@ -1,6 +1,5 @@
-import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 
 class HorizontalInfoWithTitleWidget extends StatelessWidget {
   const HorizontalInfoWithTitleWidget({
@@ -16,20 +15,19 @@ class HorizontalInfoWithTitleWidget extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.center,
+      spacing: AppDimensions.sp,
       children: [
         Text(
           "$title:",
           style: TextStyle(
-            color: AppColors.darkGreyColor,
+            color: Theme.of(context).hintColor,
             fontSize: AppDimensions.sfs,
             fontWeight: FontWeight.w500,
           ),
         ),
-        SizedBox(width: AppDimensions.sm),
         Text(
           info,
           style: TextStyle(
-           //color: AppColors.mainTextColor,
             fontSize: AppDimensions.sfs,
             fontWeight: FontWeight.bold,
           ),

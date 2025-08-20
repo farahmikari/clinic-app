@@ -4,7 +4,12 @@ sealed class FetchDaysEvent {}
 
 class FetchDefaultDays extends FetchDaysEvent {}
 
-class FetchDays extends FetchDaysEvent {
+class FetchDepartmentDays extends FetchDaysEvent {
   final int departmentId;
-  FetchDays({required this.departmentId});
+  FetchDepartmentDays({required this.departmentId});
+}
+
+class FetchOfferDays extends FetchDaysEvent {
+  final int offerId;
+  FetchOfferDays({required this.offerId});
 }

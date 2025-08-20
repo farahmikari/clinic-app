@@ -19,7 +19,7 @@ class EditPasswordState {
     this.obscure = true,
     this.conObscure = true,
     this.oldObscure = true,
-    this.buttonEvent=false
+    this.buttonEvent = false,
   });
 
   EditPasswordState copyWith({
@@ -39,6 +39,7 @@ class EditPasswordState {
       obscure: obscure ?? this.obscure,
       conObscure: conObscure ?? this.conObscure,
       oldObscure: oldObscure ?? this.oldObscure,
+      buttonEvent: buttonEvent??this.buttonEvent
     );
   }
 }
@@ -57,7 +58,8 @@ final class EditPasswordLoading extends EditPasswordBaseState {
 }
 
 final class EditPasswordSuccess extends EditPasswordBaseState {
-  EditPasswordSuccess(EditPasswordState data) : super(data: data);
+  String? message;
+  EditPasswordSuccess(EditPasswordState data,{this.message}) : super(data: data);
 }
 
 final class EditPasswordFailed extends EditPasswordBaseState {
