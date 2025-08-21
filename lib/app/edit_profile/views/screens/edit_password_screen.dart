@@ -8,6 +8,7 @@ import 'package:clinic_app/app/user_drawer/views/screen/drawer_screen.dart';
 import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/extentions/percent_sized_extention.dart';
 import 'package:clinic_app/core/utils/snack_bar_util.dart';
+import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
@@ -25,7 +26,7 @@ class EditPasswordScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: AppColors.primaryColor,
         title: Text(
-          "change passsword",
+          S.current.change_password,
           style: Theme.of(context).textTheme.titleLarge!.copyWith(
             color: AppColors.backgroundColor,
             fontSize: 20,
@@ -40,8 +41,8 @@ class EditPasswordScreen extends StatelessWidget {
               case EditPasswordSuccess():
                 showSnackBar(
                   context,
-                  title: "Success",
-                  message: "Edit password successfully",
+                  title: S.current.success,
+                  message: S.current.edit_password_successfully,
                   contentType: ContentType.success,
                 );
                 await await Future.delayed(Duration(seconds: 2));
@@ -51,8 +52,8 @@ class EditPasswordScreen extends StatelessWidget {
               case EditPasswordFailed():
                 showSnackBar(
                   context,
-                  title: "Failed",
-                  message: "failed changed password",
+                  title: S.current.failed,
+                  message: S.current.failed_changed_password,
                   contentType: ContentType.failure,
                 );
                 break;
@@ -75,7 +76,7 @@ class EditPasswordScreen extends StatelessWidget {
                   SizedBox(height: 5.0.hp),
                   //////////////////old password///////////////
                   TextFormFieldWidget(
-                    label: 'old password',
+                    label: S.current.old_password,
                     iconTextField: Icons.lock,
                     onChanged: (value) {
                       bloc.add(OldPasswordEvent(password: value));
@@ -98,7 +99,7 @@ class EditPasswordScreen extends StatelessWidget {
                   SizedBox(height: 1.0.hp),
     
                   TextFormFieldWidget(
-                    label: 'new password',
+                    label: S.current.new_password,
                     iconTextField: Icons.lock,
                     onChanged: (value) {
                       bloc.add(PasswordEvent(password: value));
@@ -120,7 +121,7 @@ class EditPasswordScreen extends StatelessWidget {
                   ////////////////confirm password//////////////
                   SizedBox(height: 1.0.hp),
                   TextFormFieldWidget(
-                    label: 'confirm password',
+                    label: S.current.confirm_password,
                     iconTextField: Icons.lock,
                     onChanged: (value) {
                       bloc.add(ConPasswordEvent(password: value));
@@ -142,7 +143,7 @@ class EditPasswordScreen extends StatelessWidget {
                   //////////////////////////button change password///////////
                   SizedBox(height: 5.0.hp),
                   MyButtonWidget(
-                    text: "change password",
+                    text: S.current.change_password,
                     isLoading: isLoading,
                     onPressed:
                         (data.buttonEvent && !isLoading)

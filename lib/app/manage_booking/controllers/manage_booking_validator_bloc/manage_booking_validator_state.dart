@@ -8,8 +8,8 @@ sealed class ManageBookingValidatorState extends Equatable {
     required this.isAbleToCancel,
     required this.isAbleToEdit,
   });
-  final NewReservationModel previousReservation;
-  final NewReservationModel currentReservation;
+  final ReservationModel previousReservation;
+  final ReservationModel currentReservation;
   final bool isReservationEditing;
   final bool isAbleToCancel;
   final bool isAbleToEdit;
@@ -27,7 +27,7 @@ sealed class ManageBookingValidatorState extends Equatable {
 final class ManageBookingValidatorInitial extends ManageBookingValidatorState {
   ManageBookingValidatorInitial()
     : super(
-        previousReservation: NewReservationModel(
+        previousReservation: ReservationModel(
           offerId: -1,
           departmentId: -1,
           doctorId: -1,
@@ -36,7 +36,7 @@ final class ManageBookingValidatorInitial extends ManageBookingValidatorState {
           requestTypeId: -1,
           withMedicalReport: false,
         ),
-        currentReservation: NewReservationModel(
+        currentReservation: ReservationModel(
           offerId: -1,
           departmentId: -1,
           doctorId: -1,

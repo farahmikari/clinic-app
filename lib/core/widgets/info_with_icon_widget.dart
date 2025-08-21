@@ -25,7 +25,7 @@ class InfoWithIconWidget extends StatelessWidget {
           icon,
           width: AppDimensions.sis,
           height: AppDimensions.sis,
-          color: AppColors.primaryColor,
+          colorFilter:ColorFilter.mode(AppColors.primaryColor, BlendMode.srcIn),
         ),
         Text(
           info,

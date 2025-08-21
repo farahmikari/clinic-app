@@ -2,7 +2,7 @@ import 'package:clinic_app/core/api/dio_consumer.dart';
 import 'package:clinic_app/core/api/end_points.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:clinic_app/app/book_appointment/models/new_reservation_model.dart';
+import 'package:clinic_app/app/book_appointment/models/reservation_model.dart';
 import 'package:equatable/equatable.dart';
 
 part 'manage_booking_validator_event.dart';
@@ -70,13 +70,12 @@ class ManageBookingValidatorBloc
     });
 
     on<EditAbilityIsChecked>((event, emit) {
-      NewReservationModel currentReservation = state.currentReservation
-          .copyWith(
-            requestTypeId: event.requestTypeId,
-            day: event.day,
-            timeId: event.timeId,
-            withMedicalReport: event.withMedicalReport,
-          );
+      ReservationModel currentReservation = state.currentReservation.copyWith(
+        requestTypeId: event.requestTypeId,
+        day: event.day,
+        timeId: event.timeId,
+        withMedicalReport: event.withMedicalReport,
+      );
       late bool isAbleToEdit;
       if (currentReservation == state.previousReservation) {
         isAbleToEdit = false;

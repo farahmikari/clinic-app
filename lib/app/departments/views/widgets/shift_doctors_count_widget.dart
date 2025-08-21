@@ -33,7 +33,7 @@ class ShiftDoctorsCountWidget extends StatelessWidget {
           ),
         ),
         Text(
-          "$shift Dr",
+          shift,
           style: TextStyle(
             color: Theme.of(context).hintColor,
             fontSize: AppDimensions.sfs,

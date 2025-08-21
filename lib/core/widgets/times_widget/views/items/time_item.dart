@@ -51,7 +51,9 @@ class TimeItem extends StatelessWidget {
     }
 
     String formatDateToTime(String time) {
-      return DateFormat("h:mma").format(DateFormat("HH:mm:ss").parse(time));
+      return DateFormat(
+        "h:mma",
+      ).format(DateFormat("HH:mm:ss", "en").parse(time));
     }
 
     return InkWell(

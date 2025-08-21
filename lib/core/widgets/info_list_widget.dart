@@ -30,7 +30,7 @@ class InfoListWidget extends StatelessWidget {
                 icon,
                 width: AppDimensions.sis,
                 height: AppDimensions.sis,
-                color: AppColors.primaryColor,
+                colorFilter:ColorFilter.mode(AppColors.primaryColor, BlendMode.srcIn)
               ),
               SizedBox(width: AppDimensions.mp),
               Expanded(

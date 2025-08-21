@@ -34,25 +34,21 @@ class ServiceButtonWidget extends StatelessWidget {
         decoration: BoxDecoration(
           color: backgroundColor,
           borderRadius: BorderRadius.circular(AppDimensions.mbr),
-          image: DecorationImage(
-            image: AssetImage("assets/images/watermark1.png"),
-            fit: BoxFit.cover,
-          ),
           boxShadow: AppShadow.boxShadow,
         ),
         child: Stack(
           children: [
             Align(
-              alignment: Alignment.topLeft,
+              alignment: AlignmentDirectional.topStart,
               child: SvgPicture.asset(
                 icon,
                 height: AppDimensions.lis,
                 width: AppDimensions.lis,
-                color: iconColor,
+                colorFilter:ColorFilter.mode(iconColor, BlendMode.srcIn),
               ),
             ),
             Align(
-              alignment: Alignment.bottomLeft,
+              alignment: AlignmentDirectional.bottomStart,
               child: ListTile(
                 contentPadding: const EdgeInsets.all(0),
                 title: Text(

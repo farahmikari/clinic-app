@@ -34,8 +34,8 @@ class DoctorModel {
   factory DoctorModel.fromJson(Map<String, dynamic> jsonData) {
     return DoctorModel(
       id: jsonData[ApiKey.id],
-      departmentId: 2,
-      shift: "morning",
+      departmentId: jsonData[ApiKey.departmentId],
+      shift: jsonData[ApiKey.shift],
       image: jsonData[ApiKey.image],
       name: jsonData[ApiKey.name],
       specialty: jsonData[ApiKey.speciality],

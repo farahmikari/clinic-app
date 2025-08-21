@@ -1,6 +1,7 @@
 import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
 import 'package:clinic_app/core/extentions/percent_sized_extention.dart';
+import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 
 class HeartRateWidget extends StatelessWidget {
@@ -23,7 +24,7 @@ class HeartRateWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Text(
-                  "Heart Rate",
+                  S.current.heart_rate,
                   style: Theme.of(context).textTheme.titleLarge!.copyWith(
                     fontSize: 18,
                     color: AppColors.mainTextColor,

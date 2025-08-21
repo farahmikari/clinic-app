@@ -2,6 +2,7 @@ import 'package:clinic_app/app/book_appointment_with_offer/models/pricing_model.
 import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
 import 'package:clinic_app/core/extentions/percent_sized_extention.dart';
+import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 
 class CustomPricingDialogWidget extends StatelessWidget {
@@ -9,18 +10,18 @@ class CustomPricingDialogWidget extends StatelessWidget {
     super.key,
     required this.pricing,
     required this.onCancel,
-    required this.onContinue,
+    required this.onKeepGoing,
   });
   final PricingModel pricing;
   final void Function() onCancel;
-  final void Function() onContinue;
+  final void Function() onKeepGoing;
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
       backgroundColor: AppColors.widgetBackgroundColor,
       title: Center(
         child: Text(
-          "Reservation Price",
+          S.current.reservation_price,
           style: TextStyle(
             color: AppColors.mainTextColor,
             fontSize: AppDimensions.xlfs,
@@ -35,7 +36,7 @@ class CustomPricingDialogWidget extends StatelessWidget {
           spacing: AppDimensions.sp,
           children: [
             Text(
-              "The total price for this reservation is",
+              S.current.know_reservation_price,
               style: TextStyle(
                 color: AppColors.hintTextColor,
                 fontSize: AppDimensions.sfs,
@@ -53,7 +54,7 @@ class CustomPricingDialogWidget extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
             Text(
-              "Do you want to continue with the booking?",
+              S.current.need_booking,
               style: TextStyle(
                 color: AppColors.hintTextColor,
                 fontSize: AppDimensions.sfs,
@@ -68,7 +69,7 @@ class CustomPricingDialogWidget extends StatelessWidget {
         GestureDetector(
           onTap: onCancel,
           child: Text(
-            "Cancel",
+            S.current.cancel,
             style: TextStyle(
               color: AppColors.primaryColor,
               fontSize: AppDimensions.mfs,
@@ -76,10 +77,11 @@ class CustomPricingDialogWidget extends StatelessWidget {
             ),
           ),
         ),
+        SizedBox(width: AppDimensions.mp),
         GestureDetector(
-          onTap: onCancel,
+          onTap: onKeepGoing,
           child: Text(
-            "Continue",
+            S.current.keep_going,
             style: TextStyle(
               color: AppColors.primaryColor,
               fontSize: AppDimensions.mfs,

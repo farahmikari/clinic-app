@@ -11,19 +11,19 @@ var myUnpaidBills = [
   {
     "id": 5,
     "status": "Unpaid",
-    "total_price": 56000.0,
+    "total_price": 125000.0,
     "currency": "SYP",
     "doctor_name": "Rami Nader",
-    "department": "Pediatrics",
+    "department": "Dental",
     "appointment_date_time": "2025-06-29T14:30:00Z",
   },
   {
     "id": 4,
     "status": "Unpaid",
-    "total_price": 50,
+    "total_price": 75.0,
     "currency": "Points",
     "doctor_name": "Sara Haddad",
-    "department": "Orthopedics",
+    "department": "Dermatology",
     "appointment_date_time": "2025-06-28T13:00:00Z",
   },
 ];
@@ -32,7 +32,7 @@ var myPaidBills = [
   {
     "id": 3,
     "status": "Paid",
-    "total_price": 75,
+    "total_price": 50,
     "currency": "Points",
     "doctor_name": "Alice Karim",
     "department": "Cardiology",
@@ -41,10 +41,10 @@ var myPaidBills = [
   {
     "id": 2,
     "status": "Paid",
-    "total_price": 50000.0,
+    "total_price": 76000.0,
     "currency": "SYP",
     "doctor_name": "Kenny Lubowitz",
-    "department": "Dermatology",
+    "department": "Pediatrics",
     "appointment_date_time": "2025-05-23T09:30:00Z",
   },
   {

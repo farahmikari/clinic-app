@@ -6,6 +6,7 @@ import 'package:clinic_app/app/user_drawer/views/screen/drawer_screen.dart';
 import 'package:clinic_app/app/user_profile/models/user_data_model.dart';
 import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/utils/snack_bar_util.dart';
+import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/route_manager.dart';
@@ -26,7 +27,7 @@ class EditProfileScreen extends StatelessWidget {
     );
     final genderController = TextEditingController(text: user.gender);
 
-    final List<String> genderOption = ['Male', 'Female'];
+    final List<String> genderOption = [S.current.male, S.current.female];
     String? valueBirth;
     return MultiBlocProvider(
       providers: [
@@ -39,7 +40,7 @@ class EditProfileScreen extends StatelessWidget {
           iconTheme: IconThemeData(color: AppColors.backgroundColor),
           centerTitle: true,
           title: Text(
-            "Edit Info profile",
+            S.current.edit_profile,
             style: Theme.of(context).textTheme.titleLarge!.copyWith(
               color: AppColors.backgroundColor,
               fontSize: 20,
@@ -53,8 +54,8 @@ class EditProfileScreen extends StatelessWidget {
                 case EditProfileSuccess():
                   showSnackBar(
                     context,
-                    title: "Success",
-                    message:  "Edit profile successfully",
+                    title: S.current.success,
+                    message:  S.current.edit_profile_successfully,
                     contentType: ContentType.success,
                   );
                   await await Future.delayed(Duration(seconds: 2));
@@ -64,8 +65,8 @@ class EditProfileScreen extends StatelessWidget {
                 case EditProfileFailed():
                   showSnackBar(
                     context,
-                    title: "Failed",
-                    message: "failed edit profile",
+                    title: S.current.failed,
+                    message: S.current.failed_edit_profile,
                     contentType: ContentType.failure,
                   );
                   break;

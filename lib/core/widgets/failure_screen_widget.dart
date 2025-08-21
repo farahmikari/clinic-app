@@ -3,6 +3,7 @@ import 'package:clinic_app/app/login/views/widgets/button_widget.dart';
 import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/extentions/percent_sized_extention.dart';
 import 'package:clinic_app/core/extentions/responsive_text_extention.dart';
+import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 
@@ -45,7 +46,7 @@ class FailureScreenWidget extends StatelessWidget {
             SizedBox(height: 0.1.hp),
             isVisitor
                 ? MyButtonWidget(
-                  text: "Login",
+                  text: S.current.login,
                   onPressed: () {
                     Get.offAll(LoginScreen());
                   },

@@ -1,4 +1,5 @@
 import 'package:clinic_app/core/constants/app_colors.dart';
+import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 
 class ListTileDrawerWidget extends StatelessWidget {
@@ -28,15 +29,14 @@ class ListTileDrawerWidget extends StatelessWidget {
             title: Text(
               title,
               style: TextStyle(
-              //color: AppColors.mainTextColor,
                 fontSize: 12,
                 fontWeight: FontWeight.w700,
                 fontFamily: "Montserat",
               ),
             ),
-            trailing:title!='Logout'? Icon(
+            trailing:title!= S.current.logout ? Icon(
               Icons.arrow_back_ios,
-              textDirection: TextDirection.rtl,
+              textDirection:Directionality.of(context) == TextDirection.rtl?TextDirection.ltr:TextDirection.rtl,
               color: AppColors.hintTextColor,
               size: 12,
             ):null,

@@ -5,6 +5,7 @@ import 'package:clinic_app/core/constants/app_dimensions.dart';
 import 'package:clinic_app/core/constants/app_shadow.dart';
 import 'package:clinic_app/core/widgets/filter_badge_widget.dart';
 import 'package:clinic_app/core/widgets/vertical_info_with_title_widget.dart';
+import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -14,7 +15,7 @@ class BillWidget extends StatelessWidget {
   final BillModel bill;
 
   Color specifyStatusColor() {
-    return bill.status == "Unpaid"
+    return bill.status == "unpaid"
         ? AppColors.transparentGreen
         : AppColors.transparentYellow;
   }
@@ -33,14 +34,13 @@ class BillWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
+    return GestureDetector(
       onTap: () {
         Get.to(
           () => BillDetailsScreen(bill: bill),
           transition: Transition.zoom,
         );
       },
-      borderRadius: BorderRadius.circular(AppDimensions.mbr),
       child: Container(
         padding: EdgeInsets.all(AppDimensions.mp),
         decoration: BoxDecoration(
@@ -49,13 +49,16 @@ class BillWidget extends StatelessWidget {
           boxShadow: AppShadow.boxShadow,
         ),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          spacing: AppDimensions.sp,
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 VerticalInfoWithTitleWidget(
-                  title: "Total Amount",
+                  title: S.current.total_amount,
                   info: "${bill.totalPrice} ${bill.currency}",
                   titleSize: AppDimensions.sfs,
                   infoSize: AppDimensions.xlfs,
@@ -65,12 +68,14 @@ class BillWidget extends StatelessWidget {
                 BadgeWidget(title: bill.status, color: specifyStatusColor()),
               ],
             ),
-            SizedBox(height: AppDimensions.mp),
             Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              spacing: AppDimensions.sp,
               children: [
                 Expanded(
                   child: VerticalInfoWithTitleWidget(
-                    title: "Doctor",
+                    title: S.current.doctor,
                     info: bill.doctorName,
                     titleSize: AppDimensions.sfs,
                     infoSize: AppDimensions.mfs,
@@ -78,10 +83,9 @@ class BillWidget extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                   ),
                 ),
-                SizedBox(width: AppDimensions.sp),
                 Expanded(
                   child: VerticalInfoWithTitleWidget(
-                    title: "Department",
+                    title: S.current.department,
                     info: bill.department,
                     titleSize: AppDimensions.sfs,
                     infoSize: AppDimensions.mfs,
@@ -91,12 +95,14 @@ class BillWidget extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(height: AppDimensions.sp),
             Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              spacing: AppDimensions.sp,
               children: [
                 Expanded(
                   child: VerticalInfoWithTitleWidget(
-                    title: "Appointment Date",
+                    title: S.current.appointment_date,
                     info: formatAppointmentDateTimeToDate(),
                     titleSize: AppDimensions.sfs,
                     infoSize: AppDimensions.mfs,
@@ -104,10 +110,9 @@ class BillWidget extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                   ),
                 ),
-                SizedBox(width: AppDimensions.sp),
                 Expanded(
                   child: VerticalInfoWithTitleWidget(
-                    title: "Appointment Time",
+                    title: S.current.appointment_time,
                     info: formatAppointmentDateTimeToTime(),
                     titleSize: AppDimensions.sfs,
                     infoSize: AppDimensions.mfs,

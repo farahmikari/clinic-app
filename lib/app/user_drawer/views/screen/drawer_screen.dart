@@ -21,18 +21,19 @@ class DrawerScreen extends StatelessWidget {
           create: (context) => LogoutBloc()..add(LogoutVisitorEvent()),
         ),
         BlocProvider(create: (context) => ProfileBloc()),
-        BlocProvider(create: (context)=>VitalSignalsBloc())
+        BlocProvider(create: (context) => VitalSignalsBloc()),
       ],
       child: BlocBuilder<DrawerBloc, DrawState>(
         builder: (context, state) {
           return ZoomDrawer(
+            isRtl: Directionality.of(context) == TextDirection.rtl,
             controller: zoomDrawerController,
             angle: 0.0,
             menuScreen: MenuScreen(),
             mainScreen: BottomNavigationBarScreen(),
             borderRadius: 24.0,
             showShadow: true,
-             menuBackgroundColor: Theme.of(context).scaffoldBackgroundColor,
+            menuBackgroundColor: Theme.of(context).scaffoldBackgroundColor,
             drawerShadowsBackgroundColor: AppColors.hintTextColor,
             slideWidth: MediaQuery.of(context).size.width * 0.7,
           );

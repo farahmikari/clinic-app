@@ -3,6 +3,7 @@ import 'package:clinic_app/core/constants/app_dimensions.dart';
 import 'package:clinic_app/core/constants/app_icons.dart';
 import 'package:clinic_app/core/constants/app_shadow.dart';
 import 'package:clinic_app/core/extentions/percent_sized_extention.dart';
+import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -28,7 +29,7 @@ class SearchWidget extends StatelessWidget {
             AppIcons.search,
             height: AppDimensions.sis,
             width: AppDimensions.mis,
-            color: Theme.of(context).hintColor,
+            colorFilter:ColorFilter.mode(Theme.of(context).hintColor, BlendMode.srcIn),
           ),
           Expanded(
             child: TextField(
@@ -38,7 +39,7 @@ class SearchWidget extends StatelessWidget {
                 fontWeight: FontWeight.w500,
               ),
               decoration: InputDecoration(
-                hintText: "Doctor, Symptom, Facility, Specialty...",
+                hintText: S.current.search,
                 hintStyle: TextStyle(
                   color: AppColors.hintTextColor,
                   fontSize: AppDimensions.mfs,

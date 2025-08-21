@@ -20,12 +20,12 @@ class MainInfoWidget extends StatelessWidget {
           icon,
           width: AppDimensions.sis,
           height: AppDimensions.sis,
-          color: AppColors.primaryColor,
+          colorFilter:ColorFilter.mode(AppColors.primaryColor, BlendMode.srcIn),
         ),
         Text(
           title,
           style: TextStyle(
-            color: AppColors.darkGreyColor,
+            color: Theme.of(context).hintColor,
             fontSize: AppDimensions.sfs,
             fontWeight: FontWeight.bold,
           ),

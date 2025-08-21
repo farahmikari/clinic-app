@@ -5,6 +5,7 @@ import 'package:clinic_app/app/user_drawer/views/widgets/list_tile_drawer.dart';
 import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/utils/show_dialog_alert.dart';
 import 'package:clinic_app/core/utils/snack_bar_util.dart';
+import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
@@ -39,8 +40,8 @@ class ListTileLogoutWidget extends StatelessWidget {
               case LogoutSuccess():
                 showSnackBar(
                   context,
-                  title: "Success",
-                  message: "Logout Successfully",
+                  title: S.current.success,
+                  message: S.current.logout_successfully,
                   contentType: ContentType.success,
                 );
                 Get.offAll(() => LoginScreen());
@@ -48,8 +49,8 @@ class ListTileLogoutWidget extends StatelessWidget {
               case LogoutFailure():
                 showSnackBar(
                   context,
-                  title: "Failed",
-                  message: "Failed Logout",
+                  title: S.current.failed,
+                  message: S.current.failed_logout,
                   contentType: ContentType.failure,
                 );
                 break;
@@ -61,13 +62,13 @@ class ListTileLogoutWidget extends StatelessWidget {
             icon: Icons.logout,
             iconColor: const Color(0xFFD50404),
             backgroundIconColor: const Color(0x82D50404),
-            title: 'Logout',
+            title: S.current.logout,
             onTap: () {
               final logout = context.read<LogoutBloc>();
               showDialogAlert(
                 context: context,
-                title: "Logout",
-                content: "Are you sure you want to logout ?!",
+                title: S.current.logout,
+                content: S.current.are_you_sure_you_want_to_logout,
                 onPressed: () {
                   logout.add(LogoutUserEvent());
                 },

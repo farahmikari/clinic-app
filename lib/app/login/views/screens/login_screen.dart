@@ -10,13 +10,14 @@ import 'package:clinic_app/app/user_drawer/views/screen/drawer_screen.dart';
 import 'package:clinic_app/consts.dart';
 import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/utils/snack_bar_util.dart';
+import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
-  static String id = "Login";
+  // static String id = "Login";
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -54,8 +55,8 @@ class _LoginScreenState extends State<LoginScreen>
                   case LoginSuccess():
                     showSnackBar(
                       context,
-                      title: "Success",
-                      message: "Login Successfully",
+                      title: S.current.success,
+                      message: S.current.login_successfully,
                       contentType: ContentType.success,
                     );
                     await Future.delayed(Duration(seconds: 2));
@@ -64,8 +65,8 @@ class _LoginScreenState extends State<LoginScreen>
                   case LoginFailed():
                     showSnackBar(
                       context,
-                      title: "Failed",
-                      message: "Login Failed",
+                      title: S.current.failed,
+                      message: S.current.login_failed,
                       contentType: ContentType.failure,
                     );
                     break;
@@ -102,12 +103,12 @@ class _LoginScreenState extends State<LoginScreen>
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Padding(
-                                  padding: EdgeInsets.only(
+                                  padding: EdgeInsetsDirectional.only(
                                     top: 10.0,
-                                    left: width * 0.05,
+                                    start: width * 0.05,
                                   ),
                                   child: Text(
-                                    "Login",
+                                    S.current.login,
                                     style: TextStyle(
                                       color: kPrimaryColor,
                                       fontFamily: "Montserat",
@@ -116,14 +117,13 @@ class _LoginScreenState extends State<LoginScreen>
                                     ),
                                   ),
                                 ),
-
                                 Padding(
-                                  padding: EdgeInsets.only(
+                                  padding: EdgeInsetsDirectional.only(
                                     top: 10.0,
-                                    left: width * 0.05,
+                                    start: width * 0.05,
                                   ),
                                   child: Text(
-                                    " Welcome Back !",
+                                    S.current.welcom_back,
                                     style: TextStyle(
                                      // color: Colors.black,
                                       fontFamily: "Lato",
@@ -134,7 +134,7 @@ class _LoginScreenState extends State<LoginScreen>
                                 ),
                                 SizedBox(height: 10),
                                 TextFormFieldWidget(
-                                  label: 'Email',
+                                  label: S.current.email,
                                   iconTextField: Icons.email,
                                   onChanged: (value) {
                                     context.read<LoginBlocBloc>().add(
@@ -148,7 +148,7 @@ class _LoginScreenState extends State<LoginScreen>
                                   error: loginData.email.error,
                                 ),
                                 TextFormFieldWidget(
-                                  label: 'Password',
+                                  label: S.current.password,
                                   iconTextField: Icons.key,
                                   onChanged: (value) {
                                     context.read<LoginBlocBloc>().add(
@@ -177,20 +177,19 @@ class _LoginScreenState extends State<LoginScreen>
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsets.only(left: width * 0.55),
+                                  padding: EdgeInsetsDirectional.only(
+                                    start: width * 0.55,
+                                  ),
                                   child: MyTextButton(
-                                    textButton: 'Forget password ? ',
+                                    textButton: S.current.forget_password,
                                     color: Colors.grey,
                                     onPressed: () {
-                                      Navigator.pushNamed(
-                                        context,
-                                        SetEmailScreen.id,
-                                      );
+                                      Get.to(()=>SetEmailScreen());
                                     },
                                   ),
                                 ),
                                 MyButtonWidget(
-                                  text: 'Login',
+                                  text: S.current.login,
                                   color: kPrimaryColor,
                                   isLoading: isLoading,
                                   onPressed:
@@ -203,7 +202,7 @@ class _LoginScreenState extends State<LoginScreen>
                                           : null,
                                 ),
                                 MyButtonWidget(
-                                  text: 'Continue as a guest',
+                                  text: S.current.continue_as_a_guest,
                                   onPressed: () {
                                     Get.offAll(
                                       () => DrawerScreen(),
@@ -215,7 +214,7 @@ class _LoginScreenState extends State<LoginScreen>
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Text(
-                                      'Don\'t have an account ? ',
+                                      S.current.dont_have_an_account,
                                       style: TextStyle(
                                         fontSize: 14,
                                         fontFamily: "Lato",
@@ -223,7 +222,7 @@ class _LoginScreenState extends State<LoginScreen>
                                       ),
                                     ),
                                     MyTextButton(
-                                      textButton: 'sign up ',
+                                      textButton: S.current.sign_up,
                                       color: AppColors.primaryColor,
                                       onPressed: () {
                                         Get.off(() => EmailScreen());

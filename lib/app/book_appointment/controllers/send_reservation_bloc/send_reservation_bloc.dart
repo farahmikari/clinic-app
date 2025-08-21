@@ -1,4 +1,3 @@
-import 'package:clinic_app/app/book_appointment/models/offer_reservation_model.dart';
 import 'package:clinic_app/app/book_appointment/models/reservation_model.dart';
 import 'package:clinic_app/core/api/dio_consumer.dart';
 import 'package:clinic_app/core/api/end_points.dart';
@@ -16,22 +15,64 @@ class SendReservationBloc
     on<SendReservation>((event, emit) async {
       emit(SendReservationLoading());
       try {
-        await api.post(
-          EndPoints.appointments,
-          data: event.reservation.toJson(),
-        );
+        if (event.reservation.offerId != null) {
+          await api.post(
+            EndPoints.appointments,
+            data: {
+              ApiKey.offerId: event.reservation.offerId,
+              ApiKey.reservation: {
+                ApiKey.departmentId: event.reservation.departmentId,
+                ApiKey.doctorId: event.reservation.doctorId,
+                ApiKey.slotId: event.reservation.timeId,
+                ApiKey.date: event.reservation.day,
+                ApiKey.requestTypeId: event.reservation.requestTypeId,
+                ApiKey.withMedicalReport: event.reservation.withMedicalReport,
+              },
+            },
+          );
+        } else {
+          await api.post(
+            EndPoints.appointments,
+            data: {
+              ApiKey.departmentId: event.reservation.departmentId,
+              ApiKey.doctorId: event.reservation.doctorId,
+              ApiKey.slotId: event.reservation.timeId,
+              ApiKey.date: event.reservation.day,
+              ApiKey.requestTypeId: event.reservation.requestTypeId,
+              ApiKey.withMedicalReport: event.reservation.withMedicalReport,
+            },
+          );
+        }
         emit(SendReservationLoaded());
       } on ServerException catch (e) {
         emit(SendReservationFailed(errorMessage: e.errorModel.errorMessage));
       }
     });
 
-    on<SendOfferReservation>((event, emit) async {
+    on<SendCancelReservation>((event, emit) async {
       emit(SendReservationLoading());
       try {
-        await api.post(
-          EndPoints.appointments,
-          data: event.offerReservation.toJson(),
+        await api.delete(EndPoints.appointmentId(event.appointmentId));
+        emit(SendReservationLoaded());
+      } on ServerException catch (e) {
+        emit(SendReservationFailed(errorMessage: e.errorModel.errorMessage));
+      }
+    });
+
+    on<SendEditReservation>((event, emit) async {
+      emit(SendReservationLoading());
+      try {
+        await api.put(
+          EndPoints.appointmentId(event.appointmentId),
+          data: {
+            ApiKey.offerId: event.reservation.offerId,
+            ApiKey.departmentId: event.reservation.departmentId,
+            ApiKey.doctorId: event.reservation.doctorId,
+            ApiKey.slotId: event.reservation.timeId,
+            ApiKey.date: event.reservation.day,
+            ApiKey.requestTypeId: event.reservation.requestTypeId,
+            ApiKey.withMedicalReport: event.reservation.withMedicalReport,
+          },
         );
         emit(SendReservationLoaded());
       } on ServerException catch (e) {

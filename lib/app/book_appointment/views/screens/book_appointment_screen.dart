@@ -9,9 +9,11 @@ import 'package:clinic_app/app/book_appointment/models/reservation_model.dart';
 import 'package:clinic_app/app/book_appointment/views/widgets/departments_widget/controller/departments_bloc/departments_bloc.dart';
 import 'package:clinic_app/app/book_appointment/views/widgets/departments_widget/views/widgets/departments_widget.dart';
 import 'package:clinic_app/app/book_appointment/views/widgets/departments_widget/views/widgets/shimmer_departments_widget.dart';
+import 'package:clinic_app/app/book_appointment_with_offer/controllers/fetch_reservation_price_bloc/fetch_reservation_pricing_bloc.dart';
 import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
 import 'package:clinic_app/core/widgets/button_widget.dart';
+import 'package:clinic_app/core/widgets/custom_pricing_dialog_widget.dart';
 import 'package:clinic_app/core/widgets/custom_warning_dialog_widget.dart';
 import 'package:clinic_app/core/widgets/days_widget/controllers/days_bloc/days_bloc.dart';
 import 'package:clinic_app/core/widgets/days_widget/views/widgets/days_widget.dart';
@@ -26,6 +28,7 @@ import 'package:clinic_app/core/widgets/times_widget/views/widgets/shimmer_times
 import 'package:clinic_app/core/widgets/times_widget/views/widgets/times_widget.dart';
 import 'package:clinic_app/core/widgets/titled_checkbox_widget/controllers/titled_checkbox_bloc/titled_checkbox_bloc.dart';
 import 'package:clinic_app/core/widgets/titled_checkbox_widget/views/widgets/titled_checkbox_widget.dart';
+import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/route_manager.dart';
@@ -44,7 +47,7 @@ class BookAppointmentScreen extends StatelessWidget {
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         surfaceTintColor: AppColors.backgroundColor,
         title: Text(
-          "Book Appointment",
+          S.current.book_appointment,
           style: TextStyle(
             fontSize: AppDimensions.lfs,
             fontWeight: FontWeight.bold,
@@ -88,6 +91,7 @@ class BookAppointmentScreen extends StatelessWidget {
                       ..add(IsTitledCheckboxWidgetActivatedIsToggled()),
           ),
           BlocProvider(create: (context) => BookAppointmentValidatorBloc()),
+          BlocProvider(create: (context) => FetchReservationPricingBloc()),
           BlocProvider(create: (context) => SendReservationBloc()),
         ],
         child: MultiBlocListener(
@@ -182,6 +186,49 @@ class BookAppointmentScreen extends StatelessWidget {
                 );
               },
             ),
+            //-----------Fetch Reservation Pricing-------------------
+            BlocListener<
+              FetchReservationPricingBloc,
+              FetchReservationPricingState
+            >(
+              listener: (context, state) {
+                if (state is FetchReservationPricingLoaded) {
+                  showDialog(
+                    context: context,
+                    builder: (_) {
+                      return CustomPricingDialogWidget(
+                        pricing: state.pricing,
+                        onCancel: () => Get.back(),
+                        onKeepGoing: () {
+                          ReservationModel reservation =
+                              context
+                                  .read<BookAppointmentValidatorBloc>()
+                                  .state
+                                  .currentReservation;
+                          context.read<SendReservationBloc>().add(
+                            SendReservation(reservation: reservation),
+                          );
+                          Get.back();
+                        },
+                      );
+                    },
+                  );
+                } else if (state is FetchReservationPricingFailed) {
+                  showDialog(
+                    context: context,
+                    builder: (dialogContext) {
+                      return CustomWarningDialogWidget(
+                        warning: state.errorMessage,
+                        onOk: () {
+                          Get.back();
+                        },
+                      );
+                    },
+                  );
+                }
+              },
+            ),
+
             //------------Send Reservation Bloc----------------------
             BlocListener<SendReservationBloc, SendReservationState>(
               listener: (context, state) {
@@ -190,7 +237,7 @@ class BookAppointmentScreen extends StatelessWidget {
                 } else if (state is SendReservationFailed) {
                   showDialog(
                     context: context,
-                    builder: (dialogContext) {
+                    builder: (_) {
                       return CustomWarningDialogWidget(
                         warning: state.errorMessage,
                         onOk: () {
@@ -218,7 +265,7 @@ class BookAppointmentScreen extends StatelessWidget {
                 SizedBox(height: AppDimensions.mp),
                 RequestTypesWidget(),
                 SizedBox(height: AppDimensions.mp),
-                SubtitleWidget(subtitle: "Dates And Times"),
+                SubtitleWidget(subtitle: S.current.days),
                 SizedBox(height: AppDimensions.mp),
                 BlocBuilder<FetchDaysBloc, FetchDaysState>(
                   builder: (context, state) {
@@ -233,12 +280,12 @@ class BookAppointmentScreen extends StatelessWidget {
                   builder: (context, state) {
                     if (state is FetchTimesLoaded) {
                       return SubtitleWithTextButtonWidget(
-                        subtitle: "Morning Times",
-                        buttonTitle: "Doctor Profile",
+                        subtitle: S.current.morning_times,
+                        buttonTitle: S.current.doctor,
                         onPressed: () {},
                       );
                     }
-                    return SubtitleWidget(subtitle: "Morning Times");
+                    return SubtitleWidget(subtitle: S.current.morning_times);
                   },
                 ),
                 SizedBox(height: AppDimensions.mp),
@@ -259,12 +306,12 @@ class BookAppointmentScreen extends StatelessWidget {
                   builder: (context, state) {
                     if (state is FetchTimesLoaded) {
                       return SubtitleWithTextButtonWidget(
-                        subtitle: "Afternoon Times",
-                        buttonTitle: "Doctor Profile",
+                        subtitle: S.current.afternoon_times,
+                        buttonTitle: S.current.doctor,
                         onPressed: () {},
                       );
                     }
-                    return SubtitleWidget(subtitle: "Afternoon Times");
+                    return SubtitleWidget(subtitle: S.current.afternoon_times);
                   },
                 ),
                 SizedBox(height: AppDimensions.mp),
@@ -281,35 +328,49 @@ class BookAppointmentScreen extends StatelessWidget {
                   },
                 ),
                 SizedBox(height: AppDimensions.mp),
-                TitledCheckboxWidget(title: "Do you need a medical Report?"),
+                TitledCheckboxWidget(title: S.current.need_medical_report),
                 SizedBox(height: AppDimensions.mp),
                 BlocBuilder<
                   BookAppointmentValidatorBloc,
                   BookAppointmentValidatorState
                 >(
-                  builder: (context, state) {
-                    ReservationModel reservation = state.currentReservation;
-                    bool isValid = state.isValid;
+                  builder: (context, validatorState) {
                     return BlocBuilder<
-                      SendReservationBloc,
-                      SendReservationState
+                      FetchReservationPricingBloc,
+                      FetchReservationPricingState
                     >(
                       builder: (context, state) {
-                        if (state is SendReservationLoading) {
+                        if (state is FetchReservationPricingLoading) {
                           return LoadingWidget();
                         }
-                        return ButtonWidget(
-                          title: "Confirm",
-                          backgroundColor: specifyConfirmButtonBackgroundColor(
-                            isValid,
-                          ),
-                          titleColor: AppColors.widgetBackgroundColor,
-                          onTap: () {
-                            if (isValid) {
-                              context.read<SendReservationBloc>().add(
-                                SendReservation(reservation: reservation),
-                              );
+                        return BlocBuilder<
+                          SendReservationBloc,
+                          SendReservationState
+                        >(
+                          builder: (context, state) {
+                            if (state is SendReservationLoading) {
+                              return LoadingWidget();
                             }
+                            return ButtonWidget(
+                              title: S.current.confirm,
+                              backgroundColor:
+                                  specifyConfirmButtonBackgroundColor(
+                                    validatorState.isValid,
+                                  ),
+                              titleColor: AppColors.widgetBackgroundColor,
+                              onTap: () {
+                                if (validatorState.isValid) {
+                                  context
+                                      .read<FetchReservationPricingBloc>()
+                                      .add(
+                                        FetchReservationPricing(
+                                          reservation:
+                                              validatorState.currentReservation,
+                                        ),
+                                      );
+                                }
+                              },
+                            );
                           },
                         );
                       },

@@ -6,37 +6,24 @@ part 'filter_state.dart';
 
 class FilterBloc extends Bloc<FilterEvent, FilterState> {
   FilterBloc() : super(FilterInitial()) {
-    late List<String> filters;
-    int counter = 1;
-
-    on<FitlersAreSet>((event, emit) {
-      filters = event.filters;
-    });
-
     on<FilterIsChanged>((event, emit) {
+      int newFilterIndex = (state.filterIndex + 1) % 3;
       emit(
-        UpdateFilterName(
-          filterName: filters[counter],
+        FilterUpdate(
+          filterIndex: newFilterIndex,
           isFilterWidgetActivated: state.isFilterWidgetActivated,
         ),
       );
-      counter = (counter + 1) % filters.length;
     });
 
     on<FilterIsReset>((event, emit) {
-      emit(
-        UpdateFilterName(
-          filterName: filters[0],
-          isFilterWidgetActivated: false,
-        ),
-      );
-      counter = 1;
+      emit(FilterUpdate(filterIndex: 0, isFilterWidgetActivated: false));
     });
 
     on<FilterWidgetIsActivated>((event, emit) {
       emit(
-        UpdateFilterName(
-          filterName: state.filterName,
+        FilterUpdate(
+          filterIndex: state.filterIndex,
           isFilterWidgetActivated: true,
         ),
       );

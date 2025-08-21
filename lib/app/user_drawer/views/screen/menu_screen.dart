@@ -5,6 +5,7 @@ import 'package:clinic_app/app/user_profile/views/screens/profile_screen.dart';
 import 'package:clinic_app/app/vital_signals/views/screen/vital_signal_screen.dart';
 import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/constants/app_logo.dart';
+import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart' as getx;
 import 'package:get/get_core/src/get_main.dart';
@@ -31,7 +32,7 @@ class MenuScreen extends StatelessWidget {
             icon: Icons.person,
             iconColor: AppColors.primaryColor,
             backgroundIconColor: AppColors.transparentGreen,
-            title: 'Profile',
+            title: S.current.profile,
             onTap: () {
               Get.to(
                 () => ProfileScreen(),
@@ -43,7 +44,7 @@ class MenuScreen extends StatelessWidget {
             icon: Icons.article,
             iconColor: AppColors.darkBlueColor,
             backgroundIconColor: const Color(0x844489FF),
-            title: 'Vital signs',
+            title: S.current.vital_signs,
             onTap:
                 () => Get.to(
                  ()=> VitalSignalScreen(),
@@ -55,7 +56,7 @@ class MenuScreen extends StatelessWidget {
             icon: Icons.settings,
             iconColor: Colors.deepPurple,
             backgroundIconColor: const Color(0x7C683AB7),
-            title: 'Setting',
+            title: S.current.setting,
             onTap:
                 () => Get.to(
                   () => SettingScreen(),
@@ -67,7 +68,7 @@ class MenuScreen extends StatelessWidget {
             icon: Icons.warning,
             iconColor: Colors.orangeAccent,
             backgroundIconColor: const Color(0x84FFAC40),
-            title: 'About Us',
+            title: S.current.about_us,
           ),
 
           ListTileLogoutWidget(),

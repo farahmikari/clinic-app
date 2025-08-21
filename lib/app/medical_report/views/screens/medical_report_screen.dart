@@ -1,6 +1,7 @@
 import 'package:clinic_app/app/medical_report/models/medical_report_model.dart';
 import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
+import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 
 class MedicalReportScreen extends StatelessWidget {
@@ -14,7 +15,7 @@ class MedicalReportScreen extends StatelessWidget {
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         surfaceTintColor: AppColors.backgroundColor,
         title: Text(
-          "Medical Report",
+          S.current.medical_report,
           style: TextStyle(
             fontSize: AppDimensions.lfs,
             fontWeight: FontWeight.bold,

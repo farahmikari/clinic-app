@@ -11,17 +11,11 @@ class AppBarWithFilterAndSearchWidget extends StatelessWidget
     implements PreferredSizeWidget {
   const AppBarWithFilterAndSearchWidget({
     super.key,
-    required this.whiteFilterName,
-    required this.greenFilterName,
-    required this.yelloFilterName,
     required this.appBarTitle,
-    required this.searchHintText,
+    required this.filterNames,
   });
   final String appBarTitle;
-  final String searchHintText;
-  final String whiteFilterName;
-  final String greenFilterName;
-  final String yelloFilterName;
+  final List<String> filterNames;
 
   @override
   Size get preferredSize => Size.fromHeight(35.0.wp);
@@ -57,10 +51,8 @@ class AppBarWithFilterAndSearchWidget extends StatelessWidget
                 child: BlocBuilder<FilterBloc, FilterState>(
                   builder: (context, state) {
                     return FilterWidget(
-                      filter: state.filterName,
-                      whiteFilterName: whiteFilterName,
-                      greenFilterName: greenFilterName,
-                      yelloFilterName: yelloFilterName,
+                      filterIndex: state.filterIndex,
+                      filterNames: filterNames,
                       isActivated: state.isFilterWidgetActivated,
                     );
                   },

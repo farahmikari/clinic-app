@@ -4,6 +4,7 @@ import 'package:clinic_app/app/user_profile/views/widgets/profile_information_wi
 import 'package:clinic_app/app/user_profile/views/widgets/profile_loading_widget.dart';
 import 'package:clinic_app/core/widgets/image_widget/controller/bloc/image_bloc/image_bloc.dart';
 import 'package:clinic_app/core/widgets/image_widget/controller/services/image_picker_service.dart';
+import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -31,7 +32,7 @@ class ProfileScreen extends StatelessWidget {
               return FailureScreenWidget(
                 isVisitor: true,
                 pathImage: "assets/images/No data-cuate.png",
-                errorMessage: "Login first to show your data",
+                errorMessage: S.current.login_first_to_show_your_data,
               );
             ///////////////////loading///////////////////////////////////////////
             case ProfileBlocLoading():
@@ -51,7 +52,7 @@ class ProfileScreen extends StatelessWidget {
           return FailureScreenWidget(
             isVisitor: false,
             pathImage: "assets/images/404_Error_with_a_cute_animal-pana.png",
-            errorMessage: "Data not found",
+            errorMessage: S.current.data_not_found,
           );
         },
       ),

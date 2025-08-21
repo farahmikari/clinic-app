@@ -9,6 +9,7 @@ import 'package:clinic_app/core/widgets/doctor_name_widget.dart';
 import 'package:clinic_app/core/widgets/filter_badge_widget.dart';
 import 'package:clinic_app/core/widgets/info_with_icon_widget.dart';
 import 'package:clinic_app/core/widgets/horizontal_info_with_title_widget.dart';
+import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -23,11 +24,26 @@ class DepartmentDoctorWidget extends StatelessWidget {
         : AppColors.transparentYellow;
   }
 
+  String specifyTreatmentsUnit() {
+    return departmentDoctor.treatments > 1
+        ? S.current.treatments_unit
+        : S.current.treatment_unit;
+  }
+
+  String specifyExperiencesUnit() {
+    return departmentDoctor.experience > 1
+        ? S.current.years_unit
+        : S.current.year_unit;
+  }
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Get.to(() => DoctorProfileScreen(id: 1), transition: Transition.zoom);
+        Get.to(
+          () => DoctorProfileScreen(id: departmentDoctor.id),
+          transition: Transition.zoom,
+        );
       },
       child: Container(
         height: 42.0.wp,
@@ -70,7 +86,7 @@ class DepartmentDoctorWidget extends StatelessWidget {
                   Expanded(
                     flex: 2,
                     child: Align(
-                      alignment: Alignment.centerLeft,
+                      alignment: AlignmentDirectional.centerStart,
                       child: DoctorNameWidget(
                         name: departmentDoctor.name,
                         size: AppDimensions.lfs,
@@ -80,15 +96,17 @@ class DepartmentDoctorWidget extends StatelessWidget {
                   Expanded(
                     flex: 1,
                     child: HorizontalInfoWithTitleWidget(
-                      title: "Treatments",
-                      info: "${departmentDoctor.treatments} treatment",
+                      title: S.current.treatments_title,
+                      info:
+                          "${departmentDoctor.treatments} ${specifyTreatmentsUnit()}",
                     ),
                   ),
                   Expanded(
                     flex: 1,
                     child: HorizontalInfoWithTitleWidget(
-                      title: "Experience",
-                      info: "${departmentDoctor.experience}  Years",
+                      title: S.current.experiences_title,
+                      info:
+                          "${departmentDoctor.experience}  ${specifyExperiencesUnit()}",
                     ),
                   ),
                 ],

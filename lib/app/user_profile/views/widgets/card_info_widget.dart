@@ -1,5 +1,6 @@
 import 'package:clinic_app/app/user_profile/views/widgets/list_tile_info_profile_widget.dart';
 import 'package:clinic_app/core/constants/app_colors.dart';
+import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 
 class CardInfoWidget extends StatelessWidget {
@@ -34,37 +35,37 @@ class CardInfoWidget extends StatelessWidget {
         child: Column(
           children: [
             ListTileInfoProfileWidget(
-              title: 'first name',
+              title: S.current.first_name,
               text: firstName,
               icon: Icons.person_pin_circle_outlined,
             ),
             ListTileInfoProfileWidget(
-              title: 'last name',
+              title: S.current.last_name,
               text: lastName,
               icon: Icons.person_pin_circle_outlined,
             ),
             ListTileInfoProfileWidget(
-              title: 'birthday date',
+              title: S.current.birthday_date,
               text: birthdayDate,
               icon: Icons.calendar_month_outlined,
             ),
             ListTileInfoProfileWidget(
-              title: 'gender',
+              title: S.current.gender,
               text: gender,
               icon: Icons.transgender,
             ),
             ListTileInfoProfileWidget(
-              title: 'phone number',
+              title: S.current.gender,
               text: phone,
               icon: Icons.phone_android_outlined,
             ),
             ListTileInfoProfileWidget(
-              title: 'email',
+              title: S.current.email,
               text: email,
               icon: Icons.email_outlined,
             ),
             ListTileInfoProfileWidget(
-              title: 'pasword',
+              title: S.current.password,
               text: password,
               icon: Icons.key,
             ),

@@ -5,6 +5,7 @@ import 'package:clinic_app/app/department_doctors/views/widgets/shimmer_departme
 import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/widgets/app_bar_with_filter_and_search_widget.dart';
 import 'package:clinic_app/core/widgets/filter_widget/controllers/filter_bloc/filter_bloc.dart';
+import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -21,7 +22,6 @@ class DepartmentDoctorsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<String> filters = ["All", "Morning", "Afternoon"];
     return MultiBlocProvider(
       providers: [
         BlocProvider(
@@ -30,10 +30,7 @@ class DepartmentDoctorsScreen extends StatelessWidget {
                   FetchDepartmentDoctorsBloc()
                     ..add(FetchDepartmentDoctors(departmentId: department.id)),
         ),
-        BlocProvider(
-          create:
-              (context) => FilterBloc()..add(FitlersAreSet(filters: filters)),
-        ),
+        BlocProvider(create: (context) => FilterBloc()),
       ],
       child: MultiBlocListener(
         listeners: [
@@ -49,11 +46,11 @@ class DepartmentDoctorsScreen extends StatelessWidget {
               return current.isFilterWidgetActivated == true;
             },
             listener: (context, state) {
-              if (state.filterName == "Morning") {
+              if (state.filterIndex == 1) {
                 context.read<FetchDepartmentDoctorsBloc>().add(
                   DisplayMorningDepartmentDoctors(),
                 );
-              } else if (state.filterName == "Afternoon") {
+              } else if (state.filterIndex == 2) {
                 context.read<FetchDepartmentDoctorsBloc>().add(
                   DisplayAfternoonDepartmentDoctors(),
                 );
@@ -68,10 +65,11 @@ class DepartmentDoctorsScreen extends StatelessWidget {
         child: Scaffold(
           appBar: AppBarWithFilterAndSearchWidget(
             appBarTitle: department.name,
-            searchHintText: "Department",
-            whiteFilterName: "All",
-            greenFilterName: "Morning",
-            yelloFilterName: "Afternoon",
+            filterNames: [
+              S.current.all,
+              S.current.morning,
+              S.current.afternoon,
+            ],
           ),
           body: SafeArea(
             child: Builder(

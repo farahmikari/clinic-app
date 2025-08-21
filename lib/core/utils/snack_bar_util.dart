@@ -19,7 +19,6 @@ void showSnackBar(
             title: title,
             message: message,
             contentType: contentType,
-            inMaterialBanner: true,
           ),
         ),
       ),

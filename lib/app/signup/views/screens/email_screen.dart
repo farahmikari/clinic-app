@@ -12,13 +12,13 @@ import 'package:clinic_app/app/login/views/widgets/button_widget.dart';
 import 'package:clinic_app/app/login/views/widgets/text_form_field_widget.dart';
 import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/utils/snack_bar_util.dart';
+import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 
 class EmailScreen extends StatefulWidget {
   EmailScreen({super.key});
-  static String id = "Number";
   final TextEditingController emailController = TextEditingController();
   @override
   State<EmailScreen> createState() => _EmailScreenState();
@@ -55,8 +55,8 @@ class _EmailScreenState extends State<EmailScreen>
                   case EmailSuccess():
                     showSnackBar(
                       context,
-                      title: "Success",
-                      message: "Verify code is sent Successfully",
+                      title: S.current.success,
+                      message: S.current.verify_code_is_sent_successfully,
                       contentType: ContentType.success,
                     );
                     Get.to(
@@ -69,8 +69,8 @@ class _EmailScreenState extends State<EmailScreen>
                   case EmailFailed():
                     showSnackBar(
                       context,
-                      title: "Failed",
-                      message: "Failed to send verify code",
+                      title: S.current.failed,
+                      message: S.current.failed_to_send_verify_code,
                       contentType: ContentType.failure,
                     );
                     break;
@@ -104,7 +104,6 @@ class _EmailScreenState extends State<EmailScreen>
                             topRight: Radius.circular(30),
                           ),
                         ),
-
                         child: Stack(
                           children: [
                             Padding(
@@ -113,11 +112,11 @@ class _EmailScreenState extends State<EmailScreen>
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Padding(
-                                    padding: EdgeInsets.only(
-                                      right: width * 0.20,
+                                    padding: EdgeInsetsDirectional.only(
+                                      end: width * 0.20,
                                     ),
                                     child: Text(
-                                      "Glad to see you :)",
+                                      S.current.glad_to_see_you,
                                       style: TextStyle(
                                         color: AppColors.primaryColor,
                                         fontFamily: "Montserat",
@@ -128,7 +127,7 @@ class _EmailScreenState extends State<EmailScreen>
                                   ),
 
                                   TextFormFieldWidget(
-                                    label: 'Email',
+                                    label: S.current.email,
                                     controller: widget.emailController,
                                     iconTextField: Icons.email,
                                     onChanged: (value) {
@@ -142,7 +141,7 @@ class _EmailScreenState extends State<EmailScreen>
                                   ),
 
                                   MyButtonWidget(
-                                    text: 'Verify',
+                                    text: S.current.verify,
                                     color: kPrimaryColor,
                                     isLoading: isLoading,
                                     onPressed:
@@ -164,7 +163,7 @@ class _EmailScreenState extends State<EmailScreen>
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Text(
-                                        'Do you have an account ? ',
+                                        S.current.do_you_have_an_account,
                                         style: TextStyle(
                                           fontSize: 14,
                                           fontFamily: "Lato",
@@ -176,7 +175,7 @@ class _EmailScreenState extends State<EmailScreen>
                                           Get.off(() => LoginScreen());
                                         },
                                         child: Text(
-                                          'login ',
+                                          S.current.login,
                                           style: TextStyle(
                                             fontSize: 14,
                                             color: kPrimaryColor,

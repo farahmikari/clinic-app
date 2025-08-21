@@ -1,6 +1,7 @@
 import 'package:clinic_app/app/doctor/models/doctor_model.dart';
 import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
+import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:clinic_app/core/constants/app_shadow.dart';
 import 'package:clinic_app/core/extentions/percent_sized_extention.dart';
@@ -16,6 +17,12 @@ class DoctorSummaryWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Color specifyBadgeColor() {
+      return doctor.shift == "Morning"
+          ? AppColors.transparentGreen
+          : AppColors.transparentYellow;
+    }
+
     return Container(
       height: 42.0.wp,
       width: 92.0.wp,
@@ -44,7 +51,7 @@ class DoctorSummaryWidget extends StatelessWidget {
                     children: [
                       BadgeWidget(
                         title: doctor.shift,
-                        color: AppColors.transparentGreen,
+                        color: specifyBadgeColor(),
                       ),
                       InfoWithIconWidget(
                         icon: "assets/icons/rate.svg",
@@ -57,7 +64,7 @@ class DoctorSummaryWidget extends StatelessWidget {
                 Expanded(
                   flex: 1,
                   child: Align(
-                    alignment: Alignment.centerLeft,
+                    alignment: AlignmentDirectional.centerStart,
                     child: DoctorNameWidget(
                       name: doctor.name,
                       size: AppDimensions.lfs,
@@ -67,7 +74,7 @@ class DoctorSummaryWidget extends StatelessWidget {
                 Expanded(
                   flex: 1,
                   child: HorizontalInfoWithTitleWidget(
-                    title: "Specialty",
+                    title: S.current.specialty,
                     info: doctor.specialty,
                   ),
                 ),
@@ -76,9 +83,7 @@ class DoctorSummaryWidget extends StatelessWidget {
           ),
           Expanded(
             flex: 2,
-            child: DoctorImageWithFrameWidget(
-              image: "assets/images/doctor4.png",
-            ),
+            child: DoctorImageWithFrameWidget(image: doctor.image),
           ),
         ],
       ),

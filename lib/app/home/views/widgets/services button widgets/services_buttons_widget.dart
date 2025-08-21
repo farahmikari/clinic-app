@@ -4,6 +4,7 @@ import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
 import 'package:clinic_app/core/constants/app_icons.dart';
 import 'package:clinic_app/core/extentions/percent_sized_extention.dart';
+import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -25,8 +26,8 @@ class ServicesButtonsWidget extends StatelessWidget {
       children: [
         ServiceButtonWidget(
           icon: AppIcons.calendar,
-          title: "Book Now",
-          subtitle: "Find The Best Doctors In Syria",
+          title: S.current.book_now,
+          subtitle: S.current.book_now_subtitle,
           backgroundColor: AppColors.primaryColor,
           iconColor: AppColors.widgetBackgroundColor,
           titleColor: AppColors.widgetBackgroundColor,
@@ -40,8 +41,8 @@ class ServicesButtonsWidget extends StatelessWidget {
         ),
         ServiceButtonWidget(
           icon: AppIcons.prescriptions,
-          title: "Prescriptions",
-          subtitle: "Your Medications, Treatment & drugs",
+          title: S.current.prescriptions,
+          subtitle: S.current.prescriptions_subtitle,
           backgroundColor: Theme.of(context).appBarTheme.backgroundColor!,
           iconColor: AppColors.primaryColor,
           titleColor: Theme.of(context).textTheme.titleLarge!.color!,
@@ -50,8 +51,8 @@ class ServicesButtonsWidget extends StatelessWidget {
         ),
         ServiceButtonWidget(
           icon: AppIcons.microscope,
-          title: "Lab Tests",
-          subtitle: "Lab Reports Radiology Microbiology",
+          title: S.current.lab_tests,
+          subtitle: S.current.lab_tests_subtitle,
           backgroundColor: Theme.of(context).appBarTheme.backgroundColor!,
           iconColor: AppColors.primaryColor,
           titleColor: Theme.of(context).textTheme.titleLarge!.color!,
@@ -60,8 +61,8 @@ class ServicesButtonsWidget extends StatelessWidget {
         ),
         ServiceButtonWidget(
           icon: AppIcons.marketplace,
-          title: "Marketplace",
-          subtitle: "Medicine\nCosmetics & More",
+          title: S.current.medical_reports,
+          subtitle: S.current.medical_reports_subtitle,
           backgroundColor: Theme.of(context).appBarTheme.backgroundColor!,
           iconColor: AppColors.primaryColor,
           titleColor: Theme.of(context).textTheme.titleLarge!.color!,

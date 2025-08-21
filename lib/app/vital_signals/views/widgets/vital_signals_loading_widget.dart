@@ -2,6 +2,7 @@ import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
 import 'package:clinic_app/core/extentions/percent_sized_extention.dart';
 import 'package:clinic_app/core/widgets/skelton.dart';
+import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -16,7 +17,7 @@ class VitalSignalsLoadingWidget extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         title: Text(
-          "Vital Signals",
+          S.current.vital_signs,
           style: Theme.of(context).textTheme.titleLarge!.copyWith(
             fontSize: 20,
             fontWeight: FontWeight.bold,

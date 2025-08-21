@@ -11,6 +11,7 @@ import 'package:clinic_app/core/widgets/info_with_icon_widget.dart';
 import 'package:clinic_app/core/widgets/info_with_icon_and_frame_widget.dart';
 import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/constants/app_icons.dart';
+import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -23,7 +24,9 @@ class AppointmentWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String specifyWithOrWithoutReport() {
-      return appointment.withMedicalReport ? "With Report" : "Without Report";
+      return appointment.withMedicalReport
+          ? S.current.with_report
+          : S.current.without_report;
     }
 
     String formatAppointmentDate() {
@@ -35,7 +38,9 @@ class AppointmentWidget extends StatelessWidget {
     }
 
     String specifyRequestType() {
-      return appointment.requestTypeId == 1 ? "Check-Up" : "Follow-Up";
+      return appointment.requestTypeId == 1
+          ? S.current.check_up
+          : S.current.follow_up;
     }
 
     Color specifyStatusColor() {
@@ -89,7 +94,7 @@ class AppointmentWidget extends StatelessWidget {
                         Expanded(
                           flex: 2,
                           child: Align(
-                            alignment: Alignment.centerLeft,
+                            alignment: AlignmentDirectional.centerStart,
                             child: BadgeWidget(
                               title: appointment.status,
                               color: specifyStatusColor(),
@@ -100,7 +105,7 @@ class AppointmentWidget extends StatelessWidget {
                         Expanded(
                           flex: 2,
                           child: Align(
-                            alignment: Alignment.centerLeft,
+                            alignment: AlignmentDirectional.centerStart,
                             child: DoctorNameWidget(
                               name: appointment.doctorName,
                               size: AppDimensions.lfs,

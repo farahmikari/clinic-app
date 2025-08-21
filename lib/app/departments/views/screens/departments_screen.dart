@@ -3,6 +3,7 @@ import 'package:clinic_app/app/departments/views/widgets/departments_widget.dart
 import 'package:clinic_app/app/departments/views/widgets/shimmer_departments_widget.dart';
 import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/widgets/app_bar_with_search_widget.dart';
+import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -18,7 +19,7 @@ class DepartmentsScreen extends StatelessWidget {
     return BlocProvider(
       create: (context) => FetchDepartmentsBloc()..add(FetchDepartments()),
       child: Scaffold(
-        appBar: AppBarWithSearchWidget(title: "Departments"),
+        appBar: AppBarWithSearchWidget(title: S.current.departments),
         body: Builder(
           builder: (context) {
             return RefreshIndicator(

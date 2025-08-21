@@ -31,7 +31,7 @@ class AppointmentModel {
       doctorName: jsonData[ApiKey.doctorName],
       doctorImage: jsonData[ApiKey.doctorImage],
       department: jsonData[ApiKey.department],
-      dateTime: DateTime.parse(jsonData[ApiKey.dateTime]),
+      dateTime: DateTime.parse(jsonData[ApiKey.dateTime]).toLocal(),
       requestTypeId: jsonData[ApiKey.requestTypeId],
       withMedicalReport: jsonData[ApiKey.withMedicalReport],
     );

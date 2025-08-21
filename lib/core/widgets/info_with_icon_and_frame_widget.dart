@@ -23,14 +23,15 @@ class InfoWithIconAndFrameWidget extends StatelessWidget {
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          spacing: AppDimensions.sp,
           children: [
             SvgPicture.asset(
               icon,
               width: AppDimensions.sis,
               height: AppDimensions.sis,
-              color: AppColors.primaryColor,
+              colorFilter:ColorFilter.mode(AppColors.primaryColor, BlendMode.srcIn),
             ),
-            SizedBox(width: AppDimensions.sm),
             Text(
               title,
               style: TextStyle(

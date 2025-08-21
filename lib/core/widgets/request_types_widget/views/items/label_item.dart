@@ -46,7 +46,7 @@ class LabelItem extends StatelessWidget {
               AppIcons.requestType,
               height: AppDimensions.lis,
               width: AppDimensions.lis,
-              color: AppColors.primaryColor,
+              colorFilter:ColorFilter.mode(AppColors.primaryColor, BlendMode.srcIn),
             ),
             Text(
               label,
@@ -58,12 +58,12 @@ class LabelItem extends StatelessWidget {
             ),
             Expanded(
               child: Align(
-                alignment: Alignment.centerRight,
+                alignment: AlignmentDirectional.centerEnd,
                 child: SvgPicture.asset(
                   AppIcons.arrowDown,
                   height: AppDimensions.sis,
                   width: AppDimensions.sis,
-                  color: AppColors.primaryColor,
+                  colorFilter:ColorFilter.mode(AppColors.primaryColor, BlendMode.srcIn) ,
                 ),
               ),
             ),

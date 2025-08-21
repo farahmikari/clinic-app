@@ -14,6 +14,7 @@ final class BookAppointmentValidatorInitial
   BookAppointmentValidatorInitial()
     : super(
         currentReservation: ReservationModel(
+          offerId: null,
           departmentId: -1,
           requestTypeId: -1,
           day: "",

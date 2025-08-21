@@ -4,6 +4,7 @@ import 'package:clinic_app/app/appointments/views/widgets/appointments_widgets/s
 import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/widgets/app_bar_with_filter_and_search_widget.dart';
 import 'package:clinic_app/core/widgets/filter_widget/controllers/filter_bloc/filter_bloc.dart';
+import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -17,17 +18,13 @@ class AppointmentsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<String> filters = ["All", "Pending", "Completed"];
     return MultiBlocProvider(
       providers: [
         BlocProvider(
           create:
               (context) => FetchAppointmentsBloc()..add(FetchAppointments()),
         ),
-        BlocProvider(
-          create:
-              (context) => FilterBloc()..add(FitlersAreSet(filters: filters)),
-        ),
+        BlocProvider(create: (context) => FilterBloc()),
       ],
       child: MultiBlocListener(
         listeners: [
@@ -43,11 +40,11 @@ class AppointmentsScreen extends StatelessWidget {
               return current.isFilterWidgetActivated == true;
             },
             listener: (context, state) {
-              if (state.filterName == "Pending") {
+              if (state.filterIndex == 1) {
                 context.read<FetchAppointmentsBloc>().add(
                   DisplayPendingAppointments(),
                 );
-              } else if (state.filterName == "Completed") {
+              } else if (state.filterIndex == 2) {
                 context.read<FetchAppointmentsBloc>().add(
                   DisplayCompletedAppointments(),
                 );
@@ -61,11 +58,12 @@ class AppointmentsScreen extends StatelessWidget {
         ],
         child: Scaffold(
           appBar: AppBarWithFilterAndSearchWidget(
-            appBarTitle: "Appointments",
-            searchHintText: "Department, Doctor, Date...",
-            whiteFilterName: "All",
-            greenFilterName: "Pending",
-            yelloFilterName: "Completed",
+            appBarTitle: S.current.appointments,
+            filterNames: [
+              S.current.all,
+              S.current.pending,
+              S.current.completed,
+            ],
           ),
           body: Builder(
             builder: (context) {

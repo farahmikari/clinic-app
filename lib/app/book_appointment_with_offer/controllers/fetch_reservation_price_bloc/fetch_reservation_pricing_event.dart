@@ -2,12 +2,8 @@ part of 'fetch_reservation_pricing_bloc.dart';
 
 sealed class FetchReservationPricingEvent {}
 
-class FetchReservationCashOfferPricing extends FetchReservationPricingEvent {
-  final RequestOfferCashPriceModel requestOfferCashPrice;
-  FetchReservationCashOfferPricing({required this.requestOfferCashPrice});
-}
+class FetchReservationPricing extends FetchReservationPricingEvent {
+  final ReservationModel reservation;
 
-class FetchReservationPointsOfferPricing extends FetchReservationPricingEvent {
-  final RequestOfferPointsPriceModel requestOfferPointsPrice;
-  FetchReservationPointsOfferPricing({required this.requestOfferPointsPrice});
+  FetchReservationPricing({required this.reservation});
 }

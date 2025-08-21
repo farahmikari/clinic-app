@@ -5,6 +5,7 @@ import 'package:clinic_app/app/user_profile/models/user_data_model.dart';
 import 'package:clinic_app/app/user_profile/views/widgets/app_bar_profile_widget.dart';
 import 'package:clinic_app/app/user_profile/views/widgets/card_info_widget.dart';
 import 'package:clinic_app/app/user_profile/views/widgets/edit_info_profile_button_widget.dart';
+import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/route_manager.dart' as gett;
@@ -37,7 +38,7 @@ class ProfileInformationWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 EditInfoProfileButtonWidget(
-                  text: 'Edit profile',
+                  text: S.current.edit_profile,
                   onTap: () {
                     gett.Get.to(
                       () => EditProfileScreen(user: user),
@@ -48,7 +49,7 @@ class ProfileInformationWidget extends StatelessWidget {
                   height: height,
                 ),
                 EditInfoProfileButtonWidget(
-                  text: 'Edit password',
+                  text: S.current.edit_password,
                   onTap: () {
                     gett.Get.to(
                       () => BlocProvider(

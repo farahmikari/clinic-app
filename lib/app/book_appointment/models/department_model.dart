@@ -17,8 +17,8 @@ class DepartmentModel {
     return DepartmentModel(
       id: jsonData[ApiKey.id],
       name: jsonData[ApiKey.name],
-      morningDoctorsCount: 3,
-      afternoonDoctorsCount: 2,
+      morningDoctorsCount: jsonData[ApiKey.morningDoctorsCount],
+      afternoonDoctorsCount: jsonData[ApiKey.afternoonDoctorsCount],
     );
   }
 }

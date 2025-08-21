@@ -5,6 +5,7 @@ import 'package:clinic_app/core/utils/snack_bar_util.dart';
 import 'package:clinic_app/core/widgets/image_widget/views/widget/image_loading_widget.dart';
 import 'package:clinic_app/core/widgets/image_widget/views/widget/image_selected_widget.dart';
 import 'package:clinic_app/core/widgets/image_widget/views/widget/image_user_widget.dart';
+import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -34,8 +35,8 @@ class ImageProfileWidget extends StatelessWidget {
               } else if (state is ImageFailure) {
                 showSnackBar(
                   context,
-                  title: "Failed",
-                  message: "Failed loading image",
+                  title: S.current.failed,
+                  message: S.current.failed_loading_image,
                   contentType: ContentType.failure,
                 );
               }
@@ -91,14 +92,17 @@ class ImageProfileWidget extends StatelessWidget {
                 child: Icon(
                   Icons.camera_alt_outlined,
                   color: AppColors.primaryColor,
+
                 ),
               ),
-              title: Text("Camera"),
+              title: Text(S.current.camera),
               onTap: () {
                 context.read<ImageBloc>().add(
                   PickImageFromCameraEvent(isProfile: isProfile),
                 );
                 Navigator.pop(context);
+
+
               },
             ),
             ListTile(
@@ -112,14 +116,17 @@ class ImageProfileWidget extends StatelessWidget {
                 child: Icon(
                   Icons.image_outlined,
                   color: AppColors.primaryColor,
+
                 ),
+                
               ),
-              title: Text("Gallery"),
+              title: Text(S.current.gallery),
               onTap: () {
                 context.read<ImageBloc>().add(
                   PickImageFromGalleryEvent(isProfile: isProfile),
                 );
                 Navigator.pop(context);
+
               },
             ),
           ],

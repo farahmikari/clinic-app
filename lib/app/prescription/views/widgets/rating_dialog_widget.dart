@@ -1,9 +1,12 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
 import 'package:clinic_app/core/constants/app_icons.dart';
 import 'package:clinic_app/core/extentions/percent_sized_extention.dart';
 import 'package:clinic_app/core/widgets/button_widget.dart';
 import 'package:clinic_app/app/prescription/controllers/rating_dialog_bloc/rating_dialog_bloc.dart';
+import 'package:clinic_app/core/widgets/loading_widget.dart';
+import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -22,7 +25,7 @@ class RatingDialogWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      backgroundColor: AppColors.backgroundColor,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       titlePadding: EdgeInsets.all(AppDimensions.mp),
       contentPadding: EdgeInsets.all(AppDimensions.mp),
       actionsPadding: EdgeInsets.all(AppDimensions.mp),
@@ -41,12 +44,15 @@ class RatingDialogWidget extends StatelessWidget {
               shape: BoxShape.circle,
             ),
             clipBehavior: Clip.hardEdge,
-            child: Image(image: AssetImage("assets/images/doctor10.png")),
+            child: CachedNetworkImage(
+              imageUrl: doctorImage,
+              placeholder: (context, url) => LoadingWidget(),
+              errorWidget: (context, url, error) => Icon(Icons.error),
+            ),
           ),
           Text(
-            "How was your visit with Dr.$doctorName? You can leave a quick rating if you’d like.",
+            "${S.current.need_opinion} $doctorName ${S.current.need_rating}",
             style: TextStyle(
-              color: AppColors.mainTextColor,
               fontSize: AppDimensions.mfs,
               fontWeight: FontWeight.w500,
             ),
@@ -69,7 +75,10 @@ class RatingDialogWidget extends StatelessWidget {
           itemBuilder:
               (context, _) => SvgPicture.asset(
                 AppIcons.rate,
-                color: AppColors.transparentYellow,
+                colorFilter: ColorFilter.mode(
+                  AppColors.transparentYellow,
+                  BlendMode.srcIn,
+                ),
               ),
           onRatingUpdate: (rating) {
             context.read<RatingDialogBloc>().add(
@@ -80,7 +89,7 @@ class RatingDialogWidget extends StatelessWidget {
       ),
       actions: [
         ButtonWidget(
-          title: "Submit",
+          title: S.current.share_rating,
           backgroundColor: AppColors.primaryColor,
           titleColor: AppColors.widgetBackgroundColor,
           onTap: () {
@@ -96,9 +105,9 @@ class RatingDialogWidget extends StatelessWidget {
             overlayColor: WidgetStatePropertyAll(Colors.transparent),
           ),
           child: Text(
-            "No, Thanks!",
+            S.current.no_thanks,
             style: TextStyle(
-              color: AppColors.darkGreyColor,
+              color: Theme.of(context).hintColor,
               fontSize: AppDimensions.mfs,
               fontWeight: FontWeight.w500,
             ),

@@ -1,3 +1,4 @@
+import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/cupertino.dart';
 
 void showDialogAlert({
@@ -28,7 +29,7 @@ void showDialogAlert({
           CupertinoDialogAction(
             onPressed: onPressed,
             child: Text(
-              "yes",
+              S.current.yes,
               style: TextStyle(
                 color: const Color(0xFF047B08),
                 fontWeight: FontWeight.w700,
@@ -40,7 +41,7 @@ void showDialogAlert({
             onPressed: () => Navigator.pop(context),
             isDestructiveAction: true,
             child: Text(
-              "No",
+              S.current.No,
               style: TextStyle(
                 fontWeight: FontWeight.w700,
                 fontFamily: "Montserat",

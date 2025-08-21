@@ -22,19 +22,8 @@ class DoctorBloc extends Bloc<DoctorEvent, DoctorState> {
         var response = await api.get(EndPoints.doctorProfile(event.id));
         DoctorModel doctor = DoctorModel.fromJson(response[ApiKey.data]);
         emit(DoctorLoaded(doctor: doctor));
-        // emit(DoctorLoading());
-        // await Future.delayed(Duration(seconds: 5));
-        // DoctorModel doctor = DoctorModel.fromJson(
-        //   doctors.firstWhere((doctor) => doctor["id"] == event.id),
-        // );
-        // emit(DoctorLoaded(doctor: doctor));
       } catch (e) {
         emit(DoctorLoading());
-        // emit(
-        //   DoctorFailed(
-        //     errorMessage: "Something Went Wrong When Trying To Fetch Doctor",
-        //   ),
-        // );
       }
     }, transformer: switchMapTransformer());
   }

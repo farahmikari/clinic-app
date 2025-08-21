@@ -5,6 +5,7 @@ import 'package:clinic_app/app/departments/views/widgets/shift_doctors_count_wid
 import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
 import 'package:clinic_app/core/constants/app_shadow.dart';
+import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -26,30 +27,29 @@ class DepartmentWidget extends StatelessWidget {
         decoration: BoxDecoration(
           color: Theme.of(context).cardColor,
           borderRadius: BorderRadius.circular(AppDimensions.mbr),
-          image: DecorationImage(
-            image: AssetImage("assets/images/watermark4.png"),
-            fit: BoxFit.cover,
-          ),
           boxShadow: AppShadow.boxShadow,
         ),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Expanded(
               flex: 1,
               child: Align(
-                alignment: Alignment.centerLeft,
+                alignment: AlignmentDirectional.centerStart,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   spacing: AppDimensions.sp,
                   children: [
                     ShiftDoctorsCountWidget(
                       color: AppColors.primaryColor,
-                      shift: "Morning",
+                      shift: S.current.morning_doctor,
                       count: department.morningDoctorsCount,
                     ),
                     ShiftDoctorsCountWidget(
                       color: AppColors.accentColor,
-                      shift: "Afternoon",
+                      shift: S.current.afternoon_doctor,
                       count: department.afternoonDoctorsCount,
                     ),
                   ],
@@ -59,7 +59,7 @@ class DepartmentWidget extends StatelessWidget {
             Expanded(
               flex: 1,
               child: Align(
-                alignment: Alignment.centerLeft,
+                alignment: AlignmentDirectional.centerStart,
                 child: DepartmentNameWidget(name: department.name),
               ),
             ),

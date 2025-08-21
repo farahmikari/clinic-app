@@ -9,6 +9,7 @@ import 'package:clinic_app/core/extentions/percent_sized_extention.dart';
 import 'package:clinic_app/core/widgets/doctor_name_widget.dart';
 import 'package:clinic_app/core/widgets/info_with_icon_widget.dart';
 import 'package:clinic_app/core/widgets/loading_widget.dart';
+import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -19,6 +20,12 @@ class MostRatedDoctorWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String specifyTreatmentsUnit() {
+      return mostRatedDoctor.treatments > 1
+          ? S.current.treatments_unit
+          : S.current.treatment_unit;
+    }
+
     return GestureDetector(
       onTap: () {
         Get.to(
@@ -59,7 +66,7 @@ class MostRatedDoctorWidget extends StatelessWidget {
                     ),
                   ),
                   Align(
-                    alignment: Alignment.bottomLeft,
+                    alignment: AlignmentDirectional.bottomStart,
                     child: Container(
                       padding: EdgeInsets.symmetric(
                         horizontal: AppDimensions.mp,
@@ -67,8 +74,8 @@ class MostRatedDoctorWidget extends StatelessWidget {
                       ),
                       decoration: BoxDecoration(
                         color: AppColors.primaryColor,
-                        borderRadius: BorderRadius.only(
-                          topRight: Radius.circular(AppDimensions.mbr),
+                        borderRadius: BorderRadiusDirectional.only(
+                          topEnd: Radius.circular(AppDimensions.mbr),
                         ),
                       ),
                       child: Text(
@@ -98,7 +105,7 @@ class MostRatedDoctorWidget extends StatelessWidget {
                   infoSize: AppDimensions.mfs,
                 ),
                 Text(
-                  "(${mostRatedDoctor.treatments} Treatments)",
+                  "(${mostRatedDoctor.treatments} ${specifyTreatmentsUnit()})",
                   style: TextStyle(
                     color: AppColors.darkGreyColor,
                     fontSize: AppDimensions.sfs,

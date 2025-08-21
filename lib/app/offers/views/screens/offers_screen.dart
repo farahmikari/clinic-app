@@ -6,6 +6,7 @@ import 'package:clinic_app/app/offers/views/widgets/shimmer_points_widget.dart';
 import 'package:clinic_app/app/offers/views/widgets/shimmer_offers_widget.dart';
 import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
+import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -28,7 +29,7 @@ class OffersScreen extends StatelessWidget {
           backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           surfaceTintColor: AppColors.backgroundColor,
           title: Text(
-            "Offers",
+            S.current.offers,
             style: TextStyle(
               fontSize: AppDimensions.lfs,
               fontWeight: FontWeight.bold,

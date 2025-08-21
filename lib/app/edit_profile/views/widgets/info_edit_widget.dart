@@ -7,6 +7,7 @@ import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/extentions/percent_sized_extention.dart';
 import 'package:clinic_app/core/utils/select_birthday_date.dart';
 import 'package:clinic_app/core/utils/select_gender.dart';
+import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -46,7 +47,7 @@ class InfoEditWidget extends StatelessWidget {
       child: Column(
         children: [
           TextFormFieldWidget(
-            label: "first name",
+            label: S.current.first_name,
             iconTextField: Icons.person_outline,
             controller: firstNameController,
             validator: (value) => editData.firstName.value,
@@ -57,7 +58,7 @@ class InfoEditWidget extends StatelessWidget {
             },
           ),
           TextFormFieldWidget(
-            label: "last name",
+            label: S.current.last_name ,
             iconTextField: Icons.person_outlined,
             controller: lastNameController,
             validator: (value) => editData.lastName.value,
@@ -68,7 +69,7 @@ class InfoEditWidget extends StatelessWidget {
             },
           ),
           TextFormFieldWidget(
-            label: "birthday date",
+            label:  S.current.birthday_date,
             iconTextField: Icons.person_outline,
             controller: birthdayController,
             suffixIcon: IconButton(
@@ -80,7 +81,7 @@ class InfoEditWidget extends StatelessWidget {
             readOnly: true,
           ),
           TextFormFieldWidget(
-            label: "gender",
+            label:  S.current.gender,
             iconTextField: Icons.transgender,
             controller: genderController,
             onTap:
@@ -89,7 +90,7 @@ class InfoEditWidget extends StatelessWidget {
             readOnly: true,
           ),
           TextFormFieldWidget(
-            label: "phone number",
+            label:  S.current.phone,
             iconTextField: Icons.phone_android_outlined,
             controller: phoneController,
             validator: (value) => editData.phone.value,
@@ -106,7 +107,7 @@ class InfoEditWidget extends StatelessWidget {
           ),
           SizedBox(height: 0.2.hp),
           MyButtonWidget(
-            text: "save",
+            text: S.current.save,
             color: AppColors.primaryColor,
             isLoading: isLoading,
             onPressed:

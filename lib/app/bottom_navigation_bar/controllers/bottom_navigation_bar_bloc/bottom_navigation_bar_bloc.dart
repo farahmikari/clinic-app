@@ -8,11 +8,17 @@ class BottomNavigationBarBloc
     extends Bloc<BottomNavigationBarEvent, BottomNavigationBarState> {
   BottomNavigationBarBloc() : super(BottomNavigationBarInitial()) {
     on<CurrentIndexChanged>((event, emit) {
-      List<bool> isDataFetched = state.isDataFetched;
       emit(
-        UpdateBottomNavigationBar(
+        BottomNavigationBarUpdate(
           currentIndex: event.currentIndex,
-          isDataFetched: isDataFetched,
+          isHomeBlocsInitialized:
+              event.currentIndex == 0 || state.isHomeBlocsInitialized,
+          isAppointmentsBlocsInitialized:
+              event.currentIndex == 1 || state.isAppointmentsBlocsInitialized,
+          isDepartmentsBlocsInitialized:
+              event.currentIndex == 2 || state.isDepartmentsBlocsInitialized,
+          isBillsBlocsInitialized:
+              event.currentIndex == 3 || state.isBillsBlocsInitialized,
         ),
       );
     });

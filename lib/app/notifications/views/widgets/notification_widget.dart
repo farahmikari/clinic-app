@@ -78,7 +78,7 @@ class NotificationWidget extends StatelessWidget {
               specifyIcon(),
               height: AppDimensions.mis,
               width: AppDimensions.mis,
-              color: AppColors.widgetBackgroundColor,
+              colorFilter:ColorFilter.mode(AppColors.widgetBackgroundColor, BlendMode.srcIn),
             ),
           ),
           Expanded(

@@ -3,7 +3,7 @@ part of 'fetch_bill_details_bloc.dart';
 sealed class FetchBillDetailsEvent {}
 
 final class FetchBillDetails extends FetchBillDetailsEvent {
-  final BillModel bill;
+  final int billId;
 
-  FetchBillDetails({required this.bill});
+  FetchBillDetails({required this.billId});
 }

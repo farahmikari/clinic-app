@@ -16,7 +16,7 @@ class AdviceWidget extends StatelessWidget {
         AppIcons.advice,
         width: AppDimensions.sis,
         height: AppDimensions.sis,
-        color: AppColors.primaryColor,
+        colorFilter:ColorFilter.mode(AppColors.primaryColor, BlendMode.srcIn),
       ),
       title: Text(
         title,

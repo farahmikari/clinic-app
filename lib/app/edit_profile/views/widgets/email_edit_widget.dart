@@ -7,6 +7,7 @@ import 'package:clinic_app/app/verification/model/verification_goto.dart';
 import 'package:clinic_app/app/verification/views/screen/verification_screen.dart';
 import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/utils/snack_bar_util.dart';
+import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -40,8 +41,8 @@ class EmailEditWidget extends StatelessWidget {
           case EmailSuccess():
             showSnackBar(
               context,
-              title: "Success",
-              message: "Verify code is sent Successfully",
+              title: S.current.success,
+              message: S.current.verify_code_is_sent_successfully,
               contentType: ContentType.success,
             );
             Get.offAll(
@@ -54,8 +55,8 @@ class EmailEditWidget extends StatelessWidget {
           case EmailFailed():
             showSnackBar(
               context,
-              title: "Failed",
-              message: state.message,
+              title: S.current.failed,
+              message: S.current.verification_failed,
               contentType: ContentType.failure,
             );
             break;
@@ -65,7 +66,7 @@ class EmailEditWidget extends StatelessWidget {
       },
       builder: (context, state) {
         return TextFormFieldWidget(
-          label: "email",
+          label: S.current.email,
           iconTextField: Icons.email_outlined,
           controller: emailController,
           readOnly: true,
@@ -86,12 +87,12 @@ class EmailEditWidget extends StatelessWidget {
       builder:
           (_) => CupertinoAlertDialog(
             title: Text(
-              "Edit email",
+              S.current.edit_email,
               style: Theme.of(context).textTheme.titleSmall,
             ),
             content: CupertinoTextField(
               controller: newEmailController,
-              placeholder: "Enter new email",
+              placeholder: S.current.enter_new_email,
               style: Theme.of(
                 context,
               ).textTheme.titleSmall!.copyWith(fontWeight: FontWeight.bold),
@@ -103,7 +104,7 @@ class EmailEditWidget extends StatelessWidget {
               CupertinoDialogAction(
                 onPressed: () => Navigator.pop(context),
                 child: Text(
-                  "cancel",
+                  S.current.cancel,
                   style: Theme.of(context).textTheme.titleLarge!.copyWith(
                     color: const Color(0xFF99231B),
                     fontSize: 16,
@@ -122,7 +123,7 @@ class EmailEditWidget extends StatelessWidget {
                   }
                 },
                 child: Text(
-                  'cotinue',
+                  S.current.cotinue,
                   style: Theme.of(context).textTheme.titleLarge!.copyWith(
                     color: const Color(0xFF047B08),
                     fontSize: 16,

@@ -35,6 +35,20 @@ class FetchDaysBloc extends Bloc<FetchDaysEvent, FetchDaysState> {
       }
     }, transformer: switchMapTransformer());
 
+    on<FetchDoctorDays>((event, emit) async {
+      emit(FetchDaysLoading());
+      try {
+        dynamic response = await api.get(EndPoints.doctorId(event.doctorId));
+        List<DayModel> days =
+            (response as List<dynamic>)
+                .map((day) => DayModel.fromJson(day))
+                .toList();
+        emit(FetchDaysLoaded(days));
+      } on ServerException catch (e) {
+        emit(FetchDaysFailed(e.errorModel.errorMessage));
+      }
+    }, transformer: switchMapTransformer());
+
     on<FetchOfferDays>((event, emit) async {
       emit(FetchDaysLoading());
       try {
