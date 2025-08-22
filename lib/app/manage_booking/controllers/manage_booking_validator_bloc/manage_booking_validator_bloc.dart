@@ -13,9 +13,6 @@ class ManageBookingValidatorBloc
   ManageBookingValidatorBloc() : super(ManageBookingValidatorInitial()) {
     DioConsumer api = DioConsumer(dio: Dio());
 
-    late bool hasCancelAbilityFetched = false;
-    late bool isCancelable;
-
     on<IsReservationEditingIsToggled>((event, emit) {
       emit(
         ManageBookingValidatorUpdate(
@@ -28,34 +25,20 @@ class ManageBookingValidatorBloc
       );
     });
 
-    on<CancelAbilityIsChecked>((event, emit) async {
-      if (hasCancelAbilityFetched) {
-        emit(
-          ManageBookingValidatorUpdate(
-            previousReservation: state.previousReservation,
-            currentReservation: state.currentReservation,
-            isReservationEditing: state.isReservationEditing,
-            isAbleToCancel: isCancelable,
-            isAbleToEdit: state.isAbleToEdit,
-          ),
-        );
-        return;
-      }
+    on<ManageAbilityIsChecked>((event, emit) async {
       try {
         dynamic response = await api.get(
           EndPoints.canCancel(event.appointmentId),
         );
-        isCancelable = response[ApiKey.canCancel];
         emit(
           ManageBookingValidatorUpdate(
             previousReservation: state.previousReservation,
             currentReservation: state.currentReservation,
             isReservationEditing: state.isReservationEditing,
-            isAbleToCancel: isCancelable,
-            isAbleToEdit: state.isAbleToEdit,
+            isAbleToCancel: response[ApiKey.canCancel],
+            isAbleToEdit: false,
           ),
         );
-        hasCancelAbilityFetched = true;
       } catch (e) {
         emit(
           ManageBookingValidatorUpdate(
@@ -63,13 +46,16 @@ class ManageBookingValidatorBloc
             currentReservation: state.currentReservation,
             isReservationEditing: state.isReservationEditing,
             isAbleToCancel: false,
-            isAbleToEdit: state.isAbleToEdit,
+            isAbleToEdit: false,
           ),
         );
       }
     });
 
     on<EditAbilityIsChecked>((event, emit) {
+      if (!state.isAbleToCancel) {
+        return;
+      }
       ReservationModel currentReservation = state.currentReservation.copyWith(
         requestTypeId: event.requestTypeId,
         day: event.day,
@@ -77,7 +63,8 @@ class ManageBookingValidatorBloc
         withMedicalReport: event.withMedicalReport,
       );
       late bool isAbleToEdit;
-      if (currentReservation == state.previousReservation) {
+      if (currentReservation == state.previousReservation ||
+          currentReservation.timeId == -1) {
         isAbleToEdit = false;
       } else {
         isAbleToEdit = true;

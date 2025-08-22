@@ -3,6 +3,8 @@ import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
 import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
+import 'package:syncfusion_flutter_core/theme.dart';
+import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
 class MedicalReportScreen extends StatelessWidget {
   const MedicalReportScreen({super.key, required this.medicalReport});
@@ -26,26 +28,26 @@ class MedicalReportScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Expanded(
-          //   child: SfPdfViewerTheme(
-          //     data: SfPdfViewerThemeData(
-          //       backgroundColor: AppColors.backgroundColor,
-          //       progressBarColor: AppColors.primaryColor,
-          //       scrollHeadStyle: PdfScrollHeadStyle(
-          //         backgroundColor: AppColors.primaryColor,
-          //         pageNumberTextStyle: TextStyle(
-          //           color: AppColors.widgetBackgroundColor,
-          //           fontSize: AppDimensions.sfs,
-          //           fontWeight: FontWeight.w500,
-          //         ),
-          //       ),
-          //     ),
-          //     // child: SfPdfViewer.network(
-          //     //   medicalReport.medicalReport,
-          //     //   canShowPaginationDialog: false,
-          //     // ),
-          //   ),
-          // ),
+          Expanded(
+            child: SfPdfViewerTheme(
+              data: SfPdfViewerThemeData(
+                backgroundColor: AppColors.backgroundColor,
+                progressBarColor: AppColors.primaryColor,
+                scrollHeadStyle: PdfScrollHeadStyle(
+                  backgroundColor: AppColors.primaryColor,
+                  pageNumberTextStyle: TextStyle(
+                    color: AppColors.widgetBackgroundColor,
+                    fontSize: AppDimensions.sfs,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ),
+              child: SfPdfViewer.network(
+                medicalReport.medicalReport,
+                canShowPaginationDialog: false,
+              ),
+            ),
+          ),
         ],
       ),
     );

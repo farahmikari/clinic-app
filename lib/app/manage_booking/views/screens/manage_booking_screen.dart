@@ -78,7 +78,7 @@ class ManageBookingScreen extends StatelessWidget {
           create:
               (context) =>
                   ManageBookingValidatorBloc()..add(
-                    CancelAbilityIsChecked(appointmentId: appointment.id),
+                    ManageAbilityIsChecked(appointmentId: appointment.id),
                   ),
         ),
         BlocProvider(
@@ -294,13 +294,6 @@ class ManageBookingScreen extends StatelessWidget {
                         context.read<ManageBookingValidatorBloc>().add(
                           IsReservationEditingIsToggled(),
                         );
-                        if (state.isReservationEditing) {
-                          context.read<ManageBookingValidatorBloc>().add(
-                            CancelAbilityIsChecked(
-                              appointmentId: appointment.id,
-                            ),
-                          );
-                        }
                       },
                     );
                   },
@@ -370,12 +363,27 @@ class ManageBookingScreen extends StatelessWidget {
                               ),
                               titleColor: AppColors.widgetBackgroundColor,
                               onTap: () {
-                                context.read<FetchReservationPricingBloc>().add(
-                                  FetchReservationPricing(
-                                    reservation:
-                                        validatorState.currentReservation,
-                                  ),
-                                );
+                                if (validatorState.isReservationEditing) {
+                                  if (validatorState.isAbleToEdit) {
+                                    context
+                                        .read<FetchReservationPricingBloc>()
+                                        .add(
+                                          FetchReservationPricing(
+                                            reservation:
+                                                validatorState
+                                                    .currentReservation,
+                                          ),
+                                        );
+                                  }
+                                } else {
+                                  if (validatorState.isAbleToCancel) {
+                                    context.read<SendReservationBloc>().add(
+                                      SendCancelReservation(
+                                        appointmentId: appointment.id,
+                                      ),
+                                    );
+                                  }
+                                }
                               },
                             );
                           },

@@ -4,10 +4,10 @@ sealed class ManageBookingValidatorEvent {}
 
 class IsReservationEditingIsToggled extends ManageBookingValidatorEvent {}
 
-class CancelAbilityIsChecked extends ManageBookingValidatorEvent {
+class ManageAbilityIsChecked extends ManageBookingValidatorEvent {
   final int appointmentId;
 
-  CancelAbilityIsChecked({required this.appointmentId});
+  ManageAbilityIsChecked({required this.appointmentId});
 }
 
 class EditAbilityIsChecked extends ManageBookingValidatorEvent {
