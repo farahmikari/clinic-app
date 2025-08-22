@@ -1,5 +1,5 @@
 import 'package:clinic_app/app/appointments/models/appointment_model.dart';
-import 'package:clinic_app/app/manage_booking/views/screens/manage_booking_screen.dart';
+import 'package:clinic_app/app/book_appointment/views/screens/manage_booking_screen.dart';
 import 'package:clinic_app/app/prescription/views/screens/prescription_screen.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
 import 'package:clinic_app/core/constants/app_shadow.dart';

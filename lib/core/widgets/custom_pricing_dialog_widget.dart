@@ -1,4 +1,4 @@
-import 'package:clinic_app/app/book_appointment_with_offer/models/pricing_model.dart';
+import 'package:clinic_app/app/book_appointment/models/pricing_model.dart';
 import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
 import 'package:clinic_app/core/extentions/percent_sized_extention.dart';

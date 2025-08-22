@@ -1,5 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:clinic_app/app/book_appointment_with_doctor/views/widgets/book_appointment_with_doctor_auth_decision_widget.dart';
+import 'package:clinic_app/app/book_appointment/views/widgets/book_appointment_with_doctor_auth_decision_widget.dart';
 import 'package:clinic_app/app/doctor/models/doctor_model.dart';
 import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
