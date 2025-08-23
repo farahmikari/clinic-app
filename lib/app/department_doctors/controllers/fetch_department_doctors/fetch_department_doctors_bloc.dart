@@ -45,9 +45,15 @@ class FetchDepartmentDoctorsBloc
           ...morningDepartmentDoctors,
           ...afternoonDepartmentDoctors,
         ];
-        emit(
-          FetchDepartmentDoctorsLoaded(departmentDoctors: allDepartmentDoctors),
-        );
+        if (allDepartmentDoctors.isEmpty) {
+          emit(FetchDepartmentDoctorsLoadedEmpty());
+        } else {
+          emit(
+            FetchDepartmentDoctorsLoaded(
+              departmentDoctors: allDepartmentDoctors,
+            ),
+          );
+        }
       } on ServerException catch (e) {
         emit(
           FetchDepartmentDoctorsFailed(errorMessage: e.errorModel.errorMessage),
@@ -56,25 +62,37 @@ class FetchDepartmentDoctorsBloc
     });
 
     on<DisplayMorningDepartmentDoctors>((event, emit) async {
-      emit(
-        FetchDepartmentDoctorsLoaded(
-          departmentDoctors: morningDepartmentDoctors,
-        ),
-      );
+      if (allDepartmentDoctors.isEmpty) {
+        emit(FetchDepartmentDoctorsLoadedEmpty());
+      } else {
+        emit(
+          FetchDepartmentDoctorsLoaded(
+            departmentDoctors: morningDepartmentDoctors,
+          ),
+        );
+      }
     });
 
     on<DisplayAfternoonDepartmentDoctors>((event, emit) async {
-      emit(
-        FetchDepartmentDoctorsLoaded(
-          departmentDoctors: afternoonDepartmentDoctors,
-        ),
-      );
+      if (allDepartmentDoctors.isEmpty) {
+        emit(FetchDepartmentDoctorsLoadedEmpty());
+      } else {
+        emit(
+          FetchDepartmentDoctorsLoaded(
+            departmentDoctors: afternoonDepartmentDoctors,
+          ),
+        );
+      }
     });
 
     on<DisplayAllDepartmentDoctors>((event, emit) async {
-      emit(
-        FetchDepartmentDoctorsLoaded(departmentDoctors: allDepartmentDoctors),
-      );
+      if (allDepartmentDoctors.isEmpty) {
+        emit(FetchDepartmentDoctorsLoadedEmpty());
+      } else {
+        emit(
+          FetchDepartmentDoctorsLoaded(departmentDoctors: allDepartmentDoctors),
+        );
+      }
     });
   }
 }

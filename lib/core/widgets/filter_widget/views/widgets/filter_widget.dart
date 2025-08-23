@@ -17,13 +17,13 @@ class FilterWidget extends StatelessWidget {
   final List<String> filterNames;
   final bool isActivated;
 
-  Color specifyFilterBackgroundColor() {
+  Color specifyFilterprimaryBackgroundColor() {
     if (filterIndex == 1) {
-      return AppColors.transparentGreen;
+      return AppColors.transparentPrimaryColor;
     } else if (filterIndex == 2) {
-      return AppColors.transparentYellow;
+      return AppColors.transparentAccentColor;
     } else {
-      return AppColors.widgetBackgroundColor;
+      return AppColors.accentBackgroundColor;
     }
   }
 
@@ -31,9 +31,9 @@ class FilterWidget extends StatelessWidget {
     if (!isActivated) {
       return AppColors.hintTextColor;
     } else if (filterIndex == 0) {
-      return AppColors.mainTextColor;
+      return AppColors.primaryTextColor;
     } else {
-      return AppColors.widgetBackgroundColor;
+      return AppColors.accentBackgroundColor;
     }
   }
 
@@ -50,7 +50,7 @@ class FilterWidget extends StatelessWidget {
         height: 15.0.wp,
         alignment: Alignment.center,
         decoration: BoxDecoration(
-          color: specifyFilterBackgroundColor(),
+          color: specifyFilterprimaryBackgroundColor(),
           borderRadius: BorderRadius.circular(AppDimensions.sbr),
           boxShadow: AppShadow.boxShadow,
         ),

@@ -16,8 +16,8 @@ class BillWidget extends StatelessWidget {
 
   Color specifyStatusColor() {
     return bill.status == "unpaid"
-        ? AppColors.transparentGreen
-        : AppColors.transparentYellow;
+        ? AppColors.transparentPrimaryColor
+        : AppColors.transparentAccentColor;
   }
 
   String formatAppointmentDateTimeToDate() {

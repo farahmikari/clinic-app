@@ -35,7 +35,6 @@ void main() async {
                   getIt<CheckUserAuthenticationBloc>()
                     ..add(UserAuthenticationIsChecked()),
         ),
-       
       ],
       child: const ClinicApp(),
     ),
@@ -52,28 +51,33 @@ class ClinicApp extends StatelessWidget {
         BlocProvider(
           create: (context) => ThemeBloc()..add(GetCurrentThemeEvent()),
         ),
-         BlocProvider(
+        BlocProvider(
           create: (context) => LocalizationBloc()..add(SavedLocaleIsFetched()),
         ),
       ],
       child: Builder(
         builder: (context) {
-          var themeState=context.select((ThemeBloc bloc )=>(bloc.state)) ;
-          var localeState=context.select((LocalizationBloc bloc )=>(bloc.state)) ;
+          var themeState = context.select((ThemeBloc bloc) => (bloc.state));
+          var localeState = context.select(
+            (LocalizationBloc bloc) => (bloc.state),
+          );
           return GetMaterialApp(
-                  debugShowCheckedModeBanner: false,
-                  theme:themeState is LoadedThemeState?themeState.themeData:AppTheme.lightTheme,
-                   localizationsDelegates: const [
-                  S.delegate,
-                  GlobalMaterialLocalizations.delegate,
-                  GlobalWidgetsLocalizations.delegate,
-                  GlobalCupertinoLocalizations.delegate,
-                ],
-                supportedLocales: S.delegate.supportedLocales,
-                locale: localeState.locale,
-                  home: SplashScreen(),
-                );
-        }
+            debugShowCheckedModeBanner: false,
+            theme:
+                themeState is LoadedThemeState
+                    ? themeState.themeData
+                    : AppTheme.lightTheme,
+            localizationsDelegates: const [
+              S.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            supportedLocales: S.delegate.supportedLocales,
+            locale: localeState.locale,
+            home: SplashScreen(),
+          );
+        },
       ),
     );
   }

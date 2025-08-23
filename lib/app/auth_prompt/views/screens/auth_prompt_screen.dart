@@ -18,7 +18,7 @@ class AuthPromptScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.backgroundColor,
+      backgroundColor: AppColors.primaryBackgroundColor,
       body: SafeArea(
         child: ListView(
           padding: EdgeInsets.all(AppDimensions.mp),
@@ -28,7 +28,7 @@ class AuthPromptScreen extends StatelessWidget {
             Text(
               title,
               style: TextStyle(
-                color: AppColors.mainTextColor,
+                color: AppColors.primaryTextColor,
                 fontSize: AppDimensions.lfs,
                 fontWeight: FontWeight.bold,
               ),
@@ -38,7 +38,7 @@ class AuthPromptScreen extends StatelessWidget {
             Text(
               subtitle,
               style: TextStyle(
-                color: AppColors.darkGreyColor,
+                color: AppColors.accentTextColor,
                 fontSize: AppDimensions.mfs,
                 fontWeight: FontWeight.w500,
               ),
@@ -48,7 +48,7 @@ class AuthPromptScreen extends StatelessWidget {
             ButtonWidget(
               title: "Sign in",
               backgroundColor: AppColors.primaryColor,
-              titleColor: AppColors.widgetBackgroundColor,
+              titleColor: AppColors.accentBackgroundColor,
               onTap: () {
                 Get.offAll(() => LoginScreen());
               },
@@ -81,7 +81,7 @@ class AuthPromptScreen extends StatelessWidget {
                 Text(
                   "Don't have an account",
                   style: TextStyle(
-                    color: AppColors.mainTextColor,
+                    color: AppColors.primaryTextColor,
                     fontSize: AppDimensions.sfs,
                     fontWeight: FontWeight.w500,
                   ),

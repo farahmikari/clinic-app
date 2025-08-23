@@ -125,7 +125,7 @@ class _LoginScreenState extends State<LoginScreen>
                                   child: Text(
                                     S.current.welcom_back,
                                     style: TextStyle(
-                                     // color: Colors.black,
+                                      // color: Colors.black,
                                       fontFamily: "Lato",
                                       fontSize: 15,
                                       fontWeight: FontWeight.bold,
@@ -184,7 +184,7 @@ class _LoginScreenState extends State<LoginScreen>
                                     textButton: S.current.forget_password,
                                     color: Colors.grey,
                                     onPressed: () {
-                                      Get.to(()=>SetEmailScreen());
+                                      Get.to(() => SetEmailScreen());
                                     },
                                   ),
                                 ),
@@ -204,9 +204,7 @@ class _LoginScreenState extends State<LoginScreen>
                                 MyButtonWidget(
                                   text: S.current.continue_as_a_guest,
                                   onPressed: () {
-                                    Get.offAll(
-                                      () => DrawerScreen(),
-                                    );
+                                    Get.offAll(() => DrawerScreen());
                                   },
                                   color: kPrimaryColor,
                                 ),

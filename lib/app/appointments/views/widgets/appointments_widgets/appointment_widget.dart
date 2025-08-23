@@ -45,8 +45,8 @@ class AppointmentWidget extends StatelessWidget {
 
     Color specifyStatusColor() {
       return appointment.status == "Pending"
-          ? AppColors.transparentGreen
-          : AppColors.transparentYellow;
+          ? AppColors.transparentPrimaryColor
+          : AppColors.transparentAccentColor;
     }
 
     return GestureDetector(

@@ -29,12 +29,15 @@ class SearchWidget extends StatelessWidget {
             AppIcons.search,
             height: AppDimensions.sis,
             width: AppDimensions.mis,
-            colorFilter:ColorFilter.mode(Theme.of(context).hintColor, BlendMode.srcIn),
+            colorFilter: ColorFilter.mode(
+              Theme.of(context).hintColor,
+              BlendMode.srcIn,
+            ),
           ),
           Expanded(
             child: TextField(
               style: TextStyle(
-                color: AppColors.mainTextColor,
+                color: AppColors.primaryTextColor,
                 fontSize: AppDimensions.mfs,
                 fontWeight: FontWeight.w500,
               ),
@@ -49,7 +52,7 @@ class SearchWidget extends StatelessWidget {
                 focusedBorder: OutlineInputBorder(borderSide: BorderSide.none),
                 contentPadding: EdgeInsets.all(0.0),
               ),
-              cursorColor: AppColors.mainTextColor,
+              cursorColor: AppColors.primaryTextColor,
               autocorrect: false,
             ),
           ),

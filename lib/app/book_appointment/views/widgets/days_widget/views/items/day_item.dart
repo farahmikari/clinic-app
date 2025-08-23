@@ -23,9 +23,9 @@ class DayItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Color specifyBackgroundColor() {
+    Color specifyprimaryBackgroundColor() {
       if (day.day == previousDay) {
-        return AppColors.transparentYellow;
+        return AppColors.transparentAccentColor;
       } else if (day.day == currentDay) {
         return AppColors.primaryColor;
       } else {
@@ -35,7 +35,7 @@ class DayItem extends StatelessWidget {
 
     Color specifyTitleColor() {
       if (day.day == previousDay || day.day == currentDay) {
-        return AppColors.widgetBackgroundColor;
+        return AppColors.accentBackgroundColor;
       } else if (day.isAvailable && isDaysWidgetActivated) {
         return Theme.of(context).textTheme.titleLarge!.color!;
       } else {
@@ -63,7 +63,7 @@ class DayItem extends StatelessWidget {
       borderRadius: BorderRadius.circular(AppDimensions.mbr),
       child: Container(
         decoration: BoxDecoration(
-          color: specifyBackgroundColor(),
+          color: specifyprimaryBackgroundColor(),
           borderRadius: BorderRadius.circular(AppDimensions.mbr),
           boxShadow: AppShadow.boxShadow,
         ),

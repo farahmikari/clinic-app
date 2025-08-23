@@ -22,7 +22,7 @@ class TitledCheckboxItem extends StatelessWidget {
   Widget build(BuildContext context) {
     Color specifyActiveColor() {
       if (isPreviousChecked) {
-        return AppColors.transparentYellow;
+        return AppColors.transparentAccentColor;
       } else {
         return AppColors.primaryColor;
       }

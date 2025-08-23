@@ -26,6 +26,8 @@ class NotificationWidget extends StatelessWidget {
           return AppIcons.prescriptions;
         case "report":
           return AppIcons.medicalReport;
+        case "cancellation":
+          return AppIcons.cancellation;
         default:
           return AppIcons.notifications;
       }
@@ -33,18 +35,20 @@ class NotificationWidget extends StatelessWidget {
 
     Color specifyBackgroundColor() {
       return notification.isRead
-          ? AppColors.widgetBackgroundColor
+          ? AppColors.accentBackgroundColor
           : AppColors.lightBlueColor;
     }
 
     Color specifyIconBackgroundColor() {
       switch (notification.type) {
-        case "reminder":
-          return AppColors.primaryColor;
+        case "reminders":
+          return AppColors.lightGreenColor;
         case "prescription":
-          return AppColors.accentColor;
+          return AppColors.lightYellowColor;
         case "report":
-          return AppColors.darkBlueColor;
+          return AppColors.lightOrangColor;
+        case "cancellation":
+          return AppColors.lightRedColor;
         default:
           return AppColors.primaryColor;
       }
@@ -55,10 +59,6 @@ class NotificationWidget extends StatelessWidget {
       decoration: BoxDecoration(
         color: specifyBackgroundColor(),
         borderRadius: BorderRadius.circular(AppDimensions.mbr),
-        image: DecorationImage(
-          image: AssetImage("assets/images/watermark7.png"),
-          fit: BoxFit.cover,
-        ),
         boxShadow: AppShadow.boxShadow,
       ),
       child: Row(
@@ -78,7 +78,10 @@ class NotificationWidget extends StatelessWidget {
               specifyIcon(),
               height: AppDimensions.mis,
               width: AppDimensions.mis,
-              colorFilter:ColorFilter.mode(AppColors.widgetBackgroundColor, BlendMode.srcIn),
+              colorFilter: ColorFilter.mode(
+                AppColors.accentBackgroundColor,
+                BlendMode.srcIn,
+              ),
             ),
           ),
           Expanded(
@@ -87,36 +90,30 @@ class NotificationWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               spacing: AppDimensions.sp,
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text(
-                      notification.title,
-                      style: TextStyle(
-                        color: AppColors.darkGreyColor,
-                        fontSize: AppDimensions.sfs,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                    Text(
-                      formatNotificationDate(),
-                      style: TextStyle(
-                        color: AppColors.hintTextColor,
-                        fontSize: AppDimensions.sfs,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ],
+                Text(
+                  notification.title,
+                  style: TextStyle(
+                    color: AppColors.accentTextColor,
+                    fontSize: AppDimensions.sfs,
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
                 Text(
                   notification.body,
                   style: TextStyle(
-                    color: AppColors.mainTextColor,
+                    color: AppColors.primaryTextColor,
                     fontSize: AppDimensions.sfs,
                     fontWeight: FontWeight.bold,
                   ),
                   textAlign: TextAlign.justify,
+                ),
+                Text(
+                  formatNotificationDate(),
+                  style: TextStyle(
+                    color: AppColors.hintTextColor,
+                    fontSize: AppDimensions.sfs,
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
               ],
             ),

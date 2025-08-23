@@ -13,7 +13,7 @@ class ContainerSettingWidget extends StatelessWidget {
         width: 100.0.wp,
         height: 20.0.hp,
         decoration: BoxDecoration(
-          color: AppColors.transparentGreen,
+          color: AppColors.transparentPrimaryColor,
           borderRadius: BorderRadius.circular(20),
           border: Border.all(color: AppColors.primaryColor),
         ),

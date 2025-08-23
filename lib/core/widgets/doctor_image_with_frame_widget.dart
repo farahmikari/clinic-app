@@ -18,7 +18,7 @@ class DoctorImageWithFrameWidget extends StatelessWidget {
         right: AppDimensions.sp,
       ),
       decoration: BoxDecoration(
-        color: AppColors.backgroundColor,
+        color: AppColors.primaryBackgroundColor,
         borderRadius: BorderRadius.circular(AppDimensions.sbr),
         image: DecorationImage(
           image: AssetImage("assets/images/watermark3.png"),

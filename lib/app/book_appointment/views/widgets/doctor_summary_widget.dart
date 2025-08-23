@@ -19,8 +19,8 @@ class DoctorSummaryWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     Color specifyBadgeColor() {
       return doctor.shift == "Morning"
-          ? AppColors.transparentGreen
-          : AppColors.transparentYellow;
+          ? AppColors.transparentPrimaryColor
+          : AppColors.transparentAccentColor;
     }
 
     return Container(

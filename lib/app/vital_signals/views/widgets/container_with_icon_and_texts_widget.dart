@@ -36,7 +36,7 @@ class ContainerWithIconAndTextsWidget extends StatelessWidget {
               title,
               style: Theme.of(context).textTheme.titleLarge!.copyWith(
                 fontSize: 11,
-                color: AppColors.mainTextColor,
+                color: AppColors.primaryTextColor,
               ),
             ),
 
@@ -44,7 +44,7 @@ class ContainerWithIconAndTextsWidget extends StatelessWidget {
               "$value ${symbol ?? ""}",
               style: Theme.of(context).textTheme.titleLarge!.copyWith(
                 fontWeight: FontWeight.bold,
-                color: AppColors.mainTextColor,
+                color: AppColors.primaryTextColor,
                 fontSize: 18,
               ),
             ),

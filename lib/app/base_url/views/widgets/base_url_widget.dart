@@ -17,7 +17,7 @@ class BaseUrlWidget extends StatelessWidget {
       height: 15.0.wp,
       padding: EdgeInsets.symmetric(horizontal: AppDimensions.mp),
       decoration: BoxDecoration(
-        color: AppColors.widgetBackgroundColor,
+        color: AppColors.accentBackgroundColor,
         borderRadius: BorderRadius.circular(AppDimensions.lbr),
         boxShadow: AppShadow.boxShadow,
       ),
@@ -30,7 +30,10 @@ class BaseUrlWidget extends StatelessWidget {
             AppIcons.url,
             height: AppDimensions.sis,
             width: AppDimensions.mis,
-            colorFilter:ColorFilter.mode(AppColors.darkGreyColor, BlendMode.srcIn)
+            colorFilter: ColorFilter.mode(
+              AppColors.accentTextColor,
+              BlendMode.srcIn,
+            ),
           ),
           Expanded(
             child: TextField(
@@ -40,7 +43,7 @@ class BaseUrlWidget extends StatelessWidget {
                 );
               },
               style: TextStyle(
-                color: AppColors.mainTextColor,
+                color: AppColors.primaryTextColor,
                 fontSize: AppDimensions.mfs,
                 fontWeight: FontWeight.w500,
               ),
@@ -55,7 +58,7 @@ class BaseUrlWidget extends StatelessWidget {
                 focusedBorder: OutlineInputBorder(borderSide: BorderSide.none),
                 contentPadding: EdgeInsets.all(0.0),
               ),
-              cursorColor: AppColors.mainTextColor,
+              cursorColor: AppColors.primaryTextColor,
               autocorrect: false,
             ),
           ),

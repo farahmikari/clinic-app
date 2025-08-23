@@ -27,14 +27,14 @@ class HeartRateWidget extends StatelessWidget {
                   S.current.heart_rate,
                   style: Theme.of(context).textTheme.titleLarge!.copyWith(
                     fontSize: 18,
-                    color: AppColors.mainTextColor,
+                    color: AppColors.primaryTextColor,
                   ),
                 ),
                 Text(
                   "$heartRate bpm",
                   style: Theme.of(context).textTheme.titleLarge!.copyWith(
                     fontSize: 40,
-                    color: AppColors.mainTextColor,
+                    color: AppColors.primaryTextColor,
                   ),
                 ),
               ],

@@ -10,6 +10,8 @@ final class FetchBillsLoaded extends FetchBillsState {
   FetchBillsLoaded({required this.bills});
 }
 
+final class FetchBillsLoadedEmpty extends FetchBillsState {}
+
 final class FetchBillsFailed extends FetchBillsState {
   final String errorMessage;
 

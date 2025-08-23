@@ -14,12 +14,12 @@ class DepartmentsAppBarWidget extends StatelessWidget
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: AppColors.backgroundColor,
-      surfaceTintColor: AppColors.backgroundColor,
+      backgroundColor: AppColors.primaryBackgroundColor,
+      surfaceTintColor: AppColors.primaryBackgroundColor,
       title: Text(
         "Departments",
         style: TextStyle(
-          color: AppColors.mainTextColor,
+          color: AppColors.primaryTextColor,
           fontSize: AppDimensions.lfs,
           fontWeight: FontWeight.bold,
         ),

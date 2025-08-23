@@ -28,11 +28,11 @@ class EditPasswordScreen extends StatelessWidget {
         title: Text(
           S.current.change_password,
           style: Theme.of(context).textTheme.titleLarge!.copyWith(
-            color: AppColors.backgroundColor,
+            color: AppColors.primaryBackgroundColor,
             fontSize: 20,
           ),
         ),
-        iconTheme: IconThemeData(color: AppColors.backgroundColor),
+        iconTheme: IconThemeData(color: AppColors.primaryBackgroundColor),
       ),
       body: SingleChildScrollView(
         child: BlocConsumer<EditPasswordBloc, EditPasswordBaseState>(
@@ -48,7 +48,7 @@ class EditPasswordScreen extends StatelessWidget {
                 await await Future.delayed(Duration(seconds: 2));
                 Get.off(() => DrawerScreen());
                 break;
-    
+
               case EditPasswordFailed():
                 showSnackBar(
                   context,
@@ -97,7 +97,7 @@ class EditPasswordScreen extends StatelessWidget {
                   ),
                   /////////////////new password////////////////
                   SizedBox(height: 1.0.hp),
-    
+
                   TextFormFieldWidget(
                     label: S.current.new_password,
                     iconTextField: Icons.lock,

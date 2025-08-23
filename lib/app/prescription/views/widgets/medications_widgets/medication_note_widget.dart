@@ -13,13 +13,13 @@ class MedicationNoteWidget extends StatelessWidget {
       padding: EdgeInsets.all(AppDimensions.sp),
       alignment: Alignment.center,
       decoration: BoxDecoration(
-        color: AppColors.backgroundColor,
+        color: AppColors.primaryBackgroundColor,
         borderRadius: BorderRadius.circular(AppDimensions.mbr),
       ),
       child: Text(
         note,
         style: TextStyle(
-          color: AppColors.mainTextColor,
+          color: AppColors.primaryTextColor,
           fontSize: AppDimensions.sfs,
           fontWeight: FontWeight.bold,
         ),

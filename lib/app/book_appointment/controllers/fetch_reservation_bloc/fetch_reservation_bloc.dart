@@ -3,7 +3,6 @@ import 'package:clinic_app/core/api/end_points.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:clinic_app/app/book_appointment/models/reservation_model.dart';
-import 'package:equatable/equatable.dart';
 
 part 'fetch_reservation_event.dart';
 part 'fetch_reservation_state.dart';

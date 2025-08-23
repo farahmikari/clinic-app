@@ -27,7 +27,11 @@ class FetchDepartmentsBloc
             (response as List<dynamic>)
                 .map((department) => DepartmentModel.fromJson(department))
                 .toList();
-        emit(FetchDepartmentsLoaded(departments));
+        if (departments.isEmpty) {
+          emit(FetchDepartmentsLoadedEmpty());
+        } else {
+          emit(FetchDepartmentsLoaded(departments));
+        }
       } on ServerException catch (e) {
         emit(FetchDepartmentsFailed(e.errorModel.errorMessage));
       }

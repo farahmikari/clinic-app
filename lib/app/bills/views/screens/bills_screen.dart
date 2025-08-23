@@ -3,6 +3,7 @@ import 'package:clinic_app/app/bills/views/widgets/bills_widget.dart';
 import 'package:clinic_app/app/bills/views/widgets/shimmer_bills_widget.dart';
 import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/widgets/app_bar_with_filter_and_search_widget.dart';
+import 'package:clinic_app/core/widgets/empty_list_widget.dart';
 import 'package:clinic_app/core/widgets/filter_widget/controllers/filter_bloc/filter_bloc.dart';
 import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
@@ -62,6 +63,14 @@ class BillsScreen extends StatelessWidget {
                   builder: (context, state) {
                     if (state is FetchBillsLoaded) {
                       return BillsWidget(bills: state.bills);
+                    }
+                    if (state is FetchBillsLoadedEmpty) {
+                      return EmptyListWidget(
+                        image: "assets/images/empty_bills.png",
+                        title: "No Bills Due",
+                        subtitle:
+                            "You don’t have any bills to pay at the moment.",
+                      );
                     }
                     return ShimmerBillsWidget();
                   },

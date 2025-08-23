@@ -12,9 +12,7 @@ class SplashScreen extends StatelessWidget {
     final Size size = MediaQuery.of(context).size;
     return AnimatedSplashScreen(
       backgroundColor: Colors.white,
-      splash: Center(
-        child: Image.asset(AppLogo.logoBackground),
-      ),
+      splash: Center(child: Image.asset(AppLogo.logoBackground)),
       nextScreen: SplashDecisionWidget(),
       splashIconSize: size.width * 0.6,
       duration: 4000,

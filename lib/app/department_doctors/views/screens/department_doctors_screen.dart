@@ -4,6 +4,7 @@ import 'package:clinic_app/app/department_doctors/views/widgets/department_docto
 import 'package:clinic_app/app/department_doctors/views/widgets/shimmer_department_doctors.dart';
 import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/widgets/app_bar_with_filter_and_search_widget.dart';
+import 'package:clinic_app/core/widgets/empty_list_widget.dart';
 import 'package:clinic_app/core/widgets/filter_widget/controllers/filter_bloc/filter_bloc.dart';
 import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
@@ -86,6 +87,14 @@ class DepartmentDoctorsScreen extends StatelessWidget {
                       if (state is FetchDepartmentDoctorsLoaded) {
                         return DepartmentDoctorsWidget(
                           departmentDoctors: state.departmentDoctors,
+                        );
+                      }
+                      if (state is FetchDepartmentDoctorsLoadedEmpty) {
+                        return EmptyListWidget(
+                          image: "assets/images/empty_doctors.png",
+                          title: "No Doctors Available",
+                          subtitle:
+                              "There are currently no doctors in this department. Please check back soon or explore other departments.",
                         );
                       }
                       return ShimmerDepartmentDoctors();

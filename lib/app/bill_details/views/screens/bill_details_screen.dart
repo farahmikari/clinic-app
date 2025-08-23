@@ -17,8 +17,8 @@ class BillDetailsScreen extends StatelessWidget {
 
   Color specifyStatusColor() {
     return bill.status == "Unpaid"
-        ? AppColors.transparentGreen
-        : AppColors.transparentYellow;
+        ? AppColors.transparentPrimaryColor
+        : AppColors.transparentAccentColor;
   }
 
   @override
@@ -31,11 +31,11 @@ class BillDetailsScreen extends StatelessWidget {
         appBar: AppBar(
           actionsPadding: EdgeInsetsDirectional.only(end: AppDimensions.mp),
           backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-          surfaceTintColor: AppColors.backgroundColor,
+          surfaceTintColor: AppColors.primaryBackgroundColor,
           title: Text(
             S.current.bill_details,
             style: TextStyle(
-              //color: AppColors.mainTextColor,
+              //color: AppColors.primaryTextColor,
               fontSize: AppDimensions.lfs,
               fontWeight: FontWeight.bold,
             ),

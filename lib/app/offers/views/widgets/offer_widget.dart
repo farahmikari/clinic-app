@@ -27,7 +27,7 @@ class OfferWidget extends StatelessWidget {
         width: 92.0.wp,
         clipBehavior: Clip.hardEdge,
         decoration: BoxDecoration(
-          color: AppColors.widgetBackgroundColor,
+          color: AppColors.accentBackgroundColor,
           borderRadius: BorderRadius.circular(AppDimensions.mbr),
           boxShadow: AppShadow.boxShadow,
         ),

@@ -16,7 +16,7 @@ class DepartmentItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Color specifyBackgroundColor() {
+    Color specifyprimaryBackgroundColor() {
       if (currentDepartmentItem == department.id) {
         return AppColors.primaryColor;
       } else {
@@ -26,7 +26,7 @@ class DepartmentItem extends StatelessWidget {
 
     Color specifyTitleColor() {
       if (currentDepartmentItem == department.id) {
-        return AppColors.widgetBackgroundColor;
+        return AppColors.accentBackgroundColor;
       } else {
         return Theme.of(context).textTheme.titleLarge!.color!;
       }
@@ -44,7 +44,7 @@ class DepartmentItem extends StatelessWidget {
         margin: EdgeInsets.symmetric(vertical: AppDimensions.sm),
         padding: EdgeInsets.symmetric(horizontal: AppDimensions.mp),
         decoration: BoxDecoration(
-          color: specifyBackgroundColor(),
+          color: specifyprimaryBackgroundColor(),
           borderRadius: BorderRadius.circular(AppDimensions.lbr),
         ),
         child: Text(

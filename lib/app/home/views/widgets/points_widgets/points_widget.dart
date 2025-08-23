@@ -1,4 +1,4 @@
-import 'package:clinic_app/app/offers/models/user_points_model.dart';
+import 'package:clinic_app/app/home/models/user_points_model.dart';
 import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
 import 'package:clinic_app/core/constants/app_shadow.dart';
@@ -23,9 +23,10 @@ class PointsWidget extends StatelessWidget {
       height: 35.0.wp,
       width: 92.0.wp,
       padding: EdgeInsets.all(AppDimensions.sp),
+      margin: EdgeInsets.symmetric(horizontal: AppDimensions.mp),
       clipBehavior: Clip.hardEdge,
       decoration: BoxDecoration(
-        color: AppColors.transparentGreen,
+        color: AppColors.transparentPrimaryColor,
         borderRadius: BorderRadius.circular(AppDimensions.mbr),
         boxShadow: AppShadow.boxShadow,
       ),
@@ -48,7 +49,7 @@ class PointsWidget extends StatelessWidget {
                     child: Text(
                       S.current.points_title,
                       style: TextStyle(
-                        color: AppColors.widgetBackgroundColor,
+                        color: AppColors.accentBackgroundColor,
                         fontSize: AppDimensions.mfs,
                         fontWeight: FontWeight.bold,
                       ),
@@ -64,7 +65,7 @@ class PointsWidget extends StatelessWidget {
                         vertical: AppDimensions.sp,
                       ),
                       decoration: BoxDecoration(
-                        color: AppColors.widgetBackgroundColor,
+                        color: AppColors.accentBackgroundColor,
                         borderRadius: BorderRadius.circular(AppDimensions.lbr),
                       ),
                       child: Text(

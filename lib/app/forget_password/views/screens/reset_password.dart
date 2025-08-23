@@ -40,7 +40,7 @@ class ResetPassword extends StatelessWidget {
                     message: S.current.reset_password_successfully,
                     contentType: ContentType.success,
                   );
-                 Get.to(()=>LoginScreen());
+                  Get.to(() => LoginScreen());
                   break;
                 case ForgetPasswordFailed():
                   showSnackBar(

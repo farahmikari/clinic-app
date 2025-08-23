@@ -9,6 +9,8 @@ final class FetchNotificationsLoaded extends FetchNotificationsState {
   FetchNotificationsLoaded({required this.notifications});
 }
 
+final class FetchNotificationsLoadedEmpty extends FetchNotificationsState {}
+
 final class FetchNotificationsFailed extends FetchNotificationsState {
   final String errorMessage;
   FetchNotificationsFailed({required this.errorMessage});

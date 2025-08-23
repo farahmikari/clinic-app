@@ -17,7 +17,7 @@ class SalomonBottomBarWidget extends StatelessWidget {
     Color specifyIconColor({required int itemId}) {
       return itemId == currentIndex
           ? AppColors.primaryColor
-          : AppColors.darkGreyColor;
+          : AppColors.accentTextColor;
     }
 
     return SalomonBottomBar(

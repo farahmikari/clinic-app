@@ -31,7 +31,7 @@ class MenuScreen extends StatelessWidget {
           ListTileDrawerWidget(
             icon: Icons.person,
             iconColor: AppColors.primaryColor,
-            backgroundIconColor: AppColors.transparentGreen,
+            backgroundIconColor: AppColors.transparentPrimaryColor,
             title: S.current.profile,
             onTap: () {
               Get.to(
@@ -47,7 +47,7 @@ class MenuScreen extends StatelessWidget {
             title: S.current.vital_signs,
             onTap:
                 () => Get.to(
-                 ()=> VitalSignalScreen(),
+                  () => VitalSignalScreen(),
                   transition: getx.Transition.cupertino,
                 ),
           ),

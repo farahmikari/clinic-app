@@ -81,7 +81,7 @@ class MostRatedDoctorWidget extends StatelessWidget {
                       child: Text(
                         mostRatedDoctor.specialty,
                         style: TextStyle(
-                          color: AppColors.widgetBackgroundColor,
+                          color: AppColors.accentBackgroundColor,
                           fontSize: AppDimensions.sfs,
                           fontWeight: FontWeight.w500,
                         ),
@@ -107,7 +107,7 @@ class MostRatedDoctorWidget extends StatelessWidget {
                 Text(
                   "(${mostRatedDoctor.treatments} ${specifyTreatmentsUnit()})",
                   style: TextStyle(
-                    color: AppColors.darkGreyColor,
+                    color: AppColors.accentTextColor,
                     fontSize: AppDimensions.sfs,
                     fontWeight: FontWeight.w500,
                   ),

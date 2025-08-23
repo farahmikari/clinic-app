@@ -20,8 +20,8 @@ class DepartmentDoctorWidget extends StatelessWidget {
 
   Color specifyShiftColor() {
     return departmentDoctor.shift == "Morning"
-        ? AppColors.transparentGreen
-        : AppColors.transparentYellow;
+        ? AppColors.transparentPrimaryColor
+        : AppColors.transparentAccentColor;
   }
 
   String specifyTreatmentsUnit() {

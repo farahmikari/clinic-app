@@ -24,7 +24,7 @@ class HomeAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       toolbarHeight: 20.0.wp,
       leadingWidth: 14.0.wp,
-      surfaceTintColor: AppColors.backgroundColor,
+      surfaceTintColor: AppColors.primaryBackgroundColor,
       actionsPadding: EdgeInsetsDirectional.only(end: AppDimensions.mp),
       title: Text(
         S.current.home,

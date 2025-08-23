@@ -153,7 +153,8 @@ class _EmailScreenState extends State<EmailScreen>
                                                       widget
                                                           .emailController
                                                           .text,
-                                                  source: VerificationGoto.signup,
+                                                  source:
+                                                      VerificationGoto.signup,
                                                 ),
                                               );
                                             }

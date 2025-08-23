@@ -29,9 +29,9 @@ class TimeItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Color specifyBackgroundColor() {
+    Color specifyprimaryBackgroundColor() {
       if (time.id == previousTimeId && currentDay == previousDay) {
-        return AppColors.transparentYellow;
+        return AppColors.transparentAccentColor;
       } else if (time.id == currentTimeId) {
         return AppColors.primaryColor;
       } else {
@@ -42,7 +42,7 @@ class TimeItem extends StatelessWidget {
     Color specifyTitleColor() {
       if (time.id == previousTimeId && currentDay == previousDay ||
           time.id == currentTimeId) {
-        return AppColors.widgetBackgroundColor;
+        return AppColors.accentBackgroundColor;
       } else if (time.isAvailable && isTimesWidgetActivated) {
         return Theme.of(context).textTheme.titleLarge!.color!;
       } else {
@@ -72,7 +72,7 @@ class TimeItem extends StatelessWidget {
       child: Container(
         alignment: Alignment.center,
         decoration: BoxDecoration(
-          color: specifyBackgroundColor(),
+          color: specifyprimaryBackgroundColor(),
           borderRadius: BorderRadius.circular(AppDimensions.mbr),
           boxShadow: AppShadow.boxShadow,
         ),

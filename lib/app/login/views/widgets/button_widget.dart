@@ -18,43 +18,41 @@ class MyButtonWidget extends StatelessWidget {
   final VoidCallback? onPressed;
   @override
   Widget build(BuildContext context) {
-    
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: SizedBox(
         width: width,
         height: 40,
         child: ElevatedButton(
-          onPressed:onPressed,
-          style:ElevatedButton.styleFrom(
+          onPressed: onPressed,
+          style: ElevatedButton.styleFrom(
             backgroundColor: color,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(5),
             ),
           ),
-          child:
-          AnimatedSwitcher(duration: const Duration(microseconds: 300),
-          child: isLoading?
-          SizedBox(
-            width: 50,
-            height: 42,
-            child: LoadingAnimationWidget.hexagonDots(
-              color: kPrimaryColor,
-               size: 30)
-          ):
-          Text(
-            text,
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 16,
-              fontFamily: "Montserat",
-              fontWeight: FontWeight.bold,
-            ),
+          child: AnimatedSwitcher(
+            duration: const Duration(microseconds: 300),
+            child:
+                isLoading
+                    ? SizedBox(
+                      width: 50,
+                      height: 42,
+                      child: LoadingAnimationWidget.hexagonDots(
+                        color: kPrimaryColor,
+                        size: 30,
+                      ),
+                    )
+                    : Text(
+                      text,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                        fontFamily: "Montserat",
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
           ),
-          
-          
-          ) 
-          
         ),
       ),
     );

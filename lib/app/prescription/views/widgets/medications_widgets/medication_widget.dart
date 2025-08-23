@@ -18,7 +18,7 @@ class MedicationWidget extends StatelessWidget {
     return Container(
       width: 80.0.wp,
       decoration: BoxDecoration(
-        color: AppColors.widgetBackgroundColor,
+        color: AppColors.accentBackgroundColor,
         borderRadius: BorderRadius.circular(AppDimensions.mbr),
         boxShadow: AppShadow.boxShadow,
       ),

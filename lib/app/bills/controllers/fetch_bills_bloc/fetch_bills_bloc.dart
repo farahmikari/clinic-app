@@ -29,15 +29,19 @@ class FetchBillsBloc extends Bloc<FetchBillsEvent, FetchBillsState> {
           queryParameter: {ApiKey.status: ApiKey.unpaid},
         );
         paidBills =
-            (paidBillsResponse[ApiKey.data] as List<dynamic>)
+            (paidBillsResponse as List<dynamic>)
                 .map((paidBill) => BillModel.fromJson(paidBill))
                 .toList();
         unpaidBills =
-            (unpaidBillsResponse[ApiKey.data] as List<dynamic>)
+            (unpaidBillsResponse as List<dynamic>)
                 .map((unpaidBills) => BillModel.fromJson(unpaidBills))
                 .toList();
         allBills = [...unpaidBills, ...paidBills];
-        emit(FetchBillsLoaded(bills: allBills));
+        if (allBills.isEmpty) {
+          emit(FetchBillsLoadedEmpty());
+        } else {
+          emit(FetchBillsLoaded(bills: allBills));
+        }
       } on ServerException catch (e) {
         emit(FetchBillsFailed(errorMessage: e.errorModel.errorMessage));
         log(e.errorModel.errorMessage.toString());
@@ -45,15 +49,27 @@ class FetchBillsBloc extends Bloc<FetchBillsEvent, FetchBillsState> {
     });
 
     on<DisplayAllBills>((event, emit) async {
-      emit(FetchBillsLoaded(bills: allBills));
+      if (allBills.isEmpty) {
+        emit(FetchBillsLoadedEmpty());
+      } else {
+        emit(FetchBillsLoaded(bills: allBills));
+      }
     });
 
     on<DisplayUnpaidBills>((event, emit) async {
-      emit(FetchBillsLoaded(bills: unpaidBills));
+      if (allBills.isEmpty) {
+        emit(FetchBillsLoadedEmpty());
+      } else {
+        emit(FetchBillsLoaded(bills: unpaidBills));
+      }
     });
 
     on<DisplayPaidBills>((event, emit) async {
-      emit(FetchBillsLoaded(bills: paidBills));
+      if (allBills.isEmpty) {
+        emit(FetchBillsLoadedEmpty());
+      } else {
+        emit(FetchBillsLoaded(bills: paidBills));
+      }
     });
   }
 }

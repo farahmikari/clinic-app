@@ -18,7 +18,7 @@ class InfoWithIconAndFrameWidget extends StatelessWidget {
       child: Container(
         alignment: Alignment.center,
         decoration: BoxDecoration(
-          color: AppColors.backgroundColor,
+          color: AppColors.primaryBackgroundColor,
           borderRadius: BorderRadius.circular(AppDimensions.lbr),
         ),
         child: Row(
@@ -30,12 +30,15 @@ class InfoWithIconAndFrameWidget extends StatelessWidget {
               icon,
               width: AppDimensions.sis,
               height: AppDimensions.sis,
-              colorFilter:ColorFilter.mode(AppColors.primaryColor, BlendMode.srcIn),
+              colorFilter: ColorFilter.mode(
+                AppColors.primaryColor,
+                BlendMode.srcIn,
+              ),
             ),
             Text(
               title,
               style: TextStyle(
-                color: AppColors.mainTextColor,
+                color: AppColors.primaryTextColor,
                 fontSize: AppDimensions.sfs,
                 fontWeight: FontWeight.bold,
               ),

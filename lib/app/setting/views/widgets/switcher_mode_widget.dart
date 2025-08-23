@@ -11,7 +11,7 @@ import 'package:rolling_switch/rolling_switch.dart';
 class SwitcherModeWidget extends StatelessWidget {
   const SwitcherModeWidget({super.key, required this.state});
   final ThemeState state;
-  
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -40,9 +40,9 @@ class SwitcherModeWidget extends StatelessWidget {
           rollingInfoRight: RollingIconInfo(
             text: Text(
               S.current.light,
-              style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                fontSize: 16,
-              ),
+              style: Theme.of(
+                context,
+              ).textTheme.titleLarge!.copyWith(fontSize: 16),
             ),
             icon: Icons.sunny,
             iconColor: Colors.orangeAccent,
@@ -51,9 +51,9 @@ class SwitcherModeWidget extends StatelessWidget {
           rollingInfoLeft: RollingIconInfo(
             text: Text(
               S.current.dark,
-              style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                fontSize: 16,
-              ),
+              style: Theme.of(
+                context,
+              ).textTheme.titleLarge!.copyWith(fontSize: 16),
             ),
             icon: Icons.nights_stay,
             iconColor: Colors.grey,

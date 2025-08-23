@@ -92,7 +92,6 @@ class ImageProfileWidget extends StatelessWidget {
                 child: Icon(
                   Icons.camera_alt_outlined,
                   color: AppColors.primaryColor,
-
                 ),
               ),
               title: Text(S.current.camera),
@@ -101,8 +100,6 @@ class ImageProfileWidget extends StatelessWidget {
                   PickImageFromCameraEvent(isProfile: isProfile),
                 );
                 Navigator.pop(context);
-
-
               },
             ),
             ListTile(
@@ -116,9 +113,7 @@ class ImageProfileWidget extends StatelessWidget {
                 child: Icon(
                   Icons.image_outlined,
                   color: AppColors.primaryColor,
-
                 ),
-                
               ),
               title: Text(S.current.gallery),
               onTap: () {
@@ -126,7 +121,6 @@ class ImageProfileWidget extends StatelessWidget {
                   PickImageFromGalleryEvent(isProfile: isProfile),
                 );
                 Navigator.pop(context);
-
               },
             ),
           ],
@@ -135,5 +129,3 @@ class ImageProfileWidget extends StatelessWidget {
     );
   }
 }
-
-

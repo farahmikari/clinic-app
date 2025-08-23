@@ -12,7 +12,7 @@ class DoctorSpecialtyWidget extends StatelessWidget {
     return Text(
       specialty,
       style: TextStyle(
-        color: AppColors.darkGreyColor,
+        color: AppColors.accentTextColor,
         fontSize: AppDimensions.mfs,
         fontWeight: FontWeight.w500,
       ),

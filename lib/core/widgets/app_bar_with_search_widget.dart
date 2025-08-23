@@ -16,7 +16,7 @@ class AppBarWithSearchWidget extends StatelessWidget
   Widget build(BuildContext context) {
     return AppBar(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      surfaceTintColor: AppColors.backgroundColor,
+      surfaceTintColor: AppColors.primaryBackgroundColor,
       toolbarHeight: 20.0.wp,
       title: Text(
         title,

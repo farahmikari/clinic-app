@@ -1,14 +1,9 @@
 part of 'fetch_reservation_bloc.dart';
 
-sealed class FetchReservationEvent extends Equatable {
-  const FetchReservationEvent();
-
-  @override
-  List<Object> get props => [];
-}
+sealed class FetchReservationEvent {}
 
 final class NewReservationIsFetched extends FetchReservationEvent {
   final int appointmentId;
 
-  const NewReservationIsFetched({required this.appointmentId});
+  NewReservationIsFetched({required this.appointmentId});
 }

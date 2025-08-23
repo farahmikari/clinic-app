@@ -24,10 +24,10 @@ class SettingScreen extends StatelessWidget {
               S.current.setting,
               style: Theme.of(context).textTheme.titleLarge!.copyWith(
                 fontSize: 20,
-                color: AppColors.backgroundColor,
+                color: AppColors.primaryBackgroundColor,
               ),
             ),
-            iconTheme: IconThemeData(color: AppColors.backgroundColor),
+            iconTheme: IconThemeData(color: AppColors.primaryBackgroundColor),
           ),
           body: Column(
             children: [

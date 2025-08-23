@@ -15,7 +15,7 @@ class PriceWidget extends StatelessWidget {
       alignment: Alignment.center,
       constraints: BoxConstraints(minWidth: 25.0.wp),
       decoration: BoxDecoration(
-        color: AppColors.widgetBackgroundColor,
+        color: AppColors.accentBackgroundColor,
         borderRadius: BorderRadius.circular(AppDimensions.lbr),
         boxShadow: AppShadow.boxShadow,
       ),

@@ -35,7 +35,7 @@ class BookAppointmentWithDoctorScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Color specifyConfirmButtonBackgroundColor(bool isValid) {
+    Color specifyConfirmButtonprimaryBackgroundColor(bool isValid) {
       return isValid ? AppColors.primaryColor : AppColors.hintTextColor;
     }
 
@@ -192,7 +192,7 @@ class BookAppointmentWithDoctorScreen extends StatelessWidget {
         child: Scaffold(
           appBar: AppBar(
             backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-            surfaceTintColor: AppColors.backgroundColor,
+            surfaceTintColor: AppColors.primaryBackgroundColor,
             title: Text(
               S.current.book_appointment,
               style: TextStyle(
@@ -263,10 +263,10 @@ class BookAppointmentWithDoctorScreen extends StatelessWidget {
                             return ButtonWidget(
                               title: S.current.confirm,
                               backgroundColor:
-                                  specifyConfirmButtonBackgroundColor(
+                                  specifyConfirmButtonprimaryBackgroundColor(
                                     validatorState.isValid,
                                   ),
-                              titleColor: AppColors.widgetBackgroundColor,
+                              titleColor: AppColors.accentBackgroundColor,
                               onTap: () {
                                 if (validatorState.isValid) {
                                   context

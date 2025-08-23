@@ -22,7 +22,7 @@ class BadgeWidget extends StatelessWidget {
       child: Text(
         title,
         style: TextStyle(
-          color: AppColors.widgetBackgroundColor,
+          color: AppColors.accentBackgroundColor,
           fontSize: AppDimensions.sfs,
           fontWeight: FontWeight.bold,
         ),

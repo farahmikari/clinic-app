@@ -25,7 +25,7 @@ class ShimmerLatestOffersWidget extends StatelessWidget {
           separatorBuilder: (context, index) {
             return SizedBox(width: AppDimensions.sp);
           },
-          itemCount: 5,
+          itemCount: 3,
         ),
       ),
     );

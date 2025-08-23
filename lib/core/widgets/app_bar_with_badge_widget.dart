@@ -22,7 +22,7 @@ class AppBarWithBadgeWidget extends StatelessWidget
   Widget build(BuildContext context) {
     return AppBar(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      surfaceTintColor: AppColors.backgroundColor,
+      surfaceTintColor: AppColors.primaryBackgroundColor,
       actionsPadding: EdgeInsetsDirectional.only(end: AppDimensions.mp),
       title: Text(
         title,

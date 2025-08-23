@@ -44,7 +44,7 @@ class ManageBookingScreen extends StatelessWidget {
       return isReservationEditing ? S.current.edit : S.current.cancel;
     }
 
-    Color specifyBackgroundColor({
+    Color specifyprimaryBackgroundColor({
       required bool isReservationEditing,
       required bool isAbleToCancel,
       required bool isAbleToEdit,
@@ -260,7 +260,7 @@ class ManageBookingScreen extends StatelessWidget {
           appBar: AppBarWithBadgeWidget(
             title: S.current.manage_booking,
             badgeTitle: "Upcoming",
-            badgeColor: AppColors.transparentGreen,
+            badgeColor: AppColors.transparentPrimaryColor,
           ),
           body: SafeArea(
             child: ListView(
@@ -355,13 +355,13 @@ class ManageBookingScreen extends StatelessWidget {
                                 isReservationEditing:
                                     validatorState.isReservationEditing,
                               ),
-                              backgroundColor: specifyBackgroundColor(
+                              backgroundColor: specifyprimaryBackgroundColor(
                                 isReservationEditing:
                                     validatorState.isReservationEditing,
                                 isAbleToCancel: validatorState.isAbleToCancel,
                                 isAbleToEdit: validatorState.isAbleToEdit,
                               ),
-                              titleColor: AppColors.widgetBackgroundColor,
+                              titleColor: AppColors.accentBackgroundColor,
                               onTap: () {
                                 if (validatorState.isReservationEditing) {
                                   if (validatorState.isAbleToEdit) {

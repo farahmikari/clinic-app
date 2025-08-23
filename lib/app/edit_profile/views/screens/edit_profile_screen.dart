@@ -22,9 +22,7 @@ class EditProfileScreen extends StatelessWidget {
     final phoneController = TextEditingController(text: user.phoneNumber);
     final emailController = TextEditingController(text: user.email);
     final newEmailController = TextEditingController(text: user.email);
-    final birthdayController = TextEditingController(
-      text: user.birthDate,
-    );
+    final birthdayController = TextEditingController(text: user.birthDate);
     final genderController = TextEditingController(text: user.gender);
 
     final List<String> genderOption = [S.current.male, S.current.female];
@@ -37,12 +35,12 @@ class EditProfileScreen extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: AppColors.primaryColor,
-          iconTheme: IconThemeData(color: AppColors.backgroundColor),
+          iconTheme: IconThemeData(color: AppColors.primaryBackgroundColor),
           centerTitle: true,
           title: Text(
             S.current.edit_profile,
             style: Theme.of(context).textTheme.titleLarge!.copyWith(
-              color: AppColors.backgroundColor,
+              color: AppColors.primaryBackgroundColor,
               fontSize: 20,
             ),
           ),
@@ -55,7 +53,7 @@ class EditProfileScreen extends StatelessWidget {
                   showSnackBar(
                     context,
                     title: S.current.success,
-                    message:  S.current.edit_profile_successfully,
+                    message: S.current.edit_profile_successfully,
                     contentType: ContentType.success,
                   );
                   await await Future.delayed(Duration(seconds: 2));

@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:clinic_app/app/offers/models/offer_model.dart';
 import 'package:clinic_app/app/offers/views/widgets/offer_widget.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
@@ -23,7 +25,7 @@ class LatestOffersWidget extends StatelessWidget {
         separatorBuilder: (context, index) {
           return SizedBox(width: AppDimensions.sp);
         },
-        itemCount: 3,
+        itemCount: min(3, offers.length),
       ),
     );
   }

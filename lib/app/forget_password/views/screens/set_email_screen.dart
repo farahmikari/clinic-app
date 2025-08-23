@@ -102,7 +102,6 @@ class SetEmailScreen extends StatelessWidget {
                                   CanSubmitEmail(
                                     email: emailController.text,
                                     source: VerificationGoto.forgetPassword,
-
                                   ),
                                 );
                               }

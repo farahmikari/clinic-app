@@ -8,7 +8,8 @@ class ListTileDrawerWidget extends StatelessWidget {
     required this.icon,
     required this.iconColor,
     required this.backgroundIconColor,
-    required this.title, this.onTap,
+    required this.title,
+    this.onTap,
   });
   final IconData icon;
   final Color iconColor;
@@ -34,12 +35,18 @@ class ListTileDrawerWidget extends StatelessWidget {
                 fontFamily: "Montserat",
               ),
             ),
-            trailing:title!= S.current.logout ? Icon(
-              Icons.arrow_back_ios,
-              textDirection:Directionality.of(context) == TextDirection.rtl?TextDirection.ltr:TextDirection.rtl,
-              color: AppColors.hintTextColor,
-              size: 12,
-            ):null,
+            trailing:
+                title != S.current.logout
+                    ? Icon(
+                      Icons.arrow_back_ios,
+                      textDirection:
+                          Directionality.of(context) == TextDirection.rtl
+                              ? TextDirection.ltr
+                              : TextDirection.rtl,
+                      color: AppColors.hintTextColor,
+                      size: 12,
+                    )
+                    : null,
           ),
         ),
         Divider(color: AppColors.hintTextColor, thickness: 0.5),

@@ -21,23 +21,23 @@ class TypeItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Color specifyBackgroundColor() {
+    Color specifyprimaryBackgroundColor() {
       if (requestType.id == previousRequestTypeId) {
-        return AppColors.transparentYellow;
+        return AppColors.transparentAccentColor;
       } else if (requestType.id == currentRequestTypeId) {
         return AppColors.primaryColor;
       } else {
-        return AppColors.backgroundColor;
+        return AppColors.primaryBackgroundColor;
       }
     }
 
     Color specifyTitleColor() {
       if (requestType.id == previousRequestTypeId) {
-        return AppColors.widgetBackgroundColor;
+        return AppColors.accentBackgroundColor;
       } else if (requestType.id == currentRequestTypeId) {
-        return AppColors.widgetBackgroundColor;
+        return AppColors.accentBackgroundColor;
       } else if (isRequestTypesWidgetActived) {
-        return AppColors.mainTextColor;
+        return AppColors.primaryTextColor;
       } else {
         return AppColors.hintTextColor;
       }
@@ -55,7 +55,7 @@ class TypeItem extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: AppDimensions.xlp),
         alignment: Alignment.center,
         decoration: BoxDecoration(
-          color: specifyBackgroundColor(),
+          color: specifyprimaryBackgroundColor(),
           borderRadius: BorderRadius.circular(AppDimensions.lbr),
         ),
         child: Text(

@@ -44,7 +44,7 @@ class ServiceButtonWidget extends StatelessWidget {
                 icon,
                 height: AppDimensions.lis,
                 width: AppDimensions.lis,
-                colorFilter:ColorFilter.mode(iconColor, BlendMode.srcIn),
+                colorFilter: ColorFilter.mode(iconColor, BlendMode.srcIn),
               ),
             ),
             Align(

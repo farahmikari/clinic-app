@@ -14,14 +14,14 @@ class BaseUrlScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Color specifyBackgroundColor(bool isValid) {
+    Color specifyprimaryBackgroundColor(bool isValid) {
       return isValid ? AppColors.primaryColor : AppColors.hintTextColor;
     }
 
     return BlocProvider(
       create: (context) => FetchBaseUrlBloc(),
       child: Scaffold(
-        backgroundColor: AppColors.backgroundColor,
+        backgroundColor: AppColors.primaryBackgroundColor,
         body: ListView(
           padding: EdgeInsets.all(AppDimensions.mp),
           children: [
@@ -29,7 +29,7 @@ class BaseUrlScreen extends StatelessWidget {
             Text(
               "Set Your Base URL",
               style: TextStyle(
-                color: AppColors.mainTextColor,
+                color: AppColors.primaryTextColor,
                 fontSize: AppDimensions.lfs,
                 fontWeight: FontWeight.bold,
               ),
@@ -39,7 +39,7 @@ class BaseUrlScreen extends StatelessWidget {
             Text(
               "Open your terminal and run the command ipconfig. Find the IPv4 Address in the output, then enter it in this text field in the following format:\n http://<IPv4 Address>:8000",
               style: TextStyle(
-                color: AppColors.darkGreyColor,
+                color: AppColors.accentTextColor,
                 fontSize: AppDimensions.sfs,
                 fontWeight: FontWeight.w500,
               ),
@@ -52,8 +52,8 @@ class BaseUrlScreen extends StatelessWidget {
               builder: (context, state) {
                 return ButtonWidget(
                   title: "Confirm",
-                  backgroundColor: specifyBackgroundColor(state.isValid),
-                  titleColor: AppColors.widgetBackgroundColor,
+                  backgroundColor: specifyprimaryBackgroundColor(state.isValid),
+                  titleColor: AppColors.accentBackgroundColor,
                   onTap: () {
                     if (state.isValid) {
                       EndPoints.setBaseUrl(state.baseUrl);

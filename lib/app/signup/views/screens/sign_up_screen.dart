@@ -270,7 +270,9 @@ class _SignupState extends State<SignUp> with SingleTickerProviderStateMixin {
           children:
               genderOption.map((gender) {
                 return ListTile(
-                  leading: Icon(gender == S.current.male ? Icons.male : Icons.female),
+                  leading: Icon(
+                    gender == S.current.male ? Icons.male : Icons.female,
+                  ),
                   title: Text(
                     gender,
                     style: Theme.of(context).textTheme.titleSmall,

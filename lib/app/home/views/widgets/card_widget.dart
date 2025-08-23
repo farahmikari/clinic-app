@@ -38,7 +38,7 @@ class CardWidget extends StatelessWidget {
               title: Text(
                 S.current.card_title,
                 style: TextStyle(
-                  color: AppColors.widgetBackgroundColor,
+                  color: AppColors.accentBackgroundColor,
                   fontSize: AppDimensions.lfs,
                   fontWeight: FontWeight.bold,
                 ),
@@ -46,7 +46,7 @@ class CardWidget extends StatelessWidget {
               subtitle: Text(
                 S.current.card_subtitle,
                 style: TextStyle(
-                  color: AppColors.widgetBackgroundColor,
+                  color: AppColors.accentBackgroundColor,
                   fontSize: AppDimensions.sfs,
                   fontWeight: FontWeight.w500,
                 ),

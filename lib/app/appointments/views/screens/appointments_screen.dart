@@ -3,6 +3,7 @@ import 'package:clinic_app/app/appointments/views/widgets/appointments_widgets/a
 import 'package:clinic_app/app/appointments/views/widgets/appointments_widgets/shimmer_appointments_widget.dart';
 import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/widgets/app_bar_with_filter_and_search_widget.dart';
+import 'package:clinic_app/core/widgets/empty_list_widget.dart';
 import 'package:clinic_app/core/widgets/filter_widget/controllers/filter_bloc/filter_bloc.dart';
 import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
@@ -71,17 +72,27 @@ class AppointmentsScreen extends StatelessWidget {
                 onRefresh: () => _onRefresh(context),
                 color: AppColors.primaryColor,
                 backgroundColor: Theme.of(context).cardColor,
-                child:
-                    BlocBuilder<FetchAppointmentsBloc, FetchAppointmentsState>(
-                      builder: (context, state) {
-                        if (state is FetchAppointmentsLoaded) {
-                          return AppointmentsWidget(
-                            appointments: state.appointments,
-                          );
-                        }
-                        return ShimmerAppointmentsWidget();
-                      },
-                    ),
+                child: BlocBuilder<
+                  FetchAppointmentsBloc,
+                  FetchAppointmentsState
+                >(
+                  builder: (context, state) {
+                    if (state is FetchAppointmentsLoaded) {
+                      return AppointmentsWidget(
+                        appointments: state.appointments,
+                      );
+                    }
+                    if (state is FetchAppointmentsLoadeEmpty) {
+                      return EmptyListWidget(
+                        image: "assets/images/empty_appointments.png",
+                        title: "No Appointments Found",
+                        subtitle:
+                            "You don’t have any appointments at the clinic.",
+                      );
+                    }
+                    return ShimmerAppointmentsWidget();
+                  },
+                ),
               );
             },
           ),

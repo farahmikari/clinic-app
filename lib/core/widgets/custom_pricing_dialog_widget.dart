@@ -18,12 +18,12 @@ class CustomPricingDialogWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      backgroundColor: AppColors.widgetBackgroundColor,
+      backgroundColor: AppColors.accentBackgroundColor,
       title: Center(
         child: Text(
           S.current.reservation_price,
           style: TextStyle(
-            color: AppColors.mainTextColor,
+            color: AppColors.primaryTextColor,
             fontSize: AppDimensions.xlfs,
             fontWeight: FontWeight.bold,
           ),

@@ -15,7 +15,7 @@ class MedicalReportScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        surfaceTintColor: AppColors.backgroundColor,
+        surfaceTintColor: AppColors.primaryBackgroundColor,
         title: Text(
           S.current.medical_report,
           style: TextStyle(
@@ -31,12 +31,12 @@ class MedicalReportScreen extends StatelessWidget {
           Expanded(
             child: SfPdfViewerTheme(
               data: SfPdfViewerThemeData(
-                backgroundColor: AppColors.backgroundColor,
+                backgroundColor: AppColors.primaryBackgroundColor,
                 progressBarColor: AppColors.primaryColor,
                 scrollHeadStyle: PdfScrollHeadStyle(
                   backgroundColor: AppColors.primaryColor,
                   pageNumberTextStyle: TextStyle(
-                    color: AppColors.widgetBackgroundColor,
+                    color: AppColors.accentBackgroundColor,
                     fontSize: AppDimensions.sfs,
                     fontWeight: FontWeight.w500,
                   ),

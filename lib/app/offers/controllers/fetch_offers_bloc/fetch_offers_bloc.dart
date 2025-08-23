@@ -19,7 +19,11 @@ class FetchOffersBloc extends Bloc<FetchOffersEvent, FetchOffersState> {
             (response as List<dynamic>)
                 .map((offer) => OfferModel.fromJson(offer))
                 .toList();
-        emit(FetchOffersLoaded(offers: offers));
+        if (offers.isEmpty) {
+          emit(FetchOffersLoadedEmpty());
+        } else {
+          emit(FetchOffersLoaded(offers: offers));
+        }
       } on ServerException catch (e) {
         emit(FetchOffersFailed(errorMessage: e.errorModel.errorMessage));
       }

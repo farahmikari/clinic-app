@@ -10,7 +10,7 @@ class DoctorNameWidget extends StatelessWidget {
     return Text(
       "Dr.$name",
       style: TextStyle(
-        //color: AppColors.mainTextColor,
+        //color: AppColors.primaryTextColor,
         fontSize: size,
         fontWeight: FontWeight.bold,
       ),

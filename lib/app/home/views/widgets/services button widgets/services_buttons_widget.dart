@@ -29,9 +29,9 @@ class ServicesButtonsWidget extends StatelessWidget {
           title: S.current.book_now,
           subtitle: S.current.book_now_subtitle,
           backgroundColor: AppColors.primaryColor,
-          iconColor: AppColors.widgetBackgroundColor,
-          titleColor: AppColors.widgetBackgroundColor,
-          subTitleColor: AppColors.widgetBackgroundColor,
+          iconColor: AppColors.accentBackgroundColor,
+          titleColor: AppColors.accentBackgroundColor,
+          subTitleColor: AppColors.accentBackgroundColor,
           onPressed: () {
             Get.to(
               () => BookAppointmentAuthDecisionWidget(),

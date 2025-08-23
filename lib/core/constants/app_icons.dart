@@ -27,6 +27,7 @@ class AppIcons {
   static const String menu = 'assets/icons/menu.svg';
   static const String arrowDown = 'assets/icons/arrow_down.svg';
   static const String url = 'assets/icons/url.svg';
+  static const String cancellation = 'assets/icons/cancellation.svg';
   static const String departmentOutlined =
       'assets/icons/department_outlined.svg';
   static const String medicationFrequency =

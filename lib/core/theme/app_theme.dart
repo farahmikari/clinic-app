@@ -17,15 +17,15 @@ class AppTheme {
   /////////////////////light///////////////////////////
   static ThemeData lightTheme = ThemeData(
     textTheme: baseTextTheme.copyWith(
-      titleLarge: TextStyle(color: AppColors.mainTextColor),
+      titleLarge: TextStyle(color: AppColors.primaryTextColor),
     ),
     appBarTheme: AppBarTheme(backgroundColor: Colors.white),
     brightness: Brightness.light,
-    scaffoldBackgroundColor: AppColors.backgroundColor,
-    cardColor: AppColors.widgetBackgroundColor,
-    iconTheme: IconThemeData(color: AppColors.darkGreyColor),
+    scaffoldBackgroundColor: AppColors.primaryBackgroundColor,
+    cardColor: AppColors.accentBackgroundColor,
+    iconTheme: IconThemeData(color: AppColors.accentTextColor),
     shadowColor: AppColors.shimmerBaseColor,
-    hintColor: AppColors.darkGreyColor,
+    hintColor: AppColors.accentTextColor,
     useMaterial3: true,
     //fontFamily: "Montserat",
   );

@@ -13,7 +13,7 @@ class ShimmerDepartmentsWidget extends StatelessWidget {
     return Container(
       height: 8.0.hp,
       decoration: BoxDecoration(
-        color: AppColors.widgetBackgroundColor,
+        color: AppColors.accentBackgroundColor,
         borderRadius: BorderRadius.circular(AppDimensions.lbr),
         boxShadow: AppShadow.boxShadow,
       ),

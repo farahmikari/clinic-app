@@ -3,6 +3,7 @@ import 'package:clinic_app/app/departments/views/widgets/departments_widget.dart
 import 'package:clinic_app/app/departments/views/widgets/shimmer_departments_widget.dart';
 import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/widgets/app_bar_with_search_widget.dart';
+import 'package:clinic_app/core/widgets/empty_list_widget.dart';
 import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -30,6 +31,14 @@ class DepartmentsScreen extends StatelessWidget {
                 builder: (context, state) {
                   if (state is FetchDepartmentsLoaded) {
                     return DepartmentsWidget(departments: state.departments);
+                  }
+                  if (state is FetchDepartmentsLoadedEmpty) {
+                    return EmptyListWidget(
+                      image: "assets/images/empty_departments.png",
+                      title: "No Departments Available",
+                      subtitle:
+                          "There are currently no departments open at the clinic. Please check back later.",
+                    );
                   }
                   return ShimmerDepartmentsWidget();
                 },

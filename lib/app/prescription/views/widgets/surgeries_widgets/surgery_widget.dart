@@ -16,7 +16,7 @@ class SurgeryWidget extends StatelessWidget {
       width: 80.0.wp,
       alignment: Alignment.center,
       decoration: BoxDecoration(
-        color: AppColors.widgetBackgroundColor,
+        color: AppColors.accentBackgroundColor,
         borderRadius: BorderRadius.circular(AppDimensions.mbr),
         boxShadow: AppShadow.boxShadow,
       ),

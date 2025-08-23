@@ -15,7 +15,7 @@ class AdvicesWidget extends StatelessWidget {
     return Container(
       padding: EdgeInsets.all(AppDimensions.mp),
       decoration: BoxDecoration(
-        color: AppColors.widgetBackgroundColor,
+        color: AppColors.accentBackgroundColor,
         borderRadius: BorderRadius.circular(AppDimensions.mbr),
         boxShadow: AppShadow.boxShadow,
       ),
@@ -31,14 +31,17 @@ class AdvicesWidget extends StatelessWidget {
                 AppIcons.advice,
                 width: AppDimensions.sis,
                 height: AppDimensions.sis,
-                colorFilter:ColorFilter.mode(AppColors.primaryColor, BlendMode.srcIn),
+                colorFilter: ColorFilter.mode(
+                  AppColors.primaryColor,
+                  BlendMode.srcIn,
+                ),
               ),
               SizedBox(width: AppDimensions.mp),
               Expanded(
                 child: Text(
                   advices[index].advice,
                   style: TextStyle(
-                    color: AppColors.darkGreyColor,
+                    color: AppColors.accentTextColor,
                     fontSize: AppDimensions.sfs,
                     fontWeight: FontWeight.w500,
                   ),

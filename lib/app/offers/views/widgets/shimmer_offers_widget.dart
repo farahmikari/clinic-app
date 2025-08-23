@@ -13,9 +13,8 @@ class ShimmerOffersWidget extends StatelessWidget {
       baseColor: Theme.of(context).shadowColor,
       highlightColor: AppColors.shimmerHighlightColor,
       child: ListView.separated(
-        shrinkWrap: true,
-        physics: NeverScrollableScrollPhysics(),
         clipBehavior: Clip.none,
+        padding: EdgeInsets.all(AppDimensions.mp),
         itemBuilder: (context, index) {
           return ShimmerOfferWidget();
         },

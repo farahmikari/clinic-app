@@ -40,7 +40,7 @@ class RatingDialogWidget extends StatelessWidget {
             alignment: Alignment.bottomCenter,
             padding: EdgeInsets.only(top: AppDimensions.sp),
             decoration: BoxDecoration(
-              color: AppColors.transparentYellow,
+              color: AppColors.transparentAccentColor,
               shape: BoxShape.circle,
             ),
             clipBehavior: Clip.hardEdge,
@@ -76,7 +76,7 @@ class RatingDialogWidget extends StatelessWidget {
               (context, _) => SvgPicture.asset(
                 AppIcons.rate,
                 colorFilter: ColorFilter.mode(
-                  AppColors.transparentYellow,
+                  AppColors.transparentAccentColor,
                   BlendMode.srcIn,
                 ),
               ),
@@ -91,7 +91,7 @@ class RatingDialogWidget extends StatelessWidget {
         ButtonWidget(
           title: S.current.share_rating,
           backgroundColor: AppColors.primaryColor,
-          titleColor: AppColors.widgetBackgroundColor,
+          titleColor: AppColors.accentBackgroundColor,
           onTap: () {
             context.read<RatingDialogBloc>().add(RatingIsSubmited());
             Get.back();

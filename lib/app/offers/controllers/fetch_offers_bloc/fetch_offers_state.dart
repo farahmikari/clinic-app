@@ -10,6 +10,8 @@ final class FetchOffersLoaded extends FetchOffersState {
   FetchOffersLoaded({required this.offers});
 }
 
+final class FetchOffersLoadedEmpty extends FetchOffersState {}
+
 final class FetchOffersFailed extends FetchOffersState {
   final String errorMessage;
 

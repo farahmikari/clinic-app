@@ -135,7 +135,7 @@ class DoctorWidget extends StatelessWidget {
           ButtonWidget(
             title: S.current.book_now,
             backgroundColor: AppColors.primaryColor,
-            titleColor: AppColors.widgetBackgroundColor,
+            titleColor: AppColors.accentBackgroundColor,
             onTap: () {
               Get.to(
                 () => BookAppointmentWithDoctorScreenAuthDecisionWidget(

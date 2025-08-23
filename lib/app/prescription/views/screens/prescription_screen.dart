@@ -63,7 +63,7 @@ class PrescriptionScreen extends StatelessWidget {
       appBar: AppBarWithBadgeWidget(
         title: S.current.prescription,
         badgeTitle: "Completed",
-        badgeColor: AppColors.transparentYellow,
+        badgeColor: AppColors.transparentAccentColor,
       ),
       body: MultiBlocProvider(
         providers: [
@@ -201,7 +201,7 @@ class PrescriptionScreen extends StatelessWidget {
                             return ButtonWidget(
                               title: S.current.view_medical_report,
                               backgroundColor: AppColors.primaryColor,
-                              titleColor: AppColors.widgetBackgroundColor,
+                              titleColor: AppColors.accentBackgroundColor,
                               onTap: () {
                                 context.read<FetchMedicalReportBloc>().add(
                                   MedicalReportIsFetched(
