@@ -39,21 +39,6 @@ class NotificationWidget extends StatelessWidget {
           : AppColors.lightBlueColor;
     }
 
-    Color specifyIconBackgroundColor() {
-      switch (notification.type) {
-        case "reminders":
-          return AppColors.lightGreenColor;
-        case "prescription":
-          return AppColors.lightYellowColor;
-        case "report":
-          return AppColors.lightOrangColor;
-        case "cancellation":
-          return AppColors.lightRedColor;
-        default:
-          return AppColors.primaryColor;
-      }
-    }
-
     return Container(
       padding: EdgeInsets.all(AppDimensions.mp),
       decoration: BoxDecoration(
@@ -71,7 +56,7 @@ class NotificationWidget extends StatelessWidget {
             height: 14.0.wp,
             alignment: Alignment.center,
             decoration: BoxDecoration(
-              color: specifyIconBackgroundColor(),
+              color: AppColors.primaryColor,
               shape: BoxShape.circle,
             ),
             child: SvgPicture.asset(

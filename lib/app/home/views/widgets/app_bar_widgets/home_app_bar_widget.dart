@@ -1,5 +1,4 @@
 import 'package:clinic_app/app/home/views/widgets/app_bar_widgets/action_button_widget.dart';
-import 'package:clinic_app/app/languages/views/screens/languages_screen.dart';
 import 'package:clinic_app/app/notifications/views/screens/notification_screen.dart';
 import 'package:clinic_app/app/user_drawer/controllers/bloc/drawer_bloc/drawer_bloc.dart';
 import 'package:clinic_app/core/constants/app_colors.dart';
@@ -44,15 +43,7 @@ class HomeAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
           },
         ),
         SizedBox(width: AppDimensions.mp),
-        ActionButtonWidget(
-          icon: AppIcons.settings,
-          onTap: () {
-            getx.Get.to(
-              () => LanguagesScreen(),
-              transition: getx.Transition.zoom,
-            );
-          },
-        ),
+        ActionButtonWidget(icon: AppIcons.settings, onTap: () {}),
       ],
       leading: Align(
         alignment: AlignmentDirectional.centerEnd,

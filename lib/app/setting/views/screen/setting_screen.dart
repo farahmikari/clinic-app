@@ -1,5 +1,5 @@
-import 'package:clinic_app/app/languages/controllers_2/bloc/localization_bloc.dart';
-import 'package:clinic_app/app/languages/models/language_model.dart';
+import 'package:clinic_app/app/setting/localization_bloc/localization_bloc.dart';
+import 'package:clinic_app/app/setting/models/language_model.dart';
 import 'package:clinic_app/app/setting/views/widgets/container_setting_widget.dart';
 import 'package:clinic_app/app/setting/views/widgets/switcher_mode_widget.dart';
 import 'package:clinic_app/core/constants/app_colors.dart';

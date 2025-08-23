@@ -5,12 +5,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class SharedPreferencesService {
   static const String _token = 'auth_token';
-
   static const String _theme = 'theme';
-
   static const String _fcm = 'fcm';
   static const String _languageCode = 'language_code';
-
 
   static Future<void> saveToken(String token) async {
     final prefs = await SharedPreferences.getInstance();
@@ -30,12 +27,12 @@ class SharedPreferencesService {
 
   static Future<void> saveTheme(String theme) async {
     final prefs = await SharedPreferences.getInstance();
-    await prefs.setString(_theme,theme);
+    await prefs.setString(_theme, theme);
   }
-   static Future<String?> getTheme() async {
+
+  static Future<String?> getTheme() async {
     final prefs = await SharedPreferences.getInstance();
     return prefs.getString(_theme);
-
   }
 
   static Future<void> saveFcm(String fcm) async {

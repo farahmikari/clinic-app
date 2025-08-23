@@ -32,6 +32,12 @@ class FetchNotificationsBloc
         } else {
           emit(FetchNotificationsLoaded(notifications: allNotifications));
         }
+        await Future.wait(
+          unreadNotifications.map(
+            (unreadNotification) =>
+                api.put(EndPoints.read(unreadNotification.id)),
+          ),
+        );
       } catch (e) {
         emit(FetchNotificationsFailed(errorMessage: e.toString()));
       }

@@ -29,7 +29,7 @@ class EmailEditWidget extends StatelessWidget {
       listener: (context, state) {
         if (state is EmailLoading) {
           Get.dialog(
-            const Center(
+            Center(
               child: CircularProgressIndicator(color: AppColors.primaryColor),
             ),
             barrierDismissible: false,

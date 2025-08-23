@@ -41,6 +41,10 @@ class EndPoints {
     return "/api/user/bill/$billId";
   }
 
+  static String read(int notificationId) {
+    return "/api/notifications/$notificationId/read";
+  }
+
   /////send otp code to email/////
   static String sendEmailVerify() {
     return "/api/send-email";
@@ -119,6 +123,7 @@ class EndPoints {
   static String offerPrice = "/api/offer_price";
   static String notifications = "/api/notifications";
   static String bills = "/api/user/bills";
+  static String refreshToken = "/api/refresh_token";
 }
 
 class ApiKey {
@@ -188,4 +193,5 @@ class ApiKey {
   static String readNotifications = "Read Notifications";
   static String paid = "paid";
   static String unpaid = "unpaid";
+  static String fcmToken = "fcm_token";
 }

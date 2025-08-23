@@ -11,15 +11,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class NotificationScreen extends StatelessWidget {
   const NotificationScreen({super.key});
 
+  Future<void> _onRefresh(BuildContext context) async {
+    context.read<FetchNotificationsBloc>().add(FetchNotifications());
+  }
+
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create:
-              (context) => FetchNotificationsBloc()..add(FetchNotifications()),
-        ),
-      ],
+    return BlocProvider(
+      create: (context) => FetchNotificationsBloc()..add(FetchNotifications()),
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Theme.of(context).scaffoldBackgroundColor,
@@ -32,23 +31,35 @@ class NotificationScreen extends StatelessWidget {
             ),
           ),
         ),
-        body: SafeArea(
-          child: BlocBuilder<FetchNotificationsBloc, FetchNotificationsState>(
-            builder: (context, state) {
-              if (state is FetchNotificationsLoaded) {
-                return NotificationsWidget(notifications: state.notifications);
-              }
-              if (state is FetchNotificationsLoadedEmpty) {
-                return EmptyListWidget(
-                  image: "assets/images/empty_notifications.png",
-                  title: "No Notifications Yet",
-                  subtitle:
-                      "You haven’t received any notifications so far. Stay tuned for updates!",
-                );
-              }
-              return ShimmerNotificationsWidget();
-            },
-          ),
+        body: Builder(
+          builder: (context) {
+            return RefreshIndicator(
+              onRefresh: () => _onRefresh(context),
+              color: AppColors.primaryColor,
+              backgroundColor: Theme.of(context).cardColor,
+              child: BlocBuilder<
+                FetchNotificationsBloc,
+                FetchNotificationsState
+              >(
+                builder: (context, state) {
+                  if (state is FetchNotificationsLoaded) {
+                    return NotificationsWidget(
+                      notifications: state.notifications,
+                    );
+                  }
+                  if (state is FetchNotificationsLoadedEmpty) {
+                    return EmptyListWidget(
+                      image: "assets/images/empty_notifications.png",
+                      title: "No Notifications Yet",
+                      subtitle:
+                          "You haven’t received any notifications so far. Stay tuned for updates!",
+                    );
+                  }
+                  return ShimmerNotificationsWidget();
+                },
+              ),
+            );
+          },
         ),
       ),
     );

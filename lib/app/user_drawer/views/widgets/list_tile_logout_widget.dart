@@ -11,9 +11,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 
 class ListTileLogoutWidget extends StatelessWidget {
-  const ListTileLogoutWidget({
-    super.key,
-  });
+  const ListTileLogoutWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +24,7 @@ class ListTileLogoutWidget extends StatelessWidget {
           listener: (context, state) {
             if (state is LogoutLoading) {
               Get.dialog(
-                const Center(
+                Center(
                   child: CircularProgressIndicator(
                     color: AppColors.primaryColor,
                   ),
