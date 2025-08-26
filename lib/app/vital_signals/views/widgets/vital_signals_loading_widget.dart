@@ -1,6 +1,7 @@
-import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
-import 'package:clinic_app/core/extentions/percent_sized_extention.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_shimmer_colors_extension.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_text_colors_extension.dart';
+import 'package:clinic_app/core/extentions/dimensions_extensions/percent_sized_extension.dart';
 import 'package:clinic_app/core/widgets/skelton.dart';
 import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
@@ -13,18 +14,18 @@ class VitalSignalsLoadingWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         title: Text(
           S.current.vital_signs,
-          style: Theme.of(context).textTheme.titleLarge!.copyWith(
-            fontSize: 20,
+          style: TextStyle(
+            color: Theme.of(context).primaryTextColor,
+            fontSize: AppDimensions.lfs,
             fontWeight: FontWeight.bold,
           ),
         ),
       ),
       body: Shimmer.fromColors(
-        baseColor: Theme.of(context).shadowColor,
-        highlightColor: AppColors.shimmerHighlightColor,
+        baseColor: Theme.of(context).shimmerBaseColor,
+        highlightColor: Theme.of(context).shimmerHighlightColor,
         enabled: true,
         child: SingleChildScrollView(
           child: Padding(

@@ -1,5 +1,6 @@
-import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_background_colors_extension.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_text_colors_extension.dart';
 import 'package:flutter/material.dart';
 
 class MedicationNoteWidget extends StatelessWidget {
@@ -13,13 +14,13 @@ class MedicationNoteWidget extends StatelessWidget {
       padding: EdgeInsets.all(AppDimensions.sp),
       alignment: Alignment.center,
       decoration: BoxDecoration(
-        color: AppColors.primaryBackgroundColor,
+        color: Theme.of(context).primaryBackgroundColor,
         borderRadius: BorderRadius.circular(AppDimensions.mbr),
       ),
       child: Text(
         note,
         style: TextStyle(
-          color: AppColors.primaryTextColor,
+          color: Theme.of(context).primaryTextColor,
           fontSize: AppDimensions.sfs,
           fontWeight: FontWeight.bold,
         ),

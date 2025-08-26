@@ -1,6 +1,6 @@
-import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
 import 'package:clinic_app/core/constants/app_icons.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_text_colors_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -16,12 +16,15 @@ class AdviceWidget extends StatelessWidget {
         AppIcons.advice,
         width: AppDimensions.sis,
         height: AppDimensions.sis,
-        colorFilter: ColorFilter.mode(AppColors.primaryColor, BlendMode.srcIn),
+        colorFilter: ColorFilter.mode(
+          Theme.of(context).primaryColor,
+          BlendMode.srcIn,
+        ),
       ),
       title: Text(
         title,
         style: TextStyle(
-          color: AppColors.accentTextColor,
+          color: Theme.of(context).accentTextColor,
           fontSize: AppDimensions.sfs,
           fontWeight: FontWeight.bold,
         ),

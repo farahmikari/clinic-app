@@ -7,11 +7,11 @@ import 'package:clinic_app/app/book_appointment/controllers/fetch_reservation_pr
 import 'package:clinic_app/app/doctor/views/screens/doctor_profile_screen.dart';
 import 'package:clinic_app/app/offers/models/offer_model.dart';
 import 'package:clinic_app/app/offers/views/widgets/offer_widget.dart';
-import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_text_colors_extension.dart';
 import 'package:clinic_app/core/widgets/button_widget.dart';
-import 'package:clinic_app/core/widgets/custom_pricing_dialog_widget.dart';
-import 'package:clinic_app/core/widgets/custom_warning_dialog_widget.dart';
+import 'package:clinic_app/app/book_appointment/views/widgets/custom_pricing_dialog_widget.dart';
+import 'package:clinic_app/app/book_appointment/views/widgets/custom_warning_dialog_widget.dart';
 import 'package:clinic_app/app/book_appointment/views/widgets/days_widget/controllers/days_bloc/days_bloc.dart';
 import 'package:clinic_app/app/book_appointment/views/widgets/days_widget/views/widgets/days_widget.dart';
 import 'package:clinic_app/app/book_appointment/views/widgets/days_widget/views/widgets/shimmer_days_widget.dart';
@@ -36,8 +36,10 @@ class BookAppointmentWithOfferScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Color specifyConfirmButtonprimaryBackgroundColor(bool isValid) {
-      return isValid ? AppColors.primaryColor : AppColors.hintTextColor;
+    Color specifyConfirmButtonBackgroundColor(bool isValid) {
+      return isValid
+          ? Theme.of(context).primaryColor
+          : Theme.of(context).hintTextColor;
     }
 
     return MultiBlocProvider(
@@ -192,11 +194,10 @@ class BookAppointmentWithOfferScreen extends StatelessWidget {
         ],
         child: Scaffold(
           appBar: AppBar(
-            backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-            surfaceTintColor: AppColors.primaryBackgroundColor,
             title: Text(
               S.current.book_appointment,
               style: TextStyle(
+                color: Theme.of(context).primaryTextColor,
                 fontSize: AppDimensions.lfs,
                 fontWeight: FontWeight.bold,
               ),
@@ -271,10 +272,10 @@ class BookAppointmentWithOfferScreen extends StatelessWidget {
                             return ButtonWidget(
                               title: S.current.confirm,
                               backgroundColor:
-                                  specifyConfirmButtonprimaryBackgroundColor(
+                                  specifyConfirmButtonBackgroundColor(
                                     validatorState.isValid,
                                   ),
-                              titleColor: AppColors.accentBackgroundColor,
+                              titleColor: Theme.of(context).foregroundColor,
                               onTap: () {
                                 if (validatorState.isValid) {
                                   context

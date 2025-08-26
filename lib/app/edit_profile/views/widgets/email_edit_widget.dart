@@ -5,7 +5,8 @@ import 'package:clinic_app/app/signup/controllers/bloc/email_bloc/email_event.da
 import 'package:clinic_app/app/signup/controllers/bloc/email_bloc/email_state.dart';
 import 'package:clinic_app/app/verification/model/verification_goto.dart';
 import 'package:clinic_app/app/verification/views/screen/verification_screen.dart';
-import 'package:clinic_app/core/constants/app_colors.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_colors_extension.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_text_colors_extension.dart';
 import 'package:clinic_app/core/utils/snack_bar_util.dart';
 import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/cupertino.dart';
@@ -30,7 +31,9 @@ class EmailEditWidget extends StatelessWidget {
         if (state is EmailLoading) {
           Get.dialog(
             Center(
-              child: CircularProgressIndicator(color: AppColors.primaryColor),
+              child: CircularProgressIndicator(
+                color: Theme.of(context).primaryColor,
+              ),
             ),
             barrierDismissible: false,
           );
@@ -74,7 +77,7 @@ class EmailEditWidget extends StatelessWidget {
             onPressed: () {
               showEditEmailDialog(context, state);
             },
-            icon: Icon(Icons.edit),
+            icon: Icon(Icons.edit, color: Theme.of(context).accentTextColor),
           ),
         );
       },
@@ -88,16 +91,22 @@ class EmailEditWidget extends StatelessWidget {
           (_) => CupertinoAlertDialog(
             title: Text(
               S.current.edit_email,
-              style: Theme.of(context).textTheme.titleSmall,
+              style: TextStyle(
+                color: Theme.of(context).primaryTextColor,
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
             ),
             content: CupertinoTextField(
               controller: newEmailController,
               placeholder: S.current.enter_new_email,
-              style: Theme.of(
-                context,
-              ).textTheme.titleSmall!.copyWith(fontWeight: FontWeight.bold),
+              style: TextStyle(
+                color: Theme.of(context).accentTextColor,
+                fontSize: 14,
+                fontWeight: FontWeight.w500,
+              ),
               decoration: BoxDecoration(
-                border: Border.all(color: AppColors.primaryColor),
+                border: Border.all(color: Theme.of(context).primaryColor),
               ),
             ),
             actions: [
@@ -105,9 +114,10 @@ class EmailEditWidget extends StatelessWidget {
                 onPressed: () => Navigator.pop(context),
                 child: Text(
                   S.current.cancel,
-                  style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                    color: const Color(0xFF99231B),
-                    fontSize: 16,
+                  style: TextStyle(
+                    color: Theme.of(context).darkRedColor,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
                   ),
                 ),
               ),
@@ -124,9 +134,10 @@ class EmailEditWidget extends StatelessWidget {
                 },
                 child: Text(
                   S.current.cotinue,
-                  style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                    color: const Color(0xFF047B08),
-                    fontSize: 16,
+                  style: TextStyle(
+                    color: Theme.of(context).primaryColor,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
                   ),
                 ),
               ),

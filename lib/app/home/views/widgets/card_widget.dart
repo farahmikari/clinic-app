@@ -1,7 +1,8 @@
 import 'package:clinic_app/core/constants/app_dimensions.dart';
 import 'package:clinic_app/core/constants/app_shadow.dart';
-import 'package:clinic_app/core/extentions/percent_sized_extention.dart';
-import 'package:clinic_app/core/constants/app_colors.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_colors_extension.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_text_colors_extension.dart';
+import 'package:clinic_app/core/extentions/dimensions_extensions/percent_sized_extension.dart';
 import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 
@@ -13,7 +14,10 @@ class CardWidget extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          colors: [AppColors.darkBlueColor, AppColors.lightBlueColor],
+          colors: [
+            Theme.of(context).darkBlueColor,
+            Theme.of(context).lightBlueColor,
+          ],
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
         ),
@@ -38,7 +42,7 @@ class CardWidget extends StatelessWidget {
               title: Text(
                 S.current.card_title,
                 style: TextStyle(
-                  color: AppColors.accentBackgroundColor,
+                  color: Theme.of(context).foregroundColor,
                   fontSize: AppDimensions.lfs,
                   fontWeight: FontWeight.bold,
                 ),
@@ -46,7 +50,7 @@ class CardWidget extends StatelessWidget {
               subtitle: Text(
                 S.current.card_subtitle,
                 style: TextStyle(
-                  color: AppColors.accentBackgroundColor,
+                  color: Theme.of(context).foregroundColor,
                   fontSize: AppDimensions.sfs,
                   fontWeight: FontWeight.w500,
                 ),

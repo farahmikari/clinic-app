@@ -2,8 +2,8 @@ import 'package:clinic_app/app/base_url/controllers/fetch_base_url/fetch_base_ur
 import 'package:clinic_app/app/base_url/views/widgets/base_url_widget.dart';
 import 'package:clinic_app/app/onboarding/views/screens/splash_screen.dart';
 import 'package:clinic_app/core/api/end_points.dart';
-import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_text_colors_extension.dart';
 import 'package:clinic_app/core/widgets/button_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -15,13 +15,14 @@ class BaseUrlScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Color specifyprimaryBackgroundColor(bool isValid) {
-      return isValid ? AppColors.primaryColor : AppColors.hintTextColor;
+      return isValid
+          ? Theme.of(context).primaryColor
+          : Theme.of(context).hintTextColor;
     }
 
     return BlocProvider(
       create: (context) => FetchBaseUrlBloc(),
       child: Scaffold(
-        backgroundColor: AppColors.primaryBackgroundColor,
         body: ListView(
           padding: EdgeInsets.all(AppDimensions.mp),
           children: [
@@ -29,7 +30,7 @@ class BaseUrlScreen extends StatelessWidget {
             Text(
               "Set Your Base URL",
               style: TextStyle(
-                color: AppColors.primaryTextColor,
+                color: Theme.of(context).primaryTextColor,
                 fontSize: AppDimensions.lfs,
                 fontWeight: FontWeight.bold,
               ),
@@ -39,7 +40,7 @@ class BaseUrlScreen extends StatelessWidget {
             Text(
               "Open your terminal and run the command ipconfig. Find the IPv4 Address in the output, then enter it in this text field in the following format:\n http://<IPv4 Address>:8000",
               style: TextStyle(
-                color: AppColors.accentTextColor,
+                color: Theme.of(context).accentTextColor,
                 fontSize: AppDimensions.sfs,
                 fontWeight: FontWeight.w500,
               ),
@@ -53,7 +54,7 @@ class BaseUrlScreen extends StatelessWidget {
                 return ButtonWidget(
                   title: "Confirm",
                   backgroundColor: specifyprimaryBackgroundColor(state.isValid),
-                  titleColor: AppColors.accentBackgroundColor,
+                  titleColor: Theme.of(context).foregroundColor,
                   onTap: () {
                     if (state.isValid) {
                       EndPoints.setBaseUrl(state.baseUrl);

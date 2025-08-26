@@ -1,4 +1,5 @@
 import 'package:clinic_app/core/constants/app_dimensions.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_shimmer_colors_extension.dart';
 import 'package:flutter/material.dart';
 
 class ShimmerDepartmentWidget extends StatelessWidget {
@@ -8,7 +9,7 @@ class ShimmerDepartmentWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Theme.of(context).shadowColor,
+        color: Theme.of(context).shimmerBaseColor,
         borderRadius: BorderRadius.circular(AppDimensions.mbr),
       ),
     );

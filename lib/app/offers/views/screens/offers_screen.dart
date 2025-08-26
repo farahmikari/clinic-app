@@ -1,7 +1,7 @@
 import 'package:clinic_app/app/offers/controllers/fetch_offers_bloc/fetch_offers_bloc.dart';
 import 'package:clinic_app/app/offers/views/widgets/offers_widget.dart';
 import 'package:clinic_app/app/offers/views/widgets/shimmer_offers_widget.dart';
-import 'package:clinic_app/core/constants/app_colors.dart';
+
 import 'package:clinic_app/core/constants/app_dimensions.dart';
 import 'package:clinic_app/core/widgets/empty_list_widget.dart';
 import 'package:clinic_app/generated/l10n.dart';
@@ -17,8 +17,6 @@ class OffersScreen extends StatelessWidget {
       create: (context) => FetchOffersBloc()..add(FetchOffers()),
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-          surfaceTintColor: AppColors.primaryBackgroundColor,
           title: Text(
             S.current.offers,
             style: TextStyle(

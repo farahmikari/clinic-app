@@ -1,9 +1,10 @@
 import 'package:clinic_app/app/department_doctors/models/department_doctor_model.dart';
 import 'package:clinic_app/app/doctor/views/screens/doctor_profile_screen.dart';
-import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
 import 'package:clinic_app/core/constants/app_shadow.dart';
-import 'package:clinic_app/core/extentions/percent_sized_extention.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_background_colors_extension.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_colors_extension.dart';
+import 'package:clinic_app/core/extentions/dimensions_extensions/percent_sized_extension.dart';
 import 'package:clinic_app/core/widgets/doctor_image_with_frame_widget.dart';
 import 'package:clinic_app/core/widgets/doctor_name_widget.dart';
 import 'package:clinic_app/core/widgets/filter_badge_widget.dart';
@@ -18,26 +19,26 @@ class DepartmentDoctorWidget extends StatelessWidget {
   const DepartmentDoctorWidget({super.key, required this.departmentDoctor});
   final DepartmentDoctorModel departmentDoctor;
 
-  Color specifyShiftColor() {
-    return departmentDoctor.shift == "Morning"
-        ? AppColors.transparentPrimaryColor
-        : AppColors.transparentAccentColor;
-  }
-
-  String specifyTreatmentsUnit() {
-    return departmentDoctor.treatments > 1
-        ? S.current.treatments_unit
-        : S.current.treatment_unit;
-  }
-
-  String specifyExperiencesUnit() {
-    return departmentDoctor.experience > 1
-        ? S.current.years_unit
-        : S.current.year_unit;
-  }
-
   @override
   Widget build(BuildContext context) {
+    Color specifyShiftColor() {
+      return departmentDoctor.shift == "Morning"
+          ? Theme.of(context).transparentPrimaryColor
+          : Theme.of(context).transparentAccentColor;
+    }
+
+    String specifyTreatmentsUnit() {
+      return departmentDoctor.treatments > 1
+          ? S.current.treatments_unit
+          : S.current.treatment_unit;
+    }
+
+    String specifyExperiencesUnit() {
+      return departmentDoctor.experience > 1
+          ? S.current.years_unit
+          : S.current.year_unit;
+    }
+
     return GestureDetector(
       onTap: () {
         Get.to(
@@ -50,7 +51,7 @@ class DepartmentDoctorWidget extends StatelessWidget {
         width: 92.0.wp,
         padding: EdgeInsets.all(AppDimensions.mp),
         decoration: BoxDecoration(
-          color: Theme.of(context).cardColor,
+          color: Theme.of(context).accentBackgroundColor,
           borderRadius: BorderRadius.circular(AppDimensions.mbr),
           boxShadow: AppShadow.boxShadow,
         ),

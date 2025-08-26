@@ -1,4 +1,4 @@
-import 'package:clinic_app/core/constants/app_colors.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_text_colors_extension.dart';
 import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 
@@ -30,9 +30,9 @@ class ListTileDrawerWidget extends StatelessWidget {
             title: Text(
               title,
               style: TextStyle(
+                color: Theme.of(context).primaryTextColor,
                 fontSize: 12,
-                fontWeight: FontWeight.w700,
-                fontFamily: "Montserat",
+                fontWeight: FontWeight.w500,
               ),
             ),
             trailing:
@@ -43,13 +43,13 @@ class ListTileDrawerWidget extends StatelessWidget {
                           Directionality.of(context) == TextDirection.rtl
                               ? TextDirection.ltr
                               : TextDirection.rtl,
-                      color: AppColors.hintTextColor,
+                      color: Theme.of(context).accentTextColor,
                       size: 12,
                     )
                     : null,
           ),
         ),
-        Divider(color: AppColors.hintTextColor, thickness: 0.5),
+        Divider(color: Theme.of(context).hintTextColor, thickness: 0.5),
       ],
     );
   }

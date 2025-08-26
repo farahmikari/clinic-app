@@ -1,4 +1,4 @@
-import 'package:clinic_app/core/extentions/percent_sized_extention.dart';
+import 'package:clinic_app/core/extentions/dimensions_extensions/percent_sized_extension.dart';
 import 'package:clinic_app/app/book_appointment/views/widgets/request_types_widget/controllers/request%20types%20bloc/request_types_bloc.dart';
 import 'package:clinic_app/app/book_appointment/views/widgets/request_types_widget/models/request_type_ids.dart';
 import 'package:clinic_app/app/book_appointment/views/widgets/request_types_widget/views/items/droppable_item.dart';

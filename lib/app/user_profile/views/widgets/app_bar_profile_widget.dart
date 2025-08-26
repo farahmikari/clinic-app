@@ -1,4 +1,5 @@
-import 'package:clinic_app/core/constants/app_colors.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_background_colors_extension.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_text_colors_extension.dart';
 import 'package:clinic_app/core/widgets/image_widget/views/widget/image_profile_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -25,8 +26,8 @@ class AppBarProfileWidget extends StatelessWidget {
           decoration: BoxDecoration(
             gradient: LinearGradient(
               colors: [
-                AppColors.primaryColor,
-                Theme.of(context).scaffoldBackgroundColor,
+                Theme.of(context).primaryColor,
+                Theme.of(context).primaryBackgroundColor,
               ],
               begin: Alignment.topLeft,
             ),
@@ -43,10 +44,9 @@ class AppBarProfileWidget extends StatelessWidget {
               Text(
                 fullName,
                 style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w700,
-                  fontFamily: "Montserat",
+                  color: Theme.of(context).foregroundColor,
                   fontSize: 22,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
             ],

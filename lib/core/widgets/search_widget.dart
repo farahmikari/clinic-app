@@ -1,8 +1,9 @@
-import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
 import 'package:clinic_app/core/constants/app_icons.dart';
 import 'package:clinic_app/core/constants/app_shadow.dart';
-import 'package:clinic_app/core/extentions/percent_sized_extention.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_background_colors_extension.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_text_colors_extension.dart';
+import 'package:clinic_app/core/extentions/dimensions_extensions/percent_sized_extension.dart';
 import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -16,7 +17,7 @@ class SearchWidget extends StatelessWidget {
       height: 15.0.wp,
       padding: EdgeInsets.symmetric(horizontal: AppDimensions.mp),
       decoration: BoxDecoration(
-        color: Theme.of(context).cardColor,
+        color: Theme.of(context).accentBackgroundColor,
         borderRadius: BorderRadius.circular(AppDimensions.lbr),
         boxShadow: AppShadow.boxShadow,
       ),
@@ -30,21 +31,21 @@ class SearchWidget extends StatelessWidget {
             height: AppDimensions.sis,
             width: AppDimensions.mis,
             colorFilter: ColorFilter.mode(
-              Theme.of(context).hintColor,
+              Theme.of(context).accentTextColor,
               BlendMode.srcIn,
             ),
           ),
           Expanded(
             child: TextField(
               style: TextStyle(
-                color: AppColors.primaryTextColor,
+                color: Theme.of(context).primaryTextColor,
                 fontSize: AppDimensions.mfs,
                 fontWeight: FontWeight.w500,
               ),
               decoration: InputDecoration(
                 hintText: S.current.search,
                 hintStyle: TextStyle(
-                  color: AppColors.hintTextColor,
+                  color: Theme.of(context).hintTextColor,
                   fontSize: AppDimensions.mfs,
                   fontWeight: FontWeight.w500,
                 ),
@@ -52,7 +53,7 @@ class SearchWidget extends StatelessWidget {
                 focusedBorder: OutlineInputBorder(borderSide: BorderSide.none),
                 contentPadding: EdgeInsets.all(0.0),
               ),
-              cursorColor: AppColors.primaryTextColor,
+              cursorColor: Theme.of(context).primaryTextColor,
               autocorrect: false,
             ),
           ),

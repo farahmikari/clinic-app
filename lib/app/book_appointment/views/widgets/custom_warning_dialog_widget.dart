@@ -1,5 +1,6 @@
-import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_background_colors_extension.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_text_colors_extension.dart';
 import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 
@@ -15,11 +16,12 @@ class CustomWarningDialogWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      backgroundColor: Theme.of(context).cardColor,
+      backgroundColor: Theme.of(context).accentBackgroundColor,
       title: Center(
         child: Text(
           S.current.oops,
           style: TextStyle(
+            color: Theme.of(context).primaryTextColor,
             fontSize: AppDimensions.xlfs,
             fontWeight: FontWeight.bold,
           ),
@@ -28,22 +30,19 @@ class CustomWarningDialogWidget extends StatelessWidget {
       content: Text(
         warning,
         style: TextStyle(
-          color: Theme.of(context).hintColor,
+          color: Theme.of(context).accentTextColor,
           fontSize: AppDimensions.sfs,
           fontWeight: FontWeight.w500,
         ),
         textAlign: TextAlign.center,
       ),
       actions: [
-        TextButton(
-          onPressed: onOk,
-          style: ButtonStyle(
-            overlayColor: WidgetStatePropertyAll(Colors.transparent),
-          ),
+        GestureDetector(
+          onTap: onOk,
           child: Text(
             S.current.ok,
             style: TextStyle(
-              color: AppColors.primaryColor,
+              color: Theme.of(context).primaryColor,
               fontSize: AppDimensions.mfs,
               fontWeight: FontWeight.w500,
             ),

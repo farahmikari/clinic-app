@@ -1,8 +1,10 @@
 import 'package:clinic_app/app/book_appointment/models/day_model.dart';
-import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
 import 'package:clinic_app/core/constants/app_shadow.dart';
 import 'package:clinic_app/app/book_appointment/views/widgets/days_widget/controllers/days_bloc/days_bloc.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_background_colors_extension.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_colors_extension.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_text_colors_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
@@ -25,21 +27,21 @@ class DayItem extends StatelessWidget {
   Widget build(BuildContext context) {
     Color specifyprimaryBackgroundColor() {
       if (day.day == previousDay) {
-        return AppColors.transparentAccentColor;
+        return Theme.of(context).accentColor;
       } else if (day.day == currentDay) {
-        return AppColors.primaryColor;
+        return Theme.of(context).primaryColor;
       } else {
-        return Theme.of(context).cardColor;
+        return Theme.of(context).accentBackgroundColor;
       }
     }
 
     Color specifyTitleColor() {
       if (day.day == previousDay || day.day == currentDay) {
-        return AppColors.accentBackgroundColor;
+        return Theme.of(context).foregroundColor;
       } else if (day.isAvailable && isDaysWidgetActivated) {
-        return Theme.of(context).textTheme.titleLarge!.color!;
+        return Theme.of(context).primaryTextColor;
       } else {
-        return Theme.of(context).hintColor;
+        return Theme.of(context).hintTextColor;
       }
     }
 

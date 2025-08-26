@@ -1,5 +1,5 @@
-import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_text_colors_extension.dart';
 import 'package:flutter/material.dart';
 
 class SubtitleWithTextButtonWidget extends StatelessWidget {
@@ -23,6 +23,7 @@ class SubtitleWithTextButtonWidget extends StatelessWidget {
         Text(
           subtitle,
           style: TextStyle(
+            color: Theme.of(context).primaryTextColor,
             fontSize: AppDimensions.lfs,
             fontWeight: FontWeight.bold,
           ),
@@ -32,7 +33,7 @@ class SubtitleWithTextButtonWidget extends StatelessWidget {
           child: Text(
             buttonTitle,
             style: TextStyle(
-              color: AppColors.primaryColor,
+              color: Theme.of(context).primaryColor,
               fontSize: AppDimensions.sfs,
               fontWeight: FontWeight.bold,
             ),

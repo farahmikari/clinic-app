@@ -1,9 +1,9 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:clinic_app/app/forget_password/controllers/bloc/forget_password_bloc/forget_password_bloc.dart';
 import 'package:clinic_app/app/login/views/screens/login_screen.dart';
-import 'package:clinic_app/consts.dart';
 import 'package:clinic_app/app/login/views/widgets/button_widget.dart';
 import 'package:clinic_app/app/login/views/widgets/text_form_field_widget.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_text_colors_extension.dart';
 import 'package:clinic_app/core/utils/snack_bar_util.dart';
 import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
@@ -21,14 +21,9 @@ class ResetPassword extends StatelessWidget {
     final height = size.height;
     bool obscure = false;
     bool conObscure = false;
-    // final map =
-    //     ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>;
-    // final String email = map['email'];
-    // final String code = map['code'];
     return BlocProvider(
       create: (context) => ForgetPasswordBloc(),
       child: Scaffold(
-        //backgroundColor: Colors.white,
         body: SingleChildScrollView(
           child: BlocConsumer<ForgetPasswordBloc, ForgetPasswordBaseState>(
             listener: (context, state) {
@@ -70,7 +65,11 @@ class ResetPassword extends StatelessWidget {
                   SizedBox(height: height * 0.1),
                   Text(
                     S.current.reset_password,
-                    style: Theme.of(context).textTheme.titleLarge,
+                    style: TextStyle(
+                      color: Theme.of(context).primaryTextColor,
+                      fontSize: 23,
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
                   SizedBox(height: height * 0.05),
                   TextFormFieldWidget(
@@ -94,6 +93,7 @@ class ResetPassword extends StatelessWidget {
                       },
                       icon: Icon(
                         obscure ? Icons.visibility_off : Icons.visibility,
+                        color: Theme.of(context).accentTextColor,
                       ),
                     ),
                   ),
@@ -118,12 +118,13 @@ class ResetPassword extends StatelessWidget {
                       },
                       icon: Icon(
                         conObscure ? Icons.visibility_off : Icons.visibility,
+                        color: Theme.of(context).accentTextColor,
                       ),
                     ),
                   ),
                   MyButtonWidget(
                     text: S.current.reset,
-                    color: kPrimaryColor,
+                    color: Theme.of(context).primaryColor,
                     isLoading: isLoading,
                     onPressed:
                         (resetData.button && !isLoading)

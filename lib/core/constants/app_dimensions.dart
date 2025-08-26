@@ -1,5 +1,5 @@
-import 'package:clinic_app/core/extentions/percent_sized_extention.dart';
-import 'package:clinic_app/core/extentions/responsive_text_extention.dart';
+import 'package:clinic_app/core/extentions/dimensions_extensions/percent_sized_extension.dart';
+import 'package:clinic_app/core/extentions/dimensions_extensions/responsive_text_extension.dart';
 
 class AppDimensions {
   static double sp = 2.0.wp;

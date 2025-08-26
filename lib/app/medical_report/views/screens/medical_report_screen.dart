@@ -1,6 +1,6 @@
 import 'package:clinic_app/app/medical_report/models/medical_report_model.dart';
-import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_background_colors_extension.dart';
 import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_core/theme.dart';
@@ -14,8 +14,6 @@ class MedicalReportScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        surfaceTintColor: AppColors.primaryBackgroundColor,
         title: Text(
           S.current.medical_report,
           style: TextStyle(
@@ -31,12 +29,12 @@ class MedicalReportScreen extends StatelessWidget {
           Expanded(
             child: SfPdfViewerTheme(
               data: SfPdfViewerThemeData(
-                backgroundColor: AppColors.primaryBackgroundColor,
-                progressBarColor: AppColors.primaryColor,
+                backgroundColor: Theme.of(context).primaryBackgroundColor,
+                progressBarColor: Theme.of(context).primaryColor,
                 scrollHeadStyle: PdfScrollHeadStyle(
-                  backgroundColor: AppColors.primaryColor,
+                  backgroundColor: Theme.of(context).primaryColor,
                   pageNumberTextStyle: TextStyle(
-                    color: AppColors.accentBackgroundColor,
+                    color: Theme.of(context).accentBackgroundColor,
                     fontSize: AppDimensions.sfs,
                     fontWeight: FontWeight.w500,
                   ),

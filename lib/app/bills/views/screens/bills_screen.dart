@@ -1,7 +1,7 @@
 import 'package:clinic_app/app/bills/controllers/fetch_bills_bloc/fetch_bills_bloc.dart';
 import 'package:clinic_app/app/bills/views/widgets/bills_widget.dart';
 import 'package:clinic_app/app/bills/views/widgets/shimmer_bills_widget.dart';
-import 'package:clinic_app/core/constants/app_colors.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_background_colors_extension.dart';
 import 'package:clinic_app/core/widgets/app_bar_with_filter_and_search_widget.dart';
 import 'package:clinic_app/core/widgets/empty_list_widget.dart';
 import 'package:clinic_app/core/widgets/filter_widget/controllers/filter_bloc/filter_bloc.dart';
@@ -56,8 +56,8 @@ class BillsScreen extends StatelessWidget {
           body: Builder(
             builder: (context) {
               return RefreshIndicator(
-                backgroundColor: Theme.of(context).cardColor,
-                color: AppColors.primaryColor,
+                backgroundColor: Theme.of(context).accentBackgroundColor,
+                color: Theme.of(context).primaryColor,
                 onRefresh: () => _onRefresh(context),
                 child: BlocBuilder<FetchBillsBloc, FetchBillsState>(
                   builder: (context, state) {

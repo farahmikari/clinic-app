@@ -1,6 +1,6 @@
 import 'package:clinic_app/app/book_appointment/models/day_model.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
-import 'package:clinic_app/core/extentions/percent_sized_extention.dart';
+import 'package:clinic_app/core/extentions/dimensions_extensions/percent_sized_extension.dart';
 import 'package:clinic_app/app/book_appointment/views/widgets/days_widget/views/items/day_item.dart';
 import 'package:flutter/material.dart';
 

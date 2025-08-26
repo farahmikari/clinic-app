@@ -1,5 +1,5 @@
 import 'package:clinic_app/app/user_profile/views/widgets/list_tile_info_profile_widget.dart';
-import 'package:clinic_app/core/constants/app_colors.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_background_colors_extension.dart';
 import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 
@@ -29,8 +29,8 @@ class CardInfoWidget extends StatelessWidget {
       padding: EdgeInsets.all(width * 0.05),
       child: Container(
         decoration: BoxDecoration(
-          color: Theme.of(context).appBarTheme.backgroundColor,
-          border: Border.all(color: AppColors.primaryColor, width: 2),
+          color: Theme.of(context).primaryBackgroundColor,
+          border: Border.all(color: Theme.of(context).primaryColor, width: 2),
         ),
         child: Column(
           children: [

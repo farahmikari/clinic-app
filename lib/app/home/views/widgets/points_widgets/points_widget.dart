@@ -1,8 +1,9 @@
 import 'package:clinic_app/app/home/models/user_points_model.dart';
-import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
 import 'package:clinic_app/core/constants/app_shadow.dart';
-import 'package:clinic_app/core/extentions/percent_sized_extention.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_colors_extension.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_text_colors_extension.dart';
+import 'package:clinic_app/core/extentions/dimensions_extensions/percent_sized_extension.dart';
 import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 
@@ -26,7 +27,7 @@ class PointsWidget extends StatelessWidget {
       margin: EdgeInsets.symmetric(horizontal: AppDimensions.mp),
       clipBehavior: Clip.hardEdge,
       decoration: BoxDecoration(
-        color: AppColors.transparentPrimaryColor,
+        color: Theme.of(context).transparentPrimaryColor,
         borderRadius: BorderRadius.circular(AppDimensions.mbr),
         boxShadow: AppShadow.boxShadow,
       ),
@@ -49,7 +50,7 @@ class PointsWidget extends StatelessWidget {
                     child: Text(
                       S.current.points_title,
                       style: TextStyle(
-                        color: AppColors.accentBackgroundColor,
+                        color: Theme.of(context).foregroundColor,
                         fontSize: AppDimensions.mfs,
                         fontWeight: FontWeight.bold,
                       ),
@@ -65,13 +66,13 @@ class PointsWidget extends StatelessWidget {
                         vertical: AppDimensions.sp,
                       ),
                       decoration: BoxDecoration(
-                        color: AppColors.accentBackgroundColor,
+                        color: Theme.of(context).foregroundColor,
                         borderRadius: BorderRadius.circular(AppDimensions.lbr),
                       ),
                       child: Text(
                         "${userPoints.points} ${specifyPointsUnit()}",
                         style: TextStyle(
-                          color: AppColors.primaryColor,
+                          color: Theme.of(context).primaryColor,
                           fontSize: AppDimensions.sfs,
                           fontWeight: FontWeight.bold,
                         ),

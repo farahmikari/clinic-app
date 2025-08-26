@@ -1,3 +1,4 @@
+import 'package:clinic_app/core/extentions/colors_extensions/theme_text_colors_extension.dart';
 import 'package:flutter/material.dart';
 
 class VerticalInfoWithTitleWidget extends StatelessWidget {
@@ -27,7 +28,7 @@ class VerticalInfoWithTitleWidget extends StatelessWidget {
         Text(
           title,
           style: TextStyle(
-            color: Theme.of(context).hintColor,
+            color: Theme.of(context).accentTextColor,
             fontSize: titleSize,
             fontWeight: FontWeight.w500,
           ),
@@ -35,7 +36,7 @@ class VerticalInfoWithTitleWidget extends StatelessWidget {
         Text(
           info,
           style: TextStyle(
-            //color: AppColors.primaryTextColor,
+            color: Theme.of(context).primaryTextColor,
             fontSize: infoSize,
             fontWeight: FontWeight.bold,
           ),

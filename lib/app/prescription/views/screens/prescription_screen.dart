@@ -1,7 +1,9 @@
 import 'package:clinic_app/app/medical_report/controllers/fetch_medical_report_bloc/fetch_medical_report_bloc.dart';
 import 'package:clinic_app/app/medical_report/views/screens/medical_report_screen.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_colors_extension.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_text_colors_extension.dart';
 import 'package:clinic_app/core/widgets/button_widget.dart';
-import 'package:clinic_app/core/widgets/custom_warning_dialog_widget.dart';
+import 'package:clinic_app/app/book_appointment/views/widgets/custom_warning_dialog_widget.dart';
 import 'package:clinic_app/core/widgets/reservation_summary_widget.dart';
 import 'package:clinic_app/app/appointments/models/appointment_model.dart';
 import 'package:clinic_app/app/prescription/controllers/fetch_prescription_bloc/fetch_prescription_bloc.dart';
@@ -12,7 +14,6 @@ import 'package:clinic_app/app/prescription/views/widgets/lab_tests_widgets/lab_
 import 'package:clinic_app/app/prescription/views/widgets/medications_widgets/medications_widget.dart';
 import 'package:clinic_app/app/prescription/views/widgets/rating_dialog_widget.dart';
 import 'package:clinic_app/app/prescription/views/widgets/surgeries_widgets/surgeries_widget.dart';
-import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
 import 'package:clinic_app/core/widgets/app_bar_with_badge_widget.dart';
 import 'package:clinic_app/core/widgets/loading_widget.dart';
@@ -63,7 +64,7 @@ class PrescriptionScreen extends StatelessWidget {
       appBar: AppBarWithBadgeWidget(
         title: S.current.prescription,
         badgeTitle: "Completed",
-        badgeColor: AppColors.transparentAccentColor,
+        badgeColor: Theme.of(context).transparentAccentColor,
       ),
       body: MultiBlocProvider(
         providers: [
@@ -200,8 +201,8 @@ class PrescriptionScreen extends StatelessWidget {
                             }
                             return ButtonWidget(
                               title: S.current.view_medical_report,
-                              backgroundColor: AppColors.primaryColor,
-                              titleColor: AppColors.accentBackgroundColor,
+                              backgroundColor: Theme.of(context).primaryColor,
+                              titleColor: Theme.of(context).foregroundColor,
                               onTap: () {
                                 context.read<FetchMedicalReportBloc>().add(
                                   MedicalReportIsFetched(

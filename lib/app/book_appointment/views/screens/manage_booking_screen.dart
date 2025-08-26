@@ -6,12 +6,13 @@ import 'package:clinic_app/app/book_appointment/models/reservation_model.dart';
 import 'package:clinic_app/app/book_appointment/controllers/fetch_reservation_price_bloc/fetch_reservation_pricing_bloc.dart';
 import 'package:clinic_app/app/book_appointment/controllers/fetch_reservation_bloc/fetch_reservation_bloc.dart';
 import 'package:clinic_app/app/book_appointment/controllers/manage_booking_validator_bloc/manage_booking_validator_bloc.dart';
-import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_colors_extension.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_text_colors_extension.dart';
 import 'package:clinic_app/core/widgets/app_bar_with_badge_widget.dart';
 import 'package:clinic_app/core/widgets/button_widget.dart';
-import 'package:clinic_app/core/widgets/custom_pricing_dialog_widget.dart';
-import 'package:clinic_app/core/widgets/custom_warning_dialog_widget.dart';
+import 'package:clinic_app/app/book_appointment/views/widgets/custom_pricing_dialog_widget.dart';
+import 'package:clinic_app/app/book_appointment/views/widgets/custom_warning_dialog_widget.dart';
 import 'package:clinic_app/app/book_appointment/views/widgets/days_widget/controllers/days_bloc/days_bloc.dart';
 import 'package:clinic_app/app/book_appointment/views/widgets/days_widget/views/widgets/days_widget.dart';
 import 'package:clinic_app/app/book_appointment/views/widgets/days_widget/views/widgets/shimmer_days_widget.dart';
@@ -51,15 +52,15 @@ class ManageBookingScreen extends StatelessWidget {
     }) {
       if (isReservationEditing) {
         if (isAbleToEdit) {
-          return AppColors.primaryColor;
+          return Theme.of(context).primaryColor;
         } else {
-          return AppColors.hintTextColor;
+          return Theme.of(context).hintTextColor;
         }
       } else {
         if (isAbleToCancel) {
-          return AppColors.primaryColor;
+          return Theme.of(context).primaryColor;
         } else {
-          return AppColors.hintTextColor;
+          return Theme.of(context).hintTextColor;
         }
       }
     }
@@ -260,7 +261,7 @@ class ManageBookingScreen extends StatelessWidget {
           appBar: AppBarWithBadgeWidget(
             title: S.current.manage_booking,
             badgeTitle: "Upcoming",
-            badgeColor: AppColors.transparentPrimaryColor,
+            badgeColor: Theme.of(context).transparentPrimaryColor,
           ),
           body: SafeArea(
             child: ListView(
@@ -361,7 +362,7 @@ class ManageBookingScreen extends StatelessWidget {
                                 isAbleToCancel: validatorState.isAbleToCancel,
                                 isAbleToEdit: validatorState.isAbleToEdit,
                               ),
-                              titleColor: AppColors.accentBackgroundColor,
+                              titleColor: Theme.of(context).foregroundColor,
                               onTap: () {
                                 if (validatorState.isReservationEditing) {
                                   if (validatorState.isAbleToEdit) {

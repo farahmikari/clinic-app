@@ -2,7 +2,7 @@ import 'package:clinic_app/app/book_appointment/models/department_model.dart';
 import 'package:clinic_app/app/department_doctors/controllers/fetch_department_doctors/fetch_department_doctors_bloc.dart';
 import 'package:clinic_app/app/department_doctors/views/widgets/department_doctors_widget.dart';
 import 'package:clinic_app/app/department_doctors/views/widgets/shimmer_department_doctors.dart';
-import 'package:clinic_app/core/constants/app_colors.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_background_colors_extension.dart';
 import 'package:clinic_app/core/widgets/app_bar_with_filter_and_search_widget.dart';
 import 'package:clinic_app/core/widgets/empty_list_widget.dart';
 import 'package:clinic_app/core/widgets/filter_widget/controllers/filter_bloc/filter_bloc.dart';
@@ -77,8 +77,8 @@ class DepartmentDoctorsScreen extends StatelessWidget {
               builder: (context) {
                 return RefreshIndicator(
                   onRefresh: () => _onRefresh(context),
-                  color: AppColors.primaryColor,
-                  backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+                  color: Theme.of(context).primaryColor,
+                  backgroundColor: Theme.of(context).accentBackgroundColor,
                   child: BlocBuilder<
                     FetchDepartmentDoctorsBloc,
                     FetchDepartmentDoctorsState

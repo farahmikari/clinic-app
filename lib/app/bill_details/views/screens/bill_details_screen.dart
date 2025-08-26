@@ -2,8 +2,9 @@ import 'package:clinic_app/app/bill_details/controllers/fetch_bill_details/fetch
 import 'package:clinic_app/app/bill_details/views/widgets/details_widget.dart';
 import 'package:clinic_app/app/bill_details/views/widgets/service_widget.dart';
 import 'package:clinic_app/app/bills/models/bill_model.dart';
-import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_colors_extension.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_text_colors_extension.dart';
 import 'package:clinic_app/core/widgets/filter_badge_widget.dart';
 import 'package:clinic_app/core/widgets/loading_widget.dart';
 import 'package:clinic_app/generated/l10n.dart';
@@ -15,14 +16,14 @@ class BillDetailsScreen extends StatelessWidget {
 
   final BillModel bill;
 
-  Color specifyStatusColor() {
-    return bill.status == "Unpaid"
-        ? AppColors.transparentPrimaryColor
-        : AppColors.transparentAccentColor;
-  }
-
   @override
   Widget build(BuildContext context) {
+    Color specifyStatusColor() {
+      return bill.status == "unpaid"
+          ? Theme.of(context).transparentPrimaryColor
+          : Theme.of(context).transparentAccentColor;
+    }
+
     return BlocProvider(
       create:
           (context) =>
@@ -30,12 +31,10 @@ class BillDetailsScreen extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           actionsPadding: EdgeInsetsDirectional.only(end: AppDimensions.mp),
-          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-          surfaceTintColor: AppColors.primaryBackgroundColor,
           title: Text(
             S.current.bill_details,
             style: TextStyle(
-              //color: AppColors.primaryTextColor,
+              color: Theme.of(context).primaryTextColor,
               fontSize: AppDimensions.lfs,
               fontWeight: FontWeight.bold,
             ),

@@ -2,6 +2,8 @@ import 'package:clinic_app/app/bill_details/models/bill_info_model.dart';
 import 'package:clinic_app/app/bill_details/views/widgets/detail_widget.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
 import 'package:clinic_app/core/constants/app_shadow.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_background_colors_extension.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_text_colors_extension.dart';
 import 'package:flutter/material.dart';
 
 class DetailsWidget extends StatelessWidget {
@@ -13,7 +15,7 @@ class DetailsWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Theme.of(context).cardColor,
+        color: Theme.of(context).accentBackgroundColor,
         borderRadius: BorderRadius.circular(AppDimensions.mbr),
         boxShadow: AppShadow.boxShadow,
       ),
@@ -28,7 +30,10 @@ class DetailsWidget extends StatelessWidget {
           );
         },
         separatorBuilder: (context, index) {
-          return Divider(height: AppDimensions.xlp);
+          return Divider(
+            height: AppDimensions.xlp,
+            color: Theme.of(context).hintTextColor,
+          );
         },
         itemCount: billDetails.length,
       ),

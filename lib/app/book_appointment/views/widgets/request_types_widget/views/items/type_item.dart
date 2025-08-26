@@ -1,7 +1,9 @@
-import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
 import 'package:clinic_app/app/book_appointment/views/widgets/request_types_widget/controllers/request%20types%20bloc/request_types_bloc.dart';
 import 'package:clinic_app/app/book_appointment/views/widgets/request_types_widget/models/request_type_model.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_background_colors_extension.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_colors_extension.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_text_colors_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -23,23 +25,23 @@ class TypeItem extends StatelessWidget {
   Widget build(BuildContext context) {
     Color specifyprimaryBackgroundColor() {
       if (requestType.id == previousRequestTypeId) {
-        return AppColors.transparentAccentColor;
+        return Theme.of(context).accentColor;
       } else if (requestType.id == currentRequestTypeId) {
-        return AppColors.primaryColor;
+        return Theme.of(context).primaryColor;
       } else {
-        return AppColors.primaryBackgroundColor;
+        return Theme.of(context).primaryBackgroundColor;
       }
     }
 
     Color specifyTitleColor() {
       if (requestType.id == previousRequestTypeId) {
-        return AppColors.accentBackgroundColor;
+        return Theme.of(context).foregroundColor;
       } else if (requestType.id == currentRequestTypeId) {
-        return AppColors.accentBackgroundColor;
+        return Theme.of(context).foregroundColor;
       } else if (isRequestTypesWidgetActived) {
-        return AppColors.primaryTextColor;
+        return Theme.of(context).primaryTextColor;
       } else {
-        return AppColors.hintTextColor;
+        return Theme.of(context).hintTextColor;
       }
     }
 

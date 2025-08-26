@@ -1,11 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:clinic_app/app/book_appointment/views/widgets/book_appointment_with_doctor_auth_decision_widget.dart';
 import 'package:clinic_app/app/doctor/models/doctor_model.dart';
-import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
 import 'package:clinic_app/core/constants/app_icons.dart';
 import 'package:clinic_app/core/constants/app_shadow.dart';
-import 'package:clinic_app/core/extentions/percent_sized_extention.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_background_colors_extension.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_text_colors_extension.dart';
+import 'package:clinic_app/core/extentions/dimensions_extensions/percent_sized_extension.dart';
 import 'package:clinic_app/core/widgets/button_widget.dart';
 import 'package:clinic_app/core/widgets/doctor_name_widget.dart';
 import 'package:clinic_app/core/widgets/doctor_specialty_widget.dart';
@@ -24,28 +25,28 @@ class DoctorWidget extends StatelessWidget {
 
   final DoctorModel doctor;
 
-  String formatTime(String time) {
-    return DateFormat(
-      "h:mm a",
-    ).format(DateFormat("HH:mm:ss", "en").parse(time));
-  }
-
-  String formatShift() {
-    return "${formatTime(doctor.startTime)} - ${formatTime(doctor.endTime)}";
-  }
-
-  String specifyExperienceUnit() {
-    return doctor.experience > 1 ? S.current.years_unit : S.current.year_unit;
-  }
-
-  String specifyTreatmentsUnit() {
-    return doctor.treatments > 1
-        ? S.current.treatments_unit
-        : S.current.treatment_unit;
-  }
-
   @override
   Widget build(BuildContext context) {
+    String formatTime(String time) {
+      return DateFormat(
+        "h:mm a",
+      ).format(DateFormat("HH:mm:ss", "en").parse(time));
+    }
+
+    String formatShift() {
+      return "${formatTime(doctor.startTime)} - ${formatTime(doctor.endTime)}";
+    }
+
+    String specifyExperienceUnit() {
+      return doctor.experience > 1 ? S.current.years_unit : S.current.year_unit;
+    }
+
+    String specifyTreatmentsUnit() {
+      return doctor.treatments > 1
+          ? S.current.treatments_unit
+          : S.current.treatment_unit;
+    }
+
     return SafeArea(
       child: ListView(
         padding: EdgeInsets.all(AppDimensions.mp),
@@ -58,14 +59,14 @@ class DoctorWidget extends StatelessWidget {
               right: AppDimensions.sp,
             ),
             decoration: BoxDecoration(
-              color: Theme.of(context).cardColor,
+              color: Theme.of(context).accentBackgroundColor,
               borderRadius: BorderRadius.circular(AppDimensions.mbr),
               boxShadow: AppShadow.boxShadow,
             ),
             child: CachedNetworkImage(
               imageUrl: doctor.image,
               placeholder: (context, url) => LoadingWidget(),
-              errorWidget: (context, url, error) => Icon(Icons.error),
+              errorWidget: (context, url, error) => LoadingWidget(),
             ),
           ),
           SizedBox(height: AppDimensions.mp),
@@ -110,14 +111,14 @@ class DoctorWidget extends StatelessWidget {
           Container(
             padding: EdgeInsets.all(AppDimensions.mp),
             decoration: BoxDecoration(
-              color: Theme.of(context).cardColor,
+              color: Theme.of(context).accentBackgroundColor,
               borderRadius: BorderRadius.circular(AppDimensions.mbr),
               boxShadow: AppShadow.boxShadow,
             ),
             child: Text(
               doctor.bio,
               style: TextStyle(
-                color: Theme.of(context).hintColor,
+                color: Theme.of(context).accentTextColor,
                 fontSize: AppDimensions.sfs,
                 fontWeight: FontWeight.w500,
               ),
@@ -134,8 +135,8 @@ class DoctorWidget extends StatelessWidget {
           SizedBox(height: AppDimensions.mp),
           ButtonWidget(
             title: S.current.book_now,
-            backgroundColor: AppColors.primaryColor,
-            titleColor: AppColors.accentBackgroundColor,
+            backgroundColor: Theme.of(context).primaryColor,
+            titleColor: Theme.of(context).foregroundColor,
             onTap: () {
               Get.to(
                 () => BookAppointmentWithDoctorScreenAuthDecisionWidget(

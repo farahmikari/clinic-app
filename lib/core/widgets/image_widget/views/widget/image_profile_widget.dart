@@ -1,6 +1,8 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_background_colors_extension.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_colors_extension.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_text_colors_extension.dart';
 import 'package:clinic_app/core/widgets/image_widget/controller/bloc/image_bloc/image_bloc.dart';
-import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/utils/snack_bar_util.dart';
 import 'package:clinic_app/core/widgets/image_widget/views/widget/image_loading_widget.dart';
 import 'package:clinic_app/core/widgets/image_widget/views/widget/image_selected_widget.dart';
@@ -20,9 +22,9 @@ class ImageProfileWidget extends StatelessWidget {
           width: 160,
           height: 160,
           decoration: BoxDecoration(
-            color: Theme.of(context).appBarTheme.backgroundColor,
+            color: Theme.of(context).accentBackgroundColor,
             borderRadius: BorderRadius.circular(80),
-            border: Border.all(color: AppColors.primaryColor),
+            border: Border.all(color: Theme.of(context).primaryColor),
           ),
           child: BlocBuilder<ImageBloc, ImageState>(
             builder: (context, state) {
@@ -42,7 +44,7 @@ class ImageProfileWidget extends StatelessWidget {
               }
               return Icon(
                 Icons.person,
-                color: AppColors.primaryColor,
+                color: Theme.of(context).primaryColor,
                 size: 120,
               );
             },
@@ -53,13 +55,13 @@ class ImageProfileWidget extends StatelessWidget {
           right: 20,
           child: CircleAvatar(
             radius: 20,
-            backgroundColor: AppColors.primaryColor,
+            backgroundColor: Theme.of(context).primaryColor,
             child: IconButton(
               onPressed: () {
                 chooseTypeImage(context);
               },
               icon: Icon(Icons.edit, size: 20),
-              color: Colors.grey.shade200,
+              color: Theme.of(context).foregroundColor,
             ),
           ),
         ),
@@ -69,32 +71,33 @@ class ImageProfileWidget extends StatelessWidget {
 
   void chooseTypeImage(BuildContext context) {
     showModalBottomSheet(
+      backgroundColor: Theme.of(context).accentBackgroundColor,
       context: context,
       builder: (_) {
         return Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Center(
-              child: Divider(
-                color: AppColors.hintTextColor,
-                thickness: 0.5,
-                height: 0.5,
-              ),
-            ),
             ListTile(
               leading: Container(
                 width: 50,
                 height: 50,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(80),
-                  border: Border.all(color: AppColors.hintTextColor),
+                  border: Border.all(color: Theme.of(context).borderColor),
                 ),
                 child: Icon(
                   Icons.camera_alt_outlined,
-                  color: AppColors.primaryColor,
+                  color: Theme.of(context).primaryColor,
                 ),
               ),
-              title: Text(S.current.camera),
+              title: Text(
+                S.current.camera,
+                style: TextStyle(
+                  color: Theme.of(context).primaryTextColor,
+                  fontSize: 14,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
               onTap: () {
                 context.read<ImageBloc>().add(
                   PickImageFromCameraEvent(isProfile: isProfile),
@@ -108,14 +111,21 @@ class ImageProfileWidget extends StatelessWidget {
                 height: 50,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(80),
-                  border: Border.all(color: AppColors.hintTextColor),
+                  border: Border.all(color: Theme.of(context).borderColor),
                 ),
                 child: Icon(
                   Icons.image_outlined,
-                  color: AppColors.primaryColor,
+                  color: Theme.of(context).primaryColor,
                 ),
               ),
-              title: Text(S.current.gallery),
+              title: Text(
+                S.current.gallery,
+                style: TextStyle(
+                  color: Theme.of(context).primaryTextColor,
+                  fontSize: 14,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
               onTap: () {
                 context.read<ImageBloc>().add(
                   PickImageFromGalleryEvent(isProfile: isProfile),

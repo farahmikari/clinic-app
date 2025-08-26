@@ -1,5 +1,5 @@
-import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_text_colors_extension.dart';
 import 'package:flutter/material.dart';
 
 class EmptyListWidget extends StatelessWidget {
@@ -23,7 +23,7 @@ class EmptyListWidget extends StatelessWidget {
         Text(
           title,
           style: TextStyle(
-            color: AppColors.primaryTextColor,
+            color: Theme.of(context).primaryTextColor,
             fontSize: AppDimensions.lfs,
             fontWeight: FontWeight.bold,
           ),
@@ -33,7 +33,7 @@ class EmptyListWidget extends StatelessWidget {
         Text(
           subtitle,
           style: TextStyle(
-            color: AppColors.accentTextColor,
+            color: Theme.of(context).accentTextColor,
             fontSize: AppDimensions.mfs,
             fontWeight: FontWeight.w500,
           ),

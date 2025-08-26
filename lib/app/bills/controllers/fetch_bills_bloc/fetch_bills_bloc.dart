@@ -57,7 +57,7 @@ class FetchBillsBloc extends Bloc<FetchBillsEvent, FetchBillsState> {
     });
 
     on<DisplayUnpaidBills>((event, emit) async {
-      if (allBills.isEmpty) {
+      if (unpaidBills.isEmpty) {
         emit(FetchBillsLoadedEmpty());
       } else {
         emit(FetchBillsLoaded(bills: unpaidBills));
@@ -65,7 +65,7 @@ class FetchBillsBloc extends Bloc<FetchBillsEvent, FetchBillsState> {
     });
 
     on<DisplayPaidBills>((event, emit) async {
-      if (allBills.isEmpty) {
+      if (paidBills.isEmpty) {
         emit(FetchBillsLoadedEmpty());
       } else {
         emit(FetchBillsLoaded(bills: paidBills));

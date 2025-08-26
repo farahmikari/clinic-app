@@ -1,6 +1,6 @@
-import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
-import 'package:clinic_app/core/extentions/percent_sized_extention.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_text_colors_extension.dart';
+import 'package:clinic_app/core/extentions/dimensions_extensions/percent_sized_extension.dart';
 import 'package:clinic_app/core/widgets/filter_widget/controllers/filter_bloc/filter_bloc.dart';
 import 'package:clinic_app/core/widgets/filter_widget/views/widgets/filter_widget.dart';
 import 'package:clinic_app/core/widgets/search_widget.dart';
@@ -23,12 +23,11 @@ class AppBarWithFilterAndSearchWidget extends StatelessWidget
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      surfaceTintColor: AppColors.primaryBackgroundColor,
       toolbarHeight: 20.0.wp,
       title: Text(
         appBarTitle,
         style: TextStyle(
+          color: Theme.of(context).primaryTextColor,
           fontSize: AppDimensions.lfs,
           fontWeight: FontWeight.bold,
         ),

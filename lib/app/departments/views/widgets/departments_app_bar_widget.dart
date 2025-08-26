@@ -1,7 +1,8 @@
+import 'package:clinic_app/core/extentions/colors_extensions/theme_text_colors_extension.dart';
 import 'package:clinic_app/core/widgets/search_widget.dart';
-import 'package:clinic_app/core/constants/app_colors.dart';
+
 import 'package:clinic_app/core/constants/app_dimensions.dart';
-import 'package:clinic_app/core/extentions/percent_sized_extention.dart';
+import 'package:clinic_app/core/extentions/dimensions_extensions/percent_sized_extension.dart';
 import 'package:flutter/material.dart';
 
 class DepartmentsAppBarWidget extends StatelessWidget
@@ -14,12 +15,10 @@ class DepartmentsAppBarWidget extends StatelessWidget
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: AppColors.primaryBackgroundColor,
-      surfaceTintColor: AppColors.primaryBackgroundColor,
       title: Text(
         "Departments",
         style: TextStyle(
-          color: AppColors.primaryTextColor,
+          color: Theme.of(context).primaryTextColor,
           fontSize: AppDimensions.lfs,
           fontWeight: FontWeight.bold,
         ),

@@ -1,8 +1,9 @@
 import 'package:clinic_app/app/notifications/controllers/fetch_notifications_bloc/fetch_notifications_bloc.dart';
 import 'package:clinic_app/app/notifications/views/widgets/notifications_widget.dart';
 import 'package:clinic_app/app/notifications/views/widgets/shimmer_notifications_widget.dart';
-import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_background_colors_extension.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_text_colors_extension.dart';
 import 'package:clinic_app/core/widgets/empty_list_widget.dart';
 import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
@@ -21,11 +22,10 @@ class NotificationScreen extends StatelessWidget {
       create: (context) => FetchNotificationsBloc()..add(FetchNotifications()),
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-          surfaceTintColor: AppColors.primaryBackgroundColor,
           title: Text(
             S.current.notifications,
             style: TextStyle(
+              color: Theme.of(context).primaryTextColor,
               fontSize: AppDimensions.lfs,
               fontWeight: FontWeight.bold,
             ),
@@ -35,8 +35,8 @@ class NotificationScreen extends StatelessWidget {
           builder: (context) {
             return RefreshIndicator(
               onRefresh: () => _onRefresh(context),
-              color: AppColors.primaryColor,
-              backgroundColor: Theme.of(context).cardColor,
+              color: Theme.of(context).primaryColor,
+              backgroundColor: Theme.of(context).accentBackgroundColor,
               child: BlocBuilder<
                 FetchNotificationsBloc,
                 FetchNotificationsState

@@ -1,7 +1,8 @@
-import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
 import 'package:clinic_app/core/constants/app_icons.dart';
-import 'package:clinic_app/core/extentions/percent_sized_extention.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_background_colors_extension.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_text_colors_extension.dart';
+import 'package:clinic_app/core/extentions/dimensions_extensions/percent_sized_extension.dart';
 import 'package:clinic_app/app/book_appointment/views/widgets/request_types_widget/controllers/request%20types%20bloc/request_types_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -21,8 +22,8 @@ class LabelItem extends StatelessWidget {
   Widget build(BuildContext context) {
     Color specifyLabelColor() {
       return isRequestTypesWidgetActived
-          ? Theme.of(context).textTheme.titleLarge!.color!
-          :Theme.of(context).hintColor ;
+          ? Theme.of(context).primaryTextColor
+          : Theme.of(context).hintTextColor;
     }
 
     return GestureDetector(
@@ -34,7 +35,7 @@ class LabelItem extends StatelessWidget {
         width: 92.0.wp,
         padding: EdgeInsets.all(AppDimensions.mp),
         decoration: BoxDecoration(
-          color: Theme.of(context).cardColor,
+          color: Theme.of(context).accentBackgroundColor,
           borderRadius: BorderRadius.circular(AppDimensions.mbr),
         ),
         child: Row(
@@ -46,7 +47,10 @@ class LabelItem extends StatelessWidget {
               AppIcons.requestType,
               height: AppDimensions.lis,
               width: AppDimensions.lis,
-              colorFilter:ColorFilter.mode(AppColors.primaryColor, BlendMode.srcIn),
+              colorFilter: ColorFilter.mode(
+                Theme.of(context).primaryColor,
+                BlendMode.srcIn,
+              ),
             ),
             Text(
               label,
@@ -63,7 +67,10 @@ class LabelItem extends StatelessWidget {
                   AppIcons.arrowDown,
                   height: AppDimensions.sis,
                   width: AppDimensions.sis,
-                  colorFilter:ColorFilter.mode(AppColors.primaryColor, BlendMode.srcIn) ,
+                  colorFilter: ColorFilter.mode(
+                    Theme.of(context).primaryColor,
+                    BlendMode.srcIn,
+                  ),
                 ),
               ),
             ),

@@ -1,9 +1,10 @@
 import 'package:clinic_app/app/book_appointment/views/widgets/book_appointment_auth_decision_widget.dart';
 import 'package:clinic_app/app/home/views/widgets/services%20button%20widgets/service_button_widget.dart';
-import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
 import 'package:clinic_app/core/constants/app_icons.dart';
-import 'package:clinic_app/core/extentions/percent_sized_extention.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_background_colors_extension.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_text_colors_extension.dart';
+import 'package:clinic_app/core/extentions/dimensions_extensions/percent_sized_extension.dart';
 import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -28,10 +29,10 @@ class ServicesButtonsWidget extends StatelessWidget {
           icon: AppIcons.calendar,
           title: S.current.book_now,
           subtitle: S.current.book_now_subtitle,
-          backgroundColor: AppColors.primaryColor,
-          iconColor: AppColors.accentBackgroundColor,
-          titleColor: AppColors.accentBackgroundColor,
-          subTitleColor: AppColors.accentBackgroundColor,
+          backgroundColor: Theme.of(context).primaryColor,
+          iconColor: Theme.of(context).foregroundColor,
+          titleColor: Theme.of(context).foregroundColor,
+          subTitleColor: Theme.of(context).foregroundColor,
           onPressed: () {
             Get.to(
               () => BookAppointmentAuthDecisionWidget(),
@@ -43,30 +44,30 @@ class ServicesButtonsWidget extends StatelessWidget {
           icon: AppIcons.prescriptions,
           title: S.current.prescriptions,
           subtitle: S.current.prescriptions_subtitle,
-          backgroundColor: Theme.of(context).appBarTheme.backgroundColor!,
-          iconColor: AppColors.primaryColor,
-          titleColor: Theme.of(context).textTheme.titleLarge!.color!,
-          subTitleColor: Theme.of(context).hintColor,
+          backgroundColor: Theme.of(context).accentBackgroundColor,
+          iconColor: Theme.of(context).primaryColor,
+          titleColor: Theme.of(context).primaryTextColor,
+          subTitleColor: Theme.of(context).accentTextColor,
           onPressed: () {},
         ),
         ServiceButtonWidget(
           icon: AppIcons.microscope,
           title: S.current.lab_tests,
           subtitle: S.current.lab_tests_subtitle,
-          backgroundColor: Theme.of(context).appBarTheme.backgroundColor!,
-          iconColor: AppColors.primaryColor,
-          titleColor: Theme.of(context).textTheme.titleLarge!.color!,
-          subTitleColor: Theme.of(context).hintColor,
+          backgroundColor: Theme.of(context).accentBackgroundColor,
+          iconColor: Theme.of(context).primaryColor,
+          titleColor: Theme.of(context).primaryTextColor,
+          subTitleColor: Theme.of(context).accentTextColor,
           onPressed: () {},
         ),
         ServiceButtonWidget(
           icon: AppIcons.marketplace,
           title: S.current.medical_reports,
           subtitle: S.current.medical_reports_subtitle,
-          backgroundColor: Theme.of(context).appBarTheme.backgroundColor!,
-          iconColor: AppColors.primaryColor,
-          titleColor: Theme.of(context).textTheme.titleLarge!.color!,
-          subTitleColor: Theme.of(context).hintColor,
+          backgroundColor: Theme.of(context).accentBackgroundColor,
+          iconColor: Theme.of(context).primaryColor,
+          titleColor: Theme.of(context).primaryTextColor,
+          subTitleColor: Theme.of(context).accentTextColor,
           onPressed: () {},
         ),
       ],

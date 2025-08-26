@@ -1,4 +1,5 @@
-import 'package:flutter/widgets.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_text_colors_extension.dart';
+import 'package:flutter/material.dart';
 
 class DoctorNameWidget extends StatelessWidget {
   const DoctorNameWidget({super.key, required this.name, required this.size});
@@ -10,7 +11,7 @@ class DoctorNameWidget extends StatelessWidget {
     return Text(
       "Dr.$name",
       style: TextStyle(
-        //color: AppColors.primaryTextColor,
+        color: Theme.of(context).primaryTextColor,
         fontSize: size,
         fontWeight: FontWeight.bold,
       ),

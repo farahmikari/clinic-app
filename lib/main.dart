@@ -1,10 +1,8 @@
 import 'package:clinic_app/app/auth_prompt/controllers/check_user_authentication_bloc/check_user_authentication_bloc.dart';
-import 'package:clinic_app/app/setting/localization_bloc/localization_bloc.dart';
+import 'package:clinic_app/app/settings/controllers/localization_bloc/localization_bloc.dart';
 import 'package:clinic_app/app/onboarding/views/screens/splash_screen.dart';
-import 'package:clinic_app/core/theme/app_theme.dart';
-import 'package:clinic_app/core/theme/bloc/theme_bloc/theme_bloc.dart';
-import 'package:clinic_app/core/theme/bloc/theme_bloc/theme_event.dart';
-import 'package:clinic_app/core/theme/bloc/theme_bloc/theme_state.dart';
+import 'package:clinic_app/app/settings/controllers/theme_bloc/theme_bloc.dart';
+import 'package:clinic_app/core/constants/app_theme.dart';
 import 'package:clinic_app/generated/l10n.dart';
 import 'package:clinic_app/service_locator.dart';
 import 'package:clinic_app/core/services/app_bloc_observer.dart';
@@ -35,6 +33,14 @@ void main() async {
                   getIt<CheckUserAuthenticationBloc>()
                     ..add(UserAuthenticationIsChecked()),
         ),
+        BlocProvider(
+          create: (context) => ThemeBloc()..add(SavedThemeModeIsFetched()),
+        ),
+        BlocProvider(
+          create:
+              (context) =>
+                  LocalizationBloc()..add(SavedLocalizationModeIsFetched()),
+        ),
       ],
       child: const ClinicApp(),
     ),
@@ -46,39 +52,30 @@ class ClinicApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create: (context) => ThemeBloc()..add(GetCurrentThemeEvent()),
-        ),
-        BlocProvider(
-          create: (context) => LocalizationBloc()..add(SavedLocaleIsFetched()),
-        ),
-      ],
-      child: Builder(
-        builder: (context) {
-          var themeState = context.select((ThemeBloc bloc) => (bloc.state));
-          var localeState = context.select(
-            (LocalizationBloc bloc) => (bloc.state),
-          );
-          return GetMaterialApp(
-            debugShowCheckedModeBanner: false,
-            theme:
-                themeState is LoadedThemeState
-                    ? themeState.themeData
-                    : AppTheme.lightTheme,
-            localizationsDelegates: const [
-              S.delegate,
-              GlobalMaterialLocalizations.delegate,
-              GlobalWidgetsLocalizations.delegate,
-              GlobalCupertinoLocalizations.delegate,
-            ],
-            supportedLocales: S.delegate.supportedLocales,
-            locale: localeState.locale,
-            home: SplashScreen(),
-          );
-        },
-      ),
+    return Builder(
+      builder: (context) {
+        ThemeState themeState = context.select(
+          (ThemeBloc bloc) => (bloc.state),
+        );
+        LocalizationState localizationState = context.select(
+          (LocalizationBloc bloc) => (bloc.state),
+        );
+        return GetMaterialApp(
+          debugShowCheckedModeBanner: false,
+          theme: AppTheme.lightTheme,
+          darkTheme: AppTheme.darkTheme,
+          themeMode: themeState.themeMode,
+          localizationsDelegates: const [
+            S.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          supportedLocales: S.delegate.supportedLocales,
+          locale: localizationState.locale,
+          home: SplashScreen(),
+        );
+      },
     );
   }
 }

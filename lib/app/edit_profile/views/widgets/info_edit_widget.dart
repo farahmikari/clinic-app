@@ -3,8 +3,8 @@ import 'package:clinic_app/app/edit_profile/controller/bloc/edit_profile_bloc/ed
 import 'package:clinic_app/app/edit_profile/views/widgets/email_edit_widget.dart';
 import 'package:clinic_app/app/login/views/widgets/button_widget.dart';
 import 'package:clinic_app/app/login/views/widgets/text_form_field_widget.dart';
-import 'package:clinic_app/core/constants/app_colors.dart';
-import 'package:clinic_app/core/extentions/percent_sized_extention.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_text_colors_extension.dart';
+import 'package:clinic_app/core/extentions/dimensions_extensions/percent_sized_extension.dart';
 import 'package:clinic_app/core/utils/select_birthday_date.dart';
 import 'package:clinic_app/core/utils/select_gender.dart';
 import 'package:clinic_app/generated/l10n.dart';
@@ -38,7 +38,7 @@ class InfoEditWidget extends StatelessWidget {
   final TextEditingController newEmailController;
   final EditProfileState editData;
   final bool isLoading;
-  
+
   @override
   Widget build(BuildContext context) {
     final bloc = context.read<EditProfileBloc>();
@@ -58,7 +58,7 @@ class InfoEditWidget extends StatelessWidget {
             },
           ),
           TextFormFieldWidget(
-            label: S.current.last_name ,
+            label: S.current.last_name,
             iconTextField: Icons.person_outlined,
             controller: lastNameController,
             validator: (value) => editData.lastName.value,
@@ -69,19 +69,22 @@ class InfoEditWidget extends StatelessWidget {
             },
           ),
           TextFormFieldWidget(
-            label:  S.current.birthday_date,
+            label: S.current.birthday_date,
             iconTextField: Icons.person_outline,
             controller: birthdayController,
             suffixIcon: IconButton(
               onPressed:
                   () =>
                       selectDate(context, valueBirth, birthdayController, bloc),
-              icon: Icon(Icons.calendar_month_outlined),
+              icon: Icon(
+                Icons.calendar_month_outlined,
+                color: Theme.of(context).accentTextColor,
+              ),
             ),
             readOnly: true,
           ),
           TextFormFieldWidget(
-            label:  S.current.gender,
+            label: S.current.gender,
             iconTextField: Icons.transgender,
             controller: genderController,
             onTap:
@@ -90,7 +93,7 @@ class InfoEditWidget extends StatelessWidget {
             readOnly: true,
           ),
           TextFormFieldWidget(
-            label:  S.current.phone,
+            label: S.current.phone,
             iconTextField: Icons.phone_android_outlined,
             controller: phoneController,
             validator: (value) => editData.phone.value,
@@ -108,7 +111,7 @@ class InfoEditWidget extends StatelessWidget {
           SizedBox(height: 0.2.hp),
           MyButtonWidget(
             text: S.current.save,
-            color: AppColors.primaryColor,
+            color: Theme.of(context).primaryColor,
             isLoading: isLoading,
             onPressed:
                 (editData.buttonEvent && !isLoading)

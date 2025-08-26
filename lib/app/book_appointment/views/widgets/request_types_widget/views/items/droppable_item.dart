@@ -1,7 +1,7 @@
-
 import 'package:clinic_app/core/constants/app_dimensions.dart';
 import 'package:clinic_app/core/constants/app_shadow.dart';
-import 'package:clinic_app/core/extentions/percent_sized_extention.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_background_colors_extension.dart';
+import 'package:clinic_app/core/extentions/dimensions_extensions/percent_sized_extension.dart';
 import 'package:clinic_app/app/book_appointment/views/widgets/request_types_widget/models/request_type_model.dart';
 import 'package:clinic_app/app/book_appointment/views/widgets/request_types_widget/views/items/type_item.dart';
 import 'package:clinic_app/generated/l10n.dart';
@@ -28,7 +28,7 @@ class DroppableItem extends StatelessWidget {
       height: height,
       padding: EdgeInsets.only(top: 16.0.wp, bottom: AppDimensions.mp),
       decoration: BoxDecoration(
-        color: Theme.of(context).cardColor,
+        color: Theme.of(context).accentBackgroundColor,
         borderRadius: BorderRadius.circular(AppDimensions.mbr),
         boxShadow: AppShadow.boxShadow,
       ),

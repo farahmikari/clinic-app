@@ -1,7 +1,8 @@
 import 'package:clinic_app/app/book_appointment/models/pricing_model.dart';
-import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
-import 'package:clinic_app/core/extentions/percent_sized_extention.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_background_colors_extension.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_text_colors_extension.dart';
+import 'package:clinic_app/core/extentions/dimensions_extensions/percent_sized_extension.dart';
 import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 
@@ -18,12 +19,12 @@ class CustomPricingDialogWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      backgroundColor: AppColors.accentBackgroundColor,
+      backgroundColor: Theme.of(context).accentBackgroundColor,
       title: Center(
         child: Text(
           S.current.reservation_price,
           style: TextStyle(
-            color: AppColors.primaryTextColor,
+            color: Theme.of(context).primaryTextColor,
             fontSize: AppDimensions.xlfs,
             fontWeight: FontWeight.bold,
           ),
@@ -38,7 +39,7 @@ class CustomPricingDialogWidget extends StatelessWidget {
             Text(
               S.current.know_reservation_price,
               style: TextStyle(
-                color: AppColors.hintTextColor,
+                color: Theme.of(context).accentTextColor,
                 fontSize: AppDimensions.sfs,
                 fontWeight: FontWeight.w500,
               ),
@@ -47,7 +48,7 @@ class CustomPricingDialogWidget extends StatelessWidget {
             Text(
               "${pricing.price} ${pricing.currency}",
               style: TextStyle(
-                color: AppColors.primaryColor,
+                color: Theme.of(context).primaryColor,
                 fontSize: AppDimensions.lfs,
                 fontWeight: FontWeight.w500,
               ),
@@ -56,7 +57,7 @@ class CustomPricingDialogWidget extends StatelessWidget {
             Text(
               S.current.need_booking,
               style: TextStyle(
-                color: AppColors.hintTextColor,
+                color: Theme.of(context).accentTextColor,
                 fontSize: AppDimensions.sfs,
                 fontWeight: FontWeight.w500,
               ),
@@ -71,7 +72,7 @@ class CustomPricingDialogWidget extends StatelessWidget {
           child: Text(
             S.current.cancel,
             style: TextStyle(
-              color: AppColors.primaryColor,
+              color: Theme.of(context).primaryColor,
               fontSize: AppDimensions.mfs,
               fontWeight: FontWeight.w500,
             ),
@@ -83,7 +84,7 @@ class CustomPricingDialogWidget extends StatelessWidget {
           child: Text(
             S.current.keep_going,
             style: TextStyle(
-              color: AppColors.primaryColor,
+              color: Theme.of(context).primaryColor,
               fontSize: AppDimensions.mfs,
               fontWeight: FontWeight.w500,
             ),

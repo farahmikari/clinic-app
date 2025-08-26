@@ -1,6 +1,6 @@
 import 'package:clinic_app/core/constants/app_dimensions.dart';
 import 'package:clinic_app/core/constants/app_shadow.dart';
-import 'package:clinic_app/core/extentions/percent_sized_extention.dart';
+import 'package:clinic_app/core/extentions/dimensions_extensions/percent_sized_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -27,7 +27,10 @@ class ActionButton extends StatelessWidget {
           icon,
           height: AppDimensions.sis,
           width: AppDimensions.sis,
-          colorFilter:ColorFilter.mode(Theme.of(context).iconTheme.color!, BlendMode.srcIn),
+          colorFilter: ColorFilter.mode(
+            Theme.of(context).iconTheme.color!,
+            BlendMode.srcIn,
+          ),
         ),
       ),
     );

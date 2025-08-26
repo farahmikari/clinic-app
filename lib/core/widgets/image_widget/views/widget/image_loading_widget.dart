@@ -1,11 +1,8 @@
-import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 class ImageLoadingWidget extends StatelessWidget {
-  const ImageLoadingWidget({
-    super.key,
-  });
+  const ImageLoadingWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +10,7 @@ class ImageLoadingWidget extends StatelessWidget {
       width: 50,
       height: 42,
       child: LoadingAnimationWidget.hexagonDots(
-        color: AppColors.primaryColor,
+        color: Theme.of(context).primaryColor,
         size: 30,
       ),
     );

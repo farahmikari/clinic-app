@@ -1,7 +1,9 @@
 import 'package:clinic_app/app/vital_signals/views/widgets/container_with_icon_and_texts_widget.dart';
 import 'package:clinic_app/app/vital_signals/views/widgets/heart_rate_widget.dart';
-import 'package:clinic_app/core/constants/app_colors.dart';
-import 'package:clinic_app/core/extentions/percent_sized_extention.dart';
+import 'package:clinic_app/core/constants/app_dimensions.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_colors_extension.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_text_colors_extension.dart';
+import 'package:clinic_app/core/extentions/dimensions_extensions/percent_sized_extension.dart';
 import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 
@@ -12,11 +14,11 @@ class InfoVitalSignals extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         title: Text(
           S.current.vital_signs,
-          style: Theme.of(context).textTheme.titleLarge!.copyWith(
-            fontSize: 20,
+          style: TextStyle(
+            color: Theme.of(context).primaryTextColor,
+            fontSize: AppDimensions.lfs,
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -39,41 +41,41 @@ class InfoVitalSignals extends StatelessWidget {
                     title: S.current.blood_group,
                     value: "+A",
                     icon: "assets/images/blood-type-a.png",
-                    color: AppColors.lightRedColor,
+                    color: Theme.of(context).lightRedColor,
                   ),
                   ContainerWithIconAndTextsWidget(
                     title: S.current.temprature,
                     value: "36",
                     icon: "assets/images/temprature.png",
-                    color: AppColors.lightOrangColor,
+                    color: Theme.of(context).lightOrangeColor,
                   ),
                   ContainerWithIconAndTextsWidget(
                     title: S.current.weight,
                     value: "50",
                     symbol: "Kg",
                     icon: "assets/images/weight-loss.png",
-                    color: AppColors.lightGreenColor,
+                    color: Theme.of(context).lightGreenColor,
                   ),
                   ContainerWithIconAndTextsWidget(
                     title: S.current.height,
                     value: "155",
                     symbol: "m",
                     icon: "assets/images/height.png",
-                    color: AppColors.lightYellowColor,
+                    color: Theme.of(context).lightYelloColor,
                   ),
                   ContainerWithIconAndTextsWidget(
                     title: S.current.blood_pressure,
                     value: "120/80",
                     symbol: "mmHg",
                     icon: "assets/images/blood-pressure-gauge.png",
-                    color: AppColors.lightBlueColor,
+                    color: Theme.of(context).lightBlueColor,
                   ),
                   ContainerWithIconAndTextsWidget(
                     title: S.current.blood_sugar,
                     value: "55",
                     symbol: "mg/dl",
                     icon: "assets/images/diabetes-test.png",
-                    color: AppColors.lightFColor,
+                    color: Theme.of(context).lightFColor,
                   ),
                 ],
               ),

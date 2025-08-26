@@ -1,7 +1,7 @@
 import 'package:clinic_app/app/prescription/models/surgery_model.dart';
 import 'package:clinic_app/app/prescription/views/widgets/surgeries_widgets/surgery_widget.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
-import 'package:clinic_app/core/extentions/percent_sized_extention.dart';
+import 'package:clinic_app/core/extentions/dimensions_extensions/percent_sized_extension.dart';
 import 'package:flutter/material.dart';
 
 class SurgeriesWidget extends StatelessWidget {

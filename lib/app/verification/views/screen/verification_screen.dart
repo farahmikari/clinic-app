@@ -8,11 +8,11 @@ import 'package:clinic_app/app/verification/controllers/bloc/verification_bloc/v
 import 'package:clinic_app/app/verification/controllers/bloc/verification_bloc/verification_event.dart';
 import 'package:clinic_app/app/verification/model/verification_goto.dart';
 import 'package:clinic_app/app/verification/views/widget/otp_textfield.dart';
-import 'package:clinic_app/consts.dart';
 import 'package:clinic_app/app/forget_password/views/screens/reset_password.dart';
 import 'package:clinic_app/app/signup/views/screens/sign_up_screen.dart';
 import 'package:clinic_app/app/login/views/widgets/button_widget.dart';
 import 'package:clinic_app/app/signup/views/widgets/text_button_widget.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_text_colors_extension.dart';
 import 'package:clinic_app/core/utils/snack_bar_util.dart';
 import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
@@ -94,16 +94,20 @@ class VerificationScreen extends StatelessWidget {
                   ),
                   Text(
                     S.current.otp_verification,
-                    style: Theme.of(context).textTheme.titleLarge
+                    style: TextStyle(
+                      color: Theme.of(context).primaryTextColor,
+                      fontSize: 23,
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
                   SizedBox(height: 8),
                   Text(
                     "${S.current.we_sent_your_code_to} $email ${S.current.this_code_will_expired_in}",
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      color: Color(0xFF757575),
-                      fontFamily: "Montserat",
-                      fontWeight: FontWeight.bold,
+                      color: Theme.of(context).accentTextColor,
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
                     ),
                   ),
                   SizedBox(height: height * 0.1),
@@ -129,10 +133,9 @@ class VerificationScreen extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: 24),
-
                   MyButtonWidget(
                     text: S.current.submit,
-                    color: kPrimaryColor,
+                    color: Theme.of(context).primaryColor,
                     isLoading: isLoading,
                     onPressed:
                         (state.canSubmit && !isLoading)
@@ -156,7 +159,10 @@ class VerificationScreen extends StatelessWidget {
                             isCounting
                                 ? "0:${seconds.toString().padLeft(2, '0')}"
                                 : S.current.resend_otp_code,
-                        color: isCounting ? Colors.grey : kPrimaryColor,
+                        color:
+                            isCounting
+                                ? Theme.of(context).hintTextColor
+                                : Theme.of(context).primaryColor,
                         onPressed:
                             isCounting
                                 ? null

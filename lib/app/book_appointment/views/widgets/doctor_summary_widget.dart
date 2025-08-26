@@ -1,10 +1,11 @@
 import 'package:clinic_app/app/doctor/models/doctor_model.dart';
-import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_background_colors_extension.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_colors_extension.dart';
 import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:clinic_app/core/constants/app_shadow.dart';
-import 'package:clinic_app/core/extentions/percent_sized_extention.dart';
+import 'package:clinic_app/core/extentions/dimensions_extensions/percent_sized_extension.dart';
 import 'package:clinic_app/core/widgets/doctor_image_with_frame_widget.dart';
 import 'package:clinic_app/core/widgets/doctor_name_widget.dart';
 import 'package:clinic_app/core/widgets/filter_badge_widget.dart';
@@ -19,8 +20,8 @@ class DoctorSummaryWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     Color specifyBadgeColor() {
       return doctor.shift == "Morning"
-          ? AppColors.transparentPrimaryColor
-          : AppColors.transparentAccentColor;
+          ? Theme.of(context).transparentPrimaryColor
+          : Theme.of(context).transparentAccentColor;
     }
 
     return Container(
@@ -28,7 +29,7 @@ class DoctorSummaryWidget extends StatelessWidget {
       width: 92.0.wp,
       padding: EdgeInsets.all(AppDimensions.mp),
       decoration: BoxDecoration(
-        color: Theme.of(context).cardColor,
+        color: Theme.of(context).accentBackgroundColor,
         borderRadius: BorderRadius.circular(AppDimensions.mbr),
         boxShadow: AppShadow.boxShadow,
       ),
