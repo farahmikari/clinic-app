@@ -35,9 +35,8 @@ class DepartmentsScreen extends StatelessWidget {
                   if (state is FetchDepartmentsLoadedEmpty) {
                     return EmptyListWidget(
                       image: "assets/images/empty_departments.png",
-                      title: "No Departments Available",
-                      subtitle:
-                          "There are currently no departments open at the clinic. Please check back later.",
+                      title: S.current.departments_empty_title,
+                      subtitle: S.current.departments_empty_subtitle,
                     );
                   }
                   return ShimmerDepartmentsWidget();

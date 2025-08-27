@@ -21,11 +21,21 @@ class MostRatedDoctorWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String specifyTreatmentsUnit() {
-      return mostRatedDoctor.treatments > 1
-          ? S.current.treatments_unit
-          : S.current.treatment_unit;
-    }
+    // String specifyTreatmentsUnit() {
+    //   if (Get.locale!.languageCode == 'ar') {
+    //     if (mostRatedDoctor.treatments > 2 && mostRatedDoctor.treatments < 11) {
+    //       return S.current.treatments_unit;
+    //     } else {
+    //       return S.current.treatment_unit;
+    //     }
+    //   } else {
+    //     if (mostRatedDoctor.treatments > 1) {
+    //       return S.current.treatments_title;
+    //     } else {
+    //       return S.current.treatment_unit;
+    //     }
+    //   }
+    // }
 
     return GestureDetector(
       onTap: () {
@@ -102,7 +112,8 @@ class MostRatedDoctorWidget extends StatelessWidget {
                   infoSize: AppDimensions.mfs,
                 ),
                 Text(
-                  "(${mostRatedDoctor.treatments} ${specifyTreatmentsUnit()})",
+                  S.current.treatments_count(mostRatedDoctor.treatments),
+                  // "(${mostRatedDoctor.treatments} ${specifyTreatmentsUnit()})",
                   style: TextStyle(
                     color: Theme.of(context).hintTextColor,
                     fontSize: AppDimensions.sfs,

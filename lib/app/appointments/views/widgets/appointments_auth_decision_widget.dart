@@ -2,6 +2,7 @@ import 'package:clinic_app/app/appointments/views/screens/appointments_screen.da
 import 'package:clinic_app/app/auth_prompt/controllers/check_user_authentication_bloc/check_user_authentication_bloc.dart';
 import 'package:clinic_app/app/auth_prompt/views/screens/auth_prompt_screen.dart';
 import 'package:clinic_app/core/widgets/loading_widget.dart';
+import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -24,9 +25,8 @@ class AppointmentsAuthDecisionWidget extends StatelessWidget {
 
           case UserUnAuthenticated():
             return AuthPromptScreen(
-              title: "Sign In to Access Your Appointments",
-              subtitle:
-                  "Log in to view your upcoming and completed appointments with your doctors.",
+              title: S.current.appointments_auth_prompt_title,
+              subtitle: S.current.appointments_auth_prompt_subtitle,
             );
         }
       },

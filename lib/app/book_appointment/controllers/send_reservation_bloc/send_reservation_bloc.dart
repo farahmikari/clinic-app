@@ -20,27 +20,13 @@ class SendReservationBloc
             EndPoints.appointments,
             data: {
               ApiKey.offerId: event.reservation.offerId,
-              ApiKey.reservation: {
-                ApiKey.departmentId: event.reservation.departmentId,
-                ApiKey.doctorId: event.reservation.doctorId,
-                ApiKey.slotId: event.reservation.timeId,
-                ApiKey.date: event.reservation.day,
-                ApiKey.requestTypeId: event.reservation.requestTypeId,
-                ApiKey.withMedicalReport: event.reservation.withMedicalReport,
-              },
+              ApiKey.reservation: event.reservation.toJson(),
             },
           );
         } else {
           await api.post(
             EndPoints.appointments,
-            data: {
-              ApiKey.departmentId: event.reservation.departmentId,
-              ApiKey.doctorId: event.reservation.doctorId,
-              ApiKey.slotId: event.reservation.timeId,
-              ApiKey.date: event.reservation.day,
-              ApiKey.requestTypeId: event.reservation.requestTypeId,
-              ApiKey.withMedicalReport: event.reservation.withMedicalReport,
-            },
+            data: event.reservation.toJson(),
           );
         }
         emit(SendReservationLoaded());
@@ -64,15 +50,7 @@ class SendReservationBloc
       try {
         await api.put(
           EndPoints.appointmentId(event.appointmentId),
-          data: {
-            ApiKey.offerId: event.reservation.offerId,
-            ApiKey.departmentId: event.reservation.departmentId,
-            ApiKey.doctorId: event.reservation.doctorId,
-            ApiKey.slotId: event.reservation.timeId,
-            ApiKey.date: event.reservation.day,
-            ApiKey.requestTypeId: event.reservation.requestTypeId,
-            ApiKey.withMedicalReport: event.reservation.withMedicalReport,
-          },
+          data: event.reservation.toJson(),
         );
         emit(SendReservationLoaded());
       } on ServerException catch (e) {

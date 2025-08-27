@@ -33,7 +33,7 @@ class TimeItem extends StatelessWidget {
   Widget build(BuildContext context) {
     Color specifyprimaryBackgroundColor() {
       if (time.id == previousTimeId && currentDay == previousDay) {
-        return Theme.of(context).accentColor;
+        return Theme.of(context).transparentAccentColor;
       } else if (time.id == currentTimeId) {
         return Theme.of(context).primaryColor;
       } else {

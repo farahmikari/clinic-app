@@ -1,14 +1,12 @@
 import 'package:clinic_app/app/doctor/models/doctor_model.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
 import 'package:clinic_app/core/extentions/colors_extensions/theme_background_colors_extension.dart';
-import 'package:clinic_app/core/extentions/colors_extensions/theme_colors_extension.dart';
 import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:clinic_app/core/constants/app_shadow.dart';
 import 'package:clinic_app/core/extentions/dimensions_extensions/percent_sized_extension.dart';
 import 'package:clinic_app/core/widgets/doctor_image_with_frame_widget.dart';
 import 'package:clinic_app/core/widgets/doctor_name_widget.dart';
-import 'package:clinic_app/core/widgets/filter_badge_widget.dart';
 import 'package:clinic_app/core/widgets/horizontal_info_with_title_widget.dart';
 import 'package:clinic_app/core/widgets/info_with_icon_widget.dart';
 
@@ -18,12 +16,6 @@ class DoctorSummaryWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Color specifyBadgeColor() {
-      return doctor.shift == "Morning"
-          ? Theme.of(context).transparentPrimaryColor
-          : Theme.of(context).transparentAccentColor;
-    }
-
     return Container(
       height: 42.0.wp,
       width: 92.0.wp,
@@ -46,20 +38,10 @@ class DoctorSummaryWidget extends StatelessWidget {
               children: [
                 Expanded(
                   flex: 1,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      BadgeWidget(
-                        title: doctor.shift,
-                        color: specifyBadgeColor(),
-                      ),
-                      InfoWithIconWidget(
-                        icon: "assets/icons/rate.svg",
-                        info: doctor.rate.toString(),
-                        infoSize: AppDimensions.sfs,
-                      ),
-                    ],
+                  child: InfoWithIconWidget(
+                    icon: "assets/icons/rate.svg",
+                    info: doctor.rate.toString(),
+                    infoSize: AppDimensions.sfs,
                   ),
                 ),
                 Expanded(

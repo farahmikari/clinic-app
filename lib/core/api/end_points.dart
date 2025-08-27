@@ -128,7 +128,8 @@ class EndPoints {
 
 class ApiKey {
   static String accept = "Accept";
-  static String authorization = 'Authorization';
+  static String authorization = "Authorization";
+  static String acceptLanguage = "Accept-Language";
   static String errorMessage = "message";
   static String startId = "start_id";
   static String endId = "end_id";

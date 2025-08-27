@@ -135,56 +135,11 @@ class S {
     );
   }
 
-  /// `Prescriptions`
-  String get prescriptions {
+  /// `Check out today’s booking offers`
+  String get offers_subtitle {
     return Intl.message(
-      'Prescriptions',
-      name: 'prescriptions',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Your Medications, Treatment & Drugs`
-  String get prescriptions_subtitle {
-    return Intl.message(
-      'Your Medications, Treatment & Drugs',
-      name: 'prescriptions_subtitle',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Lab Tests`
-  String get lab_tests {
-    return Intl.message('Lab Tests', name: 'lab_tests', desc: '', args: []);
-  }
-
-  /// `All Required Laboratory Tests`
-  String get lab_tests_subtitle {
-    return Intl.message(
-      'All Required Laboratory Tests',
-      name: 'lab_tests_subtitle',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Medical Reports`
-  String get medical_reports {
-    return Intl.message(
-      'Medical Reports',
-      name: 'medical_reports',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `All Your Medical Reports in One Place`
-  String get medical_reports_subtitle {
-    return Intl.message(
-      'All Your Medical Reports in One Place',
-      name: 'medical_reports_subtitle',
+      'Check out today’s booking offers',
+      name: 'offers_subtitle',
       desc: '',
       args: [],
     );
@@ -205,14 +160,14 @@ class S {
     return Intl.message('All', name: 'all', desc: '', args: []);
   }
 
-  /// `Pending`
+  /// `pending`
   String get pending {
-    return Intl.message('Pending', name: 'pending', desc: '', args: []);
+    return Intl.message('pending', name: 'pending', desc: '', args: []);
   }
 
-  /// `Completed`
+  /// `completed`
   String get completed {
-    return Intl.message('Completed', name: 'completed', desc: '', args: []);
+    return Intl.message('completed', name: 'completed', desc: '', args: []);
   }
 
   /// `Check-Up`
@@ -245,23 +200,29 @@ class S {
     return Intl.message('Departments', name: 'departments', desc: '', args: []);
   }
 
-  /// `Morning Dr`
-  String get morning_doctor {
-    return Intl.message(
-      'Morning Dr',
-      name: 'morning_doctor',
+  /// `{count, plural, =0{No Morning Dr} =1{1 Morning Dr} other{{count} Morning Dr}}`
+  String morning_doctors_count(num count) {
+    return Intl.plural(
+      count,
+      zero: 'No Morning Dr',
+      one: '1 Morning Dr',
+      other: '$count Morning Dr',
+      name: 'morning_doctors_count',
       desc: '',
-      args: [],
+      args: [count],
     );
   }
 
-  /// `Afternoon Dr`
-  String get afternoon_doctor {
-    return Intl.message(
-      'Afternoon Dr',
-      name: 'afternoon_doctor',
+  /// `{count, plural, =0{No Afternoon Dr} =1{1 Afternoon Dr} other{{count} Afternoon Dr}}`
+  String afternoon_doctors_count(num count) {
+    return Intl.plural(
+      count,
+      zero: 'No Afternoon Dr',
+      one: '1 Afternoon Dr',
+      other: '$count Afternoon Dr',
+      name: 'afternoon_doctors_count',
       desc: '',
-      args: [],
+      args: [count],
     );
   }
 
@@ -270,14 +231,14 @@ class S {
     return Intl.message('Bills', name: 'bills', desc: '', args: []);
   }
 
-  /// `Paid`
+  /// `paid`
   String get paid {
-    return Intl.message('Paid', name: 'paid', desc: '', args: []);
+    return Intl.message('paid', name: 'paid', desc: '', args: []);
   }
 
-  /// `Unpaid`
+  /// `unpaid`
   String get unpaid {
-    return Intl.message('Unpaid', name: 'unpaid', desc: '', args: []);
+    return Intl.message('unpaid', name: 'unpaid', desc: '', args: []);
   }
 
   /// `Total Amount`
@@ -340,54 +301,50 @@ class S {
     );
   }
 
-  /// `treatment`
-  String get treatment_unit {
-    return Intl.message(
-      'treatment',
-      name: 'treatment_unit',
+  /// `{count, plural, =0{No treatments} =1{1 treatment} other{{count} treatments}}`
+  String treatments_count(num count) {
+    return Intl.plural(
+      count,
+      zero: 'No treatments',
+      one: '1 treatment',
+      other: '$count treatments',
+      name: 'treatments_count',
       desc: '',
-      args: [],
-    );
-  }
-
-  /// `treatments`
-  String get treatments_unit {
-    return Intl.message(
-      'treatments',
-      name: 'treatments_unit',
-      desc: '',
-      args: [],
+      args: [count],
     );
   }
 
   /// `Experience`
-  String get experiences_title {
+  String get experience_title {
     return Intl.message(
       'Experience',
-      name: 'experiences_title',
+      name: 'experience_title',
       desc: '',
       args: [],
     );
   }
 
-  /// `year`
-  String get year_unit {
-    return Intl.message('year', name: 'year_unit', desc: '', args: []);
+  /// `{count, plural, =0{No experience} =1{1 year} other{{count} years}}`
+  String experience_count(num count) {
+    return Intl.plural(
+      count,
+      zero: 'No experience',
+      one: '1 year',
+      other: '$count years',
+      name: 'experience_count',
+      desc: '',
+      args: [count],
+    );
   }
 
-  /// `years`
-  String get years_unit {
-    return Intl.message('years', name: 'years_unit', desc: '', args: []);
-  }
-
-  /// `Morning`
+  /// `morning`
   String get morning {
-    return Intl.message('Morning', name: 'morning', desc: '', args: []);
+    return Intl.message('morning', name: 'morning', desc: '', args: []);
   }
 
-  /// `Afternoon`
+  /// `afternoon`
   String get afternoon {
-    return Intl.message('Afternoon', name: 'afternoon', desc: '', args: []);
+    return Intl.message('afternoon', name: 'afternoon', desc: '', args: []);
   }
 
   /// `About Doctor`
@@ -555,9 +512,9 @@ class S {
     return Intl.message('Editing', name: 'editing', desc: '', args: []);
   }
 
-  /// `cancel`
+  /// `Cancel`
   String get cancel {
-    return Intl.message('cancel', name: 'cancel', desc: '', args: []);
+    return Intl.message('Cancel', name: 'cancel', desc: '', args: []);
   }
 
   /// `Prescription`
@@ -593,6 +550,11 @@ class S {
       desc: '',
       args: [],
     );
+  }
+
+  /// `Lab Tests`
+  String get lab_tests {
+    return Intl.message('Lab Tests', name: 'lab_tests', desc: '', args: []);
   }
 
   /// `Medical Report`
@@ -1125,9 +1087,9 @@ class S {
     );
   }
 
-  /// `Setting`
-  String get setting {
-    return Intl.message('Setting', name: 'setting', desc: '', args: []);
+  /// `Settings`
+  String get settings {
+    return Intl.message('Settings', name: 'settings', desc: '', args: []);
   }
 
   /// `About Us`
@@ -1180,26 +1142,6 @@ class S {
     );
   }
 
-  /// `change theme Dark / Light mode : `
-  String get change_theme_Dark_Light_mode {
-    return Intl.message(
-      'change theme Dark / Light mode : ',
-      name: 'change_theme_Dark_Light_mode',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Light`
-  String get light {
-    return Intl.message('Light', name: 'light', desc: '', args: []);
-  }
-
-  /// `Dark`
-  String get dark {
-    return Intl.message('Dark', name: 'dark', desc: '', args: []);
-  }
-
   /// `Logout Successfully`
   String get logout_successfully {
     return Intl.message(
@@ -1240,9 +1182,9 @@ class S {
     return Intl.message('No', name: 'No', desc: '', args: []);
   }
 
-  /// `save`
+  /// `Save`
   String get save {
-    return Intl.message('save', name: 'save', desc: '', args: []);
+    return Intl.message('Save', name: 'save', desc: '', args: []);
   }
 
   /// `Edit profile successfully`
@@ -1255,10 +1197,10 @@ class S {
     );
   }
 
-  /// `failed edit profile`
+  /// `Failed edit profile`
   String get failed_edit_profile {
     return Intl.message(
-      'failed edit profile',
+      'Failed edit profile',
       name: 'failed_edit_profile',
       desc: '',
       args: [],
@@ -1280,35 +1222,35 @@ class S {
     return Intl.message('Edit email', name: 'edit_email', desc: '', args: []);
   }
 
-  /// `cotinue`
+  /// `Cotinue`
   String get cotinue {
-    return Intl.message('cotinue', name: 'cotinue', desc: '', args: []);
+    return Intl.message('Cotinue', name: 'cotinue', desc: '', args: []);
   }
 
-  /// `old password`
+  /// `Old password`
   String get old_password {
     return Intl.message(
-      'old password',
+      'Old password',
       name: 'old_password',
       desc: '',
       args: [],
     );
   }
 
-  /// `new password`
+  /// `New password`
   String get new_password {
     return Intl.message(
-      'new password',
+      'New password',
       name: 'new_password',
       desc: '',
       args: [],
     );
   }
 
-  /// `change password`
+  /// `Change password`
   String get change_password {
     return Intl.message(
-      'change password',
+      'Change password',
       name: 'change_password',
       desc: '',
       args: [],
@@ -1385,9 +1327,334 @@ class S {
     return Intl.message('Blood Sugar', name: 'blood_sugar', desc: '', args: []);
   }
 
-  /// `Language`
-  String get language {
-    return Intl.message('Language', name: 'language', desc: '', args: []);
+  /// `Sign in`
+  String get sign_in {
+    return Intl.message('Sign in', name: 'sign_in', desc: '', args: []);
+  }
+
+  /// `OR`
+  String get or {
+    return Intl.message('OR', name: 'or', desc: '', args: []);
+  }
+
+  /// `Sign in to access your appointments`
+  String get appointments_auth_prompt_title {
+    return Intl.message(
+      'Sign in to access your appointments',
+      name: 'appointments_auth_prompt_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Log in to view your upcoming and completed appointments with your doctors.`
+  String get appointments_auth_prompt_subtitle {
+    return Intl.message(
+      'Log in to view your upcoming and completed appointments with your doctors.',
+      name: 'appointments_auth_prompt_subtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sign in to access your bills`
+  String get bills_auth_prompt_title {
+    return Intl.message(
+      'Sign in to access your bills',
+      name: 'bills_auth_prompt_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `To securely access and review all your billing details, please sign in to your account.`
+  String get bills_auth_prompt_subtitle {
+    return Intl.message(
+      'To securely access and review all your billing details, please sign in to your account.',
+      name: 'bills_auth_prompt_subtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sign in to book your appointment`
+  String get book_auth_prompt_title {
+    return Intl.message(
+      'Sign in to book your appointment',
+      name: 'book_auth_prompt_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `To schedule a visit with our doctors, please sign in to your account or create a new one, This will allow you to choose your preferred doctor, select a convenient time and confirm your booking easily.`
+  String get book_auth_prompt_subtitle {
+    return Intl.message(
+      'To schedule a visit with our doctors, please sign in to your account or create a new one, This will allow you to choose your preferred doctor, select a convenient time and confirm your booking easily.',
+      name: 'book_auth_prompt_subtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sign in to book your appointment`
+  String get book_with_doctor_auth_prompt_title {
+    return Intl.message(
+      'Sign in to book your appointment',
+      name: 'book_with_doctor_auth_prompt_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Log in to your account to select your preferred time and confirm your clinic visit.`
+  String get book_with_doctor_auth_prompt_subtitle {
+    return Intl.message(
+      'Log in to your account to select your preferred time and confirm your clinic visit.',
+      name: 'book_with_doctor_auth_prompt_subtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sign in to use your offer`
+  String get book_with_offer_auth_prompt_title {
+    return Intl.message(
+      'Sign in to use your offer',
+      name: 'book_with_offer_auth_prompt_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Log in to your account to unlock this special deal and book your appointment at the clinic.`
+  String get book_with_offer_auth_prompt_subtitle {
+    return Intl.message(
+      'Log in to your account to unlock this special deal and book your appointment at the clinic.',
+      name: 'book_with_offer_auth_prompt_subtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sign in to receive notifications`
+  String get notifications_auth_prompt_title {
+    return Intl.message(
+      'Sign in to receive notifications',
+      name: 'notifications_auth_prompt_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Log in to stay updated with the latest alerts and reminders from the clinic.`
+  String get notifications_auth_prompt_subtitle {
+    return Intl.message(
+      'Log in to stay updated with the latest alerts and reminders from the clinic.',
+      name: 'notifications_auth_prompt_subtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No appointments found`
+  String get appointments_empty_title {
+    return Intl.message(
+      'No appointments found',
+      name: 'appointments_empty_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You don't have any appointments at the clinic.`
+  String get appointments_empty_subtitle {
+    return Intl.message(
+      'You don\'t have any appointments at the clinic.',
+      name: 'appointments_empty_subtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No bills due`
+  String get bills_empty_title {
+    return Intl.message(
+      'No bills due',
+      name: 'bills_empty_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You don't have any bills to pay at the moment.`
+  String get bills_empty_subtitle {
+    return Intl.message(
+      'You don\'t have any bills to pay at the moment.',
+      name: 'bills_empty_subtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No departments available`
+  String get departments_empty_title {
+    return Intl.message(
+      'No departments available',
+      name: 'departments_empty_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `There are currently no departments open at the clinic, Please check back later.`
+  String get departments_empty_subtitle {
+    return Intl.message(
+      'There are currently no departments open at the clinic, Please check back later.',
+      name: 'departments_empty_subtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No notifications yet`
+  String get notifications_empty_title {
+    return Intl.message(
+      'No notifications yet',
+      name: 'notifications_empty_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You haven't received any notifications so far, Stay tuned for updates.`
+  String get notifications_empty_subtitle {
+    return Intl.message(
+      'You haven\'t received any notifications so far, Stay tuned for updates.',
+      name: 'notifications_empty_subtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No offers available`
+  String get offers_empty_title {
+    return Intl.message(
+      'No offers available',
+      name: 'offers_empty_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `There aren't any special offers right now, but stay tuned exciting deals are on the way.`
+  String get offers_empty_subtitle {
+    return Intl.message(
+      'There aren\'t any special offers right now, but stay tuned exciting deals are on the way.',
+      name: 'offers_empty_subtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No Doctors Available`
+  String get department_doctors_empty_title {
+    return Intl.message(
+      'No Doctors Available',
+      name: 'department_doctors_empty_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `There are currently no doctors in this department. Please check back soon or explore other departments.`
+  String get department_doctors_empty_subtitle {
+    return Intl.message(
+      'There are currently no doctors in this department. Please check back soon or explore other departments.',
+      name: 'department_doctors_empty_subtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Appearance`
+  String get appearance_title {
+    return Intl.message(
+      'Appearance',
+      name: 'appearance_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Choose your light or dark theme.`
+  String get appearance_subtitle {
+    return Intl.message(
+      'Choose your light or dark theme.',
+      name: 'appearance_subtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `App Language`
+  String get app_language_title {
+    return Intl.message(
+      'App Language',
+      name: 'app_language_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Switch between English and Arabic.`
+  String get app_language_subtitle {
+    return Intl.message(
+      'Switch between English and Arabic.',
+      name: 'app_language_subtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Use device theme`
+  String get use_device_theme {
+    return Intl.message(
+      'Use device theme',
+      name: 'use_device_theme',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Light theme`
+  String get light_theme {
+    return Intl.message('Light theme', name: 'light_theme', desc: '', args: []);
+  }
+
+  /// `Dark theme`
+  String get dark_theme {
+    return Intl.message('Dark theme', name: 'dark_theme', desc: '', args: []);
+  }
+
+  /// `Use device language`
+  String get use_device_language {
+    return Intl.message(
+      'Use device language',
+      name: 'use_device_language',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Arabic`
+  String get arabic {
+    return Intl.message('Arabic', name: 'arabic', desc: '', args: []);
+  }
+
+  /// `English`
+  String get english {
+    return Intl.message('English', name: 'english', desc: '', args: []);
   }
 }
 

@@ -63,7 +63,7 @@ class PrescriptionScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBarWithBadgeWidget(
         title: S.current.prescription,
-        badgeTitle: "Completed",
+        badgeTitle: S.current.completed,
         badgeColor: Theme.of(context).transparentAccentColor,
       ),
       body: MultiBlocProvider(

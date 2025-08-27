@@ -11,28 +11,15 @@ class AppColors {
   static Color transparentPrurpleColor = Color(0x7C683AB7);
   static Color darkRedColor = Color(0xFFD50404);
   static Color transparentRedColor = Color(0x82D50404);
-  static Color lightBlueColor = Color(0xFF4A90E2); // darker sky blue
-  static Color lightRedColor = Color(0xFFE57373); // soft red
-  static Color lightOrangeColor = Color(0xFFF57C00); // warm orange
-  static Color lightGreenColor = Color(0xFF388E3C); // darker green
-  static Color lightYellowColor = Color(0xFFFBC02D); // golden yellow
-  static Color lightFColor = Color(0xFF26A69A);
-  // static Color lightBlueColor = Color(0xFFADD8E6);
-  // static Color lightRedColor = Color(0xFFF9D3D3);
-  // static Color lightOrangColor = Color(0xFFFBD6BC);
-  // static Color lightGreenColor = Color(0xFFDAFBDF);
-  // static Color lightYellowColor = Color(0xFFFBF8BC);
-  // static Color lightFColor = Color(0xFFBCFBF0);
+  static Color lightBlueColor = Color(0xFFADD8E6);
+  static Color lightRedColor = Color(0xFFF9D3D3);
+  static Color lightOrangeColor = Color(0xFFFBD6BC);
+  static Color lightGreenColor = Color(0xFFDAFBDF);
+  static Color lightYellowColor = Color(0xFFFBF8BC);
+  static Color lightFColor = Color(0xFFBCFBF0);
   static Color errorColor = Color(0xFFF44336);
   static Color borderColor = Color(0x819E9E9E);
   static Color foregroundColor = Color(0xFFF8F9FA);
-  static Color primaryBackgroundColor = Color(0xFFEEEEEE);
-  static Color accentBackgroundColor = Color(0xFFF8F9FA);
-  static Color primaryTextColor = Color(0xFF1C1C1E);
-  static Color accentTextColor = Color(0xFF636366);
-  static Color hintTextColor = Color(0xFF8E8E93);
-  static Color shimmerBaseColor = Color(0xFFE0E0E0);
-  static Color shimmerHighlightColor = Color(0xFFF5F5F5);
 }
 
 class LightColors {

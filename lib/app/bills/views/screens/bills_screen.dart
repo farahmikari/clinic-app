@@ -67,9 +67,8 @@ class BillsScreen extends StatelessWidget {
                     if (state is FetchBillsLoadedEmpty) {
                       return EmptyListWidget(
                         image: "assets/images/empty_bills.png",
-                        title: "No Bills Due",
-                        subtitle:
-                            "You don’t have any bills to pay at the moment.",
+                        title: S.current.bills_empty_title,
+                        subtitle: S.current.bills_empty_subtitle,
                       );
                     }
                     return ShimmerBillsWidget();

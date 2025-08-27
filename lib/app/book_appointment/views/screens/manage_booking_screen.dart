@@ -117,8 +117,8 @@ class ManageBookingScreen extends StatelessWidget {
                 context.read<DaysBloc>().add(
                   CurrentDepartmentIdAndCurrentAndPreviousDayAndPreviousTimeIdAreSet(
                     currentDepartmentId: state.reservation.departmentId,
-                    currentAndPreviousDay: state.reservation.day,
-                    previousTimeId: state.reservation.timeId,
+                    currentAndPreviousDay: state.reservation.date,
+                    previousTimeId: state.reservation.slotId,
                   ),
                 );
                 context.read<TitledCheckboxBloc>().add(
@@ -260,7 +260,7 @@ class ManageBookingScreen extends StatelessWidget {
         child: Scaffold(
           appBar: AppBarWithBadgeWidget(
             title: S.current.manage_booking,
-            badgeTitle: "Upcoming",
+            badgeTitle: S.current.pending,
             badgeColor: Theme.of(context).transparentPrimaryColor,
           ),
           body: SafeArea(

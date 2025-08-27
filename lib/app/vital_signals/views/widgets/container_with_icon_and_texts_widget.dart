@@ -35,7 +35,7 @@ class ContainerWithIconAndTextsWidget extends StatelessWidget {
             Text(
               title,
               style: TextStyle(
-                color: Theme.of(context).primaryTextColor,
+                color: Theme.of(context).foregroundColor,
                 fontSize: 12,
                 fontWeight: FontWeight.w500,
               ),
@@ -44,7 +44,7 @@ class ContainerWithIconAndTextsWidget extends StatelessWidget {
             Text(
               "$value ${symbol ?? ""}",
               style: TextStyle(
-                color: Theme.of(context).primaryTextColor,
+                color: Theme.of(context).foregroundColor,
                 fontSize: 18,
                 fontWeight: FontWeight.w500,
               ),

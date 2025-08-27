@@ -18,7 +18,7 @@ class BillWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Color specifyStatusColor() {
-      return bill.status == "unpaid"
+      return bill.status == S.current.unpaid
           ? Theme.of(context).transparentPrimaryColor
           : Theme.of(context).transparentAccentColor;
     }

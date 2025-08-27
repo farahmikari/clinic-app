@@ -27,7 +27,7 @@ class DayItem extends StatelessWidget {
   Widget build(BuildContext context) {
     Color specifyprimaryBackgroundColor() {
       if (day.day == previousDay) {
-        return Theme.of(context).accentColor;
+        return Theme.of(context).transparentAccentColor;
       } else if (day.day == currentDay) {
         return Theme.of(context).primaryColor;
       } else {

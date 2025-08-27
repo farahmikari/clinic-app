@@ -25,7 +25,7 @@ class TypeItem extends StatelessWidget {
   Widget build(BuildContext context) {
     Color specifyprimaryBackgroundColor() {
       if (requestType.id == previousRequestTypeId) {
-        return Theme.of(context).accentColor;
+        return Theme.of(context).transparentAccentColor;
       } else if (requestType.id == currentRequestTypeId) {
         return Theme.of(context).primaryColor;
       } else {

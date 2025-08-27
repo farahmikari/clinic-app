@@ -33,9 +33,8 @@ class OffersScreen extends StatelessWidget {
             if (state is FetchOffersLoadedEmpty) {
               return EmptyListWidget(
                 image: "assets/images/empty_offers.png",
-                title: "No Offers Available",
-                subtitle:
-                    "There aren’t any special offers right now, but stay tuned — exciting deals are on the way!",
+                title: S.current.offers_empty_title,
+                subtitle: S.current.offers_empty_subtitle,
               );
             }
             return ShimmerOffersWidget();

@@ -1,8 +1,10 @@
 import 'package:clinic_app/app/settings/controllers/localization_bloc/localization_bloc.dart';
 import 'package:clinic_app/app/settings/models/localization_mode_model.dart';
+import 'package:clinic_app/app/user_drawer/views/screen/drawer_screen.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
 import 'package:clinic_app/core/extentions/colors_extensions/theme_background_colors_extension.dart';
 import 'package:clinic_app/core/extentions/colors_extensions/theme_text_colors_extension.dart';
+import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
@@ -18,7 +20,7 @@ Future<dynamic> selectLanguageUtil(BuildContext context) {
             titlePadding: EdgeInsets.all(AppDimensions.mp),
             contentPadding: EdgeInsets.all(AppDimensions.mp),
             title: Text(
-              "App Language",
+              S.current.app_language_title,
               style: TextStyle(
                 color: Theme.of(context).primaryTextColor,
                 fontSize: AppDimensions.mfs,
@@ -36,7 +38,7 @@ Future<dynamic> selectLanguageUtil(BuildContext context) {
                   activeColor: Theme.of(context).primaryColor,
                   overlayColor: WidgetStateProperty.all(Colors.transparent),
                   title: Text(
-                    "Use device language",
+                    S.current.use_device_language,
                     style: TextStyle(
                       color: Theme.of(context).primaryTextColor,
                       fontSize: AppDimensions.mfs,
@@ -52,7 +54,7 @@ Future<dynamic> selectLanguageUtil(BuildContext context) {
                           localizationMode: localizationMode,
                         ),
                       );
-                      Get.back();
+                      Get.offAll(() => DrawerScreen());
                     }
                   },
                 ),
@@ -61,7 +63,7 @@ Future<dynamic> selectLanguageUtil(BuildContext context) {
                   activeColor: Theme.of(context).primaryColor,
                   overlayColor: WidgetStateProperty.all(Colors.transparent),
                   title: Text(
-                    "English",
+                    S.current.english,
                     style: TextStyle(
                       color: Theme.of(context).primaryTextColor,
                       fontSize: AppDimensions.mfs,
@@ -77,7 +79,7 @@ Future<dynamic> selectLanguageUtil(BuildContext context) {
                           localizationMode: localizationMode,
                         ),
                       );
-                      Get.back();
+                      Get.offAll(() => DrawerScreen());
                     }
                   },
                 ),
@@ -86,7 +88,7 @@ Future<dynamic> selectLanguageUtil(BuildContext context) {
                   activeColor: Theme.of(context).primaryColor,
                   overlayColor: WidgetStateProperty.all(Colors.transparent),
                   title: Text(
-                    "Arabic",
+                    S.current.arabic,
                     style: TextStyle(
                       color: Theme.of(context).primaryTextColor,
                       fontSize: AppDimensions.mfs,
@@ -102,7 +104,7 @@ Future<dynamic> selectLanguageUtil(BuildContext context) {
                           localizationMode: localizationMode,
                         ),
                       );
-                      Get.back();
+                      Get.offAll(() => DrawerScreen());
                     }
                   },
                 ),

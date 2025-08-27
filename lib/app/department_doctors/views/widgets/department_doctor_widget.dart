@@ -22,21 +22,9 @@ class DepartmentDoctorWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Color specifyShiftColor() {
-      return departmentDoctor.shift == "Morning"
+      return departmentDoctor.shift == S.current.morning
           ? Theme.of(context).transparentPrimaryColor
           : Theme.of(context).transparentAccentColor;
-    }
-
-    String specifyTreatmentsUnit() {
-      return departmentDoctor.treatments > 1
-          ? S.current.treatments_unit
-          : S.current.treatment_unit;
-    }
-
-    String specifyExperiencesUnit() {
-      return departmentDoctor.experience > 1
-          ? S.current.years_unit
-          : S.current.year_unit;
     }
 
     return GestureDetector(
@@ -98,16 +86,18 @@ class DepartmentDoctorWidget extends StatelessWidget {
                     flex: 1,
                     child: HorizontalInfoWithTitleWidget(
                       title: S.current.treatments_title,
-                      info:
-                          "${departmentDoctor.treatments} ${specifyTreatmentsUnit()}",
+                      info: S.current.treatments_count(
+                        departmentDoctor.treatments,
+                      ),
                     ),
                   ),
                   Expanded(
                     flex: 1,
                     child: HorizontalInfoWithTitleWidget(
-                      title: S.current.experiences_title,
-                      info:
-                          "${departmentDoctor.experience}  ${specifyExperiencesUnit()}",
+                      title: S.current.experience_title,
+                      info: S.current.experience_count(
+                        departmentDoctor.experience,
+                      ),
                     ),
                   ),
                 ],

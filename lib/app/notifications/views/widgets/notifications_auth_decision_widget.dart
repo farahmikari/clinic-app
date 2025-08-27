@@ -1,18 +1,13 @@
 import 'package:clinic_app/app/auth_prompt/controllers/check_user_authentication_bloc/check_user_authentication_bloc.dart';
 import 'package:clinic_app/app/auth_prompt/views/screens/auth_prompt_screen.dart';
-import 'package:clinic_app/app/book_appointment/views/screens/book_appointment_with_offer_screen.dart';
-import 'package:clinic_app/app/offers/models/offer_model.dart';
+import 'package:clinic_app/app/notifications/views/screens/notification_screen.dart';
 import 'package:clinic_app/core/widgets/loading_widget.dart';
 import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class BookAppointmentWithOfferAuthDecisionWidget extends StatelessWidget {
-  const BookAppointmentWithOfferAuthDecisionWidget({
-    super.key,
-    required this.offer,
-  });
-  final OfferModel offer;
+class NotificationsAuthDecisionWidget extends StatelessWidget {
+  const NotificationsAuthDecisionWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -25,11 +20,11 @@ class BookAppointmentWithOfferAuthDecisionWidget extends StatelessWidget {
           case CheckUserAuthenticationLoading():
             return Scaffold(body: LoadingWidget());
           case UserAuthenticated():
-            return BookAppointmentWithOfferScreen(offer: offer);
+            return NotificationsScreen();
           case UserUnAuthenticated():
             return AuthPromptScreen(
-              title: S.current.book_with_offer_auth_prompt_title,
-              subtitle: S.current.book_with_offer_auth_prompt_subtitle,
+              title: S.current.notifications_auth_prompt_title,
+              subtitle: S.current.notifications_auth_prompt_subtitle,
             );
         }
       },

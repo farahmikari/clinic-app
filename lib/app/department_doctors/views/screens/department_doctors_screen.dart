@@ -92,9 +92,8 @@ class DepartmentDoctorsScreen extends StatelessWidget {
                       if (state is FetchDepartmentDoctorsLoadedEmpty) {
                         return EmptyListWidget(
                           image: "assets/images/empty_doctors.png",
-                          title: "No Doctors Available",
-                          subtitle:
-                              "There are currently no doctors in this department. Please check back soon or explore other departments.",
+                          title: S.current.department_doctors_empty_title,
+                          subtitle: S.current.department_doctors_empty_subtitle,
                         );
                       }
                       return ShimmerDepartmentDoctors();

@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:clinic_app/app/bills/models/bill_model.dart';
 import 'package:clinic_app/core/api/dio_consumer.dart';
 import 'package:clinic_app/core/api/end_points.dart';
@@ -44,7 +42,6 @@ class FetchBillsBloc extends Bloc<FetchBillsEvent, FetchBillsState> {
         }
       } on ServerException catch (e) {
         emit(FetchBillsFailed(errorMessage: e.errorModel.errorMessage));
-        log(e.errorModel.errorMessage.toString());
       }
     });
 

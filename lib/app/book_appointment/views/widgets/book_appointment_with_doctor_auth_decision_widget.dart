@@ -3,6 +3,7 @@ import 'package:clinic_app/app/auth_prompt/views/screens/auth_prompt_screen.dart
 import 'package:clinic_app/app/book_appointment/views/screens/book_appointment_with_doctor_screen.dart';
 import 'package:clinic_app/app/doctor/models/doctor_model.dart';
 import 'package:clinic_app/core/widgets/loading_widget.dart';
+import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -28,9 +29,8 @@ class BookAppointmentWithDoctorScreenAuthDecisionWidget
             return BookAppointmentWithDoctorScreen(doctor: doctor);
           case UserUnAuthenticated():
             return AuthPromptScreen(
-              title: "Sign In to Book Your Appointment",
-              subtitle:
-                  "Log in to your account to select your preferred time, and confirm your clinic visit.",
+              title: S.current.book_with_doctor_auth_prompt_subtitle,
+              subtitle: S.current.book_with_doctor_auth_prompt_subtitle,
             );
         }
       },

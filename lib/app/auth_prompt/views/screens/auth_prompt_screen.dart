@@ -4,6 +4,7 @@ import 'package:clinic_app/core/constants/app_dimensions.dart';
 import 'package:clinic_app/core/extentions/colors_extensions/theme_colors_extension.dart';
 import 'package:clinic_app/core/extentions/colors_extensions/theme_text_colors_extension.dart';
 import 'package:clinic_app/core/widgets/button_widget.dart';
+import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -46,7 +47,7 @@ class AuthPromptScreen extends StatelessWidget {
             ),
             SizedBox(height: AppDimensions.mp),
             ButtonWidget(
-              title: "Sign in",
+              title: S.current.sign_in,
               backgroundColor: Theme.of(context).primaryColor,
               titleColor: Theme.of(context).foregroundColor,
               onTap: () {
@@ -66,7 +67,7 @@ class AuthPromptScreen extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  "OR",
+                  S.current.or,
                   style: TextStyle(
                     color: Theme.of(context).accentColor,
                     fontSize: AppDimensions.sfs,
@@ -89,7 +90,7 @@ class AuthPromptScreen extends StatelessWidget {
               spacing: AppDimensions.sp,
               children: [
                 Text(
-                  "Don't have an account",
+                  S.current.dont_have_an_account,
                   style: TextStyle(
                     color: Theme.of(context).primaryTextColor,
                     fontSize: AppDimensions.sfs,
@@ -101,7 +102,7 @@ class AuthPromptScreen extends StatelessWidget {
                     Get.offAll(() => EmailScreen());
                   },
                   child: Text(
-                    "Sign up",
+                    S.current.sign_up,
                     style: TextStyle(
                       color: Theme.of(context).primaryColor,
                       fontSize: AppDimensions.sfs,

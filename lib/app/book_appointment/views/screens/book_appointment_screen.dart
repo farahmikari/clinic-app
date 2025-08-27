@@ -10,6 +10,7 @@ import 'package:clinic_app/app/book_appointment/views/widgets/departments_widget
 import 'package:clinic_app/app/book_appointment/views/widgets/departments_widget/views/widgets/departments_widget.dart';
 import 'package:clinic_app/app/book_appointment/views/widgets/departments_widget/views/widgets/shimmer_departments_widget.dart';
 import 'package:clinic_app/app/book_appointment/controllers/fetch_reservation_price_bloc/fetch_reservation_pricing_bloc.dart';
+import 'package:clinic_app/app/doctor/views/screens/doctor_profile_screen.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
 import 'package:clinic_app/core/extentions/colors_extensions/theme_text_colors_extension.dart';
 import 'package:clinic_app/core/widgets/button_widget.dart';
@@ -283,7 +284,9 @@ class BookAppointmentScreen extends StatelessWidget {
                       return SubtitleWithTextButtonWidget(
                         subtitle: S.current.morning_times,
                         buttonTitle: S.current.doctor,
-                        onPressed: () {},
+                        onPressed: () {
+                          Get.to(() => DoctorProfileScreen(id: state.doctorId));
+                        },
                       );
                     }
                     return SubtitleWidget(subtitle: S.current.morning_times);
@@ -309,7 +312,9 @@ class BookAppointmentScreen extends StatelessWidget {
                       return SubtitleWithTextButtonWidget(
                         subtitle: S.current.afternoon_times,
                         buttonTitle: S.current.doctor,
-                        onPressed: () {},
+                        onPressed: () {
+                          Get.to(() => DoctorProfileScreen(id: state.doctorId));
+                        },
                       );
                     }
                     return SubtitleWidget(subtitle: S.current.afternoon_times);

@@ -13,8 +13,8 @@ class BookAppointmentValidatorBloc
         departmentId: event.departmentId,
         doctorId: event.doctorId,
         requestTypeId: event.requestTypeId,
-        day: event.day,
-        timeId: event.timeId,
+        date: event.day,
+        slotId: event.timeId,
         withMedicalReport: event.withMedicalReport,
       );
       emit(
@@ -28,8 +28,8 @@ class BookAppointmentValidatorBloc
   bool _isValid({required ReservationModel reservation}) {
     return reservation.departmentId != -1 &&
         reservation.requestTypeId != -1 &&
-        reservation.day.isNotEmpty &&
+        reservation.date.isNotEmpty &&
         reservation.doctorId != -1 &&
-        reservation.timeId != -1;
+        reservation.slotId != -1;
   }
 }

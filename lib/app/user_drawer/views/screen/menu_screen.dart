@@ -50,19 +50,17 @@ class MenuScreen extends StatelessWidget {
                   transition: getx.Transition.cupertino,
                 ),
           ),
-
           ListTileDrawerWidget(
             icon: Icons.settings,
             iconColor: Theme.of(context).darkPurpleColor,
             backgroundIconColor: Theme.of(context).transparentPurpleColor,
-            title: S.current.setting,
+            title: S.current.settings,
             onTap:
                 () => Get.to(
                   () => SettingsScreen(),
                   transition: getx.Transition.cupertino,
                 ),
           ),
-
           ListTileDrawerWidget(
             icon: Icons.warning,
             iconColor: Theme.of(context).accentColor,

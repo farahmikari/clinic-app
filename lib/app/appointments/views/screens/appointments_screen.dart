@@ -72,27 +72,24 @@ class AppointmentsScreen extends StatelessWidget {
                 onRefresh: () => _onRefresh(context),
                 color: Theme.of(context).primaryColor,
                 backgroundColor: Theme.of(context).accentBackgroundColor,
-                child: BlocBuilder<
-                  FetchAppointmentsBloc,
-                  FetchAppointmentsState
-                >(
-                  builder: (context, state) {
-                    if (state is FetchAppointmentsLoaded) {
-                      return AppointmentsWidget(
-                        appointments: state.appointments,
-                      );
-                    }
-                    if (state is FetchAppointmentsLoadeEmpty) {
-                      return EmptyListWidget(
-                        image: "assets/images/empty_appointments.png",
-                        title: "No Appointments Found",
-                        subtitle:
-                            "You don’t have any appointments at the clinic.",
-                      );
-                    }
-                    return ShimmerAppointmentsWidget();
-                  },
-                ),
+                child:
+                    BlocBuilder<FetchAppointmentsBloc, FetchAppointmentsState>(
+                      builder: (context, state) {
+                        if (state is FetchAppointmentsLoaded) {
+                          return AppointmentsWidget(
+                            appointments: state.appointments,
+                          );
+                        }
+                        if (state is FetchAppointmentsLoadeEmpty) {
+                          return EmptyListWidget(
+                            image: "assets/images/empty_appointments.png",
+                            title: S.current.appointments_empty_title,
+                            subtitle: S.current.appointments_empty_subtitle,
+                          );
+                        }
+                        return ShimmerAppointmentsWidget();
+                      },
+                    ),
               );
             },
           ),

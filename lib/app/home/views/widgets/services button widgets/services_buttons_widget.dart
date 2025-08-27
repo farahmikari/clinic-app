@@ -1,5 +1,6 @@
 import 'package:clinic_app/app/book_appointment/views/widgets/book_appointment_auth_decision_widget.dart';
 import 'package:clinic_app/app/home/views/widgets/services%20button%20widgets/service_button_widget.dart';
+import 'package:clinic_app/app/offers/views/screens/offers_screen.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
 import 'package:clinic_app/core/constants/app_icons.dart';
 import 'package:clinic_app/core/extentions/colors_extensions/theme_background_colors_extension.dart';
@@ -41,34 +42,16 @@ class ServicesButtonsWidget extends StatelessWidget {
           },
         ),
         ServiceButtonWidget(
-          icon: AppIcons.prescriptions,
-          title: S.current.prescriptions,
-          subtitle: S.current.prescriptions_subtitle,
+          icon: AppIcons.offers,
+          title: S.current.offers,
+          subtitle: S.current.offers_subtitle,
           backgroundColor: Theme.of(context).accentBackgroundColor,
           iconColor: Theme.of(context).primaryColor,
           titleColor: Theme.of(context).primaryTextColor,
           subTitleColor: Theme.of(context).accentTextColor,
-          onPressed: () {},
-        ),
-        ServiceButtonWidget(
-          icon: AppIcons.microscope,
-          title: S.current.lab_tests,
-          subtitle: S.current.lab_tests_subtitle,
-          backgroundColor: Theme.of(context).accentBackgroundColor,
-          iconColor: Theme.of(context).primaryColor,
-          titleColor: Theme.of(context).primaryTextColor,
-          subTitleColor: Theme.of(context).accentTextColor,
-          onPressed: () {},
-        ),
-        ServiceButtonWidget(
-          icon: AppIcons.marketplace,
-          title: S.current.medical_reports,
-          subtitle: S.current.medical_reports_subtitle,
-          backgroundColor: Theme.of(context).accentBackgroundColor,
-          iconColor: Theme.of(context).primaryColor,
-          titleColor: Theme.of(context).primaryTextColor,
-          subTitleColor: Theme.of(context).accentTextColor,
-          onPressed: () {},
+          onPressed: () {
+            Get.to(() => OffersScreen(), transition: Transition.zoom);
+          },
         ),
       ],
     );

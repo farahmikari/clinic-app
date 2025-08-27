@@ -45,13 +45,15 @@ class DepartmentWidget extends StatelessWidget {
                   children: [
                     ShiftDoctorsCountWidget(
                       color: Theme.of(context).primaryColor,
-                      shift: S.current.morning_doctor,
-                      count: department.morningDoctorsCount,
+                      shift: S.current.morning_doctors_count(
+                        department.morningDoctorsCount,
+                      ),
                     ),
                     ShiftDoctorsCountWidget(
                       color: Theme.of(context).accentColor,
-                      shift: S.current.afternoon_doctor,
-                      count: department.afternoonDoctorsCount,
+                      shift: S.current.afternoon_doctors_count(
+                        department.afternoonDoctorsCount,
+                      ),
                     ),
                   ],
                 ),

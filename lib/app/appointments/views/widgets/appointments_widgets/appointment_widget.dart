@@ -45,14 +45,14 @@ class AppointmentWidget extends StatelessWidget {
     }
 
     Color specifyStatusColor() {
-      return appointment.status == "Pending"
+      return appointment.status == S.current.pending
           ? Theme.of(context).transparentPrimaryColor
           : Theme.of(context).transparentAccentColor;
     }
 
     return GestureDetector(
       onTap: () {
-        if (appointment.status == "Completed") {
+        if (appointment.status == S.current.completed) {
           Get.to(
             () => PrescriptionScreen(appointment: appointment),
             transition: Transition.zoom,

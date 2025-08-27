@@ -37,16 +37,6 @@ class DoctorWidget extends StatelessWidget {
       return "${formatTime(doctor.startTime)} - ${formatTime(doctor.endTime)}";
     }
 
-    String specifyExperienceUnit() {
-      return doctor.experience > 1 ? S.current.years_unit : S.current.year_unit;
-    }
-
-    String specifyTreatmentsUnit() {
-      return doctor.treatments > 1
-          ? S.current.treatments_unit
-          : S.current.treatment_unit;
-    }
-
     return SafeArea(
       child: ListView(
         padding: EdgeInsets.all(AppDimensions.mp),
@@ -96,12 +86,12 @@ class DoctorWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               HorizontalInfoWithTitleWidget(
-                title: S.current.experiences_title,
-                info: "${doctor.experience} ${specifyExperienceUnit()}",
+                title: S.current.experience_title,
+                info: S.current.experience_count(doctor.experience),
               ),
               HorizontalInfoWithTitleWidget(
                 title: S.current.treatments_title,
-                info: "${doctor.treatments} ${specifyTreatmentsUnit()}",
+                info: S.current.treatments_count(doctor.treatments),
               ),
             ],
           ),
@@ -133,19 +123,21 @@ class DoctorWidget extends StatelessWidget {
             info: doctor.qualifications,
           ),
           SizedBox(height: AppDimensions.mp),
-          ButtonWidget(
-            title: S.current.book_now,
-            backgroundColor: Theme.of(context).primaryColor,
-            titleColor: Theme.of(context).foregroundColor,
-            onTap: () {
-              Get.to(
-                () => BookAppointmentWithDoctorScreenAuthDecisionWidget(
-                  doctor: doctor,
-                ),
-                transition: Transition.zoom,
-              );
-            },
-          ),
+          if (Get.previousRoute != "/BookAppointmentAuthDecisionWidget") ...[
+            ButtonWidget(
+              title: S.current.book_now,
+              backgroundColor: Theme.of(context).primaryColor,
+              titleColor: Theme.of(context).foregroundColor,
+              onTap: () {
+                Get.to(
+                  () => BookAppointmentWithDoctorScreenAuthDecisionWidget(
+                    doctor: doctor,
+                  ),
+                  transition: Transition.zoom,
+                );
+              },
+            ),
+          ],
         ],
       ),
     );

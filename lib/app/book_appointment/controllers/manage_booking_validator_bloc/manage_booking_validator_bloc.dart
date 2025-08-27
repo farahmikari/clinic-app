@@ -58,13 +58,13 @@ class ManageBookingValidatorBloc
       }
       ReservationModel currentReservation = state.currentReservation.copyWith(
         requestTypeId: event.requestTypeId,
-        day: event.day,
-        timeId: event.timeId,
+        date: event.day,
+        slotId: event.timeId,
         withMedicalReport: event.withMedicalReport,
       );
       late bool isAbleToEdit;
       if (currentReservation == state.previousReservation ||
-          currentReservation.timeId == -1) {
+          currentReservation.slotId == -1) {
         isAbleToEdit = false;
       } else {
         isAbleToEdit = true;

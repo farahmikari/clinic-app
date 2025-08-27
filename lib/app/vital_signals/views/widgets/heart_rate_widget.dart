@@ -27,7 +27,7 @@ class HeartRateWidget extends StatelessWidget {
                 Text(
                   S.current.heart_rate,
                   style: TextStyle(
-                    color: Theme.of(context).primaryTextColor,
+                    color: Theme.of(context).foregroundColor,
                     fontSize: 18,
                     fontWeight: FontWeight.w500,
                   ),
@@ -35,7 +35,7 @@ class HeartRateWidget extends StatelessWidget {
                 Text(
                   "$heartRate bpm",
                   style: TextStyle(
-                    color: Theme.of(context).primaryTextColor,
+                    color: Theme.of(context).foregroundColor,
                     fontSize: 40,
                     fontWeight: FontWeight.bold,
                   ),
