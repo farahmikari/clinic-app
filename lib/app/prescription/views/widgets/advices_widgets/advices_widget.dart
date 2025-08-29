@@ -1,8 +1,9 @@
 import 'package:clinic_app/app/prescription/models/advice_model.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
-import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/constants/app_icons.dart';
 import 'package:clinic_app/core/constants/app_shadow.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_background_colors_extension.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_text_colors_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -15,7 +16,7 @@ class AdvicesWidget extends StatelessWidget {
     return Container(
       padding: EdgeInsets.all(AppDimensions.mp),
       decoration: BoxDecoration(
-        color: AppColors.widgetBackgroundColor,
+        color: Theme.of(context).accentBackgroundColor,
         borderRadius: BorderRadius.circular(AppDimensions.mbr),
         boxShadow: AppShadow.boxShadow,
       ),
@@ -26,19 +27,22 @@ class AdvicesWidget extends StatelessWidget {
           return Row(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
+            spacing: AppDimensions.mp,
             children: [
               SvgPicture.asset(
                 AppIcons.advice,
                 width: AppDimensions.sis,
                 height: AppDimensions.sis,
-                colorFilter:ColorFilter.mode(AppColors.primaryColor, BlendMode.srcIn),
+                colorFilter: ColorFilter.mode(
+                  Theme.of(context).primaryColor,
+                  BlendMode.srcIn,
+                ),
               ),
-              SizedBox(width: AppDimensions.mp),
               Expanded(
                 child: Text(
                   advices[index].advice,
                   style: TextStyle(
-                    color: AppColors.darkGreyColor,
+                    color: Theme.of(context).accentTextColor,
                     fontSize: AppDimensions.sfs,
                     fontWeight: FontWeight.w500,
                   ),

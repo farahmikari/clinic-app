@@ -1,13 +1,13 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:clinic_app/app/login/models/form_model.dart';
+import 'package:clinic_app/app/login/views/widgets/text_form_field_widget.dart';
 import 'package:clinic_app/app/signup/controllers/bloc/email_bloc/email_bloc.dart';
 import 'package:clinic_app/app/signup/controllers/bloc/email_bloc/email_event.dart';
 import 'package:clinic_app/app/signup/controllers/bloc/email_bloc/email_state.dart';
 import 'package:clinic_app/app/verification/model/verification_goto.dart';
-import 'package:clinic_app/consts.dart';
 import 'package:clinic_app/app/verification/views/screen/verification_screen.dart';
 import 'package:clinic_app/app/login/views/widgets/button_widget.dart';
-import 'package:clinic_app/app/login/views/widgets/text_form_field_widget.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_text_colors_extension.dart';
 import 'package:clinic_app/core/utils/snack_bar_util.dart';
 import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
@@ -26,7 +26,6 @@ class SetEmailScreen extends StatelessWidget {
     return BlocProvider(
       create: (context) => EmailBloc(),
       child: Scaffold(
-        //backgroundColor: Colors.white,
         body: SingleChildScrollView(
           child: BlocConsumer<EmailBloc, EmailState>(
             listener: (context, state) {
@@ -76,9 +75,12 @@ class SetEmailScreen extends StatelessWidget {
                     SizedBox(height: 20),
                     Text(
                       S.current.set_your_email,
-                      style: Theme.of(context).textTheme.titleLarge,
+                      style: TextStyle(
+                        color: Theme.of(context).primaryTextColor,
+                        fontSize: 23,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
-
                     SizedBox(height: height * 0.1),
                     TextFormFieldWidget(
                       label: S.current.email,
@@ -102,12 +104,11 @@ class SetEmailScreen extends StatelessWidget {
                                   CanSubmitEmail(
                                     email: emailController.text,
                                     source: VerificationGoto.forgetPassword,
-
                                   ),
                                 );
                               }
                               : null,
-                      color: kPrimaryColor,
+                      color: Theme.of(context).primaryColor,
                     ),
                   ],
                 ),

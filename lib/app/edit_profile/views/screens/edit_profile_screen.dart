@@ -4,7 +4,8 @@ import 'package:clinic_app/app/edit_profile/views/widgets/info_edit_widget.dart'
 import 'package:clinic_app/app/signup/controllers/bloc/email_bloc/email_bloc.dart';
 import 'package:clinic_app/app/user_drawer/views/screen/drawer_screen.dart';
 import 'package:clinic_app/app/user_profile/models/user_data_model.dart';
-import 'package:clinic_app/core/constants/app_colors.dart';
+import 'package:clinic_app/core/constants/app_dimensions.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_text_colors_extension.dart';
 import 'package:clinic_app/core/utils/snack_bar_util.dart';
 import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
@@ -22,9 +23,7 @@ class EditProfileScreen extends StatelessWidget {
     final phoneController = TextEditingController(text: user.phoneNumber);
     final emailController = TextEditingController(text: user.email);
     final newEmailController = TextEditingController(text: user.email);
-    final birthdayController = TextEditingController(
-      text: user.birthDate,
-    );
+    final birthdayController = TextEditingController(text: user.birthDate);
     final genderController = TextEditingController(text: user.gender);
 
     final List<String> genderOption = [S.current.male, S.current.female];
@@ -36,14 +35,12 @@ class EditProfileScreen extends StatelessWidget {
       ],
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: AppColors.primaryColor,
-          iconTheme: IconThemeData(color: AppColors.backgroundColor),
-          centerTitle: true,
           title: Text(
             S.current.edit_profile,
-            style: Theme.of(context).textTheme.titleLarge!.copyWith(
-              color: AppColors.backgroundColor,
-              fontSize: 20,
+            style: TextStyle(
+              color: Theme.of(context).primaryTextColor,
+              fontSize: AppDimensions.lfs,
+              fontWeight: FontWeight.bold,
             ),
           ),
         ),
@@ -55,7 +52,7 @@ class EditProfileScreen extends StatelessWidget {
                   showSnackBar(
                     context,
                     title: S.current.success,
-                    message:  S.current.edit_profile_successfully,
+                    message: S.current.edit_profile_successfully,
                     contentType: ContentType.success,
                   );
                   await await Future.delayed(Duration(seconds: 2));

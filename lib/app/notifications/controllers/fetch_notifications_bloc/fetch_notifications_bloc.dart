@@ -27,7 +27,17 @@ class FetchNotificationsBloc
                 .map((notification) => NotificationModel.fromJson(notification))
                 .toList();
         allNotifications = [...unreadNotifications, ...readNotifications];
-        emit(FetchNotificationsLoaded(notifications: allNotifications));
+        if (allNotifications.isEmpty) {
+          emit(FetchNotificationsLoadedEmpty());
+        } else {
+          emit(FetchNotificationsLoaded(notifications: allNotifications));
+        }
+        await Future.wait(
+          unreadNotifications.map(
+            (unreadNotification) =>
+                api.put(EndPoints.read(unreadNotification.id)),
+          ),
+        );
       } catch (e) {
         emit(FetchNotificationsFailed(errorMessage: e.toString()));
       }

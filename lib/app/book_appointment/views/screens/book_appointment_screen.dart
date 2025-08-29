@@ -9,25 +9,26 @@ import 'package:clinic_app/app/book_appointment/models/reservation_model.dart';
 import 'package:clinic_app/app/book_appointment/views/widgets/departments_widget/controller/departments_bloc/departments_bloc.dart';
 import 'package:clinic_app/app/book_appointment/views/widgets/departments_widget/views/widgets/departments_widget.dart';
 import 'package:clinic_app/app/book_appointment/views/widgets/departments_widget/views/widgets/shimmer_departments_widget.dart';
-import 'package:clinic_app/app/book_appointment_with_offer/controllers/fetch_reservation_price_bloc/fetch_reservation_pricing_bloc.dart';
-import 'package:clinic_app/core/constants/app_colors.dart';
+import 'package:clinic_app/app/book_appointment/controllers/fetch_reservation_price_bloc/fetch_reservation_pricing_bloc.dart';
+import 'package:clinic_app/app/doctor/views/screens/doctor_profile_screen.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_text_colors_extension.dart';
 import 'package:clinic_app/core/widgets/button_widget.dart';
-import 'package:clinic_app/core/widgets/custom_pricing_dialog_widget.dart';
-import 'package:clinic_app/core/widgets/custom_warning_dialog_widget.dart';
-import 'package:clinic_app/core/widgets/days_widget/controllers/days_bloc/days_bloc.dart';
-import 'package:clinic_app/core/widgets/days_widget/views/widgets/days_widget.dart';
-import 'package:clinic_app/core/widgets/days_widget/views/widgets/shimmer_days_widget.dart';
+import 'package:clinic_app/app/book_appointment/views/widgets/custom_pricing_dialog_widget.dart';
+import 'package:clinic_app/app/book_appointment/views/widgets/custom_warning_dialog_widget.dart';
+import 'package:clinic_app/app/book_appointment/views/widgets/days_widget/controllers/days_bloc/days_bloc.dart';
+import 'package:clinic_app/app/book_appointment/views/widgets/days_widget/views/widgets/days_widget.dart';
+import 'package:clinic_app/app/book_appointment/views/widgets/days_widget/views/widgets/shimmer_days_widget.dart';
 import 'package:clinic_app/core/widgets/loading_widget.dart';
-import 'package:clinic_app/core/widgets/request_types_widget/controllers/request%20types%20bloc/request_types_bloc.dart';
-import 'package:clinic_app/core/widgets/request_types_widget/views/widgets/request_types_widget.dart';
+import 'package:clinic_app/app/book_appointment/views/widgets/request_types_widget/controllers/request%20types%20bloc/request_types_bloc.dart';
+import 'package:clinic_app/app/book_appointment/views/widgets/request_types_widget/views/widgets/request_types_widget.dart';
 import 'package:clinic_app/core/widgets/subtitle_widget.dart';
 import 'package:clinic_app/core/widgets/subtitle_with_text_button_widget.dart';
-import 'package:clinic_app/core/widgets/times_widget/controllers/times_bloc/times_bloc.dart';
-import 'package:clinic_app/core/widgets/times_widget/views/widgets/shimmer_times_widget.dart';
-import 'package:clinic_app/core/widgets/times_widget/views/widgets/times_widget.dart';
-import 'package:clinic_app/core/widgets/titled_checkbox_widget/controllers/titled_checkbox_bloc/titled_checkbox_bloc.dart';
-import 'package:clinic_app/core/widgets/titled_checkbox_widget/views/widgets/titled_checkbox_widget.dart';
+import 'package:clinic_app/app/book_appointment/views/widgets/times_widget/controllers/times_bloc/times_bloc.dart';
+import 'package:clinic_app/app/book_appointment/views/widgets/times_widget/views/widgets/shimmer_times_widget.dart';
+import 'package:clinic_app/app/book_appointment/views/widgets/times_widget/views/widgets/times_widget.dart';
+import 'package:clinic_app/app/book_appointment/views/widgets/titled_checkbox_widget/controllers/titled_checkbox_bloc/titled_checkbox_bloc.dart';
+import 'package:clinic_app/app/book_appointment/views/widgets/titled_checkbox_widget/views/widgets/titled_checkbox_widget.dart';
 import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -39,16 +40,17 @@ class BookAppointmentScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Color specifyConfirmButtonBackgroundColor(bool isValid) {
-      return isValid ? AppColors.primaryColor : AppColors.hintTextColor;
+      return isValid
+          ? Theme.of(context).primaryColor
+          : Theme.of(context).hintTextColor;
     }
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        surfaceTintColor: AppColors.backgroundColor,
         title: Text(
           S.current.book_appointment,
           style: TextStyle(
+            color: Theme.of(context).primaryTextColor,
             fontSize: AppDimensions.lfs,
             fontWeight: FontWeight.bold,
           ),
@@ -58,7 +60,9 @@ class BookAppointmentScreen extends StatelessWidget {
         providers: [
           BlocProvider(
             create:
-                (context) => FetchDepartmentsBloc()..add(FetchDepartments()),
+                (context) =>
+                    FetchDepartmentsBloc()
+                      ..add(FetchDepartments(searchWord: "")),
           ),
           BlocProvider(
             create: (context) => FetchDaysBloc()..add(FetchDefaultDays()),
@@ -282,7 +286,9 @@ class BookAppointmentScreen extends StatelessWidget {
                       return SubtitleWithTextButtonWidget(
                         subtitle: S.current.morning_times,
                         buttonTitle: S.current.doctor,
-                        onPressed: () {},
+                        onPressed: () {
+                          Get.to(() => DoctorProfileScreen(id: state.doctorId));
+                        },
                       );
                     }
                     return SubtitleWidget(subtitle: S.current.morning_times);
@@ -308,7 +314,9 @@ class BookAppointmentScreen extends StatelessWidget {
                       return SubtitleWithTextButtonWidget(
                         subtitle: S.current.afternoon_times,
                         buttonTitle: S.current.doctor,
-                        onPressed: () {},
+                        onPressed: () {
+                          Get.to(() => DoctorProfileScreen(id: state.doctorId));
+                        },
                       );
                     }
                     return SubtitleWidget(subtitle: S.current.afternoon_times);
@@ -357,7 +365,7 @@ class BookAppointmentScreen extends StatelessWidget {
                                   specifyConfirmButtonBackgroundColor(
                                     validatorState.isValid,
                                   ),
-                              titleColor: AppColors.widgetBackgroundColor,
+                              titleColor: Theme.of(context).foregroundColor,
                               onTap: () {
                                 if (validatorState.isValid) {
                                   context

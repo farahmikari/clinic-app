@@ -1,11 +1,12 @@
+import 'package:clinic_app/core/api/end_points.dart';
 import 'package:equatable/equatable.dart';
 
 class ReservationModel extends Equatable {
   final int? offerId;
   final int departmentId;
   final int doctorId;
-  final String day;
-  final int timeId;
+  final String date;
+  final int slotId;
   final int requestTypeId;
   final bool withMedicalReport;
 
@@ -13,33 +14,33 @@ class ReservationModel extends Equatable {
     this.offerId,
     required this.departmentId,
     required this.doctorId,
-    required this.day,
-    required this.timeId,
+    required this.date,
+    required this.slotId,
     required this.requestTypeId,
     required this.withMedicalReport,
   });
 
   factory ReservationModel.fromJson(Map<String, dynamic> jsonData) {
     return ReservationModel(
-      offerId: jsonData['offer_id'],
-      departmentId: jsonData['department_id'],
-      doctorId: jsonData['doctor_id'],
-      day: jsonData['day'],
-      timeId: jsonData['time_id'],
-      requestTypeId: jsonData['request_type_id'],
-      withMedicalReport: jsonData['with_medical_report'],
+      offerId: jsonData[ApiKey.offerId],
+      departmentId: jsonData[ApiKey.departmentId],
+      doctorId: jsonData[ApiKey.doctorId],
+      date: jsonData[ApiKey.date],
+      slotId: jsonData[ApiKey.slotId],
+      requestTypeId: jsonData[ApiKey.requestTypeId],
+      withMedicalReport: jsonData[ApiKey.withMedicalReport],
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
-      if (offerId != null) 'offer_id': offerId,
-      'department_id': departmentId,
-      'doctor_id': doctorId,
-      'day': day,
-      'time_id': timeId,
-      'request_type_id': requestTypeId,
-      'with_medical_report': withMedicalReport,
+      if (offerId != null) ApiKey.offerId: offerId,
+      ApiKey.departmentId: departmentId,
+      ApiKey.doctorId: doctorId,
+      ApiKey.date: date,
+      ApiKey.slotId: slotId,
+      ApiKey.requestTypeId: requestTypeId,
+      ApiKey.withMedicalReport: withMedicalReport,
     };
   }
 
@@ -47,8 +48,8 @@ class ReservationModel extends Equatable {
     int? offerId,
     int? departmentId,
     int? doctorId,
-    String? day,
-    int? timeId,
+    String? date,
+    int? slotId,
     int? requestTypeId,
     bool? withMedicalReport,
   }) {
@@ -56,8 +57,8 @@ class ReservationModel extends Equatable {
       offerId: offerId ?? this.offerId,
       departmentId: departmentId ?? this.departmentId,
       doctorId: doctorId ?? this.doctorId,
-      day: day ?? this.day,
-      timeId: timeId ?? this.timeId,
+      date: date ?? this.date,
+      slotId: slotId ?? this.slotId,
       requestTypeId: requestTypeId ?? this.requestTypeId,
       withMedicalReport: withMedicalReport ?? this.withMedicalReport,
     );
@@ -68,8 +69,8 @@ class ReservationModel extends Equatable {
     offerId,
     departmentId,
     doctorId,
-    day,
-    timeId,
+    date,
+    slotId,
     requestTypeId,
     withMedicalReport,
   ];

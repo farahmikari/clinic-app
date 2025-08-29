@@ -4,6 +4,7 @@ import 'package:clinic_app/core/services/shared_preferences/shared_pereference_s
 //import 'package:clinic_app/core/services/shared_preferences/shared_pereference_service.dart';
 
 import 'package:dio/dio.dart';
+import 'package:get/utils.dart';
 
 class ApiInterceptor extends Interceptor {
   @override
@@ -12,8 +13,7 @@ class ApiInterceptor extends Interceptor {
     RequestInterceptorHandler handler,
   ) async {
     options.headers[ApiKey.accept] = "application/json";
-    //options.headers[ApiKey.authorization] =
-    // "Bearer 1|eDuzRRT8uUvf7uDynLuKlQsE6oNYShneQ779UC1R2e5231c5";
+    options.headers[ApiKey.acceptLanguage] = Get.locale!.languageCode;
     final token = await SharedPreferencesService.getToken();
     if (token != null) {
       options.headers[ApiKey.authorization] = "Bearer $token";

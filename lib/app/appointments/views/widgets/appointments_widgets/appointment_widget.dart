@@ -1,15 +1,16 @@
 import 'package:clinic_app/app/appointments/models/appointment_model.dart';
-import 'package:clinic_app/app/manage_booking/views/screens/manage_booking_screen.dart';
+import 'package:clinic_app/app/book_appointment/views/screens/manage_booking_screen.dart';
 import 'package:clinic_app/app/prescription/views/screens/prescription_screen.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
 import 'package:clinic_app/core/constants/app_shadow.dart';
-import 'package:clinic_app/core/extentions/percent_sized_extention.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_background_colors_extension.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_colors_extension.dart';
+import 'package:clinic_app/core/extentions/dimensions_extensions/percent_sized_extension.dart';
 import 'package:clinic_app/core/widgets/doctor_image_with_frame_widget.dart';
 import 'package:clinic_app/core/widgets/doctor_name_widget.dart';
 import 'package:clinic_app/core/widgets/filter_badge_widget.dart';
 import 'package:clinic_app/core/widgets/info_with_icon_widget.dart';
 import 'package:clinic_app/core/widgets/info_with_icon_and_frame_widget.dart';
-import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/constants/app_icons.dart';
 import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
@@ -44,14 +45,14 @@ class AppointmentWidget extends StatelessWidget {
     }
 
     Color specifyStatusColor() {
-      return appointment.status == "Pending"
-          ? AppColors.transparentGreen
-          : AppColors.transparentYellow;
+      return appointment.status == S.current.pending
+          ? Theme.of(context).transparentPrimaryColor
+          : Theme.of(context).transparentAccentColor;
     }
 
     return GestureDetector(
       onTap: () {
-        if (appointment.status == "Completed") {
+        if (appointment.status == S.current.completed) {
           Get.to(
             () => PrescriptionScreen(appointment: appointment),
             transition: Transition.zoom,
@@ -68,7 +69,7 @@ class AppointmentWidget extends StatelessWidget {
         width: 92.0.wp,
         padding: EdgeInsets.all(AppDimensions.mp),
         decoration: BoxDecoration(
-          color: Theme.of(context).cardColor,
+          color: Theme.of(context).accentBackgroundColor,
           borderRadius: BorderRadius.circular(AppDimensions.mbr),
           boxShadow: AppShadow.boxShadow,
         ),

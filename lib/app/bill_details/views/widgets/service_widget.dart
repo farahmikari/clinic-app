@@ -1,7 +1,8 @@
 import 'package:clinic_app/app/bills/models/bill_model.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
 import 'package:clinic_app/core/constants/app_shadow.dart';
-import 'package:clinic_app/core/extentions/percent_sized_extention.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_background_colors_extension.dart';
+import 'package:clinic_app/core/extentions/dimensions_extensions/percent_sized_extension.dart';
 import 'package:clinic_app/core/widgets/vertical_info_with_title_widget.dart';
 import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
@@ -12,20 +13,20 @@ class ServiceWidget extends StatelessWidget {
 
   final BillModel bill;
 
-  String formatAppointmentDateTimeToDate() {
-    return DateFormat(
-      'd MMMM y',
-    ).format(DateTime.parse(bill.appointmentDateTime));
-  }
-
-  String formatAppointmentDateTimeToTime() {
-    return DateFormat(
-      'h:mm a',
-    ).format(DateTime.parse(bill.appointmentDateTime));
-  }
-
   @override
   Widget build(BuildContext context) {
+    String formatAppointmentDateTimeToDate() {
+      return DateFormat(
+        'd MMMM y',
+      ).format(DateTime.parse(bill.appointmentDateTime));
+    }
+
+    String formatAppointmentDateTimeToTime() {
+      return DateFormat(
+        'h:mm a',
+      ).format(DateTime.parse(bill.appointmentDateTime));
+    }
+
     return Stack(
       children: [
         Container(
@@ -33,7 +34,7 @@ class ServiceWidget extends StatelessWidget {
           padding: EdgeInsets.all(AppDimensions.mp),
           margin: EdgeInsets.only(top: AppDimensions.lm),
           decoration: BoxDecoration(
-            color: Theme.of(context).cardColor,
+            color: Theme.of(context).accentBackgroundColor,
             borderRadius: BorderRadius.circular(AppDimensions.mbr),
             boxShadow: AppShadow.boxShadow,
           ),

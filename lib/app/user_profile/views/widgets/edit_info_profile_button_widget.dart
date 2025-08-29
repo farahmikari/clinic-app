@@ -1,4 +1,5 @@
-import 'package:clinic_app/core/constants/app_colors.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_colors_extension.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_text_colors_extension.dart';
 import 'package:flutter/material.dart';
 
 class EditInfoProfileButtonWidget extends StatelessWidget {
@@ -18,29 +19,32 @@ class EditInfoProfileButtonWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.all(width * 0.03),
-      child: InkWell(
+      child: GestureDetector(
         onTap: onTap,
         child: Container(
           width: width * 0.4,
           height: height * 0.05,
           decoration: BoxDecoration(
-            color: const Color(0x4617B8A5),
+            color: Theme.of(context).transparentPrimaryColor,
             borderRadius: BorderRadius.circular(12),
-            border: Border.all(color: AppColors.primaryColor, width: 2),
+            border: Border.all(color: Theme.of(context).primaryColor, width: 2),
           ),
           child: Center(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(Icons.edit, color: AppColors.primaryColor, size: 18),
+                Icon(
+                  Icons.edit,
+                  color: Theme.of(context).foregroundColor,
+                  size: 18,
+                ),
                 SizedBox(width: 4),
                 Text(
                   text,
                   style: TextStyle(
-                    color: AppColors.primaryColor,
-                    fontWeight: FontWeight.bold,
-                    fontFamily: "Montserat",
+                    color: Theme.of(context).foregroundColor,
                     fontSize: 12,
+                    fontWeight: FontWeight.w500,
                   ),
                 ),
               ],

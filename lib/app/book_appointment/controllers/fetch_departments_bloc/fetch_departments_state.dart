@@ -9,6 +9,8 @@ class FetchDepartmentsLoaded extends FetchDepartmentsState {
   FetchDepartmentsLoaded(this.departments);
 }
 
+class FetchDepartmentsLoadedEmpty extends FetchDepartmentsState {}
+
 class FetchDepartmentsFailed extends FetchDepartmentsState {
   final String errorMessage;
 

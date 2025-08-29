@@ -1,11 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:clinic_app/app/doctor/views/screens/doctor_profile_screen.dart';
 import 'package:clinic_app/app/home/models/most_rated_doctor_model.dart';
-import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
 import 'package:clinic_app/core/constants/app_icons.dart';
 import 'package:clinic_app/core/constants/app_shadow.dart';
-import 'package:clinic_app/core/extentions/percent_sized_extention.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_background_colors_extension.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_text_colors_extension.dart';
+import 'package:clinic_app/core/extentions/dimensions_extensions/percent_sized_extension.dart';
 import 'package:clinic_app/core/widgets/doctor_name_widget.dart';
 import 'package:clinic_app/core/widgets/info_with_icon_widget.dart';
 import 'package:clinic_app/core/widgets/loading_widget.dart';
@@ -20,11 +21,21 @@ class MostRatedDoctorWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String specifyTreatmentsUnit() {
-      return mostRatedDoctor.treatments > 1
-          ? S.current.treatments_unit
-          : S.current.treatment_unit;
-    }
+    // String specifyTreatmentsUnit() {
+    //   if (Get.locale!.languageCode == 'ar') {
+    //     if (mostRatedDoctor.treatments > 2 && mostRatedDoctor.treatments < 11) {
+    //       return S.current.treatments_unit;
+    //     } else {
+    //       return S.current.treatment_unit;
+    //     }
+    //   } else {
+    //     if (mostRatedDoctor.treatments > 1) {
+    //       return S.current.treatments_title;
+    //     } else {
+    //       return S.current.treatment_unit;
+    //     }
+    //   }
+    // }
 
     return GestureDetector(
       onTap: () {
@@ -47,12 +58,8 @@ class MostRatedDoctorWidget extends StatelessWidget {
               padding: EdgeInsets.only(top: AppDimensions.mp),
               clipBehavior: Clip.hardEdge,
               decoration: BoxDecoration(
-                color: Theme.of(context).cardColor,
+                color: Theme.of(context).accentBackgroundColor,
                 borderRadius: BorderRadius.circular(AppDimensions.mbr),
-                image: DecorationImage(
-                  image: AssetImage("assets/images/watermark3.png"),
-                  fit: BoxFit.cover,
-                ),
                 boxShadow: AppShadow.boxShadow,
               ),
               child: Stack(
@@ -62,7 +69,7 @@ class MostRatedDoctorWidget extends StatelessWidget {
                     child: CachedNetworkImage(
                       imageUrl: mostRatedDoctor.image,
                       placeholder: (context, url) => LoadingWidget(),
-                      errorWidget: (context, url, error) => Icon(Icons.error),
+                      errorWidget: (context, url, error) => LoadingWidget(),
                     ),
                   ),
                   Align(
@@ -73,7 +80,7 @@ class MostRatedDoctorWidget extends StatelessWidget {
                         vertical: AppDimensions.sp,
                       ),
                       decoration: BoxDecoration(
-                        color: AppColors.primaryColor,
+                        color: Theme.of(context).primaryColor,
                         borderRadius: BorderRadiusDirectional.only(
                           topEnd: Radius.circular(AppDimensions.mbr),
                         ),
@@ -81,7 +88,7 @@ class MostRatedDoctorWidget extends StatelessWidget {
                       child: Text(
                         mostRatedDoctor.specialty,
                         style: TextStyle(
-                          color: AppColors.widgetBackgroundColor,
+                          color: Theme.of(context).foregroundColor,
                           fontSize: AppDimensions.sfs,
                           fontWeight: FontWeight.w500,
                         ),
@@ -105,9 +112,10 @@ class MostRatedDoctorWidget extends StatelessWidget {
                   infoSize: AppDimensions.mfs,
                 ),
                 Text(
-                  "(${mostRatedDoctor.treatments} ${specifyTreatmentsUnit()})",
+                  S.current.treatments_count(mostRatedDoctor.treatments),
+                  // "(${mostRatedDoctor.treatments} ${specifyTreatmentsUnit()})",
                   style: TextStyle(
-                    color: AppColors.darkGreyColor,
+                    color: Theme.of(context).hintTextColor,
                     fontSize: AppDimensions.sfs,
                     fontWeight: FontWeight.w500,
                   ),

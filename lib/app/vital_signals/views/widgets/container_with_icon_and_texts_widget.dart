@@ -1,6 +1,6 @@
-import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
-import 'package:clinic_app/core/extentions/percent_sized_extention.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_text_colors_extension.dart';
+import 'package:clinic_app/core/extentions/dimensions_extensions/percent_sized_extension.dart';
 import 'package:flutter/material.dart';
 
 class ContainerWithIconAndTextsWidget extends StatelessWidget {
@@ -34,18 +34,19 @@ class ContainerWithIconAndTextsWidget extends StatelessWidget {
             Image.asset(icon, height: 12.0.hp, width: 12.0.wp),
             Text(
               title,
-              style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                fontSize: 11,
-                color: AppColors.mainTextColor,
+              style: TextStyle(
+                color: Theme.of(context).foregroundColor,
+                fontSize: 12,
+                fontWeight: FontWeight.w500,
               ),
             ),
 
             Text(
               value==null?"---": "$value ${symbol ?? ""}",
-              style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                fontWeight: FontWeight.bold,
-                color: AppColors.mainTextColor,
+              style: TextStyle(
+                color: Theme.of(context).foregroundColor,
                 fontSize: 18,
+                fontWeight: FontWeight.w500,
               ),
             ),
           ],

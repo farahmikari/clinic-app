@@ -1,7 +1,8 @@
-import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
-import 'package:clinic_app/core/extentions/percent_sized_extention.dart';
-import 'package:flutter/widgets.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_shimmer_colors_extension.dart';
+import 'package:clinic_app/core/extentions/dimensions_extensions/percent_sized_extension.dart';
+
+import 'package:flutter/material.dart';
 
 class ShimmerOfferWidget extends StatelessWidget {
   const ShimmerOfferWidget({super.key});
@@ -27,7 +28,7 @@ class ShimmerOfferWidget extends StatelessWidget {
                   flex: 1,
                   child: Container(
                     decoration: BoxDecoration(
-                      color: AppColors.shimmerBaseColor,
+                      color: Theme.of(context).shimmerBaseColor,
                       borderRadius: BorderRadius.circular(AppDimensions.mbr),
                     ),
                   ),
@@ -43,7 +44,7 @@ class ShimmerOfferWidget extends StatelessWidget {
                         flex: 1,
                         child: Container(
                           decoration: BoxDecoration(
-                            color: AppColors.shimmerBaseColor,
+                            color: Theme.of(context).shimmerBaseColor,
                             borderRadius: BorderRadius.circular(
                               AppDimensions.mbr,
                             ),
@@ -54,7 +55,7 @@ class ShimmerOfferWidget extends StatelessWidget {
                         flex: 1,
                         child: Container(
                           decoration: BoxDecoration(
-                            color: AppColors.shimmerBaseColor,
+                            color: Theme.of(context).shimmerBaseColor,
                             borderRadius: BorderRadius.circular(
                               AppDimensions.mbr,
                             ),
@@ -71,7 +72,7 @@ class ShimmerOfferWidget extends StatelessWidget {
             flex: 3,
             child: Container(
               decoration: BoxDecoration(
-                color: AppColors.shimmerBaseColor,
+                color: Theme.of(context).shimmerBaseColor,
                 borderRadius: BorderRadius.circular(AppDimensions.mbr),
               ),
             ),
@@ -80,7 +81,7 @@ class ShimmerOfferWidget extends StatelessWidget {
             flex: 1,
             child: Container(
               decoration: BoxDecoration(
-                color: AppColors.shimmerBaseColor,
+                color: Theme.of(context).shimmerBaseColor,
                 borderRadius: BorderRadius.circular(AppDimensions.mbr),
               ),
             ),
@@ -89,7 +90,7 @@ class ShimmerOfferWidget extends StatelessWidget {
             flex: 1,
             child: Container(
               decoration: BoxDecoration(
-                color: AppColors.shimmerBaseColor,
+                color: Theme.of(context).shimmerBaseColor,
                 borderRadius: BorderRadius.circular(AppDimensions.mbr),
               ),
             ),

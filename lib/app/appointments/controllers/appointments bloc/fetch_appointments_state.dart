@@ -12,6 +12,8 @@ final class FetchAppointmentsLoaded extends FetchAppointmentsState {
   FetchAppointmentsLoaded({required this.appointments});
 }
 
+final class FetchAppointmentsLoadeEmpty extends FetchAppointmentsState {}
+
 final class FetchAppointmentsFailed extends FetchAppointmentsState {
   final String errorMessage;
 

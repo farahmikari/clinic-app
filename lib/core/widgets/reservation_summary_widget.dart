@@ -1,7 +1,8 @@
 import 'package:clinic_app/app/appointments/models/appointment_model.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
 import 'package:clinic_app/core/constants/app_shadow.dart';
-import 'package:clinic_app/core/extentions/percent_sized_extention.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_background_colors_extension.dart';
+import 'package:clinic_app/core/extentions/dimensions_extensions/percent_sized_extension.dart';
 import 'package:clinic_app/core/widgets/doctor_department_widget.dart';
 import 'package:clinic_app/core/widgets/doctor_image_with_frame_widget.dart';
 import 'package:clinic_app/core/widgets/doctor_name_widget.dart';
@@ -42,7 +43,7 @@ class ReservationSummaryWidget extends StatelessWidget {
       height: 100.0.wp,
       padding: EdgeInsets.all(AppDimensions.sp),
       decoration: BoxDecoration(
-        color: Theme.of(context).cardColor,
+        color: Theme.of(context).accentBackgroundColor,
         borderRadius: BorderRadius.circular(AppDimensions.mbr),
         boxShadow: AppShadow.boxShadow,
       ),

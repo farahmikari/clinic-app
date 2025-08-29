@@ -1,5 +1,6 @@
-import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_background_colors_extension.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_text_colors_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -18,7 +19,7 @@ class InfoWithIconAndFrameWidget extends StatelessWidget {
       child: Container(
         alignment: Alignment.center,
         decoration: BoxDecoration(
-          color: AppColors.backgroundColor,
+          color: Theme.of(context).primaryBackgroundColor,
           borderRadius: BorderRadius.circular(AppDimensions.lbr),
         ),
         child: Row(
@@ -30,12 +31,15 @@ class InfoWithIconAndFrameWidget extends StatelessWidget {
               icon,
               width: AppDimensions.sis,
               height: AppDimensions.sis,
-              colorFilter:ColorFilter.mode(AppColors.primaryColor, BlendMode.srcIn),
+              colorFilter: ColorFilter.mode(
+                Theme.of(context).primaryColor,
+                BlendMode.srcIn,
+              ),
             ),
             Text(
               title,
               style: TextStyle(
-                color: AppColors.mainTextColor,
+                color: Theme.of(context).primaryTextColor,
                 fontSize: AppDimensions.sfs,
                 fontWeight: FontWeight.bold,
               ),

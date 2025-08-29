@@ -1,11 +1,11 @@
 import 'package:clinic_app/app/about_us/views/screen/about_us_screen.dart';
-import 'package:clinic_app/app/setting/views/screen/setting_screen.dart';
+import 'package:clinic_app/app/settings/views/screens/settings_screen.dart';
 import 'package:clinic_app/app/user_drawer/views/widgets/list_tile_drawer.dart';
 import 'package:clinic_app/app/user_drawer/views/widgets/list_tile_logout_widget.dart';
 import 'package:clinic_app/app/user_profile/views/screens/profile_screen.dart';
 import 'package:clinic_app/app/vital_signals/views/screen/vital_signal_screen.dart';
-import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/constants/app_logo.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_colors_extension.dart';
 import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart' as getx;
@@ -28,11 +28,10 @@ class MenuScreen extends StatelessWidget {
             width: width * 0.5,
             child: Image.asset(AppLogo.logoWithoutBakcground),
           ),
-
           ListTileDrawerWidget(
             icon: Icons.person,
-            iconColor: AppColors.primaryColor,
-            backgroundIconColor: AppColors.transparentGreen,
+            iconColor: Theme.of(context).primaryColor,
+            backgroundIconColor: Theme.of(context).transparentPrimaryColor,
             title: S.current.profile,
             onTap: () {
               Get.to(
@@ -43,32 +42,30 @@ class MenuScreen extends StatelessWidget {
           ),
           ListTileDrawerWidget(
             icon: Icons.article,
-            iconColor: AppColors.darkBlueColor,
-            backgroundIconColor: const Color(0x844489FF),
+            iconColor: Theme.of(context).darkBlueColor,
+            backgroundIconColor: Theme.of(context).transparentBlueColor,
             title: S.current.vital_signs,
             onTap:
                 () => Get.to(
-                 ()=> VitalSignalScreen(),
+                  () => VitalSignalScreen(),
                   transition: getx.Transition.cupertino,
                 ),
           ),
-
           ListTileDrawerWidget(
             icon: Icons.settings,
-            iconColor: Colors.deepPurple,
-            backgroundIconColor: const Color(0x7C683AB7),
-            title: S.current.setting,
+            iconColor: Theme.of(context).darkPurpleColor,
+            backgroundIconColor: Theme.of(context).transparentPurpleColor,
+            title: S.current.settings,
             onTap:
                 () => Get.to(
-                  () => SettingScreen(),
+                  () => SettingsScreen(),
                   transition: getx.Transition.cupertino,
                 ),
           ),
-
           ListTileDrawerWidget(
             icon: Icons.warning,
-            iconColor: Colors.orangeAccent,
-            backgroundIconColor: const Color(0x84FFAC40),
+            iconColor: Theme.of(context).accentColor,
+            backgroundIconColor: Theme.of(context).transparentAccentColor,
             title: S.current.about_us,
             onTap: () => Get.to(
                   () => AboutUsScreen(),

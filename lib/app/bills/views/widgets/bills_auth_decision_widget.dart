@@ -2,6 +2,7 @@ import 'package:clinic_app/app/auth_prompt/controllers/check_user_authentication
 import 'package:clinic_app/app/auth_prompt/views/screens/auth_prompt_screen.dart';
 import 'package:clinic_app/app/bills/views/screens/bills_screen.dart';
 import 'package:clinic_app/core/widgets/loading_widget.dart';
+import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -24,9 +25,8 @@ class BillsAuthDecisionWidget extends StatelessWidget {
 
           case UserUnAuthenticated():
             return AuthPromptScreen(
-              title: "Sign in to access your bills",
-              subtitle:
-                  "To securely access and review all your billing details, please sign in to your account.",
+              title: S.current.bills_auth_prompt_title,
+              subtitle: S.current.bills_auth_prompt_subtitle,
             );
         }
       },

@@ -1,8 +1,10 @@
 import 'package:clinic_app/app/login/views/screens/login_screen.dart';
 import 'package:clinic_app/app/signup/views/screens/email_screen.dart';
-import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_colors_extension.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_text_colors_extension.dart';
 import 'package:clinic_app/core/widgets/button_widget.dart';
+import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -18,7 +20,6 @@ class AuthPromptScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.backgroundColor,
       body: SafeArea(
         child: ListView(
           padding: EdgeInsets.all(AppDimensions.mp),
@@ -28,7 +29,7 @@ class AuthPromptScreen extends StatelessWidget {
             Text(
               title,
               style: TextStyle(
-                color: AppColors.mainTextColor,
+                color: Theme.of(context).primaryTextColor,
                 fontSize: AppDimensions.lfs,
                 fontWeight: FontWeight.bold,
               ),
@@ -38,7 +39,7 @@ class AuthPromptScreen extends StatelessWidget {
             Text(
               subtitle,
               style: TextStyle(
-                color: AppColors.darkGreyColor,
+                color: Theme.of(context).accentTextColor,
                 fontSize: AppDimensions.mfs,
                 fontWeight: FontWeight.w500,
               ),
@@ -46,9 +47,9 @@ class AuthPromptScreen extends StatelessWidget {
             ),
             SizedBox(height: AppDimensions.mp),
             ButtonWidget(
-              title: "Sign in",
-              backgroundColor: AppColors.primaryColor,
-              titleColor: AppColors.widgetBackgroundColor,
+              title: S.current.sign_in,
+              backgroundColor: Theme.of(context).primaryColor,
+              titleColor: Theme.of(context).foregroundColor,
               onTap: () {
                 Get.offAll(() => LoginScreen());
               },
@@ -59,17 +60,27 @@ class AuthPromptScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               spacing: AppDimensions.sp,
               children: [
-                Expanded(child: Divider(height: AppDimensions.xlp)),
+                Expanded(
+                  child: Divider(
+                    height: AppDimensions.xlp,
+                    color: Theme.of(context).hintTextColor,
+                  ),
+                ),
                 Text(
-                  "OR",
+                  S.current.or,
                   style: TextStyle(
-                    color: AppColors.accentColor,
+                    color: Theme.of(context).accentColor,
                     fontSize: AppDimensions.sfs,
                     fontWeight: FontWeight.w500,
                   ),
                   textAlign: TextAlign.center,
                 ),
-                Expanded(child: Divider(height: AppDimensions.xlp)),
+                Expanded(
+                  child: Divider(
+                    height: AppDimensions.xlp,
+                    color: Theme.of(context).hintTextColor,
+                  ),
+                ),
               ],
             ),
             SizedBox(height: AppDimensions.mp),
@@ -79,9 +90,9 @@ class AuthPromptScreen extends StatelessWidget {
               spacing: AppDimensions.sp,
               children: [
                 Text(
-                  "Don't have an account",
+                  S.current.dont_have_an_account,
                   style: TextStyle(
-                    color: AppColors.mainTextColor,
+                    color: Theme.of(context).primaryTextColor,
                     fontSize: AppDimensions.sfs,
                     fontWeight: FontWeight.w500,
                   ),
@@ -91,9 +102,9 @@ class AuthPromptScreen extends StatelessWidget {
                     Get.offAll(() => EmailScreen());
                   },
                   child: Text(
-                    "Sign up",
+                    S.current.sign_up,
                     style: TextStyle(
-                      color: AppColors.primaryColor,
+                      color: Theme.of(context).primaryColor,
                       fontSize: AppDimensions.sfs,
                       fontWeight: FontWeight.bold,
                     ),

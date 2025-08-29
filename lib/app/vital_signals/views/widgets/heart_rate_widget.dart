@@ -1,6 +1,7 @@
-import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
-import 'package:clinic_app/core/extentions/percent_sized_extention.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_colors_extension.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_text_colors_extension.dart';
+import 'package:clinic_app/core/extentions/dimensions_extensions/percent_sized_extension.dart';
 import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 
@@ -13,7 +14,7 @@ class HeartRateWidget extends StatelessWidget {
       height: 30.0.hp,
       width: 90.0.wp,
       decoration: BoxDecoration(
-        color: AppColors.lightBlueColor,
+        color: Theme.of(context).lightBlueColor,
         borderRadius: BorderRadius.circular(AppDimensions.mbr),
       ),
       child: Row(
@@ -25,22 +26,23 @@ class HeartRateWidget extends StatelessWidget {
               children: [
                 Text(
                   S.current.heart_rate,
-                  style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                  style: TextStyle(
+                    color: Theme.of(context).foregroundColor,
                     fontSize: 18,
-                    color: AppColors.mainTextColor,
+                    fontWeight: FontWeight.w500,
                   ),
                 ),
                 Text(
                   heartRate==null?"---": "$heartRate bpm",
-                  style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                  style: TextStyle(
+                    color: Theme.of(context).foregroundColor,
                     fontSize: 40,
-                    color: AppColors.mainTextColor,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
               ],
             ),
           ),
-
           Image.asset(
             "assets/images/heart-beat.png",
             width: 35.0.wp,

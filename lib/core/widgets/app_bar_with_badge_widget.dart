@@ -1,5 +1,5 @@
-import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_text_colors_extension.dart';
 import 'package:clinic_app/core/widgets/filter_badge_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -21,12 +21,11 @@ class AppBarWithBadgeWidget extends StatelessWidget
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      surfaceTintColor: AppColors.backgroundColor,
       actionsPadding: EdgeInsetsDirectional.only(end: AppDimensions.mp),
       title: Text(
         title,
         style: TextStyle(
+          color: Theme.of(context).primaryTextColor,
           fontSize: AppDimensions.lfs,
           fontWeight: FontWeight.bold,
         ),

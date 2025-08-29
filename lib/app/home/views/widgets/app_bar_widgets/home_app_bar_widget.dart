@@ -1,12 +1,11 @@
 import 'package:clinic_app/app/home/views/widgets/app_bar_widgets/action_button_widget.dart';
-import 'package:clinic_app/app/languages/views/screens/languages_screen.dart';
-import 'package:clinic_app/app/notifications/views/screens/notification_screen.dart';
+import 'package:clinic_app/app/notifications/views/widgets/notifications_auth_decision_widget.dart';
 import 'package:clinic_app/app/user_drawer/controllers/bloc/drawer_bloc/drawer_bloc.dart';
-import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
 import 'package:clinic_app/core/constants/app_icons.dart';
-import 'package:clinic_app/core/extentions/percent_sized_extention.dart';
-import 'package:clinic_app/core/widgets/search_widget.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_text_colors_extension.dart';
+import 'package:clinic_app/core/extentions/dimensions_extensions/percent_sized_extension.dart';
+import 'package:clinic_app/core/widgets/search_widget/views/search_widget.dart';
 import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -21,14 +20,13 @@ class HomeAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       toolbarHeight: 20.0.wp,
       leadingWidth: 14.0.wp,
-      surfaceTintColor: AppColors.backgroundColor,
       actionsPadding: EdgeInsetsDirectional.only(end: AppDimensions.mp),
       title: Text(
         S.current.home,
         style: TextStyle(
+          color: Theme.of(context).primaryTextColor,
           fontSize: AppDimensions.lfs,
           fontWeight: FontWeight.bold,
         ),
@@ -38,17 +36,7 @@ class HomeAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
           icon: AppIcons.notifications,
           onTap: () {
             getx.Get.to(
-              () => NotificationScreen(),
-              transition: getx.Transition.zoom,
-            );
-          },
-        ),
-        SizedBox(width: AppDimensions.mp),
-        ActionButtonWidget(
-          icon: AppIcons.settings,
-          onTap: () {
-            getx.Get.to(
-              () => LanguagesScreen(),
+              () => NotificationsAuthDecisionWidget(),
               transition: getx.Transition.zoom,
             );
           },

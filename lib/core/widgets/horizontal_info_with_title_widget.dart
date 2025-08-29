@@ -1,4 +1,5 @@
 import 'package:clinic_app/core/constants/app_dimensions.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_text_colors_extension.dart';
 import 'package:flutter/material.dart';
 
 class HorizontalInfoWithTitleWidget extends StatelessWidget {
@@ -20,7 +21,7 @@ class HorizontalInfoWithTitleWidget extends StatelessWidget {
         Text(
           "$title:",
           style: TextStyle(
-            color: Theme.of(context).hintColor,
+            color: Theme.of(context).accentTextColor,
             fontSize: AppDimensions.sfs,
             fontWeight: FontWeight.w500,
           ),
@@ -28,6 +29,7 @@ class HorizontalInfoWithTitleWidget extends StatelessWidget {
         Text(
           info,
           style: TextStyle(
+            color: Theme.of(context).primaryTextColor,
             fontSize: AppDimensions.sfs,
             fontWeight: FontWeight.bold,
           ),

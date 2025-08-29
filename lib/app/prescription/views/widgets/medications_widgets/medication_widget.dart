@@ -4,8 +4,8 @@ import 'package:clinic_app/app/prescription/views/widgets/medications_widgets/me
 import 'package:clinic_app/app/prescription/views/widgets/medications_widgets/medication_note_widget.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
 import 'package:clinic_app/core/constants/app_shadow.dart';
-import 'package:clinic_app/core/extentions/percent_sized_extention.dart';
-import 'package:clinic_app/core/constants/app_colors.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_background_colors_extension.dart';
+import 'package:clinic_app/core/extentions/dimensions_extensions/percent_sized_extension.dart';
 import 'package:clinic_app/core/constants/app_icons.dart';
 import 'package:flutter/material.dart';
 
@@ -18,7 +18,7 @@ class MedicationWidget extends StatelessWidget {
     return Container(
       width: 80.0.wp,
       decoration: BoxDecoration(
-        color: AppColors.widgetBackgroundColor,
+        color: Theme.of(context).accentBackgroundColor,
         borderRadius: BorderRadius.circular(AppDimensions.mbr),
         boxShadow: AppShadow.boxShadow,
       ),

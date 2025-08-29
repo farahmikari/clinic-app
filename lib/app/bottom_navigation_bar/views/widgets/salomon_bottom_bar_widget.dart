@@ -1,7 +1,8 @@
 import 'package:clinic_app/app/bottom_navigation_bar/controllers/bottom_navigation_bar_bloc/bottom_navigation_bar_bloc.dart';
-import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
 import 'package:clinic_app/core/constants/app_icons.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_background_colors_extension.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_text_colors_extension.dart';
 import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -16,8 +17,8 @@ class SalomonBottomBarWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     Color specifyIconColor({required int itemId}) {
       return itemId == currentIndex
-          ? AppColors.primaryColor
-          : AppColors.darkGreyColor;
+          ? Theme.of(context).primaryColor
+          : Theme.of(context).accentTextColor;
     }
 
     return SalomonBottomBar(
@@ -30,6 +31,7 @@ class SalomonBottomBarWidget extends StatelessWidget {
           title: Text(
             S.current.home,
             style: TextStyle(
+              color: Theme.of(context).primaryColor,
               fontSize: AppDimensions.sfs,
               fontWeight: FontWeight.bold,
             ),
@@ -48,6 +50,7 @@ class SalomonBottomBarWidget extends StatelessWidget {
           title: Text(
             S.current.appointments,
             style: TextStyle(
+              color: Theme.of(context).primaryColor,
               fontSize: AppDimensions.sfs,
               fontWeight: FontWeight.bold,
             ),
@@ -66,6 +69,7 @@ class SalomonBottomBarWidget extends StatelessWidget {
           title: Text(
             S.current.departments,
             style: TextStyle(
+              color: Theme.of(context).primaryColor,
               fontSize: AppDimensions.sfs,
               fontWeight: FontWeight.bold,
             ),
@@ -84,6 +88,7 @@ class SalomonBottomBarWidget extends StatelessWidget {
           title: Text(
             S.current.bills,
             style: TextStyle(
+              color: Theme.of(context).primaryColor,
               fontSize: AppDimensions.sfs,
               fontWeight: FontWeight.bold,
             ),
@@ -99,8 +104,8 @@ class SalomonBottomBarWidget extends StatelessWidget {
           ),
         ),
       ],
-      selectedItemColor: AppColors.primaryColor,
-      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      selectedItemColor: Theme.of(context).primaryColor,
+      backgroundColor: Theme.of(context).primaryBackgroundColor,
     );
   }
 }

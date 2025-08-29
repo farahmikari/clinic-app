@@ -2,9 +2,10 @@ import 'package:clinic_app/app/book_appointment/models/department_model.dart';
 import 'package:clinic_app/app/department_doctors/views/screens/department_doctors_screen.dart';
 import 'package:clinic_app/app/departments/views/widgets/department_name_widget.dart';
 import 'package:clinic_app/app/departments/views/widgets/shift_doctors_count_widget.dart';
-import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
 import 'package:clinic_app/core/constants/app_shadow.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_background_colors_extension.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_colors_extension.dart';
 import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -25,7 +26,7 @@ class DepartmentWidget extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.all(AppDimensions.mp),
         decoration: BoxDecoration(
-          color: Theme.of(context).cardColor,
+          color: Theme.of(context).accentBackgroundColor,
           borderRadius: BorderRadius.circular(AppDimensions.mbr),
           boxShadow: AppShadow.boxShadow,
         ),
@@ -43,14 +44,16 @@ class DepartmentWidget extends StatelessWidget {
                   spacing: AppDimensions.sp,
                   children: [
                     ShiftDoctorsCountWidget(
-                      color: AppColors.primaryColor,
-                      shift: S.current.morning_doctor,
-                      count: department.morningDoctorsCount,
+                      color: Theme.of(context).primaryColor,
+                      shift: S.current.morning_doctors_count(
+                        department.morningDoctorsCount,
+                      ),
                     ),
                     ShiftDoctorsCountWidget(
-                      color: AppColors.accentColor,
-                      shift: S.current.afternoon_doctor,
-                      count: department.afternoonDoctorsCount,
+                      color: Theme.of(context).accentColor,
+                      shift: S.current.afternoon_doctors_count(
+                        department.afternoonDoctorsCount,
+                      ),
                     ),
                   ],
                 ),

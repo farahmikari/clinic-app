@@ -10,6 +10,8 @@ class FetchDepartmentDoctorsLoaded extends FetchDepartmentDoctorsState {
   FetchDepartmentDoctorsLoaded({required this.departmentDoctors});
 }
 
+class FetchDepartmentDoctorsLoadedEmpty extends FetchDepartmentDoctorsState {}
+
 class FetchDepartmentDoctorsFailed extends FetchDepartmentDoctorsState {
   final String errorMessage;
 

@@ -1,4 +1,4 @@
-import 'package:clinic_app/app/book_appointment_with_offer/models/selected_service_model.dart';
+import 'package:clinic_app/app/book_appointment/models/selected_service_model.dart';
 
 class RequestReservationPricingModel {
   final int? offerId;

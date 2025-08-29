@@ -19,8 +19,7 @@ class MyTextButton extends StatelessWidget {
         style: TextStyle(
           fontSize: 14,
           color: color,
-          fontFamily: "Lato",
-          fontWeight: FontWeight.bold,
+          fontWeight: FontWeight.w500,
         ),
       ),
     );

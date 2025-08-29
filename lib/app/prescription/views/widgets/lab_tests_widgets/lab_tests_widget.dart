@@ -1,7 +1,7 @@
 import 'package:clinic_app/app/prescription/models/lab_test_model.dart';
 import 'package:clinic_app/app/prescription/views/widgets/lab_tests_widgets/lab_test_widget.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
-import 'package:clinic_app/core/extentions/percent_sized_extention.dart';
+import 'package:clinic_app/core/extentions/dimensions_extensions/percent_sized_extension.dart';
 import 'package:flutter/material.dart';
 
 class LabTestsWidget extends StatelessWidget {

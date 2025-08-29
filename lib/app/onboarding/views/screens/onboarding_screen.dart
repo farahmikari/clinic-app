@@ -2,8 +2,8 @@ import 'package:clinic_app/app/login/views/screens/login_screen.dart';
 import 'package:clinic_app/app/onboarding/controllers/onboarding_bloc/onboarding_bloc.dart';
 import 'package:clinic_app/app/onboarding/controllers/onboarding_bloc/onboarding_event.dart';
 import 'package:clinic_app/app/onboarding/controllers/onboarding_bloc/onboarding_state.dart';
-import 'package:clinic_app/core/constants/app_colors.dart';
-import 'package:clinic_app/core/extentions/percent_sized_extention.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_text_colors_extension.dart';
+import 'package:clinic_app/core/extentions/dimensions_extensions/percent_sized_extension.dart';
 import 'package:clinic_app/generated/l10n.dart';
 import 'package:clinic_app/service_locator.dart';
 import 'package:dots_indicator/dots_indicator.dart';
@@ -63,8 +63,8 @@ class OnboardingScreen extends StatelessWidget {
                           context,
                         ).state.pageIndex.toDouble(),
                     decorator: DotsDecorator(
-                      color: Colors.grey,
-                      activeColor: AppColors.primaryColor,
+                      color: Theme.of(context).hintTextColor,
+                      activeColor: Theme.of(context).primaryColor,
                       size: const Size.square(9.0),
                       activeSize: const Size(36.0, 9.0),
                       activeShape: RoundedRectangleBorder(
@@ -99,8 +99,12 @@ class OnboardingScreen extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: Text(
               title,
+              style: TextStyle(
+                color: Theme.of(context).primaryTextColor,
+                fontSize: 23,
+                fontWeight: FontWeight.w500,
+              ),
               textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.titleLarge,
             ),
           ),
         ),
@@ -124,8 +128,8 @@ class OnboardingScreen extends StatelessWidget {
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 15,
-                      fontWeight: FontWeight.normal,
-                      color: Colors.grey,
+                      fontWeight: FontWeight.w500,
+                      color: Theme.of(context).hintTextColor,
                     ),
                   ),
                 ),
@@ -147,16 +151,16 @@ class OnboardingScreen extends StatelessWidget {
                           height: 50,
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
-                            color: AppColors.primaryColor,
+                            color: Theme.of(context).primaryColor,
                             borderRadius: BorderRadius.circular(5),
                           ),
                           child: Text(
                             S.current.get_started,
                             textAlign: TextAlign.center,
-                            style: const TextStyle(
+                            style: TextStyle(
+                              color: Theme.of(context).foregroundColor,
                               fontSize: 16,
                               fontWeight: FontWeight.bold,
-                              color: Colors.white,
                             ),
                           ),
                         )
@@ -164,10 +168,13 @@ class OnboardingScreen extends StatelessWidget {
                           width: 60,
                           height: 50,
                           decoration: BoxDecoration(
-                            color: AppColors.primaryColor,
+                            color: Theme.of(context).primaryColor,
                             borderRadius: BorderRadius.circular(5),
                           ),
-                          child: const Icon(Icons.arrow_forward_ios_rounded),
+                          child: Icon(
+                            Icons.arrow_forward_ios_rounded,
+                            color: Theme.of(context).foregroundColor,
+                          ),
                         ),
               ),
             ],

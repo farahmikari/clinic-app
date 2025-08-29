@@ -1,7 +1,7 @@
-import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
-import 'package:clinic_app/core/extentions/percent_sized_extention.dart';
-import 'package:clinic_app/core/widgets/search_widget.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_text_colors_extension.dart';
+import 'package:clinic_app/core/extentions/dimensions_extensions/percent_sized_extension.dart';
+import 'package:clinic_app/core/widgets/search_widget/views/search_widget.dart';
 import 'package:flutter/material.dart';
 
 class AppBarWithSearchWidget extends StatelessWidget
@@ -15,12 +15,11 @@ class AppBarWithSearchWidget extends StatelessWidget
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      surfaceTintColor: AppColors.backgroundColor,
       toolbarHeight: 20.0.wp,
       title: Text(
         title,
         style: TextStyle(
+          color: Theme.of(context).primaryTextColor,
           fontSize: AppDimensions.lfs,
           fontWeight: FontWeight.bold,
         ),

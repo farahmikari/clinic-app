@@ -20,16 +20,39 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
+  static String m0(count) =>
+      "${Intl.plural(count, zero: 'No Afternoon Dr', one: '1 Afternoon Dr', other: '${count} Afternoon Dr')}";
+
+  static String m1(count) =>
+      "${Intl.plural(count, zero: 'No experience', one: '1 year', other: '${count} years')}";
+
+  static String m2(count) =>
+      "${Intl.plural(count, zero: 'No Morning Dr', one: '1 Morning Dr', other: '${count} Morning Dr')}";
+
+  static String m3(count) =>
+      "${Intl.plural(count, zero: 'No points', one: '1 point', other: '${count} points')}";
+
+  static String m4(count) =>
+      "${Intl.plural(count, zero: 'No treatments', one: '1 treatment', other: '${count} treatments')}";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
     "No": MessageLookupByLibrary.simpleMessage("No"),
     "about_doctor": MessageLookupByLibrary.simpleMessage("About Doctor"),
     "about_us": MessageLookupByLibrary.simpleMessage("About Us"),
     "advices": MessageLookupByLibrary.simpleMessage("Advices"),
-    "afternoon": MessageLookupByLibrary.simpleMessage("Afternoon"),
-    "afternoon_doctor": MessageLookupByLibrary.simpleMessage("Afternoon Dr"),
+    "afternoon": MessageLookupByLibrary.simpleMessage("afternoon"),
+    "afternoon_doctors_count": m0,
     "afternoon_times": MessageLookupByLibrary.simpleMessage("Afternoon Times"),
     "all": MessageLookupByLibrary.simpleMessage("All"),
+    "app_language_subtitle": MessageLookupByLibrary.simpleMessage(
+      "Switch between English and Arabic.",
+    ),
+    "app_language_title": MessageLookupByLibrary.simpleMessage("App Language"),
+    "appearance_subtitle": MessageLookupByLibrary.simpleMessage(
+      "Choose your light or dark theme.",
+    ),
+    "appearance_title": MessageLookupByLibrary.simpleMessage("Appearance"),
     "appointment_date": MessageLookupByLibrary.simpleMessage(
       "Appointment Date",
     ),
@@ -37,11 +60,39 @@ class MessageLookup extends MessageLookupByLibrary {
       "Appointment Time",
     ),
     "appointments": MessageLookupByLibrary.simpleMessage("Appointments"),
+    "appointments_auth_prompt_subtitle": MessageLookupByLibrary.simpleMessage(
+      "Log in to view your upcoming and completed appointments with your doctors.",
+    ),
+    "appointments_auth_prompt_title": MessageLookupByLibrary.simpleMessage(
+      "Sign in to access your appointments",
+    ),
+    "appointments_empty_subtitle": MessageLookupByLibrary.simpleMessage(
+      "You don\'t have any appointments at the clinic.",
+    ),
+    "appointments_empty_title": MessageLookupByLibrary.simpleMessage(
+      "No appointments found",
+    ),
+    "arabic": MessageLookupByLibrary.simpleMessage("Arabic"),
     "are_you_sure_you_want_to_logout": MessageLookupByLibrary.simpleMessage(
       "Are you sure you want to logout ?!",
     ),
+    "base_url": MessageLookupByLibrary.simpleMessage("Base URL"),
+    "base_url_subtitle": MessageLookupByLibrary.simpleMessage(
+      "Open your terminal and run the command ipconfig. Find the IPv4 Address in the output, then enter it in this text field in the following format:\n http://<IPv4 Address>:8000",
+    ),
+    "base_url_title": MessageLookupByLibrary.simpleMessage("Set your base url"),
     "bill_details": MessageLookupByLibrary.simpleMessage("Bill Details"),
     "bills": MessageLookupByLibrary.simpleMessage("Bills"),
+    "bills_auth_prompt_subtitle": MessageLookupByLibrary.simpleMessage(
+      "To securely access and review all your billing details, please sign in to your account.",
+    ),
+    "bills_auth_prompt_title": MessageLookupByLibrary.simpleMessage(
+      "Sign in to access your bills",
+    ),
+    "bills_empty_subtitle": MessageLookupByLibrary.simpleMessage(
+      "You don\'t have any bills to pay at the moment.",
+    ),
+    "bills_empty_title": MessageLookupByLibrary.simpleMessage("No bills due"),
     "birthday_date": MessageLookupByLibrary.simpleMessage("Birthday Date"),
     "blood_group": MessageLookupByLibrary.simpleMessage("Blood Group"),
     "blood_pressure": MessageLookupByLibrary.simpleMessage("Blood Pressure"),
@@ -49,24 +100,39 @@ class MessageLookup extends MessageLookupByLibrary {
     "book_appointment": MessageLookupByLibrary.simpleMessage(
       "Book Appointment",
     ),
+    "book_auth_prompt_subtitle": MessageLookupByLibrary.simpleMessage(
+      "To schedule a visit with our doctors, please sign in to your account or create a new one, This will allow you to choose your preferred doctor, select a convenient time and confirm your booking easily.",
+    ),
+    "book_auth_prompt_title": MessageLookupByLibrary.simpleMessage(
+      "Sign in to book your appointment",
+    ),
     "book_now": MessageLookupByLibrary.simpleMessage("Book Now"),
     "book_now_subtitle": MessageLookupByLibrary.simpleMessage(
       "Find The Best Doctors In Syria",
     ),
+    "book_with_doctor_auth_prompt_subtitle": MessageLookupByLibrary.simpleMessage(
+      "Log in to your account to select your preferred time and confirm your clinic visit.",
+    ),
+    "book_with_doctor_auth_prompt_title": MessageLookupByLibrary.simpleMessage(
+      "Sign in to book your appointment",
+    ),
+    "book_with_offer_auth_prompt_subtitle": MessageLookupByLibrary.simpleMessage(
+      "Log in to your account to unlock this special deal and book your appointment at the clinic.",
+    ),
+    "book_with_offer_auth_prompt_title": MessageLookupByLibrary.simpleMessage(
+      "Sign in to use your offer",
+    ),
     "camera": MessageLookupByLibrary.simpleMessage("Camera"),
-    "cancel": MessageLookupByLibrary.simpleMessage("cancel"),
+    "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
     "card_subtitle": MessageLookupByLibrary.simpleMessage(
       "Your path to better health starts here!",
     ),
     "card_title": MessageLookupByLibrary.simpleMessage(
       "Discover Your Wellbeing",
     ),
-    "change_password": MessageLookupByLibrary.simpleMessage("change password"),
-    "change_theme_Dark_Light_mode": MessageLookupByLibrary.simpleMessage(
-      "change theme Dark / Light mode : ",
-    ),
+    "change_password": MessageLookupByLibrary.simpleMessage("Change password"),
     "check_up": MessageLookupByLibrary.simpleMessage("Check-Up"),
-    "completed": MessageLookupByLibrary.simpleMessage("Completed"),
+    "completed": MessageLookupByLibrary.simpleMessage("completed"),
     "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
     "confirm_password": MessageLookupByLibrary.simpleMessage(
       "Confirm Password",
@@ -74,12 +140,24 @@ class MessageLookup extends MessageLookupByLibrary {
     "continue_as_a_guest": MessageLookupByLibrary.simpleMessage(
       "Continue as a guest",
     ),
-    "cotinue": MessageLookupByLibrary.simpleMessage("cotinue"),
-    "dark": MessageLookupByLibrary.simpleMessage("Dark"),
+    "cotinue": MessageLookupByLibrary.simpleMessage("Cotinue"),
+    "dark_theme": MessageLookupByLibrary.simpleMessage("Dark theme"),
     "data_not_found": MessageLookupByLibrary.simpleMessage("Data not found"),
     "days": MessageLookupByLibrary.simpleMessage("Days"),
     "department": MessageLookupByLibrary.simpleMessage("Department"),
+    "department_doctors_empty_subtitle": MessageLookupByLibrary.simpleMessage(
+      "There are currently no doctors in this department. Please check back soon or explore other departments.",
+    ),
+    "department_doctors_empty_title": MessageLookupByLibrary.simpleMessage(
+      "No Doctors Available",
+    ),
     "departments": MessageLookupByLibrary.simpleMessage("Departments"),
+    "departments_empty_subtitle": MessageLookupByLibrary.simpleMessage(
+      "There are currently no departments open at the clinic, Please check back later.",
+    ),
+    "departments_empty_title": MessageLookupByLibrary.simpleMessage(
+      "No departments available",
+    ),
     "do_you_have_an_account": MessageLookupByLibrary.simpleMessage(
       "Do you have an account ?",
     ),
@@ -99,14 +177,16 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "editing": MessageLookupByLibrary.simpleMessage("Editing"),
     "email": MessageLookupByLibrary.simpleMessage("Email"),
+    "english": MessageLookupByLibrary.simpleMessage("English"),
     "enter_new_email": MessageLookupByLibrary.simpleMessage("Enter new email"),
-    "experiences_title": MessageLookupByLibrary.simpleMessage("Experience"),
+    "experience_count": m1,
+    "experience_title": MessageLookupByLibrary.simpleMessage("Experience"),
     "failed": MessageLookupByLibrary.simpleMessage("Failed"),
     "failed_changed_password": MessageLookupByLibrary.simpleMessage(
       "Failed changed password",
     ),
     "failed_edit_profile": MessageLookupByLibrary.simpleMessage(
-      "failed edit profile",
+      "Failed edit profile",
     ),
     "failed_loading_image": MessageLookupByLibrary.simpleMessage(
       "Failed loading image",
@@ -143,17 +223,13 @@ class MessageLookup extends MessageLookupByLibrary {
       "The total price for this reservation is",
     ),
     "lab_tests": MessageLookupByLibrary.simpleMessage("Lab Tests"),
-    "lab_tests_subtitle": MessageLookupByLibrary.simpleMessage(
-      "All Required Laboratory Tests",
-    ),
-    "language": MessageLookupByLibrary.simpleMessage("Language"),
     "last_name": MessageLookupByLibrary.simpleMessage("Last Name"),
     "latest_offers": MessageLookupByLibrary.simpleMessage("Latest Offers"),
     "less": MessageLookupByLibrary.simpleMessage("Less"),
     "less_than_10_numbers": MessageLookupByLibrary.simpleMessage(
       "Less than 10 numbers",
     ),
-    "light": MessageLookupByLibrary.simpleMessage("Light"),
+    "light_theme": MessageLookupByLibrary.simpleMessage("Light theme"),
     "login": MessageLookupByLibrary.simpleMessage("Login"),
     "login_failed": MessageLookupByLibrary.simpleMessage("Login Failed"),
     "login_first_to_show_your_data": MessageLookupByLibrary.simpleMessage(
@@ -169,14 +245,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "male": MessageLookupByLibrary.simpleMessage("Male"),
     "manage_booking": MessageLookupByLibrary.simpleMessage("Manage Booking"),
     "medical_report": MessageLookupByLibrary.simpleMessage("Medical Report"),
-    "medical_reports": MessageLookupByLibrary.simpleMessage("Medical Reports"),
-    "medical_reports_subtitle": MessageLookupByLibrary.simpleMessage(
-      "All Your Medical Reports in One Place",
-    ),
     "medications": MessageLookupByLibrary.simpleMessage("Medications"),
     "more": MessageLookupByLibrary.simpleMessage("More"),
-    "morning": MessageLookupByLibrary.simpleMessage("Morning"),
-    "morning_doctor": MessageLookupByLibrary.simpleMessage("Morning Dr"),
+    "morning": MessageLookupByLibrary.simpleMessage("morning"),
+    "morning_doctors_count": m2,
     "morning_times": MessageLookupByLibrary.simpleMessage("Morning Times"),
     "most_rated": MessageLookupByLibrary.simpleMessage("Most Rated"),
     "need_booking": MessageLookupByLibrary.simpleMessage(
@@ -191,12 +263,33 @@ class MessageLookup extends MessageLookupByLibrary {
     "need_rating": MessageLookupByLibrary.simpleMessage(
       "? You can leave a quick rating if you’d like.",
     ),
-    "new_password": MessageLookupByLibrary.simpleMessage("new password"),
+    "new_password": MessageLookupByLibrary.simpleMessage("New password"),
     "no_thanks": MessageLookupByLibrary.simpleMessage("No, Thanks!"),
     "notifications": MessageLookupByLibrary.simpleMessage("Notifications"),
+    "notifications_auth_prompt_subtitle": MessageLookupByLibrary.simpleMessage(
+      "Log in to stay updated with the latest alerts and reminders from the clinic.",
+    ),
+    "notifications_auth_prompt_title": MessageLookupByLibrary.simpleMessage(
+      "Sign in to receive notifications",
+    ),
+    "notifications_empty_subtitle": MessageLookupByLibrary.simpleMessage(
+      "You haven\'t received any notifications so far, Stay tuned for updates.",
+    ),
+    "notifications_empty_title": MessageLookupByLibrary.simpleMessage(
+      "No notifications yet",
+    ),
     "offers": MessageLookupByLibrary.simpleMessage("Offers"),
+    "offers_empty_subtitle": MessageLookupByLibrary.simpleMessage(
+      "There aren\'t any special offers right now, but stay tuned exciting deals are on the way.",
+    ),
+    "offers_empty_title": MessageLookupByLibrary.simpleMessage(
+      "No offers available",
+    ),
+    "offers_subtitle": MessageLookupByLibrary.simpleMessage(
+      "Check out today’s booking offers",
+    ),
     "ok": MessageLookupByLibrary.simpleMessage("Ok"),
-    "old_password": MessageLookupByLibrary.simpleMessage("old password"),
+    "old_password": MessageLookupByLibrary.simpleMessage("Old password"),
     "onboarding_1": MessageLookupByLibrary.simpleMessage(
       "Taking care of your health has never been this simple",
     ),
@@ -207,26 +300,22 @@ class MessageLookup extends MessageLookupByLibrary {
       "Book your doctor’s visit in just a few taps",
     ),
     "oops": MessageLookupByLibrary.simpleMessage("Oops"),
+    "or": MessageLookupByLibrary.simpleMessage("OR"),
     "otp_verification": MessageLookupByLibrary.simpleMessage(
       "OTP Verification",
     ),
-    "paid": MessageLookupByLibrary.simpleMessage("Paid"),
+    "paid": MessageLookupByLibrary.simpleMessage("paid"),
     "password": MessageLookupByLibrary.simpleMessage("Password"),
     "password_must_be_8_letters_at_least": MessageLookupByLibrary.simpleMessage(
       "Password must be 8 letters at least",
     ),
-    "pending": MessageLookupByLibrary.simpleMessage("Pending"),
+    "pending": MessageLookupByLibrary.simpleMessage("pending"),
     "phone": MessageLookupByLibrary.simpleMessage("Phone"),
-    "point_unit": MessageLookupByLibrary.simpleMessage("point"),
+    "points_count": m3,
     "points_title": MessageLookupByLibrary.simpleMessage(
       "Well done! here\'s your total point balance",
     ),
-    "points_unit": MessageLookupByLibrary.simpleMessage("points"),
     "prescription": MessageLookupByLibrary.simpleMessage("Prescription"),
-    "prescriptions": MessageLookupByLibrary.simpleMessage("Prescriptions"),
-    "prescriptions_subtitle": MessageLookupByLibrary.simpleMessage(
-      "Your Medications, Treatment & Drugs",
-    ),
     "profile": MessageLookupByLibrary.simpleMessage("Profile"),
     "qualifications": MessageLookupByLibrary.simpleMessage("Qualifications"),
     "resend_otp_code": MessageLookupByLibrary.simpleMessage("Resend OTP Code"),
@@ -247,7 +336,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "reset_password_successfully": MessageLookupByLibrary.simpleMessage(
       "Reset Password Successfully",
     ),
-    "save": MessageLookupByLibrary.simpleMessage("save"),
+    "save": MessageLookupByLibrary.simpleMessage("Save"),
     "search": MessageLookupByLibrary.simpleMessage("Search"),
     "see_more": MessageLookupByLibrary.simpleMessage("See More"),
     "services": MessageLookupByLibrary.simpleMessage("Services"),
@@ -255,8 +344,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "set_your_information": MessageLookupByLibrary.simpleMessage(
       "Set your information",
     ),
-    "setting": MessageLookupByLibrary.simpleMessage("Setting"),
+    "settings": MessageLookupByLibrary.simpleMessage("Settings"),
     "share_rating": MessageLookupByLibrary.simpleMessage("Share Rating"),
+    "sign_in": MessageLookupByLibrary.simpleMessage("Sign in"),
     "sign_up": MessageLookupByLibrary.simpleMessage("Sign up"),
     "sign_up_successfully": MessageLookupByLibrary.simpleMessage(
       "Sign Up Successfully",
@@ -275,10 +365,15 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "times": MessageLookupByLibrary.simpleMessage("Times"),
     "total_amount": MessageLookupByLibrary.simpleMessage("Total Amount"),
-    "treatment_unit": MessageLookupByLibrary.simpleMessage("treatment"),
+    "treatments_count": m4,
     "treatments_title": MessageLookupByLibrary.simpleMessage("Treatments"),
-    "treatments_unit": MessageLookupByLibrary.simpleMessage("treatments"),
-    "unpaid": MessageLookupByLibrary.simpleMessage("Unpaid"),
+    "unpaid": MessageLookupByLibrary.simpleMessage("unpaid"),
+    "use_device_language": MessageLookupByLibrary.simpleMessage(
+      "Use device language",
+    ),
+    "use_device_theme": MessageLookupByLibrary.simpleMessage(
+      "Use device theme",
+    ),
     "verification_failed": MessageLookupByLibrary.simpleMessage(
       "Verification Failed",
     ),
@@ -300,8 +395,6 @@ class MessageLookup extends MessageLookupByLibrary {
     "welcom_back": MessageLookupByLibrary.simpleMessage("Welcom Back!"),
     "with_report": MessageLookupByLibrary.simpleMessage("With Report"),
     "without_report": MessageLookupByLibrary.simpleMessage("Without Report"),
-    "year_unit": MessageLookupByLibrary.simpleMessage("year"),
-    "years_unit": MessageLookupByLibrary.simpleMessage("years"),
     "yes": MessageLookupByLibrary.simpleMessage("yes"),
   };
 }

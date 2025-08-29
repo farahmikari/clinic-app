@@ -13,7 +13,6 @@ class DoctorProfileScreen extends StatelessWidget {
     return BlocProvider(
       create: (context) => DoctorBloc()..add(FetchDoctor(id: id)),
       child: Scaffold(
-        //backgroundColor: AppColors.backgroundColor,
         body: BlocBuilder<DoctorBloc, DoctorState>(
           builder: (context, state) {
             if (state is DoctorLoaded) {

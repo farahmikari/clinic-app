@@ -1,6 +1,7 @@
 import 'package:clinic_app/app/edit_profile/controller/bloc/edit_profile_bloc/edit_profile_bloc.dart';
 import 'package:clinic_app/app/edit_profile/controller/bloc/edit_profile_bloc/edit_profile_event.dart';
-import 'package:clinic_app/core/constants/app_colors.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_background_colors_extension.dart';
+
 import 'package:flutter/material.dart';
 
 Future<void> selectDate(
@@ -17,12 +18,12 @@ Future<void> selectDate(
           colorScheme:
               isDark
                   ? ColorScheme.dark(
-                    primary: AppColors.primaryColor,
-                    surface: Theme.of(context).cardColor,
+                    primary: Theme.of(context).primaryColor,
+                    surface: Theme.of(context).accentBackgroundColor,
                   )
                   : ColorScheme.light(
-                    primary: AppColors.primaryColor,
-                    surface: Theme.of(context).cardColor,
+                    primary: Theme.of(context).primaryColor,
+                    surface: Theme.of(context).accentBackgroundColor,
                   ),
         ),
         child: child!,

@@ -1,5 +1,5 @@
 class EndPoints {
-  static String baseUrl = "http://192.168.161.239:8000";
+  static String baseUrl = "http://192.168.1.6:8000";
 
   static void setBaseUrl(String newBaseUrl) {
     baseUrl = newBaseUrl;
@@ -39,6 +39,14 @@ class EndPoints {
 
   static String billId(int billId) {
     return "/api/user/bill/$billId";
+  }
+
+  static String read(int notificationId) {
+    return "/api/notifications/$notificationId/read";
+  }
+
+  static String medicalReportId(int appointmentId) {
+    return "/api/medical_report/appointment/$appointmentId";
   }
 
   /////send otp code to email/////
@@ -124,11 +132,13 @@ class EndPoints {
   static String offerPrice = "/api/offer_price";
   static String notifications = "/api/notifications";
   static String bills = "/api/user/bills";
+  static String refreshToken = "/api/refresh_token";
 }
 
 class ApiKey {
   static String accept = "Accept";
-  static String authorization = 'Authorization';
+  static String authorization = "Authorization";
+  static String acceptLanguage = "Accept-Language";
   static String errorMessage = "message";
   static String startId = "start_id";
   static String endId = "end_id";
@@ -193,4 +203,7 @@ class ApiKey {
   static String readNotifications = "Read Notifications";
   static String paid = "paid";
   static String unpaid = "unpaid";
+  static String fcmToken = "fcm_token";
+  static String keyword = "keyword";
+  static String medicalReportUrl = "medical report url";
 }

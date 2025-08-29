@@ -10,9 +10,8 @@ class OffersWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
-      shrinkWrap: true,
-      physics: NeverScrollableScrollPhysics(),
       clipBehavior: Clip.none,
+      padding: EdgeInsets.all(AppDimensions.mp),
       itemBuilder: (context, index) {
         return OfferWidget(offer: offers[index]);
       },

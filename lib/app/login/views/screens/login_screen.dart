@@ -7,8 +7,8 @@ import 'package:clinic_app/app/login/views/widgets/text_form_field_widget.dart';
 import 'package:clinic_app/app/signup/views/screens/email_screen.dart';
 import 'package:clinic_app/app/signup/views/widgets/text_button_widget.dart';
 import 'package:clinic_app/app/user_drawer/views/screen/drawer_screen.dart';
-import 'package:clinic_app/consts.dart';
-import 'package:clinic_app/core/constants/app_colors.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_background_colors_extension.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_text_colors_extension.dart';
 import 'package:clinic_app/core/utils/snack_bar_util.dart';
 import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +17,6 @@ import 'package:get/get.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
-  // static String id = "Login";
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -35,12 +34,12 @@ class _LoginScreenState extends State<LoginScreen>
       providers: [BlocProvider(create: (context) => LoginBlocBloc())],
 
       child: Scaffold(
-        backgroundColor: kPrimaryColor,
+        backgroundColor: Theme.of(context).primaryColor,
         body: AnimatedBackground(
           vsync: this,
           behaviour: RandomParticleBehaviour(
             options: ParticleOptions(
-              baseColor: Colors.white,
+              baseColor: Theme.of(context).foregroundColor,
               spawnMaxRadius: 40,
               spawnMinSpeed: 15,
               particleCount: 30,
@@ -91,7 +90,7 @@ class _LoginScreenState extends State<LoginScreen>
                         height: size.height * 0.7,
                         width: size.width,
                         decoration: BoxDecoration(
-                          color: Theme.of(context).scaffoldBackgroundColor,
+                          color: Theme.of(context).primaryBackgroundColor,
                           borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(30),
                             topRight: Radius.circular(30),
@@ -110,10 +109,9 @@ class _LoginScreenState extends State<LoginScreen>
                                   child: Text(
                                     S.current.login,
                                     style: TextStyle(
-                                      color: kPrimaryColor,
-                                      fontFamily: "Montserat",
+                                      color: Theme.of(context).primaryColor,
                                       fontSize: 30,
-                                      fontWeight: FontWeight.bold,
+                                      fontWeight: FontWeight.w500,
                                     ),
                                   ),
                                 ),
@@ -125,10 +123,9 @@ class _LoginScreenState extends State<LoginScreen>
                                   child: Text(
                                     S.current.welcom_back,
                                     style: TextStyle(
-                                     // color: Colors.black,
-                                      fontFamily: "Lato",
+                                      color: Theme.of(context).primaryTextColor,
                                       fontSize: 15,
-                                      fontWeight: FontWeight.bold,
+                                      fontWeight: FontWeight.w500,
                                     ),
                                   ),
                                 ),
@@ -170,6 +167,7 @@ class _LoginScreenState extends State<LoginScreen>
                                       );
                                     },
                                     icon: Icon(
+                                      color: Theme.of(context).accentTextColor,
                                       obscure
                                           ? Icons.visibility_off
                                           : Icons.visibility,
@@ -182,15 +180,15 @@ class _LoginScreenState extends State<LoginScreen>
                                   ),
                                   child: MyTextButton(
                                     textButton: S.current.forget_password,
-                                    color: Colors.grey,
+                                    color: Theme.of(context).hintTextColor,
                                     onPressed: () {
-                                      Get.to(()=>SetEmailScreen());
+                                      Get.to(() => SetEmailScreen());
                                     },
                                   ),
                                 ),
                                 MyButtonWidget(
                                   text: S.current.login,
-                                  color: kPrimaryColor,
+                                  color: Theme.of(context).primaryColor,
                                   isLoading: isLoading,
                                   onPressed:
                                       (loginData.button && !isLoading)
@@ -204,11 +202,9 @@ class _LoginScreenState extends State<LoginScreen>
                                 MyButtonWidget(
                                   text: S.current.continue_as_a_guest,
                                   onPressed: () {
-                                    Get.offAll(
-                                      () => DrawerScreen(),
-                                    );
+                                    Get.offAll(() => DrawerScreen());
                                   },
-                                  color: kPrimaryColor,
+                                  color: Theme.of(context).primaryColor,
                                 ),
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
@@ -216,14 +212,15 @@ class _LoginScreenState extends State<LoginScreen>
                                     Text(
                                       S.current.dont_have_an_account,
                                       style: TextStyle(
+                                        color:
+                                            Theme.of(context).primaryTextColor,
                                         fontSize: 14,
-                                        fontFamily: "Lato",
-                                        fontWeight: FontWeight.bold,
+                                        fontWeight: FontWeight.w500,
                                       ),
                                     ),
                                     MyTextButton(
                                       textButton: S.current.sign_up,
-                                      color: AppColors.primaryColor,
+                                      color: Theme.of(context).primaryColor,
                                       onPressed: () {
                                         Get.off(() => EmailScreen());
                                       },

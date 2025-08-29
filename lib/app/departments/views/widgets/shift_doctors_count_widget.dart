@@ -1,5 +1,6 @@
 import 'package:clinic_app/core/constants/app_dimensions.dart';
-import 'package:clinic_app/core/extentions/percent_sized_extention.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_text_colors_extension.dart';
+import 'package:clinic_app/core/extentions/dimensions_extensions/percent_sized_extension.dart';
 import 'package:flutter/material.dart';
 
 class ShiftDoctorsCountWidget extends StatelessWidget {
@@ -7,11 +8,9 @@ class ShiftDoctorsCountWidget extends StatelessWidget {
     super.key,
     required this.color,
     required this.shift,
-    required this.count,
   });
   final Color color;
   final String shift;
-  final int count;
 
   @override
   Widget build(BuildContext context) {
@@ -26,16 +25,9 @@ class ShiftDoctorsCountWidget extends StatelessWidget {
           decoration: BoxDecoration(color: color, shape: BoxShape.circle),
         ),
         Text(
-          count.toString(),
-          style: TextStyle(
-            fontSize: AppDimensions.sfs,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        Text(
           shift,
           style: TextStyle(
-            color: Theme.of(context).hintColor,
+            color: Theme.of(context).accentTextColor,
             fontSize: AppDimensions.sfs,
             fontWeight: FontWeight.w500,
           ),

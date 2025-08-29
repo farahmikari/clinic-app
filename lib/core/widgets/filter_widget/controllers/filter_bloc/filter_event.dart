@@ -4,6 +4,6 @@ sealed class FilterEvent {}
 
 class FilterIsChanged extends FilterEvent {}
 
-class FilterIsReset extends FilterEvent {}
+class FilterWidgetIsDeactivated extends FilterEvent {}
 
 class FilterWidgetIsActivated extends FilterEvent {}

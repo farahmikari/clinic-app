@@ -1,23 +1,27 @@
 import 'package:clinic_app/app/vital_signals/model/vital_signals_model.dart';
 import 'package:clinic_app/app/vital_signals/views/widgets/container_with_icon_and_texts_widget.dart';
 import 'package:clinic_app/app/vital_signals/views/widgets/heart_rate_widget.dart';
-import 'package:clinic_app/core/constants/app_colors.dart';
-import 'package:clinic_app/core/extentions/percent_sized_extention.dart';
+import 'package:clinic_app/core/constants/app_dimensions.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_colors_extension.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_text_colors_extension.dart';
+import 'package:clinic_app/core/extentions/dimensions_extensions/percent_sized_extension.dart';
 import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 
 class InfoVitalSignals extends StatelessWidget {
   const InfoVitalSignals({super.key,required this.model});
   final VitalSignalsModel model;
+
+ 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         title: Text(
           S.current.vital_signs,
-          style: Theme.of(context).textTheme.titleLarge!.copyWith(
-            fontSize: 20,
+          style: TextStyle(
+            color: Theme.of(context).primaryTextColor,
+            fontSize: AppDimensions.lfs,
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -28,7 +32,7 @@ class InfoVitalSignals extends StatelessWidget {
           child: Column(
             spacing: 1.0.hp,
             children: [
-              HeartRateWidget(heartRate: "100"),
+              HeartRateWidget(heartRate: model.heartRate),
               GridView.count(
                 crossAxisCount: 2,
                 mainAxisSpacing: 2.0.wp,
@@ -38,43 +42,43 @@ class InfoVitalSignals extends StatelessWidget {
                 children: [
                   ContainerWithIconAndTextsWidget(
                     title: S.current.blood_group,
-                    value: "+A",
+                    value: model.bloodGroup,
                     icon: "assets/images/blood-type-a.png",
-                    color: AppColors.lightRedColor,
+                    color: Theme.of(context).lightRedColor,
                   ),
                   ContainerWithIconAndTextsWidget(
                     title: S.current.temprature,
-                    value: "36",
+                    value: model.temprature,
                     icon: "assets/images/temprature.png",
-                    color: AppColors.lightOrangColor,
+                    color: Theme.of(context).lightOrangeColor,
                   ),
                   ContainerWithIconAndTextsWidget(
                     title: S.current.weight,
-                    value: "50",
+                    value: model.weight,
                     symbol: "Kg",
                     icon: "assets/images/weight-loss.png",
-                    color: AppColors.lightGreenColor,
+                    color: Theme.of(context).lightGreenColor,
                   ),
                   ContainerWithIconAndTextsWidget(
                     title: S.current.height,
-                    value: "155",
+                    value: model.height,
                     symbol: "m",
                     icon: "assets/images/height.png",
-                    color: AppColors.lightYellowColor,
+                    color: Theme.of(context).lightYelloColor,
                   ),
                   ContainerWithIconAndTextsWidget(
                     title: S.current.blood_pressure,
-                    value: "120/80",
+                    value: model.pressure,
                     symbol: "mmHg",
                     icon: "assets/images/blood-pressure-gauge.png",
-                    color: AppColors.lightBlueColor,
+                    color: Theme.of(context).lightBlueColor,
                   ),
                   ContainerWithIconAndTextsWidget(
                     title: S.current.blood_sugar,
-                    value: "55",
+                    value: model.bloodSugar,
                     symbol: "mg/dl",
                     icon: "assets/images/diabetes-test.png",
-                    color: AppColors.lightFColor,
+                    color: Theme.of(context).lightFColor,
                   ),
                 ],
               ),

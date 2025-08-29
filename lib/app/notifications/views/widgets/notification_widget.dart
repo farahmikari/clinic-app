@@ -1,10 +1,12 @@
 import 'package:clinic_app/app/notifications/models/notification_model.dart';
-import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
 import 'package:clinic_app/core/constants/app_icons.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_background_colors_extension.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_colors_extension.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_text_colors_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:clinic_app/core/constants/app_shadow.dart';
-import 'package:clinic_app/core/extentions/percent_sized_extention.dart';
+import 'package:clinic_app/core/extentions/dimensions_extensions/percent_sized_extension.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 
@@ -26,6 +28,8 @@ class NotificationWidget extends StatelessWidget {
           return AppIcons.prescriptions;
         case "report":
           return AppIcons.medicalReport;
+        case "cancellation":
+          return AppIcons.cancellation;
         default:
           return AppIcons.notifications;
       }
@@ -33,21 +37,8 @@ class NotificationWidget extends StatelessWidget {
 
     Color specifyBackgroundColor() {
       return notification.isRead
-          ? AppColors.widgetBackgroundColor
-          : AppColors.lightBlueColor;
-    }
-
-    Color specifyIconBackgroundColor() {
-      switch (notification.type) {
-        case "reminder":
-          return AppColors.primaryColor;
-        case "prescription":
-          return AppColors.accentColor;
-        case "report":
-          return AppColors.darkBlueColor;
-        default:
-          return AppColors.primaryColor;
-      }
+          ? Theme.of(context).accentBackgroundColor
+          : Theme.of(context).lightBlueColor;
     }
 
     return Container(
@@ -55,10 +46,6 @@ class NotificationWidget extends StatelessWidget {
       decoration: BoxDecoration(
         color: specifyBackgroundColor(),
         borderRadius: BorderRadius.circular(AppDimensions.mbr),
-        image: DecorationImage(
-          image: AssetImage("assets/images/watermark7.png"),
-          fit: BoxFit.cover,
-        ),
         boxShadow: AppShadow.boxShadow,
       ),
       child: Row(
@@ -71,14 +58,17 @@ class NotificationWidget extends StatelessWidget {
             height: 14.0.wp,
             alignment: Alignment.center,
             decoration: BoxDecoration(
-              color: specifyIconBackgroundColor(),
+              color: Theme.of(context).primaryColor,
               shape: BoxShape.circle,
             ),
             child: SvgPicture.asset(
               specifyIcon(),
               height: AppDimensions.mis,
               width: AppDimensions.mis,
-              colorFilter:ColorFilter.mode(AppColors.widgetBackgroundColor, BlendMode.srcIn),
+              colorFilter: ColorFilter.mode(
+                Theme.of(context).foregroundColor,
+                BlendMode.srcIn,
+              ),
             ),
           ),
           Expanded(
@@ -87,36 +77,30 @@ class NotificationWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               spacing: AppDimensions.sp,
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text(
-                      notification.title,
-                      style: TextStyle(
-                        color: AppColors.darkGreyColor,
-                        fontSize: AppDimensions.sfs,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                    Text(
-                      formatNotificationDate(),
-                      style: TextStyle(
-                        color: AppColors.hintTextColor,
-                        fontSize: AppDimensions.sfs,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ],
+                Text(
+                  notification.title,
+                  style: TextStyle(
+                    color: Theme.of(context).accentTextColor,
+                    fontSize: AppDimensions.sfs,
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
                 Text(
                   notification.body,
                   style: TextStyle(
-                    color: AppColors.mainTextColor,
+                    color: Theme.of(context).primaryTextColor,
                     fontSize: AppDimensions.sfs,
                     fontWeight: FontWeight.bold,
                   ),
                   textAlign: TextAlign.justify,
+                ),
+                Text(
+                  formatNotificationDate(),
+                  style: TextStyle(
+                    color: Theme.of(context).hintTextColor,
+                    fontSize: AppDimensions.sfs,
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
               ],
             ),

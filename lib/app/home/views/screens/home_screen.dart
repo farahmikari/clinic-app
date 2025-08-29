@@ -4,18 +4,18 @@ import 'package:clinic_app/app/home/views/widgets/latest_offers_widgets/latest_o
 import 'package:clinic_app/app/home/views/widgets/latest_offers_widgets/shimmer_latest_offers_widget.dart';
 import 'package:clinic_app/app/home/views/widgets/most_rated_doctors_widgets/shimmer_most_rated_doctors_widget.dart';
 import 'package:clinic_app/app/home/views/widgets/most_rated_doctors_widgets/most_rated_doctors_widget.dart';
+import 'package:clinic_app/app/home/views/widgets/points_widgets/points_widget.dart';
+import 'package:clinic_app/app/home/views/widgets/points_widgets/shimmer_points_widget.dart';
 import 'package:clinic_app/app/home/views/widgets/services%20button%20widgets/services_buttons_widget.dart';
 import 'package:clinic_app/app/offers/controllers/fetch_offers_bloc/fetch_offers_bloc.dart';
-import 'package:clinic_app/app/offers/views/screens/offers_screen.dart';
-import 'package:clinic_app/core/constants/app_colors.dart';
+import 'package:clinic_app/app/home/controllers/fetch_user_points_bloc/fetch_user_points_bloc.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
 import 'package:clinic_app/app/home/views/widgets/card_widget.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_background_colors_extension.dart';
 import 'package:clinic_app/core/widgets/subtitle_widget.dart';
-import 'package:clinic_app/core/widgets/subtitle_with_text_button_widget.dart';
 import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get/get.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -23,6 +23,7 @@ class HomeScreen extends StatelessWidget {
   Future<void> _onRefresh(BuildContext context) async {
     context.read<FetchOffersBloc>().add(FetchOffers());
     context.read<MostRatedDoctorsBloc>().add(FetchMostRatedDoctors());
+    context.read<FetchUserPointsBloc>().add(FetchUserPoints());
   }
 
   @override
@@ -36,6 +37,9 @@ class HomeScreen extends StatelessWidget {
         BlocProvider(
           create: (context) => FetchOffersBloc()..add(FetchOffers()),
         ),
+        BlocProvider(
+          create: (context) => FetchUserPointsBloc()..add(FetchUserPoints()),
+        ),
       ],
       child: Scaffold(
         appBar: HomeAppBarWidget(),
@@ -43,20 +47,23 @@ class HomeScreen extends StatelessWidget {
           builder: (context) {
             return RefreshIndicator(
               onRefresh: () => _onRefresh(context),
-              color: AppColors.primaryColor,
-              backgroundColor: Theme.of(context).cardColor,
+              color: Theme.of(context).primaryColor,
+              backgroundColor: Theme.of(context).accentBackgroundColor,
               child: ListView(
                 padding: EdgeInsets.only(bottom: AppDimensions.mp),
                 children: [
+                  BlocBuilder<FetchUserPointsBloc, FetchUserPointsState>(
+                    builder: (context, state) {
+                      if (state is FetchUserPointsLoaded) {
+                        return PointsWidget(userPoints: state.userPoints);
+                      }
+                      return ShimmerPointsWidget();
+                    },
+                  ),
+                  SizedBox(height: AppDimensions.mp),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: AppDimensions.mp),
-                    child: SubtitleWithTextButtonWidget(
-                      subtitle: S.current.latest_offers,
-                      buttonTitle: S.current.see_more,
-                      onPressed: () {
-                        Get.to(() => OffersScreen());
-                      },
-                    ),
+                    child: SubtitleWidget(subtitle: S.current.latest_offers),
                   ),
                   SizedBox(height: AppDimensions.mp),
                   BlocBuilder<FetchOffersBloc, FetchOffersState>(

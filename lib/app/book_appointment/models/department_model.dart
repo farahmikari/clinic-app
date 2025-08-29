@@ -3,8 +3,8 @@ import 'package:clinic_app/core/api/end_points.dart';
 class DepartmentModel {
   final int id;
   final String name;
-  final int morningDoctorsCount; // new please ask to add this property
-  final int afternoonDoctorsCount; // new please ask to add this property
+  final int morningDoctorsCount;
+  final int afternoonDoctorsCount;
 
   DepartmentModel({
     required this.id,

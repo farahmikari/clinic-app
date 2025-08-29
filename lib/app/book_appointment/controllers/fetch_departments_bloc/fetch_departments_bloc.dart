@@ -22,12 +22,19 @@ class FetchDepartmentsBloc
     on<FetchDepartments>((event, emit) async {
       emit(FetchDepartmentsLoading());
       try {
-        dynamic response = await api.get(EndPoints.departments);
+        dynamic response = await api.get(
+          EndPoints.departments,
+          queryParameter: {ApiKey.keyword: event.searchWord},
+        );
         List<DepartmentModel> departments =
             (response as List<dynamic>)
                 .map((department) => DepartmentModel.fromJson(department))
                 .toList();
-        emit(FetchDepartmentsLoaded(departments));
+        if (departments.isEmpty) {
+          emit(FetchDepartmentsLoadedEmpty());
+        } else {
+          emit(FetchDepartmentsLoaded(departments));
+        }
       } on ServerException catch (e) {
         emit(FetchDepartmentsFailed(e.errorModel.errorMessage));
       }

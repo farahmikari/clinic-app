@@ -1,8 +1,8 @@
 import 'package:clinic_app/app/login/views/screens/login_screen.dart';
 import 'package:clinic_app/app/login/views/widgets/button_widget.dart';
-import 'package:clinic_app/core/constants/app_colors.dart';
-import 'package:clinic_app/core/extentions/percent_sized_extention.dart';
-import 'package:clinic_app/core/extentions/responsive_text_extention.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_text_colors_extension.dart';
+import 'package:clinic_app/core/extentions/dimensions_extensions/percent_sized_extension.dart';
+import 'package:clinic_app/core/extentions/dimensions_extensions/responsive_text_extension.dart';
 import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
@@ -22,9 +22,7 @@ class FailureScreenWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      ),
+      appBar: AppBar(),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -36,9 +34,10 @@ class FailureScreenWidget extends StatelessWidget {
               child: Center(
                 child: Text(
                   errorMessage,
-                  style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                  style: TextStyle(
+                    color: Theme.of(context).accentTextColor,
                     fontSize: 14.0.sp,
-                    color: AppColors.hintTextColor,
+                    fontWeight: FontWeight.w500,
                   ),
                 ),
               ),
@@ -50,7 +49,7 @@ class FailureScreenWidget extends StatelessWidget {
                   onPressed: () {
                     Get.offAll(LoginScreen());
                   },
-                  color: AppColors.primaryColor,
+                  color: Theme.of(context).primaryColor,
                 )
                 : SizedBox.shrink(),
           ],

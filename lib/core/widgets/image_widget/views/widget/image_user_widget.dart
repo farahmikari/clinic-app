@@ -9,8 +9,7 @@ class ImageUser extends StatelessWidget {
     return CircleAvatar(
       backgroundColor: Colors.grey.shade200,
       radius: 65,
-      foregroundImage:
-          Image.network(image, fit: BoxFit.cover).image,
+      foregroundImage: Image.network(image, fit: BoxFit.cover).image,
     );
   }
 }

@@ -1,0 +1,54 @@
+import 'package:clinic_app/core/constants/app_dimensions.dart';
+import 'package:clinic_app/core/constants/app_shadow.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_background_colors_extension.dart';
+import 'package:clinic_app/core/extentions/dimensions_extensions/percent_sized_extension.dart';
+import 'package:clinic_app/app/book_appointment/views/widgets/request_types_widget/models/request_type_model.dart';
+import 'package:clinic_app/app/book_appointment/views/widgets/request_types_widget/views/items/type_item.dart';
+import 'package:clinic_app/generated/l10n.dart';
+import 'package:flutter/material.dart';
+
+class DroppableItem extends StatelessWidget {
+  const DroppableItem({
+    super.key,
+    required this.height,
+    required this.currentRequestTypeId,
+    required this.previousRequestTypeId,
+    required this.isRequestTypesWidgetActived,
+  });
+
+  final double height;
+  final int currentRequestTypeId;
+  final int previousRequestTypeId;
+  final bool isRequestTypesWidgetActived;
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 300),
+      height: height,
+      padding: EdgeInsets.only(top: 16.0.wp, bottom: AppDimensions.mp),
+      decoration: BoxDecoration(
+        color: Theme.of(context).accentBackgroundColor,
+        borderRadius: BorderRadius.circular(AppDimensions.mbr),
+        boxShadow: AppShadow.boxShadow,
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          TypeItem(
+            requestType: RequestTypeModel(id: 1, type: S.current.check_up),
+            currentRequestTypeId: currentRequestTypeId,
+            previousRequestTypeId: previousRequestTypeId,
+            isRequestTypesWidgetActived: isRequestTypesWidgetActived,
+          ),
+          TypeItem(
+            requestType: RequestTypeModel(id: 2, type: S.current.follow_up),
+            currentRequestTypeId: currentRequestTypeId,
+            previousRequestTypeId: previousRequestTypeId,
+            isRequestTypesWidgetActived: isRequestTypesWidgetActived,
+          ),
+        ],
+      ),
+    );
+  }
+}

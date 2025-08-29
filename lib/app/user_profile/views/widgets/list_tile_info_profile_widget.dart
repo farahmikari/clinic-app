@@ -1,4 +1,4 @@
-import 'package:clinic_app/core/constants/app_colors.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_text_colors_extension.dart';
 import 'package:flutter/material.dart';
 
 class ListTileInfoProfileWidget extends StatelessWidget {
@@ -16,26 +16,25 @@ class ListTileInfoProfileWidget extends StatelessWidget {
     return Column(
       children: [
         ListTile(
-          leading: Icon(icon, color: AppColors.primaryColor),
+          leading: Icon(icon, color: Theme.of(context).primaryColor),
           title: Text(
             title,
             style: TextStyle(
-              color: AppColors.primaryColor,
-              fontWeight: FontWeight.w700,
+              color: Theme.of(context).primaryColor,
+              fontWeight: FontWeight.w500,
               fontSize: 10,
-              fontFamily: "Montserat",
             ),
           ),
           subtitle: Text(
             text,
             style: TextStyle(
-              fontWeight: FontWeight.w700,
+              color: Theme.of(context).primaryTextColor,
+              fontWeight: FontWeight.bold,
               fontSize: 15,
-              fontFamily: "Montserat",
             ),
           ),
         ),
-        Divider(color: AppColors.hintTextColor, thickness: 0.3),
+        Divider(color: Theme.of(context).hintTextColor, thickness: 0.3),
       ],
     );
   }

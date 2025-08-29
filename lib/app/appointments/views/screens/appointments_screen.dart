@@ -1,9 +1,11 @@
 import 'package:clinic_app/app/appointments/controllers/appointments%20bloc/fetch_appointments_bloc.dart';
 import 'package:clinic_app/app/appointments/views/widgets/appointments_widgets/appointments_widget.dart';
 import 'package:clinic_app/app/appointments/views/widgets/appointments_widgets/shimmer_appointments_widget.dart';
-import 'package:clinic_app/core/constants/app_colors.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_background_colors_extension.dart';
 import 'package:clinic_app/core/widgets/app_bar_with_filter_and_search_widget.dart';
+import 'package:clinic_app/core/widgets/empty_list_widget.dart';
 import 'package:clinic_app/core/widgets/filter_widget/controllers/filter_bloc/filter_bloc.dart';
+import 'package:clinic_app/core/widgets/search_widget/controllers/search_bloc/search_bloc.dart';
 import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,8 +14,11 @@ class AppointmentsScreen extends StatelessWidget {
   const AppointmentsScreen({super.key});
 
   Future<void> _onRefresh(BuildContext context) async {
-    context.read<FetchAppointmentsBloc>().add(FetchAppointments());
-    context.read<FilterBloc>().add(FilterIsReset());
+    String searchWord = context.read<SearchBloc>().state.searchWord;
+    int filterIndex = context.read<FilterBloc>().state.filterIndex;
+    context.read<FetchAppointmentsBloc>().add(
+      FetchAppointments(searchWord: searchWord, filterIndex: filterIndex),
+    );
   }
 
   @override
@@ -25,6 +30,7 @@ class AppointmentsScreen extends StatelessWidget {
               (context) => FetchAppointmentsBloc()..add(FetchAppointments()),
         ),
         BlocProvider(create: (context) => FilterBloc()),
+        BlocProvider(create: (context) => SearchBloc()),
       ],
       child: MultiBlocListener(
         listeners: [
@@ -32,6 +38,8 @@ class AppointmentsScreen extends StatelessWidget {
             listener: (context, state) {
               if (state is FetchAppointmentsLoaded) {
                 context.read<FilterBloc>().add(FilterWidgetIsActivated());
+              } else {
+                context.read<FilterBloc>().add(FilterWidgetIsDeactivated());
               }
             },
           ),
@@ -55,6 +63,17 @@ class AppointmentsScreen extends StatelessWidget {
               }
             },
           ),
+          BlocListener<SearchBloc, SearchState>(
+            listener: (context, state) {
+              int filterIndex = context.read<FilterBloc>().state.filterIndex;
+              context.read<FetchAppointmentsBloc>().add(
+                FetchAppointments(
+                  searchWord: state.searchWord,
+                  filterIndex: filterIndex,
+                ),
+              );
+            },
+          ),
         ],
         child: Scaffold(
           appBar: AppBarWithFilterAndSearchWidget(
@@ -65,25 +84,36 @@ class AppointmentsScreen extends StatelessWidget {
               S.current.completed,
             ],
           ),
-          body: Builder(
-            builder: (context) {
-              return RefreshIndicator(
-                onRefresh: () => _onRefresh(context),
-                color: AppColors.primaryColor,
-                backgroundColor: Theme.of(context).cardColor,
-                child:
-                    BlocBuilder<FetchAppointmentsBloc, FetchAppointmentsState>(
-                      builder: (context, state) {
-                        if (state is FetchAppointmentsLoaded) {
-                          return AppointmentsWidget(
-                            appointments: state.appointments,
-                          );
-                        }
-                        return ShimmerAppointmentsWidget();
-                      },
-                    ),
-              );
-            },
+          body: SafeArea(
+            child: Builder(
+              builder: (context) {
+                return RefreshIndicator(
+                  onRefresh: () => _onRefresh(context),
+                  color: Theme.of(context).primaryColor,
+                  backgroundColor: Theme.of(context).accentBackgroundColor,
+                  child: BlocBuilder<
+                    FetchAppointmentsBloc,
+                    FetchAppointmentsState
+                  >(
+                    builder: (context, state) {
+                      if (state is FetchAppointmentsLoaded) {
+                        return AppointmentsWidget(
+                          appointments: state.appointments,
+                        );
+                      }
+                      if (state is FetchAppointmentsLoadeEmpty) {
+                        return EmptyListWidget(
+                          image: "assets/images/empty_appointments.png",
+                          title: S.current.appointments_empty_title,
+                          subtitle: S.current.appointments_empty_subtitle,
+                        );
+                      }
+                      return ShimmerAppointmentsWidget();
+                    },
+                  ),
+                );
+              },
+            ),
           ),
         ),
       ),

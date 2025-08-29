@@ -15,7 +15,7 @@ class AboutUsScreen extends StatelessWidget {
           padding: EdgeInsets.all(AppDimensions.mp),
           child: Container(
             decoration: BoxDecoration(
-              color: AppColors.transparentGreen,
+              color: AppColors.transparentPrimaryColor,
               border: Border.all(color: AppColors.primaryColor),
             ),
             child: Expanded(child: Text(S.current.info_clinic)),

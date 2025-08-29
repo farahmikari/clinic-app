@@ -1,9 +1,11 @@
 import 'package:clinic_app/app/base_url/controllers/fetch_base_url/fetch_base_url_bloc.dart';
-import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:clinic_app/core/constants/app_dimensions.dart';
 import 'package:clinic_app/core/constants/app_icons.dart';
 import 'package:clinic_app/core/constants/app_shadow.dart';
-import 'package:clinic_app/core/extentions/percent_sized_extention.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_background_colors_extension.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_text_colors_extension.dart';
+import 'package:clinic_app/core/extentions/dimensions_extensions/percent_sized_extension.dart';
+import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -17,7 +19,7 @@ class BaseUrlWidget extends StatelessWidget {
       height: 15.0.wp,
       padding: EdgeInsets.symmetric(horizontal: AppDimensions.mp),
       decoration: BoxDecoration(
-        color: AppColors.widgetBackgroundColor,
+        color: Theme.of(context).accentBackgroundColor,
         borderRadius: BorderRadius.circular(AppDimensions.lbr),
         boxShadow: AppShadow.boxShadow,
       ),
@@ -30,7 +32,10 @@ class BaseUrlWidget extends StatelessWidget {
             AppIcons.url,
             height: AppDimensions.sis,
             width: AppDimensions.mis,
-            colorFilter:ColorFilter.mode(AppColors.darkGreyColor, BlendMode.srcIn)
+            colorFilter: ColorFilter.mode(
+              Theme.of(context).accentTextColor,
+              BlendMode.srcIn,
+            ),
           ),
           Expanded(
             child: TextField(
@@ -40,14 +45,14 @@ class BaseUrlWidget extends StatelessWidget {
                 );
               },
               style: TextStyle(
-                color: AppColors.mainTextColor,
+                color: Theme.of(context).primaryTextColor,
                 fontSize: AppDimensions.mfs,
                 fontWeight: FontWeight.w500,
               ),
               decoration: InputDecoration(
-                hintText: "Base URL",
+                hintText: S.current.base_url,
                 hintStyle: TextStyle(
-                  color: AppColors.hintTextColor,
+                  color: Theme.of(context).hintTextColor,
                   fontSize: AppDimensions.mfs,
                   fontWeight: FontWeight.w500,
                 ),
@@ -55,7 +60,7 @@ class BaseUrlWidget extends StatelessWidget {
                 focusedBorder: OutlineInputBorder(borderSide: BorderSide.none),
                 contentPadding: EdgeInsets.all(0.0),
               ),
-              cursorColor: AppColors.mainTextColor,
+              cursorColor: Theme.of(context).primaryTextColor,
               autocorrect: false,
             ),
           ),

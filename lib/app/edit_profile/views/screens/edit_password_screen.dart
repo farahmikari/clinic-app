@@ -5,8 +5,9 @@ import 'package:clinic_app/app/edit_profile/controller/bloc/edit_passowrd_bloc/e
 import 'package:clinic_app/app/login/views/widgets/button_widget.dart';
 import 'package:clinic_app/app/login/views/widgets/text_form_field_widget.dart';
 import 'package:clinic_app/app/user_drawer/views/screen/drawer_screen.dart';
-import 'package:clinic_app/core/constants/app_colors.dart';
-import 'package:clinic_app/core/extentions/percent_sized_extention.dart';
+import 'package:clinic_app/core/constants/app_dimensions.dart';
+import 'package:clinic_app/core/extentions/colors_extensions/theme_text_colors_extension.dart';
+import 'package:clinic_app/core/extentions/dimensions_extensions/percent_sized_extension.dart';
 import 'package:clinic_app/core/utils/snack_bar_util.dart';
 import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
@@ -24,15 +25,14 @@ class EditPasswordScreen extends StatelessWidget {
     final bloc = context.read<EditPasswordBloc>();
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: AppColors.primaryColor,
         title: Text(
           S.current.change_password,
-          style: Theme.of(context).textTheme.titleLarge!.copyWith(
-            color: AppColors.backgroundColor,
-            fontSize: 20,
+          style: TextStyle(
+            color: Theme.of(context).primaryTextColor,
+            fontSize: AppDimensions.lfs,
+            fontWeight: FontWeight.bold,
           ),
         ),
-        iconTheme: IconThemeData(color: AppColors.backgroundColor),
       ),
       body: SingleChildScrollView(
         child: BlocConsumer<EditPasswordBloc, EditPasswordBaseState>(
@@ -48,7 +48,7 @@ class EditPasswordScreen extends StatelessWidget {
                 await await Future.delayed(Duration(seconds: 2));
                 Get.off(() => DrawerScreen());
                 break;
-    
+
               case EditPasswordFailed():
                 showSnackBar(
                   context,
@@ -92,12 +92,13 @@ class EditPasswordScreen extends StatelessWidget {
                       },
                       icon: Icon(
                         oldObscure ? Icons.visibility_off : Icons.visibility,
+                        color: Theme.of(context).accentTextColor,
                       ),
                     ),
                   ),
                   /////////////////new password////////////////
                   SizedBox(height: 1.0.hp),
-    
+
                   TextFormFieldWidget(
                     label: S.current.new_password,
                     iconTextField: Icons.lock,
@@ -115,6 +116,7 @@ class EditPasswordScreen extends StatelessWidget {
                       },
                       icon: Icon(
                         obscure ? Icons.visibility_off : Icons.visibility,
+                        color: Theme.of(context).accentTextColor,
                       ),
                     ),
                   ),
@@ -137,6 +139,7 @@ class EditPasswordScreen extends StatelessWidget {
                       },
                       icon: Icon(
                         conObscure ? Icons.visibility_off : Icons.visibility,
+                        color: Theme.of(context).accentTextColor,
                       ),
                     ),
                   ),
@@ -151,7 +154,7 @@ class EditPasswordScreen extends StatelessWidget {
                               bloc.add(EditSubmitEvent());
                             }
                             : null,
-                    color: AppColors.primaryColor,
+                    color: Theme.of(context).primaryColor,
                   ),
                 ],
               ),
