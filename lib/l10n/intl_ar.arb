@@ -41,8 +41,7 @@
     "qualifications": "المؤهلات",
     "offers": "العروض",
     "points_title": "أحسنت! إليك رصيد نقاطك الإجمالي",
-    "point_unit": "نقطة",
-    "points_unit": "نقاط",
+    "points_count": "{count, plural, =0{لا يوجد نقاط} =1{نقطة واحدة} =2{نقطتان} few{{count} نقاط} many{{count} نقطة} other{{count} نقطة}}",
     "book_appointment": "حجز موعد",
     "reservation_type": "نوع الحجز",
     "days": "الأيام",
@@ -197,5 +196,8 @@
     "dark_theme": "الوضع الداكن",
     "use_device_language": "استخدام لغة الجهاز",
     "arabic": "العربية",
-    "english": "الإنجليزية"
+    "english": "الإنجليزية",
+    "base_url": "الرابط",
+    "base_url_title": "حدد الرابط",
+    "base_url_subtitle": "افتح Terminal وشغّل الأمر ipconfig. ابحث عن عنوان IPv4 في المخرجات، ثم أدخله في حقل النص بالصّيغة التالية:\n http://<IPv4 Address>:8000"
 }

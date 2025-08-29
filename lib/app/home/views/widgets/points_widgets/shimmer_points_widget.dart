@@ -13,7 +13,7 @@ class ShimmerPointsWidget extends StatelessWidget {
       baseColor: Theme.of(context).shimmerBaseColor,
       highlightColor: Theme.of(context).shimmerHighlightColor,
       child: Container(
-        height: 35.0.wp,
+        height: 53.0.wp,
         width: 92.0.wp,
         margin: EdgeInsets.symmetric(horizontal: AppDimensions.mp),
         child: Column(
@@ -74,6 +74,24 @@ class ShimmerPointsWidget extends StatelessWidget {
             ),
             Expanded(
               flex: 3,
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Theme.of(context).shimmerBaseColor,
+                  borderRadius: BorderRadius.circular(AppDimensions.mbr),
+                ),
+              ),
+            ),
+            Expanded(
+              flex: 1,
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Theme.of(context).shimmerBaseColor,
+                  borderRadius: BorderRadius.circular(AppDimensions.mbr),
+                ),
+              ),
+            ),
+            Expanded(
+              flex: 1,
               child: Container(
                 decoration: BoxDecoration(
                   color: Theme.of(context).shimmerBaseColor,

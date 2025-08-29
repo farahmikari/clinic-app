@@ -5,5 +5,7 @@ sealed class FetchDepartmentsEvent {
 }
 
 class FetchDepartments extends FetchDepartmentsEvent {
-  FetchDepartments();
+  final String? searchWord;
+
+  FetchDepartments({this.searchWord});
 }

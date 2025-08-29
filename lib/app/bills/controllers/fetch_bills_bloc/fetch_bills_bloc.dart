@@ -4,6 +4,7 @@ import 'package:clinic_app/core/api/end_points.dart';
 import 'package:clinic_app/core/errors/exceptions.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:rxdart/rxdart.dart';
 
 part 'fetch_bills_event.dart';
 part 'fetch_bills_state.dart';
@@ -11,6 +12,10 @@ part 'fetch_bills_state.dart';
 class FetchBillsBloc extends Bloc<FetchBillsEvent, FetchBillsState> {
   FetchBillsBloc() : super(FetchBillsLoading()) {
     DioConsumer api = DioConsumer(dio: Dio());
+    EventTransformer<FetchData> switchMapTransformer<FetchData>() {
+      return (events, mapper) => events.switchMap(mapper);
+    }
+
     late List<BillModel> paidBills;
     late List<BillModel> unpaidBills;
     late List<BillModel> allBills;
@@ -20,11 +25,17 @@ class FetchBillsBloc extends Bloc<FetchBillsEvent, FetchBillsState> {
       try {
         final paidBillsResponse = await api.get(
           EndPoints.bills,
-          queryParameter: {ApiKey.status: ApiKey.paid},
+          queryParameter: {
+            ApiKey.status: ApiKey.paid,
+            ApiKey.keyword: event.searchWord,
+          },
         );
         final unpaidBillsResponse = await api.get(
           EndPoints.bills,
-          queryParameter: {ApiKey.status: ApiKey.unpaid},
+          queryParameter: {
+            ApiKey.status: ApiKey.unpaid,
+            ApiKey.keyword: event.searchWord,
+          },
         );
         paidBills =
             (paidBillsResponse as List<dynamic>)
@@ -35,15 +46,29 @@ class FetchBillsBloc extends Bloc<FetchBillsEvent, FetchBillsState> {
                 .map((unpaidBills) => BillModel.fromJson(unpaidBills))
                 .toList();
         allBills = [...unpaidBills, ...paidBills];
-        if (allBills.isEmpty) {
-          emit(FetchBillsLoadedEmpty());
+        if (event.filterIndex == 1) {
+          if (unpaidBills.isEmpty) {
+            emit(FetchBillsLoadedEmpty());
+          } else {
+            emit(FetchBillsLoaded(bills: unpaidBills));
+          }
+        } else if (event.filterIndex == 2) {
+          if (paidBills.isEmpty) {
+            emit(FetchBillsLoadedEmpty());
+          } else {
+            emit(FetchBillsLoaded(bills: paidBills));
+          }
         } else {
-          emit(FetchBillsLoaded(bills: allBills));
+          if (allBills.isEmpty) {
+            emit(FetchBillsLoadedEmpty());
+          } else {
+            emit(FetchBillsLoaded(bills: allBills));
+          }
         }
       } on ServerException catch (e) {
         emit(FetchBillsFailed(errorMessage: e.errorModel.errorMessage));
       }
-    });
+    }, transformer: switchMapTransformer());
 
     on<DisplayAllBills>((event, emit) async {
       if (allBills.isEmpty) {

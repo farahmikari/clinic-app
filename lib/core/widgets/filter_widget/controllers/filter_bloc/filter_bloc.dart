@@ -16,8 +16,13 @@ class FilterBloc extends Bloc<FilterEvent, FilterState> {
       );
     });
 
-    on<FilterIsReset>((event, emit) {
-      emit(FilterUpdate(filterIndex: 0, isFilterWidgetActivated: false));
+    on<FilterWidgetIsDeactivated>((event, emit) {
+      emit(
+        FilterUpdate(
+          filterIndex: state.filterIndex,
+          isFilterWidgetActivated: false,
+        ),
+      );
     });
 
     on<FilterWidgetIsActivated>((event, emit) {

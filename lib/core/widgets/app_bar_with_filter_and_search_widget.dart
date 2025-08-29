@@ -3,7 +3,7 @@ import 'package:clinic_app/core/extentions/colors_extensions/theme_text_colors_e
 import 'package:clinic_app/core/extentions/dimensions_extensions/percent_sized_extension.dart';
 import 'package:clinic_app/core/widgets/filter_widget/controllers/filter_bloc/filter_bloc.dart';
 import 'package:clinic_app/core/widgets/filter_widget/views/widgets/filter_widget.dart';
-import 'package:clinic_app/core/widgets/search_widget.dart';
+import 'package:clinic_app/core/widgets/search_widget/views/search_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

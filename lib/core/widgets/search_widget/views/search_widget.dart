@@ -4,8 +4,10 @@ import 'package:clinic_app/core/constants/app_shadow.dart';
 import 'package:clinic_app/core/extentions/colors_extensions/theme_background_colors_extension.dart';
 import 'package:clinic_app/core/extentions/colors_extensions/theme_text_colors_extension.dart';
 import 'package:clinic_app/core/extentions/dimensions_extensions/percent_sized_extension.dart';
+import 'package:clinic_app/core/widgets/search_widget/controllers/search_bloc/search_bloc.dart';
 import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
 class SearchWidget extends StatelessWidget {
@@ -37,6 +39,11 @@ class SearchWidget extends StatelessWidget {
           ),
           Expanded(
             child: TextField(
+              onChanged: (searchWord) {
+                context.read<SearchBloc>().add(
+                  SearchWordIsUpdated(searchWord: searchWord),
+                );
+              },
               style: TextStyle(
                 color: Theme.of(context).primaryTextColor,
                 fontSize: AppDimensions.mfs,

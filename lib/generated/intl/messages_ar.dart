@@ -30,6 +30,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "${Intl.plural(count, zero: 'لا يوجد أطباء صباحيين', one: 'طبيب صباحي واحد', two: 'طبيبين صباحيين', few: '${count} أطباء صباحيين', many: '${count} طبيب صباحي', other: '${count} طبيب صباحي')}";
 
   static String m3(count) =>
+      "${Intl.plural(count, zero: 'لا يوجد نقاط', one: 'نقطة واحدة', two: 'نقطتان', few: '${count} نقاط', many: '${count} نقطة', other: '${count} نقطة')}";
+
+  static String m4(count) =>
       "${Intl.plural(count, zero: 'لا يوجد معالجات', one: 'معالجة واحدة', two: 'معالجتين', few: '${count} معالجات', many: '${count} معالجة', other: '${count} معالجة')}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
@@ -69,6 +72,11 @@ class MessageLookup extends MessageLookupByLibrary {
     "are_you_sure_you_want_to_logout": MessageLookupByLibrary.simpleMessage(
       "!هل متأكد أنك تريد تسجيل الخروج ؟",
     ),
+    "base_url": MessageLookupByLibrary.simpleMessage("الرابط"),
+    "base_url_subtitle": MessageLookupByLibrary.simpleMessage(
+      "افتح Terminal وشغّل الأمر ipconfig. ابحث عن عنوان IPv4 في المخرجات، ثم أدخله في حقل النص بالصّيغة التالية:\n http://<IPv4 Address>:8000",
+    ),
+    "base_url_title": MessageLookupByLibrary.simpleMessage("حدد الرابط"),
     "bill_details": MessageLookupByLibrary.simpleMessage("تفاصيل الفاتورة"),
     "bills": MessageLookupByLibrary.simpleMessage("الفواتير"),
     "bills_auth_prompt_subtitle": MessageLookupByLibrary.simpleMessage(
@@ -296,11 +304,10 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "pending": MessageLookupByLibrary.simpleMessage("قيد الانتظار"),
     "phone": MessageLookupByLibrary.simpleMessage("الهاتف"),
-    "point_unit": MessageLookupByLibrary.simpleMessage("نقطة"),
+    "points_count": m3,
     "points_title": MessageLookupByLibrary.simpleMessage(
       "أحسنت! إليك رصيد نقاطك الإجمالي",
     ),
-    "points_unit": MessageLookupByLibrary.simpleMessage("نقاط"),
     "prescription": MessageLookupByLibrary.simpleMessage("الوصفة الطبية"),
     "profile": MessageLookupByLibrary.simpleMessage("الملف الشخصي"),
     "qualifications": MessageLookupByLibrary.simpleMessage("المؤهلات"),
@@ -351,7 +358,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "times": MessageLookupByLibrary.simpleMessage("الأوقات"),
     "total_amount": MessageLookupByLibrary.simpleMessage("السعر الإجمالي"),
-    "treatments_count": m3,
+    "treatments_count": m4,
     "treatments_title": MessageLookupByLibrary.simpleMessage("المعالجات"),
     "unpaid": MessageLookupByLibrary.simpleMessage("غير مدفوعة"),
     "use_device_language": MessageLookupByLibrary.simpleMessage(

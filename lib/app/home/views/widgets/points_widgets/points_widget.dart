@@ -14,14 +14,8 @@ class PointsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String specifyPointsUnit() {
-      return userPoints.points > 1
-          ? S.current.points_unit
-          : S.current.point_unit;
-    }
-
     return Container(
-      height: 35.0.wp,
+      height: 52.0.wp,
       width: 92.0.wp,
       padding: EdgeInsets.all(AppDimensions.sp),
       margin: EdgeInsets.symmetric(horizontal: AppDimensions.mp),
@@ -70,7 +64,7 @@ class PointsWidget extends StatelessWidget {
                         borderRadius: BorderRadius.circular(AppDimensions.lbr),
                       ),
                       child: Text(
-                        "${userPoints.points} ${specifyPointsUnit()}",
+                        S.current.points_count(userPoints.points),
                         style: TextStyle(
                           color: Theme.of(context).primaryColor,
                           fontSize: AppDimensions.sfs,

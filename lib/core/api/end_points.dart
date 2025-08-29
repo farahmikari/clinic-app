@@ -45,6 +45,10 @@ class EndPoints {
     return "/api/notifications/$notificationId/read";
   }
 
+  static String medicalReportId(int appointmentId) {
+    return "/api/medical_report/appointment/$appointmentId";
+  }
+
   /////send otp code to email/////
   static String sendEmailVerify() {
     return "/api/send-email";
@@ -195,4 +199,6 @@ class ApiKey {
   static String paid = "paid";
   static String unpaid = "unpaid";
   static String fcmToken = "fcm_token";
+  static String keyword = "keyword";
+  static String medicalReportUrl = "medical report url";
 }

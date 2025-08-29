@@ -47,8 +47,7 @@
     "qualifications": "Qualifications",
     "offers": "Offers",
     "points_title": "Well done! here's your total point balance",
-    "point_unit": "point",
-    "points_unit": "points",
+    "points_count": "{count, plural, =0{No points} =1{1 point} other{{count} points}}",
     "book_appointment": "Book Appointment",
     "reservation_type": "Reservation Type",
     "days": "Days",
@@ -203,5 +202,8 @@
     "dark_theme":"Dark theme",
     "use_device_language":"Use device language",
     "arabic":"Arabic",
-    "english":"English"
+    "english":"English",
+    "base_url":"Base URL",
+    "base_url_title":"Set your base url",
+    "base_url_subtitle":"Open your terminal and run the command ipconfig. Find the IPv4 Address in the output, then enter it in this text field in the following format:\n http://<IPv4 Address>:8000"
 }

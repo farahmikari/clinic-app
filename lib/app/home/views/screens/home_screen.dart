@@ -4,6 +4,8 @@ import 'package:clinic_app/app/home/views/widgets/latest_offers_widgets/latest_o
 import 'package:clinic_app/app/home/views/widgets/latest_offers_widgets/shimmer_latest_offers_widget.dart';
 import 'package:clinic_app/app/home/views/widgets/most_rated_doctors_widgets/shimmer_most_rated_doctors_widget.dart';
 import 'package:clinic_app/app/home/views/widgets/most_rated_doctors_widgets/most_rated_doctors_widget.dart';
+import 'package:clinic_app/app/home/views/widgets/points_widgets/points_widget.dart';
+import 'package:clinic_app/app/home/views/widgets/points_widgets/shimmer_points_widget.dart';
 import 'package:clinic_app/app/home/views/widgets/services%20button%20widgets/services_buttons_widget.dart';
 import 'package:clinic_app/app/offers/controllers/fetch_offers_bloc/fetch_offers_bloc.dart';
 import 'package:clinic_app/app/home/controllers/fetch_user_points_bloc/fetch_user_points_bloc.dart';
@@ -50,14 +52,14 @@ class HomeScreen extends StatelessWidget {
               child: ListView(
                 padding: EdgeInsets.only(bottom: AppDimensions.mp),
                 children: [
-                  // BlocBuilder<FetchUserPointsBloc, FetchUserPointsState>(
-                  //   builder: (context, state) {
-                  //     if (state is FetchUserPointsLoaded) {
-                  //       return PointsWidget(userPoints: state.userPoints);
-                  //     }
-                  //     return ShimmerPointsWidget();
-                  //   },
-                  // ),
+                  BlocBuilder<FetchUserPointsBloc, FetchUserPointsState>(
+                    builder: (context, state) {
+                      if (state is FetchUserPointsLoaded) {
+                        return PointsWidget(userPoints: state.userPoints);
+                      }
+                      return ShimmerPointsWidget();
+                    },
+                  ),
                   SizedBox(height: AppDimensions.mp),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: AppDimensions.mp),

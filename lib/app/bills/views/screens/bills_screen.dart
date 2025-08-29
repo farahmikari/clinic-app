@@ -5,6 +5,7 @@ import 'package:clinic_app/core/extentions/colors_extensions/theme_background_co
 import 'package:clinic_app/core/widgets/app_bar_with_filter_and_search_widget.dart';
 import 'package:clinic_app/core/widgets/empty_list_widget.dart';
 import 'package:clinic_app/core/widgets/filter_widget/controllers/filter_bloc/filter_bloc.dart';
+import 'package:clinic_app/core/widgets/search_widget/controllers/search_bloc/search_bloc.dart';
 import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -13,8 +14,11 @@ class BillsScreen extends StatelessWidget {
   const BillsScreen({super.key});
 
   Future<void> _onRefresh(BuildContext context) async {
-    context.read<FetchBillsBloc>().add(FetchBills());
-    context.read<FilterBloc>().add(FilterIsReset());
+    int filterIndex = context.read<FilterBloc>().state.filterIndex;
+    String searchWord = context.read<SearchBloc>().state.searchWord;
+    context.read<FetchBillsBloc>().add(
+      FetchBills(searchWord: searchWord, filterIndex: filterIndex),
+    );
   }
 
   @override
@@ -23,6 +27,7 @@ class BillsScreen extends StatelessWidget {
       providers: [
         BlocProvider(create: (context) => FetchBillsBloc()..add(FetchBills())),
         BlocProvider(create: (context) => FilterBloc()),
+        BlocProvider(create: (context) => SearchBloc()),
       ],
       child: MultiBlocListener(
         listeners: [
@@ -30,6 +35,8 @@ class BillsScreen extends StatelessWidget {
             listener: (context, state) {
               if (state is FetchBillsLoaded) {
                 context.read<FilterBloc>().add(FilterWidgetIsActivated());
+              } else {
+                context.read<FilterBloc>().add(FilterWidgetIsDeactivated());
               }
             },
           ),
@@ -47,35 +54,48 @@ class BillsScreen extends StatelessWidget {
               }
             },
           ),
+          BlocListener<SearchBloc, SearchState>(
+            listener: (context, state) {
+              int filterIndex = context.read<FilterBloc>().state.filterIndex;
+              context.read<FetchBillsBloc>().add(
+                FetchBills(
+                  searchWord: state.searchWord,
+                  filterIndex: filterIndex,
+                ),
+              );
+            },
+          ),
         ],
         child: Scaffold(
           appBar: AppBarWithFilterAndSearchWidget(
             appBarTitle: S.current.bills,
             filterNames: [S.current.all, S.current.unpaid, S.current.paid],
           ),
-          body: Builder(
-            builder: (context) {
-              return RefreshIndicator(
-                backgroundColor: Theme.of(context).accentBackgroundColor,
-                color: Theme.of(context).primaryColor,
-                onRefresh: () => _onRefresh(context),
-                child: BlocBuilder<FetchBillsBloc, FetchBillsState>(
-                  builder: (context, state) {
-                    if (state is FetchBillsLoaded) {
-                      return BillsWidget(bills: state.bills);
-                    }
-                    if (state is FetchBillsLoadedEmpty) {
-                      return EmptyListWidget(
-                        image: "assets/images/empty_bills.png",
-                        title: S.current.bills_empty_title,
-                        subtitle: S.current.bills_empty_subtitle,
-                      );
-                    }
-                    return ShimmerBillsWidget();
-                  },
-                ),
-              );
-            },
+          body: SafeArea(
+            child: Builder(
+              builder: (context) {
+                return RefreshIndicator(
+                  backgroundColor: Theme.of(context).accentBackgroundColor,
+                  color: Theme.of(context).primaryColor,
+                  onRefresh: () => _onRefresh(context),
+                  child: BlocBuilder<FetchBillsBloc, FetchBillsState>(
+                    builder: (context, state) {
+                      if (state is FetchBillsLoaded) {
+                        return BillsWidget(bills: state.bills);
+                      }
+                      if (state is FetchBillsLoadedEmpty) {
+                        return EmptyListWidget(
+                          image: "assets/images/empty_bills.png",
+                          title: S.current.bills_empty_title,
+                          subtitle: S.current.bills_empty_subtitle,
+                        );
+                      }
+                      return ShimmerBillsWidget();
+                    },
+                  ),
+                );
+              },
+            ),
           ),
         ),
       ),

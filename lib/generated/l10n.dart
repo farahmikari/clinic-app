@@ -382,14 +382,17 @@ class S {
     );
   }
 
-  /// `point`
-  String get point_unit {
-    return Intl.message('point', name: 'point_unit', desc: '', args: []);
-  }
-
-  /// `points`
-  String get points_unit {
-    return Intl.message('points', name: 'points_unit', desc: '', args: []);
+  /// `{count, plural, =0{No points} =1{1 point} other{{count} points}}`
+  String points_count(num count) {
+    return Intl.plural(
+      count,
+      zero: 'No points',
+      one: '1 point',
+      other: '$count points',
+      name: 'points_count',
+      desc: '',
+      args: [count],
+    );
   }
 
   /// `Book Appointment`
@@ -1655,6 +1658,31 @@ class S {
   /// `English`
   String get english {
     return Intl.message('English', name: 'english', desc: '', args: []);
+  }
+
+  /// `Base URL`
+  String get base_url {
+    return Intl.message('Base URL', name: 'base_url', desc: '', args: []);
+  }
+
+  /// `Set your base url`
+  String get base_url_title {
+    return Intl.message(
+      'Set your base url',
+      name: 'base_url_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Open your terminal and run the command ipconfig. Find the IPv4 Address in the output, then enter it in this text field in the following format:\n http://<IPv4 Address>:8000`
+  String get base_url_subtitle {
+    return Intl.message(
+      'Open your terminal and run the command ipconfig. Find the IPv4 Address in the output, then enter it in this text field in the following format:\n http://<IPv4 Address>:8000',
+      name: 'base_url_subtitle',
+      desc: '',
+      args: [],
+    );
   }
 }
 

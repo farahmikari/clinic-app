@@ -1,6 +1,6 @@
 import 'package:clinic_app/app/auth_prompt/controllers/check_user_authentication_bloc/check_user_authentication_bloc.dart';
-import 'package:clinic_app/app/settings/controllers/localization_bloc/localization_bloc.dart';
 import 'package:clinic_app/app/onboarding/views/screens/splash_screen.dart';
+import 'package:clinic_app/app/settings/controllers/localization_bloc/localization_bloc.dart';
 import 'package:clinic_app/app/settings/controllers/theme_bloc/theme_bloc.dart';
 import 'package:clinic_app/core/constants/app_theme.dart';
 import 'package:clinic_app/generated/l10n.dart';

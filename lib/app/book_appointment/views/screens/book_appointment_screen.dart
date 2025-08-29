@@ -60,7 +60,9 @@ class BookAppointmentScreen extends StatelessWidget {
         providers: [
           BlocProvider(
             create:
-                (context) => FetchDepartmentsBloc()..add(FetchDepartments()),
+                (context) =>
+                    FetchDepartmentsBloc()
+                      ..add(FetchDepartments(searchWord: "")),
           ),
           BlocProvider(
             create: (context) => FetchDaysBloc()..add(FetchDefaultDays()),

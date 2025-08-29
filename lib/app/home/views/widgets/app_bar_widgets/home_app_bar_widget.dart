@@ -5,7 +5,7 @@ import 'package:clinic_app/core/constants/app_dimensions.dart';
 import 'package:clinic_app/core/constants/app_icons.dart';
 import 'package:clinic_app/core/extentions/colors_extensions/theme_text_colors_extension.dart';
 import 'package:clinic_app/core/extentions/dimensions_extensions/percent_sized_extension.dart';
-import 'package:clinic_app/core/widgets/search_widget.dart';
+import 'package:clinic_app/core/widgets/search_widget/views/search_widget.dart';
 import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

@@ -22,7 +22,10 @@ class FetchDepartmentsBloc
     on<FetchDepartments>((event, emit) async {
       emit(FetchDepartmentsLoading());
       try {
-        dynamic response = await api.get(EndPoints.departments);
+        dynamic response = await api.get(
+          EndPoints.departments,
+          queryParameter: {ApiKey.keyword: event.searchWord},
+        );
         List<DepartmentModel> departments =
             (response as List<dynamic>)
                 .map((department) => DepartmentModel.fromJson(department))

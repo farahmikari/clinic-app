@@ -30,6 +30,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "${Intl.plural(count, zero: 'No Morning Dr', one: '1 Morning Dr', other: '${count} Morning Dr')}";
 
   static String m3(count) =>
+      "${Intl.plural(count, zero: 'No points', one: '1 point', other: '${count} points')}";
+
+  static String m4(count) =>
       "${Intl.plural(count, zero: 'No treatments', one: '1 treatment', other: '${count} treatments')}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
@@ -73,6 +76,11 @@ class MessageLookup extends MessageLookupByLibrary {
     "are_you_sure_you_want_to_logout": MessageLookupByLibrary.simpleMessage(
       "Are you sure you want to logout ?!",
     ),
+    "base_url": MessageLookupByLibrary.simpleMessage("Base URL"),
+    "base_url_subtitle": MessageLookupByLibrary.simpleMessage(
+      "Open your terminal and run the command ipconfig. Find the IPv4 Address in the output, then enter it in this text field in the following format:\n http://<IPv4 Address>:8000",
+    ),
+    "base_url_title": MessageLookupByLibrary.simpleMessage("Set your base url"),
     "bill_details": MessageLookupByLibrary.simpleMessage("Bill Details"),
     "bills": MessageLookupByLibrary.simpleMessage("Bills"),
     "bills_auth_prompt_subtitle": MessageLookupByLibrary.simpleMessage(
@@ -300,11 +308,10 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "pending": MessageLookupByLibrary.simpleMessage("pending"),
     "phone": MessageLookupByLibrary.simpleMessage("Phone"),
-    "point_unit": MessageLookupByLibrary.simpleMessage("point"),
+    "points_count": m3,
     "points_title": MessageLookupByLibrary.simpleMessage(
       "Well done! here\'s your total point balance",
     ),
-    "points_unit": MessageLookupByLibrary.simpleMessage("points"),
     "prescription": MessageLookupByLibrary.simpleMessage("Prescription"),
     "profile": MessageLookupByLibrary.simpleMessage("Profile"),
     "qualifications": MessageLookupByLibrary.simpleMessage("Qualifications"),
@@ -355,7 +362,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "times": MessageLookupByLibrary.simpleMessage("Times"),
     "total_amount": MessageLookupByLibrary.simpleMessage("Total Amount"),
-    "treatments_count": m3,
+    "treatments_count": m4,
     "treatments_title": MessageLookupByLibrary.simpleMessage("Treatments"),
     "unpaid": MessageLookupByLibrary.simpleMessage("unpaid"),
     "use_device_language": MessageLookupByLibrary.simpleMessage(

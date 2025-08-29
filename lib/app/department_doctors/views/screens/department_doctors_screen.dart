@@ -6,6 +6,7 @@ import 'package:clinic_app/core/extentions/colors_extensions/theme_background_co
 import 'package:clinic_app/core/widgets/app_bar_with_filter_and_search_widget.dart';
 import 'package:clinic_app/core/widgets/empty_list_widget.dart';
 import 'package:clinic_app/core/widgets/filter_widget/controllers/filter_bloc/filter_bloc.dart';
+import 'package:clinic_app/core/widgets/search_widget/controllers/search_bloc/search_bloc.dart';
 import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -15,10 +16,16 @@ class DepartmentDoctorsScreen extends StatelessWidget {
   final DepartmentModel department;
 
   Future<void> _onRefresh(BuildContext context) async {
+    String searchWord = context.read<SearchBloc>().state.searchWord;
+    int filterIndex = context.read<FilterBloc>().state.filterIndex;
     context.read<FetchDepartmentDoctorsBloc>().add(
-      FetchDepartmentDoctors(departmentId: department.id),
+      FetchDepartmentDoctors(
+        departmentId: department.id,
+        searchWord: searchWord,
+        filterIndex: filterIndex,
+      ),
     );
-    context.read<FilterBloc>().add(FilterIsReset());
+    //context.read<FilterBloc>().add(FilterIsReset());
   }
 
   @override
@@ -32,6 +39,7 @@ class DepartmentDoctorsScreen extends StatelessWidget {
                     ..add(FetchDepartmentDoctors(departmentId: department.id)),
         ),
         BlocProvider(create: (context) => FilterBloc()),
+        BlocProvider(create: (context) => SearchBloc()),
       ],
       child: MultiBlocListener(
         listeners: [
@@ -39,6 +47,8 @@ class DepartmentDoctorsScreen extends StatelessWidget {
             listener: (context, state) {
               if (state is FetchDepartmentDoctorsLoaded) {
                 context.read<FilterBloc>().add(FilterWidgetIsActivated());
+              } else {
+                context.read<FilterBloc>().add(FilterWidgetIsDeactivated());
               }
             },
           ),
@@ -60,6 +70,18 @@ class DepartmentDoctorsScreen extends StatelessWidget {
                   DisplayAllDepartmentDoctors(),
                 );
               }
+            },
+          ),
+          BlocListener<SearchBloc, SearchState>(
+            listener: (context, state) {
+              int filterIndex = context.read<FilterBloc>().state.filterIndex;
+              context.read<FetchDepartmentDoctorsBloc>().add(
+                FetchDepartmentDoctors(
+                  departmentId: department.id,
+                  searchWord: state.searchWord,
+                  filterIndex: filterIndex,
+                ),
+              );
             },
           ),
         ],
