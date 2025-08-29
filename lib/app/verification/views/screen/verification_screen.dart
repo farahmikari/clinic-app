@@ -43,7 +43,7 @@ class VerificationScreen extends StatelessWidget {
       child: Scaffold(
         body: SingleChildScrollView(
           child: BlocConsumer<VerificationBloc, VerificationState>(
-            listener: (context, state) {
+            listener: (context, state)async {
               switch (state) {
                 case VerificationSuccess():
                   showSnackBar(
@@ -52,7 +52,7 @@ class VerificationScreen extends StatelessWidget {
                     message: S.current.verification_success,
                     contentType: ContentType.success,
                   );
-
+                  await Future.delayed(Duration(seconds: 3));
                   switch (source) {
                     case VerificationGoto.signup:
                       Get.offAll(() => SignUp(email: email));

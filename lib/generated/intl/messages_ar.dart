@@ -128,6 +128,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "heart_rate": MessageLookupByLibrary.simpleMessage("ضربات القلب"),
     "height": MessageLookupByLibrary.simpleMessage("الطول"),
     "home": MessageLookupByLibrary.simpleMessage("الرئيسية"),
+    "info_clinic": MessageLookupByLibrary.simpleMessage(
+      "نظام Medix هو نظام موجه لإدارة العيادات الطبية متوسطة الحجم ذات الإختصاصات المتعددة، و المراكز الصغيرة، و الخاصة. يسعى لأتمتة جميع المهام اليومية التي تقوم بها هذة المراكز من إدارة الطاقم الطبي، إدارة الحجوزات، إدارة السجلات الطبية للمرضى، و إدارة الفواتير بشكل بسيط و متقن و فعال",
+    ),
     "invalid_email": MessageLookupByLibrary.simpleMessage(
       "بريد إلكتروني غير صالح",
     ),

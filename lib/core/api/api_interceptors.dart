@@ -18,7 +18,7 @@ class ApiInterceptor extends Interceptor {
     if (token != null) {
       options.headers[ApiKey.authorization] = "Bearer $token";
     }
-    options.connectTimeout = Duration(seconds: 2);
+    options.connectTimeout = Duration(seconds: 30);
 
     super.onRequest(options, handler);
   }

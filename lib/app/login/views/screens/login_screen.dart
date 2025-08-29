@@ -59,7 +59,7 @@ class _LoginScreenState extends State<LoginScreen>
                       message: S.current.login_successfully,
                       contentType: ContentType.success,
                     );
-                    await Future.delayed(Duration(seconds: 2));
+                    await Future.delayed(Duration(seconds: 3));
                     Get.offAll(() => DrawerScreen());
                     break;
                   case LoginFailed():

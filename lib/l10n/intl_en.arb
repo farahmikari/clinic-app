@@ -211,5 +211,7 @@
      "blood_pressure":"Blood Pressure",
      "blood_sugar":"Blood Sugar",
 
+     "info_clinic":"Medix is ​​a management system for medium-sized, multi-specialty medical clinics, small, and private centers. It aims to automate all daily tasks performed by these centers, including managing medical staff, managing appointments, managing patient medical records, and managing bills in a simple, efficient, and effective manner.",
+
     "language":"Language"
 }

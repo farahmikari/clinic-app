@@ -1,3 +1,4 @@
+import 'package:clinic_app/app/about_us/views/screen/about_us_screen.dart';
 import 'package:clinic_app/app/setting/views/screen/setting_screen.dart';
 import 'package:clinic_app/app/user_drawer/views/widgets/list_tile_drawer.dart';
 import 'package:clinic_app/app/user_drawer/views/widgets/list_tile_logout_widget.dart';
@@ -69,6 +70,10 @@ class MenuScreen extends StatelessWidget {
             iconColor: Colors.orangeAccent,
             backgroundIconColor: const Color(0x84FFAC40),
             title: S.current.about_us,
+            onTap: () => Get.to(
+                  () => AboutUsScreen(),
+                  transition: getx.Transition.cupertino,
+                ),
           ),
 
           ListTileLogoutWidget(),

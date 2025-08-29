@@ -1,3 +1,6 @@
+import 'package:clinic_app/app/vital_signals/controllers/services/vital_service.dart';
+import 'package:clinic_app/app/vital_signals/model/vital_signals_model.dart';
+import 'package:clinic_app/core/errors/exceptions.dart';
 import 'package:clinic_app/core/services/shared_preferences/shared_pereference_service.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -11,22 +14,19 @@ class VitalSignalsBloc extends Bloc<VitalSignalsEvent, VitalSignalsState> {
 
   Future<void> _vitalSignalEvent(event, emit) async {
     String? token = await SharedPreferencesService.getToken();
-    //VitalSignalsModel? vitalSignal;
+    dynamic vitalSignal;
     if (token == null) {
       emit((VitalSignalsVisitor()));
+      
     } else {
       emit(VitalSignalsLoading());
       try {
-        //VitalSignalsModel? vitalSignal = await InformationUserService().showInfoUser();
-        //if (vitalSignal != null) {
-        await Future.delayed(Duration(seconds: 2));
-        emit(VitalSignalsSuccess());
-        //  }
-        // else{
-        //   emit(VitalSignalsFailure(message: "can't load info user"));
-        // }
-      } on Exception catch (e) {
-        emit(VitalSignalsFailure(message: e.toString()));
+        vitalSignal = await VitalService().vitalSignalsService();
+        if (vitalSignal != null) {
+        emit(VitalSignalsSuccess(vitalSignals: VitalSignalsModel.formJson(vitalSignal)));
+          }
+      } on ServerException catch (e) {
+        emit(VitalSignalsFailure(message:e.errorModel.errorMessage ));
       }
     }
   }

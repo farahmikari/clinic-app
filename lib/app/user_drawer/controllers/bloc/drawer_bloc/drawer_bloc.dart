@@ -8,11 +8,10 @@ class DrawerBloc extends Bloc<DrawerEvent, DrawState> {
   final ZoomDrawerController zoomDrawerController;
   DrawerBloc(this.zoomDrawerController) : super(DrawerClosed()) {
     on<ToggleDrawerEvent>((event, emit) {
+      zoomDrawerController.toggle?.call();
       if (state is DrawerOpened) {
-        zoomDrawerController.close?.call();
         emit(DrawerClosed());
       } else {
-        zoomDrawerController.open?.call();
         emit(DrawerOpened());
       }
     });

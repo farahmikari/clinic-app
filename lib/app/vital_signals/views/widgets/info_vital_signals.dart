@@ -1,3 +1,4 @@
+import 'package:clinic_app/app/vital_signals/model/vital_signals_model.dart';
 import 'package:clinic_app/app/vital_signals/views/widgets/container_with_icon_and_texts_widget.dart';
 import 'package:clinic_app/app/vital_signals/views/widgets/heart_rate_widget.dart';
 import 'package:clinic_app/core/constants/app_colors.dart';
@@ -6,10 +7,8 @@ import 'package:clinic_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 
 class InfoVitalSignals extends StatelessWidget {
-  const InfoVitalSignals({
-    super.key,
-  });
-
+  const InfoVitalSignals({super.key,required this.model});
+  final VitalSignalsModel model;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,14 +29,14 @@ class InfoVitalSignals extends StatelessWidget {
             spacing: 1.0.hp,
             children: [
               HeartRateWidget(heartRate: "100"),
-               GridView.count(
-                  crossAxisCount: 2,
-                  mainAxisSpacing: 2.0.wp,
-                  crossAxisSpacing: 1.0.hp,
-                  shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
-                  children:[
-                    ContainerWithIconAndTextsWidget(
+              GridView.count(
+                crossAxisCount: 2,
+                mainAxisSpacing: 2.0.wp,
+                crossAxisSpacing: 1.0.hp,
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                children: [
+                  ContainerWithIconAndTextsWidget(
                     title: S.current.blood_group,
                     value: "+A",
                     icon: "assets/images/blood-type-a.png",
@@ -49,7 +48,7 @@ class InfoVitalSignals extends StatelessWidget {
                     icon: "assets/images/temprature.png",
                     color: AppColors.lightOrangColor,
                   ),
-                   ContainerWithIconAndTextsWidget(
+                  ContainerWithIconAndTextsWidget(
                     title: S.current.weight,
                     value: "50",
                     symbol: "Kg",
@@ -77,8 +76,8 @@ class InfoVitalSignals extends StatelessWidget {
                     icon: "assets/images/diabetes-test.png",
                     color: AppColors.lightFColor,
                   ),
-                  ]
-                  )
+                ],
+              ),
             ],
           ),
         ),

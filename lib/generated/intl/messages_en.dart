@@ -134,6 +134,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "heart_rate": MessageLookupByLibrary.simpleMessage("Heart Rate"),
     "height": MessageLookupByLibrary.simpleMessage("Height"),
     "home": MessageLookupByLibrary.simpleMessage("Home"),
+    "info_clinic": MessageLookupByLibrary.simpleMessage(
+      "Medix is ​​a management system for medium-sized, multi-specialty medical clinics, small, and private centers. It aims to automate all daily tasks performed by these centers, including managing medical staff, managing appointments, managing patient medical records, and managing bills in a simple, efficient, and effective manner.",
+    ),
     "invalid_email": MessageLookupByLibrary.simpleMessage("Invalid email"),
     "keep_going": MessageLookupByLibrary.simpleMessage("Keep going"),
     "know_reservation_price": MessageLookupByLibrary.simpleMessage(

@@ -87,7 +87,6 @@ class OnboardingScreen extends StatelessWidget {
     required String title,
     required BuildContext context,
   }) {
-    //final Size size = MediaQuery.of(context).size;
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [

@@ -9,8 +9,8 @@ final class VitalSignalsVisitor extends VitalSignalsState {}
 final class VitalSignalsLoading extends VitalSignalsState {}
 
 final class VitalSignalsSuccess extends VitalSignalsState {
-  //VitalSignalsModel vitalSignals;
-  //VitalSignalsSuccess({required this.vitalSignals});
+  VitalSignalsModel vitalSignals;
+  VitalSignalsSuccess({required this.vitalSignals});
 }
 
 final class VitalSignalsFailure extends VitalSignalsState {

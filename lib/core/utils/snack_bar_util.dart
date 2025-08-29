@@ -10,7 +10,7 @@ void showSnackBar(
     ScaffoldMessenger.of(context)..removeCurrentSnackBar()..showSnackBar(
       SnackBar(
         elevation: 0,
-        duration: Duration(milliseconds: 300),
+        duration: Duration(milliseconds: 2),
         behavior: SnackBarBehavior.floating,
         backgroundColor: Colors.transparent,
         content: Material(

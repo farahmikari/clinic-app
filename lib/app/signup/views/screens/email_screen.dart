@@ -112,8 +112,8 @@ class _EmailScreenState extends State<EmailScreen>
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Padding(
-                                    padding: EdgeInsetsDirectional.only(
-                                      end: width * 0.20,
+                                    padding: EdgeInsetsDirectional.symmetric(
+                                      horizontal: width * 0.05,
                                     ),
                                     child: Text(
                                       S.current.glad_to_see_you,
@@ -153,7 +153,8 @@ class _EmailScreenState extends State<EmailScreen>
                                                       widget
                                                           .emailController
                                                           .text,
-                                                  source: VerificationGoto.signup,
+                                                  source:
+                                                      VerificationGoto.signup,
                                                 ),
                                               );
                                             }

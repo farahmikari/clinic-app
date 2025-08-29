@@ -1,11 +1,11 @@
 class VitalSignalsModel {
-  String heartRate;
-  String bloodGroup;
-  String temprature;
-  String weight;
-  String height;
-  String pressure;
-  String bloodSugar;
+  String? heartRate;
+  String? bloodGroup;
+  String? temprature;
+  String? weight;
+  String? height;
+  String? pressure;
+  String? bloodSugar;
 
   VitalSignalsModel({
     required this.heartRate,
@@ -30,7 +30,7 @@ class VitalSignalsModel {
   Map<String, dynamic> toJson() => {
     "heart_rate": heartRate,
     "blood_group": bloodGroup,
-    "temprature": temprature,
+    "temperature": temprature,
     "weight": weight,
     "height": height,
     "pressure": pressure,

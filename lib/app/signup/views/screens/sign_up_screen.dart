@@ -17,7 +17,6 @@ import 'package:get/get.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({super.key, required this.email});
-  //static String id = "Sign Up";
   final String email;
   @override
   State<SignUp> createState() => _SignupState();
@@ -42,7 +41,6 @@ class _SignupState extends State<SignUp> with SingleTickerProviderStateMixin {
         ),
       ],
       child: Scaffold(
-        //backgroundColor: Colors.white,
         body: AnimatedBackground(
           vsync: this,
           behaviour: RandomParticleBehaviour(
@@ -66,7 +64,7 @@ class _SignupState extends State<SignUp> with SingleTickerProviderStateMixin {
                       message: S.current.sign_up_successfully,
                       contentType: ContentType.success,
                     );
-                    await Future.delayed(Duration(seconds: 2));
+                    await Future.delayed(Duration(seconds: 3));
                     Get.offAll(() => DrawerScreen());
                     break;
                   case SignupFailed():
@@ -277,7 +275,7 @@ class _SignupState extends State<SignUp> with SingleTickerProviderStateMixin {
                   ),
                   onTap: () {
                     context.read<SignupBloc>().add(
-                      SGenderFieldEvent(gender: gender),
+                      SGenderFieldEvent(gender: gender == S.current.male?"Male":"Female"),
                     );
                     context.read<SignupBloc>().add(SButtonEvent());
                     genderController.text = gender;

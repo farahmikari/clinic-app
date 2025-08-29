@@ -1,4 +1,4 @@
-import 'package:clinic_app/app/vital_signals/controllers/bloc/bloc/vital_signals_bloc.dart';
+import 'package:clinic_app/app/vital_signals/controllers/bloc/vital_signals_bloc/vital_signals_bloc.dart';
 import 'package:clinic_app/app/vital_signals/views/widgets/info_vital_signals.dart';
 import 'package:clinic_app/app/vital_signals/views/widgets/vital_signals_loading_widget.dart';
 import 'package:clinic_app/core/widgets/failure_screen_widget.dart';
@@ -28,7 +28,7 @@ class VitalSignalScreen extends StatelessWidget {
               return VitalSignalsLoadingWidget();
             ///////////vital signals information//////////////
             case VitalSignalsSuccess():
-              return InfoVitalSignals();
+              return InfoVitalSignals(model: state.vitalSignals,);
             //////////failure/////////////////////////////////
             case VitalSignalsFailure():
               return FailureScreenWidget(

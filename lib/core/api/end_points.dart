@@ -1,5 +1,5 @@
 class EndPoints {
-  static String baseUrl = "http://192.168.1.15:8000";
+  static String baseUrl = "http://192.168.161.239:8000";
 
   static void setBaseUrl(String newBaseUrl) {
     baseUrl = newBaseUrl;
@@ -104,6 +104,11 @@ class EndPoints {
   /////show info profile///////
   static String showInfoProfile() {
     return "/api/user/profile";
+  }
+
+  ////show vital signals//////
+  static String showVitalSignals() {
+    return "/api/vital_signs";
   }
 
   static String departments = "/api/departments";

@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 
 class HeartRateWidget extends StatelessWidget {
   const HeartRateWidget({super.key, required this.heartRate});
-  final String heartRate;
+  final String? heartRate;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -31,7 +31,7 @@ class HeartRateWidget extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  "$heartRate bpm",
+                  heartRate==null?"---": "$heartRate bpm",
                   style: Theme.of(context).textTheme.titleLarge!.copyWith(
                     fontSize: 40,
                     color: AppColors.mainTextColor,

@@ -3,7 +3,7 @@ import 'package:clinic_app/app/user_drawer/controllers/bloc/drawer_bloc/drawer_b
 import 'package:clinic_app/app/user_drawer/controllers/bloc/logout_bloc/logout_bloc.dart';
 import 'package:clinic_app/app/user_drawer/views/screen/menu_screen.dart';
 import 'package:clinic_app/app/user_profile/controllers/bloc/profile_bloc/profile_bloc.dart';
-import 'package:clinic_app/app/vital_signals/controllers/bloc/bloc/vital_signals_bloc.dart';
+import 'package:clinic_app/app/vital_signals/controllers/bloc/vital_signals_bloc/vital_signals_bloc.dart';
 import 'package:clinic_app/core/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

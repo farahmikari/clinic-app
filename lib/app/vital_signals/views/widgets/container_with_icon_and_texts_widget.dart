@@ -13,7 +13,7 @@ class ContainerWithIconAndTextsWidget extends StatelessWidget {
     this.symbol,
   });
   final String title;
-  final String value;
+  final String? value;
   final String icon;
   final Color color;
   final String? symbol;
@@ -41,7 +41,7 @@ class ContainerWithIconAndTextsWidget extends StatelessWidget {
             ),
 
             Text(
-              "$value ${symbol ?? ""}",
+              value==null?"---": "$value ${symbol ?? ""}",
               style: Theme.of(context).textTheme.titleLarge!.copyWith(
                 fontWeight: FontWeight.bold,
                 color: AppColors.mainTextColor,
