@@ -1330,12 +1330,6 @@ class S {
     return Intl.message('Blood Sugar', name: 'blood_sugar', desc: '', args: []);
   }
 
-  /// `Medix is ​​a management system for medium-sized, multi-specialty medical clinics, small, and private centers. It aims to automate all daily tasks performed by these centers, including managing medical staff, managing appointments, managing patient medical records, and managing bills in a simple, efficient, and effective manner.`
-  String get info_clinic {
-    return Intl.message(
-      'Medix is ​​a management system for medium-sized, multi-specialty medical clinics, small, and private centers. It aims to automate all daily tasks performed by these centers, including managing medical staff, managing appointments, managing patient medical records, and managing bills in a simple, efficient, and effective manner.',
-      name: 'info_clinic',);}
-
   /// `Sign in`
   String get sign_in {
     return Intl.message('Sign in', name: 'sign_in', desc: '', args: []);
@@ -1355,11 +1349,6 @@ class S {
       args: [],
     );
   }
-
-
-  /// `Language`
-  String get language {
-    return Intl.message('Language', name: 'language', desc: '', args: []);}
 
   /// `Log in to view your upcoming and completed appointments with your doctors.`
   String get appointments_auth_prompt_subtitle {
@@ -1694,6 +1683,51 @@ class S {
       desc: '',
       args: [],
     );
+  }
+
+  /// `Setting`
+  String get setting {
+    return Intl.message('Setting', name: 'setting', desc: '', args: []);
+  }
+
+  /// `change theme Dark / Light mode : `
+  String get change_theme_Dark_Light_mode {
+    return Intl.message(
+      'change theme Dark / Light mode : ',
+      name: 'change_theme_Dark_Light_mode',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Light`
+  String get light {
+    return Intl.message('Light', name: 'light', desc: '', args: []);
+  }
+
+  /// `Dark`
+  String get dark {
+    return Intl.message('Dark', name: 'dark', desc: '', args: []);
+  }
+
+  /// `Medix is ​​a management system for medium-sized, multi-specialty medical clinics, small, and private centers. It aims to automate all daily tasks performed by these centers, including managing medical staff, managing appointments, managing patient medical records, and managing bills in a simple, efficient, and effective manner.`
+  String get info_clinic {
+    return Intl.message(
+      'Medix is ​​a management system for medium-sized, multi-specialty medical clinics, small, and private centers. It aims to automate all daily tasks performed by these centers, including managing medical staff, managing appointments, managing patient medical records, and managing bills in a simple, efficient, and effective manner.',
+      name: 'info_clinic',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Language`
+  String get language {
+    return Intl.message('Language', name: 'language', desc: '', args: []);
+  }
+
+  /// `Dr. {name}`
+  String dr(Object name) {
+    return Intl.message('Dr. $name', name: 'dr', desc: '', args: [name]);
   }
 }
 

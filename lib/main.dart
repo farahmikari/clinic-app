@@ -1,5 +1,5 @@
 import 'package:clinic_app/app/auth_prompt/controllers/check_user_authentication_bloc/check_user_authentication_bloc.dart';
-import 'package:clinic_app/app/onboarding/views/screens/splash_screen.dart';
+import 'package:clinic_app/app/base_url/views/screens/base_url_screen.dart';
 import 'package:clinic_app/app/settings/controllers/localization_bloc/localization_bloc.dart';
 import 'package:clinic_app/app/settings/controllers/theme_bloc/theme_bloc.dart';
 import 'package:clinic_app/core/constants/app_theme.dart';
@@ -73,7 +73,7 @@ class ClinicApp extends StatelessWidget {
           ],
           supportedLocales: S.delegate.supportedLocales,
           locale: localizationState.locale,
-          home: SplashScreen(),
+          home: BaseUrlScreen(),
         );
       },
     );

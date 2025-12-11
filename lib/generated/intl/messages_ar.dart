@@ -23,16 +23,18 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m0(count) =>
       "${Intl.plural(count, zero: 'لا يوجد أطباء مسائيين', one: 'طبيب مسائي واحد', two: 'طبيبين مسائيين', few: '${count} أطباء مسائيين', many: '${count} طبيب مسائي', other: '${count} طبيب مسائي')}";
 
-  static String m1(count) =>
-      "${Intl.plural(count, zero: 'لا يوجد خبرة', one: 'سنة واحدة', two: 'سنتان', few: '${count} سنوات', many: '${count} سنة', other: '${count} سنة')}";
+  static String m1(name) => "د.${name}";
 
   static String m2(count) =>
-      "${Intl.plural(count, zero: 'لا يوجد أطباء صباحيين', one: 'طبيب صباحي واحد', two: 'طبيبين صباحيين', few: '${count} أطباء صباحيين', many: '${count} طبيب صباحي', other: '${count} طبيب صباحي')}";
+      "${Intl.plural(count, zero: 'لا يوجد خبرة', one: 'سنة واحدة', two: 'سنتان', few: '${count} سنوات', many: '${count} سنة', other: '${count} سنة')}";
 
   static String m3(count) =>
-      "${Intl.plural(count, zero: 'لا يوجد نقاط', one: 'نقطة واحدة', two: 'نقطتان', few: '${count} نقاط', many: '${count} نقطة', other: '${count} نقطة')}";
+      "${Intl.plural(count, zero: 'لا يوجد أطباء صباحيين', one: 'طبيب صباحي واحد', two: 'طبيبين صباحيين', few: '${count} أطباء صباحيين', many: '${count} طبيب صباحي', other: '${count} طبيب صباحي')}";
 
   static String m4(count) =>
+      "${Intl.plural(count, zero: 'لا يوجد نقاط', one: 'نقطة واحدة', two: 'نقطتان', few: '${count} نقاط', many: '${count} نقطة', other: '${count} نقطة')}";
+
+  static String m5(count) =>
       "${Intl.plural(count, zero: 'لا يوجد معالجات', one: 'معالجة واحدة', two: 'معالجتين', few: '${count} معالجات', many: '${count} معالجة', other: '${count} معالجة')}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
@@ -127,14 +129,18 @@ class MessageLookup extends MessageLookupByLibrary {
     "change_password": MessageLookupByLibrary.simpleMessage(
       "تغيير كلمة المرور",
     ),
+    "change_theme_Dark_Light_mode": MessageLookupByLibrary.simpleMessage(
+      " : تغيير الوضع الليلي / النهاري ",
+    ),
     "check_up": MessageLookupByLibrary.simpleMessage("معاينة"),
-    "completed": MessageLookupByLibrary.simpleMessage("مكتملة"),
+    "completed": MessageLookupByLibrary.simpleMessage("مكتمل"),
     "confirm": MessageLookupByLibrary.simpleMessage("تأكيد"),
     "confirm_password": MessageLookupByLibrary.simpleMessage(
       "تأكيد كلمة المرور",
     ),
     "continue_as_a_guest": MessageLookupByLibrary.simpleMessage("متابعة كزائر"),
     "cotinue": MessageLookupByLibrary.simpleMessage("المتابعة"),
+    "dark": MessageLookupByLibrary.simpleMessage("الليلي"),
     "dark_theme": MessageLookupByLibrary.simpleMessage("الوضع الداكن"),
     "data_not_found": MessageLookupByLibrary.simpleMessage(
       "البيانات غير متوفرة",
@@ -161,6 +167,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "dont_have_an_account": MessageLookupByLibrary.simpleMessage(
       "ليس لديك حساب؟",
     ),
+    "dr": m1,
     "edit": MessageLookupByLibrary.simpleMessage("تعديل"),
     "edit_email": MessageLookupByLibrary.simpleMessage(
       "تعديل البريد الالكتروني",
@@ -179,7 +186,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "enter_new_email": MessageLookupByLibrary.simpleMessage(
       "أدخل بريدك الالكتروني الجديد",
     ),
-    "experience_count": m1,
+    "experience_count": m2,
     "experience_title": MessageLookupByLibrary.simpleMessage("الخبرة"),
     "failed": MessageLookupByLibrary.simpleMessage("فشل"),
     "failed_changed_password": MessageLookupByLibrary.simpleMessage(
@@ -221,12 +228,14 @@ class MessageLookup extends MessageLookupByLibrary {
       "السعر الإجمالي لهذا الحجز هو",
     ),
     "lab_tests": MessageLookupByLibrary.simpleMessage("التحليلات المخبرية"),
+    "language": MessageLookupByLibrary.simpleMessage("اللغة"),
     "last_name": MessageLookupByLibrary.simpleMessage("الكنية"),
     "latest_offers": MessageLookupByLibrary.simpleMessage("أحدث العروض"),
     "less": MessageLookupByLibrary.simpleMessage("أقل"),
     "less_than_10_numbers": MessageLookupByLibrary.simpleMessage(
       "أقل من 10 أرقام",
     ),
+    "light": MessageLookupByLibrary.simpleMessage("النهاري"),
     "light_theme": MessageLookupByLibrary.simpleMessage("الوضع الفاتح"),
     "login": MessageLookupByLibrary.simpleMessage("تسجيل دخول"),
     "login_failed": MessageLookupByLibrary.simpleMessage("فشل تسجيل الدخول"),
@@ -246,7 +255,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "medications": MessageLookupByLibrary.simpleMessage("الأدوية"),
     "more": MessageLookupByLibrary.simpleMessage("أكثر"),
     "morning": MessageLookupByLibrary.simpleMessage("صباحي"),
-    "morning_doctors_count": m2,
+    "morning_doctors_count": m3,
     "morning_times": MessageLookupByLibrary.simpleMessage("الأوقات الصباحية"),
     "most_rated": MessageLookupByLibrary.simpleMessage("الأكثر تقييما"),
     "need_booking": MessageLookupByLibrary.simpleMessage(
@@ -307,7 +316,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "pending": MessageLookupByLibrary.simpleMessage("قيد الانتظار"),
     "phone": MessageLookupByLibrary.simpleMessage("الهاتف"),
-    "points_count": m3,
+    "points_count": m4,
     "points_title": MessageLookupByLibrary.simpleMessage(
       "أحسنت! إليك رصيد نقاطك الإجمالي",
     ),
@@ -340,6 +349,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "set_your_information": MessageLookupByLibrary.simpleMessage(
       "أدخل معلوماتك الشخصية",
     ),
+    "setting": MessageLookupByLibrary.simpleMessage("الإعدادات"),
     "settings": MessageLookupByLibrary.simpleMessage("الإعدادات"),
     "share_rating": MessageLookupByLibrary.simpleMessage("مشاركة التقييم"),
     "sign_in": MessageLookupByLibrary.simpleMessage("تسجيل دخول"),
@@ -361,7 +371,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "times": MessageLookupByLibrary.simpleMessage("الأوقات"),
     "total_amount": MessageLookupByLibrary.simpleMessage("السعر الإجمالي"),
-    "treatments_count": m4,
+    "treatments_count": m5,
     "treatments_title": MessageLookupByLibrary.simpleMessage("المعالجات"),
     "unpaid": MessageLookupByLibrary.simpleMessage("غير مدفوعة"),
     "use_device_language": MessageLookupByLibrary.simpleMessage(

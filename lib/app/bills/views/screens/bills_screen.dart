@@ -33,10 +33,10 @@ class BillsScreen extends StatelessWidget {
         listeners: [
           BlocListener<FetchBillsBloc, FetchBillsState>(
             listener: (context, state) {
-              if (state is FetchBillsLoaded) {
-                context.read<FilterBloc>().add(FilterWidgetIsActivated());
-              } else {
+              if (state is FetchBillsLoading) {
                 context.read<FilterBloc>().add(FilterWidgetIsDeactivated());
+              } else {
+                context.read<FilterBloc>().add(FilterWidgetIsActivated());
               }
             },
           ),

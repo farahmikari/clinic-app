@@ -45,10 +45,10 @@ class DepartmentDoctorsScreen extends StatelessWidget {
         listeners: [
           BlocListener<FetchDepartmentDoctorsBloc, FetchDepartmentDoctorsState>(
             listener: (context, state) {
-              if (state is FetchDepartmentDoctorsLoaded) {
-                context.read<FilterBloc>().add(FilterWidgetIsActivated());
-              } else {
+              if (state is FetchDepartmentDoctorsLoading) {
                 context.read<FilterBloc>().add(FilterWidgetIsDeactivated());
+              } else {
+                context.read<FilterBloc>().add(FilterWidgetIsActivated());
               }
             },
           ),

@@ -23,16 +23,18 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m0(count) =>
       "${Intl.plural(count, zero: 'No Afternoon Dr', one: '1 Afternoon Dr', other: '${count} Afternoon Dr')}";
 
-  static String m1(count) =>
-      "${Intl.plural(count, zero: 'No experience', one: '1 year', other: '${count} years')}";
+  static String m1(name) => "Dr. ${name}";
 
   static String m2(count) =>
-      "${Intl.plural(count, zero: 'No Morning Dr', one: '1 Morning Dr', other: '${count} Morning Dr')}";
+      "${Intl.plural(count, zero: 'No experience', one: '1 year', other: '${count} years')}";
 
   static String m3(count) =>
-      "${Intl.plural(count, zero: 'No points', one: '1 point', other: '${count} points')}";
+      "${Intl.plural(count, zero: 'No Morning Dr', one: '1 Morning Dr', other: '${count} Morning Dr')}";
 
   static String m4(count) =>
+      "${Intl.plural(count, zero: 'No points', one: '1 point', other: '${count} points')}";
+
+  static String m5(count) =>
       "${Intl.plural(count, zero: 'No treatments', one: '1 treatment', other: '${count} treatments')}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
@@ -131,6 +133,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Discover Your Wellbeing",
     ),
     "change_password": MessageLookupByLibrary.simpleMessage("Change password"),
+    "change_theme_Dark_Light_mode": MessageLookupByLibrary.simpleMessage(
+      "change theme Dark / Light mode : ",
+    ),
     "check_up": MessageLookupByLibrary.simpleMessage("Check-Up"),
     "completed": MessageLookupByLibrary.simpleMessage("completed"),
     "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
@@ -141,6 +146,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Continue as a guest",
     ),
     "cotinue": MessageLookupByLibrary.simpleMessage("Cotinue"),
+    "dark": MessageLookupByLibrary.simpleMessage("Dark"),
     "dark_theme": MessageLookupByLibrary.simpleMessage("Dark theme"),
     "data_not_found": MessageLookupByLibrary.simpleMessage("Data not found"),
     "days": MessageLookupByLibrary.simpleMessage("Days"),
@@ -165,6 +171,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "dont_have_an_account": MessageLookupByLibrary.simpleMessage(
       "Don\'t have an account ?",
     ),
+    "dr": m1,
     "edit": MessageLookupByLibrary.simpleMessage("Edit"),
     "edit_email": MessageLookupByLibrary.simpleMessage("Edit email"),
     "edit_password": MessageLookupByLibrary.simpleMessage("Edit password"),
@@ -179,7 +186,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "email": MessageLookupByLibrary.simpleMessage("Email"),
     "english": MessageLookupByLibrary.simpleMessage("English"),
     "enter_new_email": MessageLookupByLibrary.simpleMessage("Enter new email"),
-    "experience_count": m1,
+    "experience_count": m2,
     "experience_title": MessageLookupByLibrary.simpleMessage("Experience"),
     "failed": MessageLookupByLibrary.simpleMessage("Failed"),
     "failed_changed_password": MessageLookupByLibrary.simpleMessage(
@@ -223,12 +230,14 @@ class MessageLookup extends MessageLookupByLibrary {
       "The total price for this reservation is",
     ),
     "lab_tests": MessageLookupByLibrary.simpleMessage("Lab Tests"),
+    "language": MessageLookupByLibrary.simpleMessage("Language"),
     "last_name": MessageLookupByLibrary.simpleMessage("Last Name"),
     "latest_offers": MessageLookupByLibrary.simpleMessage("Latest Offers"),
     "less": MessageLookupByLibrary.simpleMessage("Less"),
     "less_than_10_numbers": MessageLookupByLibrary.simpleMessage(
       "Less than 10 numbers",
     ),
+    "light": MessageLookupByLibrary.simpleMessage("Light"),
     "light_theme": MessageLookupByLibrary.simpleMessage("Light theme"),
     "login": MessageLookupByLibrary.simpleMessage("Login"),
     "login_failed": MessageLookupByLibrary.simpleMessage("Login Failed"),
@@ -248,7 +257,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "medications": MessageLookupByLibrary.simpleMessage("Medications"),
     "more": MessageLookupByLibrary.simpleMessage("More"),
     "morning": MessageLookupByLibrary.simpleMessage("morning"),
-    "morning_doctors_count": m2,
+    "morning_doctors_count": m3,
     "morning_times": MessageLookupByLibrary.simpleMessage("Morning Times"),
     "most_rated": MessageLookupByLibrary.simpleMessage("Most Rated"),
     "need_booking": MessageLookupByLibrary.simpleMessage(
@@ -311,7 +320,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "pending": MessageLookupByLibrary.simpleMessage("pending"),
     "phone": MessageLookupByLibrary.simpleMessage("Phone"),
-    "points_count": m3,
+    "points_count": m4,
     "points_title": MessageLookupByLibrary.simpleMessage(
       "Well done! here\'s your total point balance",
     ),
@@ -344,6 +353,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "set_your_information": MessageLookupByLibrary.simpleMessage(
       "Set your information",
     ),
+    "setting": MessageLookupByLibrary.simpleMessage("Setting"),
     "settings": MessageLookupByLibrary.simpleMessage("Settings"),
     "share_rating": MessageLookupByLibrary.simpleMessage("Share Rating"),
     "sign_in": MessageLookupByLibrary.simpleMessage("Sign in"),
@@ -365,7 +375,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "times": MessageLookupByLibrary.simpleMessage("Times"),
     "total_amount": MessageLookupByLibrary.simpleMessage("Total Amount"),
-    "treatments_count": m4,
+    "treatments_count": m5,
     "treatments_title": MessageLookupByLibrary.simpleMessage("Treatments"),
     "unpaid": MessageLookupByLibrary.simpleMessage("unpaid"),
     "use_device_language": MessageLookupByLibrary.simpleMessage(

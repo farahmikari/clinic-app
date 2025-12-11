@@ -36,10 +36,10 @@ class AppointmentsScreen extends StatelessWidget {
         listeners: [
           BlocListener<FetchAppointmentsBloc, FetchAppointmentsState>(
             listener: (context, state) {
-              if (state is FetchAppointmentsLoaded) {
-                context.read<FilterBloc>().add(FilterWidgetIsActivated());
-              } else {
+              if (state is FetchAppointmentsLoading) {
                 context.read<FilterBloc>().add(FilterWidgetIsDeactivated());
+              } else {
+                context.read<FilterBloc>().add(FilterWidgetIsActivated());
               }
             },
           ),

@@ -1,5 +1,5 @@
 class EndPoints {
-  static String baseUrl = "http://192.168.1.6:8000";
+  static String baseUrl = "http://192.168.1.2:8000";
 
   static void setBaseUrl(String newBaseUrl) {
     baseUrl = newBaseUrl;
